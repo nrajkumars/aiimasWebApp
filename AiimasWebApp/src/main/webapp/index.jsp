@@ -270,25 +270,26 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<center> <h2>Verification by P.R. No.</h2></center>
 		<div class="w3-panel w3-pale-green">
 		 <p>Search for Sudent information based on P.R.No.</p>
-  <form class="w3-container" action="/action_page.php">
+  <div class="w3-container">
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" >
+			<input class="w3-input w3-border " type="text" id="prCode" >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text">
+			<input class="w3-input w3-border " type="text" id="prNo" >
 		  </div>
 
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue">&nbsp;&nbsp;Search</button><br><br><br><br>
+			
+			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br>
 			<br>
 		  </div>
 		  </p>
-	  </form>
+	 </div>
 	  </div>
 	</div>
 	 
@@ -298,7 +299,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<div class="w3-panel w3-pale-green">
 		 <p>Search for Sudent information based on Name and Diploma name.</p>
 
-		<form class="w3-container" action="/action_page.php">
+		<div class="w3-container">
 		 <p>   
 		
 		  
@@ -331,7 +332,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<center><button class="w3-button w3-blue">Search</button></center>
 
 		</p>
-	  </form>
+	  </div>
 	  </div>
 
 

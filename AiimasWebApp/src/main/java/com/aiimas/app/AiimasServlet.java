@@ -48,7 +48,7 @@ public class AiimasServlet extends HttpServlet {
 		String prn = request.getParameter("prNo");
 		String prc = request.getParameter("prCode");
 		
-		System.out.println(app + "," + mod +"," + act + "," + prn + "," + prc);
+		System.out.println("in Servlet"+app + "," + mod +"," + act + "," + prn + "," + prc);
 		
 		ObjectMapper om = new ObjectMapper();
 		
