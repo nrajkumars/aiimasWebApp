@@ -14,6 +14,7 @@
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"> -->
 
+<script src="js/app.js?ver=1"></script>
 
   <link href="lib/w3.css" rel="stylesheet">
   <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -113,7 +114,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<center> <h2>Admission Application</h2>
 		<p>Add, Modify and Delete the Student application</p>
 		</center>
-	  <form class="w3-container" action="AiimasServlet" method="post">
+	  <div class="w3-container">
 		<p>   
 		
 		  
@@ -138,17 +139,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" name="prCode" >
+			<input class="w3-input w3-border " type="text" value = "" id="prCode" >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" name="prNo">
+			<input class="w3-input w3-border " type="text" value = ""  id="prNo">
 		  </div>
 
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue">&nbsp;&nbsp;Search</button><br>
+			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br>
 			<br>
 		  </div>
 
@@ -200,7 +201,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		</center>
 
 		</p>
-	  </form>
+	  </div>
 	</div>
 
 
