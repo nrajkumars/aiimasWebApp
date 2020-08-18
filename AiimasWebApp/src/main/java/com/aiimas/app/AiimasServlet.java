@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import com.aiimas.util.PDFGenerator;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AiimasServlet
  */
-@WebServlet("/AiimasServlet")
+@WebServlet("/aiimasServlet")
 public class AiimasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +53,10 @@ public class AiimasServlet extends HttpServlet {
 				
 				System.out.println("RRRR -  CAlling DB method");
 				
-				connectPostgreSQL();
+				PDFGenerator pdfGen= new PDFGenerator();
+				pdfGen.PrintPDF();
+				
+				//connectPostgreSQL();
 	}
 	
 	private void connectPostgreSQL() {
