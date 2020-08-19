@@ -43,7 +43,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </a>
 
     <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-	   <a href="#admApp" class="w3-bar-item w3-button">Admission Application</a>
+	   <a href="#admApp" class="w3-bar-item w3-button">Add - Admission Application</a>
+	    <a href="#admApp" class="w3-bar-item w3-button">Modify - Admission Application</a>
       <a href="#examApp" class="w3-bar-item w3-button">Examination Application</a>
       <a href="#markUpdate" class="w3-bar-item w3-button">Mark Updation</a>
     </div>
@@ -75,7 +76,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </a>
     <div id="demoAcc3" class="w3-bar-block w3-hide w3-padding-large w3-medium">
       <a href="#diplomaUpdate" class="w3-bar-item w3-button">Diploma Update</a>
-      <a href="#addressUpdate" class="w3-bar-item w3-button">Address Update</a>
+      <a href="#addressUpdate" class="w3-bar-item w3-button">Institute Update</a>
     </div>
 
 
@@ -107,7 +108,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-black w3-center w3-padding-24"><h1>AIIMAS</h1> </div>
 
  
-<!-- Main screen start -->
+<!-- Main screen start -------------------------------------------------------------------------------------------Main screen---------------------------------->
  
 
    <div class="w3-padding-64 w3-light-grey w3-card-4" id=admApp>
@@ -121,21 +122,41 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
 		<input type="text" name="diplomaCode" maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
   		<input type="text" name="diplomaName" maxlength="80" size="80"><br><br>
+  		
+  		
+  		
+		<div class="w3-third">
+		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
+		<select class="w3-select" name="option">
+    		<option value="" disabled selected>Choose your option</option>
+    		<option value="1">Six Months</option>
+    		<option value="2">One Year- PG</option>
+    		<option value="3">18 Months- PG</option>
+   		 	<option value="3">One Year</option>
+  		</select>
+  	</div>
+   
+    
+  		
+		<br><br><br><br>
 
 		
 		<div class="w3-third">
-			<label class="w3-text-brown"><b>Semester:</b></label>
+			<label class="w3-text-brown"><b>Semester Month:</b></label>
 			<input class="w3-input w3-border " type="text" >
 		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" >
+		  </div>
 				  
-		  <div class="w3-third">
-			<label class="w3-text-brown"><b>Duration:</b></label>
-			<input class="w3-input w3-border " type="text">
-		  </div>
-		  <div class="w3-third">
+
+
+ 		  <div class="w3-third"> 
 			<label class="w3-text-brown"><b>Entered on:</b></label>
-			<input class="w3-input w3-border " type="date"><br>
-		  </div>
+ 			<input class="w3-input w3-border " type="date"><br>
+ 		  </div> 
 
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
@@ -146,20 +167,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
 			<input class="w3-input w3-border " type="text" value = ""  id="prNo">
 		  </div>
-
-		  <div class="w3-third">
-		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br>
-			<br>
+		  
+		  
+		  <div class= "w3-third w3-container w3-border w3-Small">
+  			<div class="w3-left-align"><p>Current Batch No:</p></div>
+  			<div class="w3-left-align"><p>Last Batch No:</p></div>
 		  </div>
 
 
+<!-- 		  <div class="w3-third"> -->
+<!-- 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br> -->
+<!-- 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br> -->
+<!--  			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br>  -->
+<!-- 			<br><br> -->
+<!-- 		  </div> -->
+		  
+<!-- 		  <div class="w3-third"> -->
+<!-- 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br> -->
+<!-- 			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> -->
+<!-- 			<br> -->
+<!-- 		  </div> -->
 
-		<label class="w3-text-brown"><b>Reference:</b></label>
-		<input class="w3-input w3-border " name="first" type="text"><br>
-		    
+<!-- 		<label class="w3-text-brown"><b>Reference:</b></label> -->
+<!-- 		<input class="w3-input w3-border " name="first" type="text"><br> -->
+
+
+   
 		<label class="w3-text-brown"><b>Name:</b></label>
 		<input class="w3-input w3-border " name="last" type="text"><br>
+				
+		<div class="w3-third">
+		<label class="w3-text-brown"><b> Sex:</b>&nbsp;</label>
+		<select class="w3-select" name="option">
+    		<option value="" disabled selected>Choose your option</option>
+    		<option value="1">Male</option>
+   	 	   	<option value="3">Female</option>
+  		</select>&nbsp;&nbsp;
+   		</div>
+   
+   
+   		<div class="w3-third"> 
+			<label class="w3-text-brown"><b>Date of Birth:</b></label>
+ 			<input class="w3-input w3-border " type="date"><br>
+ 		  </div> 
+   
+		<br><br><br><br>
+		
 		<label class="w3-text-brown"><b>Address 1:</b></label>
 		<input class="w3-input w3-border " name="last" type="text"><br>
 		<label class="w3-text-brown"><b>Address 2:</b></label>
@@ -170,7 +223,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input class="w3-input w3-border " name="last" type="text"><br>
 		<label class="w3-text-brown"><b>Address 5:</b></label>
 		<input class="w3-input w3-border" name="last" type="text"><br>
-
 
 
 		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
@@ -190,8 +242,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input type="text" name="diplomaCode" maxlength="5" size="5"><br><br>
 
 		<label class="w3-text-brown" ><b>Papers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="number" name="papers" maxlength="2" size="2"><br><br><br>
-
+		<input type="text" name="papers" maxlength="2" size="2"><br><br><br>
 
 
 		<center>
@@ -206,7 +257,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 
-<!-- Exam application update -->
+<!-- Exam application update ------------------------------------------------------------------------------------------------------------------>
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=examApp>
 		<center> <h2>Exam Application</h2></center>
@@ -220,7 +271,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 
-<!-- MARK update -->
+<!-- MARK update --------------------------------------------------------------------------------------------------------------------------------->
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=markUpdate>
 		<center> <h2>Mark Updataion</h2></center>
@@ -233,7 +284,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 
-<!-- PRINT / VIEW -->
+<!-- PRINT / VIEW ---------------------------------------------------------------------------------------------------------------------------------->
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=ack1> 
 		<center> <h2>View and Print Ack./ Intimation</h2></center>
@@ -264,7 +315,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	</div>
 
 
-<!-- VERIFICATION -->
+<!-- VERIFICATION ----------------------------------------------------------------------------------------------------------------------------------->
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=search1>
 		<center> <h2>Verification by P.R. No.</h2></center>
@@ -336,29 +387,60 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	  </div>
 
 
-<!-- MAINTANCE  - Diploma update-->
+<!-- MAINTANCE  - Diploma update -------------------------------------------------------------------------------------------------------------->
 
- <div class="w3-padding-64 w3-light-grey w3-card-4" id=diplomaUpdate>
-		<center> <h2>Aiimas Diplomas Update</h2></center>
-	  <form class="w3-container" action="/action_page.php">
+
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=diplomaUpdate>
+		<center> <h2>Diplomas updation</h2></center><br><br>
+	  <div class="w3-container" >
+	    <label class="w3-text-brown"><b></b></label>
+	
+		
+		<label class="w3-text-brown" ><b>Diploma Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+		<input type="text" name="papers" maxlength="10" size="10"><br><br>
+		
+	  	<label class="w3-text-brown"><b>Diploma Name:</b></label>
+		<input class="w3-input w3-border " name="instituteName" type="text"><br>
+		
+		<label class="w3-text-brown"><b>DC Diploma Name:</b></label>
+		<input class="w3-input w3-border " name="instituteAddress" type="text"><br>
+		
+		<label class="w3-text-brown" ><b>Number of Papers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+		<input type="text" name="papers" maxlength="2" size="2"><br><br>
+		
 		<p><center>
 		<button class="w3-button w3-blue">Save</button>
 		</center></p>
-	  </form>
+	  </div>
 	</div>
+	
 
 
 
 
-	<!-- Aiimas Address update -->
+	<!-- Institute Address update -->
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=addressUpdate>
-		<center> <h2>Aiimas Address Updataion</h2></center>
-	  <form class="w3-container" action="/action_page.php">
+		<center> <h2>Institute Address updation</h2></center><br><br>
+	  <div class="w3-container" >
+	    <label class="w3-text-brown"><b></b></label>
+	
+		
+		<label class="w3-text-brown" ><b>Institute Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+		<input type="text" name="papers" maxlength="10" size="10"><br><br>
+		
+	  	<label class="w3-text-brown"><b>Institute Name:</b></label>
+		<input class="w3-input w3-border " name="instituteName" type="text"><br>
+		
+		<label class="w3-text-brown"><b>Institute Address:</b></label>
+		<input class="w3-input w3-border " name="instituteAddress" type="text"><br>
+		
+		<label class="w3-text-brown"><b>Institute PhoneNumber:</b></label>
+		<input class="w3-input w3-border " name="instituteNumbers" type="text"><br>
 		<p><center>
 		<button class="w3-button w3-blue">Save</button>
 		</center></p>
-	  </form>
+	  </div>
 	</div>
 
 
@@ -372,8 +454,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   
  </div>
 
-  <!-- End page content -->
-
+  <!-- End page content --------------------------------------------------------------------------------------------------------------------------->
+ <!-- End page content --------------------------------------------------------------------------------------------------------------------------->
 <!-- Newsletter Modal -->
 <div id="newsletter" class="w3-modal">
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
