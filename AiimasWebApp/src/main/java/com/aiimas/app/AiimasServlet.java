@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.aiimas.util.PDFGenerator;
+import com.aiimas.util.BaseDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -53,6 +54,13 @@ public class AiimasServlet extends HttpServlet {
 		
 		System.out.println("inside aiimas servier do post-"+app + "," + mod +"," + act + "," + prn + "," + prc);		
 		
+		// connect to db
+		//String sqlqry = "";
+		//BaseDao basedao = new BaseDao();
+		//basedao.executeFetchSql(sqlqry);
+		
+		System.out.println(" SQL Query exeuted success");
+		
 		ObjectMapper om = new ObjectMapper();
 		
 		Map retval  =new HashMap();
@@ -64,39 +72,42 @@ public class AiimasServlet extends HttpServlet {
 		response.getWriter().write(res);
 	}
 	
-	private void connectPostgreSQL() {
-		
-		System.out.println("RRRR -  insdie  -- connectPostgreSQL");
-		
-		try {
-			InitialContext cxt = new InitialContext();
 	
-			System.out.println("RRRR -  insdie  -- connectPostgreSQL : InitialContext -"+cxt);
-		
-			DataSource ds = (DataSource) cxt.lookup( "java:/comp/env/jdbc/postgres" );
 	
-			if ( ds == null ) {
-			   throw new Exception("Data source not found!");
-			}
+	// use util. baseDao.java class for calling db
+//	private void connectPostgreSQL() {
+//		
+//		System.out.println("RRRR -  insdie  -- connectPostgreSQL");
+//		
+//		try {
+//			InitialContext cxt = new InitialContext();
+//	
+//			System.out.println("RRRR -  insdie  -- connectPostgreSQL : InitialContext -"+cxt);
+//		
+//			DataSource ds = (DataSource) cxt.lookup( "java:/comp/env/jdbc/postgres" );
+//	
+//			if ( ds == null ) {
+//			   throw new Exception("Data source not found!");
+//			}
+//		
+//			System.out.println("RRRR -  insdie  -- connectPostgreSQL : DataSource -"+ds);
+//			
+//			Connection conn = ds.getConnection();
+//			
+//			PreparedStatement pstmt = conn.prepareStatement("select * from  AIIMASTESTTABLE;");
+//	
+//			ResultSet rs = pstmt.executeQuery();
+//			rs.next();
+//			System.out.println("Execution: "+rs.getString(2));
+//			rs.close();
+//		
+//			pstmt.close();
+//			conn.close();
+//						
+//		}catch( Exception ex) {
+//			System.out.println("RRRR -  insdie  -- connectPostgreSQL  EXCEPTION "+ex);
+//		}
 		
-			System.out.println("RRRR -  insdie  -- connectPostgreSQL : DataSource -"+ds);
-			
-			Connection conn = ds.getConnection();
-			
-			PreparedStatement pstmt = conn.prepareStatement("select * from  AIIMASTESTTABLE;");
-	
-			ResultSet rs = pstmt.executeQuery();
-			rs.next();
-			System.out.println("Execution: "+rs.getString(2));
-			rs.close();
-		
-			pstmt.close();
-			conn.close();
-						
-		}catch( Exception ex) {
-			System.out.println("RRRR -  insdie  -- connectPostgreSQL  EXCEPTION "+ex);
-		}
-		
-	}
+//	}
 
 }
