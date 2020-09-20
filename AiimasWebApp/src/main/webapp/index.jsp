@@ -14,7 +14,11 @@
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"> -->
 
-<script src="js/app.js?ver=1"></script>
+<!-- <script src="js/app1.js?ver=1"></script> -->
+
+<script src="js/app2.js"></script> 
+
+
 
   <link href="lib/w3.css" rel="stylesheet">
   <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -319,9 +323,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=search1>
 		<center> <h2>Verification by P.R. No.</h2></center>
-		<div class="w3-panel w3-pale-green">
-		 <p>Search for Sudent information based on P.R.No.</p>
-  <div class="w3-container">
+	<div class="w3-panel w3-pale-green">
+		 <p>Search for Student information based on P.R.No.</p>
+  	<div class="w3-container">
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
@@ -335,20 +339,18 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			
-			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br>
-			<br>
+			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> <br>
 		  </div>
-		  </p>
+		</p>
 	 </div>
-	  </div>
 	</div>
+</div>
 	 
 		
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=search2>
 	<center> <h2>Verfication by Name and Diploma name.</h2></center>
 		<div class="w3-panel w3-pale-green">
-		 <p>Search for Sudent information based on Name and Diploma name.</p>
+		 <p>Search for Student information based on Name and Diploma name.</p>
 
 		<div class="w3-container">
 		 <p>   

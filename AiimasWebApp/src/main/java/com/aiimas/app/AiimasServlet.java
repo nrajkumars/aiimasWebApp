@@ -38,29 +38,7 @@ public class AiimasServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//app=Aiimas&module=Search&action=searchByPrCodePrNo&prNo=123&prCode=ABC123
-		
-		String app = request.getParameter("app");
-		String mod = request.getParameter("module");
-		String act = request.getParameter("action");
-		String prn = request.getParameter("prNo");
-		String prc = request.getParameter("prCode");
-		
-		System.out.println("in Servlet"+app + "," + mod +"," + act + "," + prn + "," + prc);
-		
-		ObjectMapper om = new ObjectMapper();
-		
-		Map retval  =new HashMap();
-		
-		retval.put("app",app + " retval");
-		
-		String res = om.writeValueAsString(retval);
-		
-		response.getWriter().write(res);
-		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +51,7 @@ public class AiimasServlet extends HttpServlet {
 		String prn = request.getParameter("prNo");
 		String prc = request.getParameter("prCode");
 		
-		System.out.println(app + "," + mod +"," + act + "," + prn + "," + prc);		
+		System.out.println("inside aiimas servier do post-"+app + "," + mod +"," + act + "," + prn + "," + prc);		
 		
 		ObjectMapper om = new ObjectMapper();
 		
