@@ -29,7 +29,7 @@ public class BaseDao {
 		}
 		if (conn == null) {
 			Class.forName("org.postgresql.Driver");
-			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","Tata$786");
+			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","");
 			conn = DriverManager.getConnection("jdbc:postgresql://10.139.159.109:5432/crods","postgres","password");
 			System.out.println("Db conn direct");
 		}
