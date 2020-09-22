@@ -1,4 +1,4 @@
-package com.aiimas.util;
+package com.aiimas.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,15 +29,13 @@ public class BaseDao {
 		}
 		if (conn == null) {
 			Class.forName("org.postgresql.Driver");
-			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","pwd");
-			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","pwd");
-			//conn = DriverManager.getConnection("jdbc:postgresql://10.139.159.109:5432/crods","postgres","password");
+			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","Tata$786");
+			conn = DriverManager.getConnection("jdbc:postgresql://10.139.159.109:5432/crods","postgres","password");
 			System.out.println("Db conn direct");
 		}
 		return conn;
 	}
-	public void executeUpdateQuery(String sql, Object[] args) {
-		//protected void executeUpdate(String sql, Object[] args) {
+	protected void executeUpdate(String sql, Object[] args) {
 		Connection conn = null;
 
 		try {
@@ -69,13 +67,9 @@ public class BaseDao {
 			}
 		}
 	}
-	
-	// raj made to public 
-	
-	public List executeFetchSql(String sql) {
+	protected List executeFetchSql(String sql) {
 		return executeFetchSql(sql, null);
 	}
-	
 	protected List executeFetchSql(String sql, Object[] args) {
 		Connection conn = null;
 		List al = new ArrayList();

@@ -164,12 +164,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" value = "" id="prCode" >
+			<input class="w3-input w3-border " type="text" value = "" id="prCode11" >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" value = ""  id="prNo">
+			<input class="w3-input w3-border " type="text" value = ""  id="prNo1">
 		  </div>
 		  
 		  
