@@ -6,14 +6,14 @@ function searchByPrCodePrNo() {
 	var prcode = document.getElementById('prCode').value;
 	var prno = document.getElementById('prNo').value;
 	
-	postAjax('rs',{"app":"AiimasPost","module":"Search","action":"searchByPrCodePrNo","prNo":prno,"prCode":prcode}, onPostsearchByPrCodePrNo);
+	postAjax('rs',{"app":"AiimasPost","module":"verification","action":"searchByPrCodePrNo1","prNo":prno,"prCode":prcode}, onPostsearchByPrCodePrNo);
 
 }
 
 
 
 function onPostsearchByPrCodePrNo(data) {
-	console.log('RESPONSE POST:' + data);
+	console.log('RESPONSE POST in app .JS:' + data);
 }
 
 function postAjax(url, data, callback) {

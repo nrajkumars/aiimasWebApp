@@ -40,17 +40,24 @@ public class Verification extends BaseDao {
 		List data = executeFetchSql(listCandidates);
 		return data;
 	}
-	public Map getEmployerDetails(Map input) {
-		Object username =  input.get("username");
-		if (username != null && username.getClass().isArray()) {
-			username = ((Object[])username)[0];
-		}
-		if (username != null && username.toString().trim().length() > 0) {
-			String getUserData = "select * from employers where username = ?";
-			List data = executeFetchSql(getUserData, new String[]{username.toString()});
+	
+	public Map getVerficationDetail1(Map input) {
+		Object prNum =  input.get("prNum");
+		Object prCode =  input.get("prCode");
+		
+		//String[] prNum = (String[]) input.get("prNum");
+		//String[] prCode = (String[]) input.get("prCode");
+		
+		System.out.println(" INSIDE VERIFICATION --  going to run the SQL = "+prNum+","+prCode );
+		
+		if (prNum != null && prNum.toString().trim().length() > 0) {
+			if((prCode != null && prCode.toString().trim().length() > 0)) {
+				String getVerifyDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
+				List data = executeFetchSql(getVerifyDataSql, new String[]{prCode.toString(),prNum.toString() });
 			
-			if (data != null && data.size() > 0) {
-				return (Map) data.get(0);
+				if (data != null && data.size() > 0) {
+					return (Map) data.get(0);
+				}
 			}
 		}
 		return null;

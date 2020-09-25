@@ -18,21 +18,23 @@ public class BaseDao {
 
 	protected Connection getConnection() throws Exception {
 		Connection conn = null;
+		
+		
 		try {
 			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/aiimas");
+			DataSource ds = (DataSource) ctx.lookup( "java:/comp/env/jdbc/aiimas" );
+//			DataSource ds = (DataSource) env.lookup("jdbc/aiimas");
 			conn = ds.getConnection();
-			System.out.println("Db conn from DS");
+			System.out.println("Db conn from DS ------------------"+conn);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (conn == null) {
-			Class.forName("org.postgresql.Driver");
-			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","");
-			conn = DriverManager.getConnection("jdbc:postgresql://10.139.159.109:5432/crods","postgres","password");
-			System.out.println("Db conn direct");
-		}
+//		if (conn == null) {
+//			Class.forName("org.postgresql.Driver");
+//			//conn = DriverManager.getConnection("jdbc:postgresql://aaobv2wbop5w0m.c8qevwrrmwp6.ap-south-1.rds.amazonaws.com:5432/postgres", "aiimasdb","");
+//			conn = DriverManager.getConnection("jdbc:postgresql://10.139.159.109:5432/crods","postgres","password");
+//			System.out.println("Db conn direct");
+//		}
 		return conn;
 	}
 	protected void executeUpdate(String sql, Object[] args) {
