@@ -14,6 +14,11 @@ function searchByPrCodePrNo() {
 
 function onPostsearchByPrCodePrNo(data) {
 	console.log('RESPONSE POST in app .JS:' + data);
+	//document.setElementbyId('returnvalue', data);
+	//var responseFromServer = request.responseText;
+		if (data != null) {
+			document.getElementById("result").innerHTML = data;
+		}
 }
 
 function postAjax(url, data, callback) {

@@ -329,18 +329,26 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="prCode" >
+			<input class="w3-input w3-border " type="text" id="prCode" value='ABM2' >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" id="prNo" >
+			<input class="w3-input w3-border " type="text" id="prNo"  value ='2'>
 		  </div>
 
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> <br>
+			<button class="w3-button w3-blue" id="result" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> <br>
 		  </div>
+		 
+<!-- 		  <div class="w3-panel w3-pale-green"> Diplay the values here...  JAMES HERE-->
+		  
+<!-- 		  <label>First Name</label> -->
+<!-- 			<input class="w3-input" type="text" id="result" > -->
+			
+<!-- 		  </div> -->
+		 
 		</p>
 	 </div>
 	</div>

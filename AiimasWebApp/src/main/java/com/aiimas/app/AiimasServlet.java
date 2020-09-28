@@ -35,23 +35,29 @@ public class AiimasServlet extends HttpServlet {
 	
 	//AiimasServlet aiimasServlet = new AiimasServlet();
 
-//	private void writeResponse(Object mdata, HttpServletResponse response) {
-//		try {
-//			ObjectMapper om = new ObjectMapper();
-//
-//			byte buf[] = om.writeValueAsString(mdata).getBytes();
-//			System.out.println("Response json : " + new String(buf));
-//			response.setContentLength(buf.length);
-//			response.setContentType("application/json");
-//			response.getOutputStream().write(buf);
-//			response.getOutputStream().close();
-//			
-//		} catch (Exception e) {
-//			// ignore
-//			e.printStackTrace();
-//		}
-//
-//	}
+	private void writeResponse(Object mdata, HttpServletResponse response) {
+		try {
+			ObjectMapper om = new ObjectMapper();
+			
+			System.out.println("inside writeResponse ----------------------------");
+			
+
+			byte buf[] = om.writeValueAsString(mdata).getBytes();
+			System.out.println("Response json : " + new String(buf));
+			response.setContentLength(buf.length);
+			response.setContentType("application/json");
+			response.getOutputStream().write(buf);
+			response.getOutputStream().close();
+			
+			System.out.println("inside writeResponse  DONE ------ HERE----------------------"+mdata.toString());
+			System.out.println("inside writeResponse  DONE ------ HERE----------------------"+response.toString());
+			
+		} catch (Exception e) {
+			// ignore
+			e.printStackTrace();
+		}
+
+	}
 	
 //	@Override
 //	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -120,26 +126,9 @@ public class AiimasServlet extends HttpServlet {
 				
 				//TODO
 				
-				
-				ObjectMapper om = new ObjectMapper();
-				
-				Map responseMap  =new HashMap();
-				
-				responseMap.put("app",app + "responseMap");
-				
-				String res = om.writeValueAsString(responseMap);
-				
-				resp.getWriter().write(res);
-				
-				
-				//byte[] buf = (byte[]) download.get(fileName);
-				//resp.setContentLength(buf.length);
-				//resp.setContentType("application/octet-stream");
-		       // resp.setHeader("Content-disposition","attachment; filename=" + fileName);
-				//resp.getOutputStream().write(buf);
-				//resp.getOutputStream().close();
+				writeResponse(verifyedValues, resp);
 			}
-		//	writeResponse(response, resp);
+			
 			
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
@@ -155,22 +144,7 @@ public class AiimasServlet extends HttpServlet {
 		}
 		
 		
-		// connect to db
-		//String sqlqry = "";
-		//BaseDao basedao = new BaseDao();
-		//basedao.executeFetchSql(sqlqry);
 		
-//		System.out.println(" SQL Query exeuted success");
-//		
-//		ObjectMapper om = new ObjectMapper();
-//		
-//		Map retval  =new HashMap();
-//		
-//		retval.put("app",app + " retval");
-//		
-//		String res = om.writeValueAsString(retval);
-//		
-//		response.getWriter().write(res);
 	}
 	
 	
