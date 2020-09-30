@@ -26,6 +26,26 @@
   <link href="lib/roboto.css" rel="stylesheet">
 
 <style>
+
+<!-- for table -->
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+<!-- end table -->
+
+
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </style>
@@ -342,14 +362,74 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<button class="w3-button w3-blue" id="result" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> <br>
 		  </div>
 		 
-<!-- 		  <div class="w3-panel w3-pale-green"> Diplay the values here...  JAMES HERE-->
-		  
-<!-- 		  <label>First Name</label> -->
-<!-- 			<input class="w3-input" type="text" id="result" > -->
-			
-<!-- 		  </div> -->
-		 
+
 		</p>
+
+
+	 </div>
+
+	 <div class="table-responsive" id="resultTable" style="display: none;" align ="center">
+	  
+	 
+	 
+		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
+		<thead>
+			<tr>
+				<th >Name</th>
+				<th >Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Student Name</td>
+				<td id="ad_name"></td>
+
+			</tr>
+			<tr>
+				<td>Diploma Duration</td>
+				<td id="ad_durtn"></td> 
+			</tr>
+			<tr>
+ 				<td>Diploma Code</td> 
+				<td id="ad_dipcode"></td> 
+			</tr>
+			<tr>
+				<td >Address Ref</td>
+				<td id="ad_ref"></td>
+
+			</tr>
+			<tr>
+				<td >Fee Date</td>
+				<td id="ad_feedate"></td> 
+			</tr>
+			<tr>
+				<td >Admission Semester Month</td>
+				<td id="ad_sesmon"></td> 
+			</tr>
+			<tr>
+				<td >Admission Semester Year</td>
+				<td id="ad_sesyr"></td> 
+			</tr>
+			<tr>
+				<td >Number of papers</td>
+				<td id="ad_nofpapr"></td> 
+			</tr>
+			<tr>
+				<td >Fee Amount</td>
+				<td id="ad_feeamt"></td> 
+			</tr>
+			<tr>
+				<td >Fee Paid</td>
+				<td id="ad_paidamt"></td> 
+			</tr>
+			
+		</tbody>
+		
+		</table>
+		  
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="result" onclick="clear()">&nbsp;&nbsp;Clear</button><br> <br>
+		 
 	 </div>
 	</div>
 </div>
