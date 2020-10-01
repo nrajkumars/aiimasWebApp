@@ -427,7 +427,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		</table>
 		  
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="result" onclick="clear()">&nbsp;&nbsp;Clear</button><br> <br>
+			<button class="w3-button w3-blue" id="result" onclick="clear()">&nbsp; TODO &nbsp;Clear</button><br> <br>
 		 
 	 </div>
 	</div>

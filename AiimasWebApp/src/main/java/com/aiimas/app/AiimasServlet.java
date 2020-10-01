@@ -34,6 +34,10 @@ import javax.servlet.http.HttpServletResponse;
 public class AiimasServlet extends HttpServlet {
 	
 	//AiimasServlet aiimasServlet = new AiimasServlet();
+	
+	Map DiplmaDetails = new HashMap();
+	//Map DiplmaName = new HashMap();
+	
 
 	private void writeResponse(Object mdata, HttpServletResponse response) {
 		try {
