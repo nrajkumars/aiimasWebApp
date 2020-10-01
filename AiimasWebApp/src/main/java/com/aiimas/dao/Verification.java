@@ -53,7 +53,7 @@ public class Verification extends BaseDao {
 		if (prNum != null && prNum.toString().trim().length() > 0) {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				String getVerifyDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
-				List data = executeFetchSql(getVerifyDataSql, new String[]{prCode.toString(),prNum.toString() });
+				List data = executeFetchSql(getVerifyDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data != null && data.size() > 0) {
 					return (Map) data.get(0);

@@ -6,10 +6,13 @@ import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.naming.InitialContext;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.aiimas.dao.MasterTableValues;
 import com.aiimas.dao.Verification;
 import com.aiimas.util.PDFGenerator;
 
@@ -32,11 +36,31 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/rs")
 public class AiimasServlet extends HttpServlet {
+
 	
-	//AiimasServlet aiimasServlet = new AiimasServlet();
 	
-	Map DiplmaDetails = new HashMap();
-	//Map DiplmaName = new HashMap();
+	List diplmaDetails = new ArrayList();
+
+	
+	public void init() throws ServletException { 
+		
+		
+		try { 
+			
+			System.out.println(" RESPONSE insdie -----------***********---------init  ");
+
+			MasterTableValues masterTable = new MasterTableValues();
+				
+			// Loading master values and save as Global variables
+
+			diplmaDetails = masterTable.getListMasterTable();
+			
+			System.out.println(" RESPONSE GOT Master table in MAP -- "+diplmaDetails);
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 
 	private void writeResponse(Object mdata, HttpServletResponse response) {
@@ -44,8 +68,7 @@ public class AiimasServlet extends HttpServlet {
 			ObjectMapper om = new ObjectMapper();
 			
 			System.out.println("inside writeResponse ----------------------------");
-			
-
+	
 			byte buf[] = om.writeValueAsString(mdata).getBytes();
 			System.out.println("Response json : " + new String(buf));
 			response.setContentLength(buf.length);
@@ -53,8 +76,8 @@ public class AiimasServlet extends HttpServlet {
 			response.getOutputStream().write(buf);
 			response.getOutputStream().close();
 			
-			System.out.println("inside writeResponse  DONE ------ HERE----------------------"+mdata.toString());
-			System.out.println("inside writeResponse  DONE ------ HERE----------------------"+response.toString());
+		//	System.out.println("inside writeResponse  DONE ------ HERE----------------------"+mdata.toString());
+		//	System.out.println("inside writeResponse  DONE ------ HERE----------------------"+response.toString());
 			
 		} catch (Exception e) {
 			// ignore
@@ -150,6 +173,10 @@ public class AiimasServlet extends HttpServlet {
 		
 		
 	}
+	
+	public void destroy() {
+	      // do nothing.
+	   }
 	
 	
 	
