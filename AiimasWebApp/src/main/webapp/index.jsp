@@ -135,7 +135,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  
 
    <div class="w3-padding-64 w3-light-grey w3-card-4" id=admApp>
-		<center> <h2>Admission Application</h2>
+		<center> <h2>ADD - Admission Application</h2>
 		<p>Add, Modify and Delete the Student application</p>
 		</center>
 	  <div class="w3-container">
@@ -146,7 +146,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input type="text" name="diplomaCode" maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
   		<input type="text" name="diplomaName" maxlength="80" size="80"><br><br>
   		
-  		
+  		<!--   SAKTHI todo 2 --   The above the fields should have the drop downs for diploma details -->
   		
 		<div class="w3-third">
 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
@@ -428,52 +428,55 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
 			<button class="w3-button w3-blue" id="result" onclick="clear()">&nbsp; TODO &nbsp;Clear</button><br> <br>
-		 
+		 <!--  SAKTHI todo 1 -->
 	 </div>
 	</div>
 </div>
 	 
 		
- <div class="w3-padding-64 w3-light-grey w3-card-4" id=search2>
-	<center> <h2>Verfication by Name and Diploma name.</h2></center>
-		<div class="w3-panel w3-pale-green">
-		 <p>Search for Student information based on Name and Diploma name.</p>
+<!--  <div class="w3-padding-64 w3-light-grey w3-card-4" id=search2> -->
+<!-- 	<center> <h2>Verfication by Name and Diploma name.</h2></center> -->
+<!-- 		<div class="w3-panel w3-pale-green"> -->
+<!-- 		 <p>Search for Student information based on Name and Diploma name.</p> -->
 
-		<div class="w3-container">
-		 <p>   
+<!-- 		<div class="w3-container"> -->
+<!-- 		 <p>    -->
 		
 		  
-		<label class="w3-text-brown" ><b>Diploma:&nbsp;</label>
-		<input type="text" name="diplomaCode" maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
-  		<input type="text" name="diplomaName" maxlength="80" size="60"><br><br>
+<!-- 		<label class="w3-text-brown" ><b>Diploma:&nbsp;</label> -->
+<!-- 		<input type="text" name="diplomaCode" maxlength="5" size="5">&nbsp;&nbsp;&nbsp; -->
+<!--   		<input type="text" name="diplomaName" maxlength="80" size="60"><br><br> -->
 
-		<label class="w3-text-brown" ><b>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		<input type="text" name="pincode" maxlength="80" size="60"><br><br>
+<!-- 		<label class="w3-text-brown" ><b>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+<!-- 		<input type="text" name="pincode" maxlength="80" size="60"><br><br> -->
 			
 			  
-	    <label class="w3-text-brown" ><b>Semester:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		<input type="text" name="pincode" maxlength="10" size="10"><br><br>
+<!-- 	    <label class="w3-text-brown" ><b>Semester:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+<!-- 		<input type="text" name="pincode" maxlength="10" size="10"><br><br> -->
 
-		<label class="w3-text-brown" ><b>Duration:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		<input type="text" name="pincode" maxlength="10" size="10"><br><br>
+<!-- 		<label class="w3-text-brown" ><b>Duration:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+<!-- 		<input type="text" name="pincode" maxlength="10" size="10"><br><br> -->
 
 	 
 		
-		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		<input type="text" name="pincode" maxlength="10" size="10"><br><br>
+<!-- 		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+<!-- 		<input type="text" name="pincode" maxlength="10" size="10"><br><br> -->
 
-		<label class="w3-text-brown" ><b>Ph/Mobile: &nbsp;</label>
-		<input type="text" name="mobile" maxlength="15" size="15"><br><br>
+<!-- 		<label class="w3-text-brown" ><b>Ph/Mobile: &nbsp;</label> -->
+<!-- 		<input type="text" name="mobile" maxlength="15" size="15"><br><br> -->
 
-		<label class="w3-text-brown" ><b>Email Add:&nbsp;</label>
-		<input type="text" name="email" maxlength="25" size="25"><br><br>
+<!-- 		<label class="w3-text-brown" ><b>Email Add:&nbsp;</label> -->
+<!-- 		<input type="text" name="email" maxlength="25" size="25"><br><br> -->
+<!-- 		<center> -->
+<!-- 			<button class="w3-button w3-blue" id="result1" onclick="searchByPrCodePrNo1()">&nbsp;&nbsp;Search</button><br> <br> -->
+<!-- 			<!-- <button class="w3-button w3-blue">Search</button> --> 
+<!-- 		</center> -->
+		
+		
 
-
-		<center><button class="w3-button w3-blue">Search</button></center>
-
-		</p>
-	  </div>
-	  </div>
+<!-- 		</p> -->
+<!-- 	  </div> -->
+<!-- 	  </div> -->
 
 
 <!-- MAINTANCE  - Diploma update -------------------------------------------------------------------------------------------------------------->

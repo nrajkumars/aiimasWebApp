@@ -50,14 +50,10 @@ alert('else');
 document.getElementById('resultTable').style.display = "hide";
 }
 
-/*try {
-// Parse a JSON
-userData = JSON.parse(data);
-} catch (e) {
-//userData = payload;
-console.log(userData.name);
-}*/
+
 }
+
+
 
 function postAjax(url, data, callback) {
 	    var params = typeof data == 'string' ? data : Object.keys(data).map(
