@@ -30,21 +30,19 @@ parsedData = JSON.parse(data);
 console.log(parsedData.ad_ref);
 }
 //{"ad_ref":"4799","ad_entdate":null,"ad_name":"CHARLES OWINO MUSUVI","ad_feedate":939493800000,"ad_durtn":"ONE YEAR","ad_prcode":"ABM2","ad_dipcode":"ADMN","ad_prno":"2","ad_sesmon":"MAY","ad_nofpapr":8,"ad_paidamt":0,"ad_feeamt":3600,"ad_enttime":null,"ad_sesyr":1999}
-document.getElementById("ad_ref").innerHTML = parsedData.ad_ref;
-document.getElementById("ad_name").innerHTML = parsedData.ad_name;
-document.getElementById("ad_feedate").innerHTML = parsedData.ad_feedate;
-document.getElementById("ad_durtn").innerHTML = parsedData.ad_durtn;
+	document.getElementById("ad_ref").innerHTML = parsedData.ad_ref;
+	document.getElementById("ad_name").innerHTML = parsedData.ad_name;
+	document.getElementById("ad_feedate").innerHTML = parsedData.ad_feedate;
+	document.getElementById("ad_durtn").innerHTML = parsedData.ad_durtn;
 
-
-
-document.getElementById("ad_prcode").innerHTML = parsedData.ad_prcode;
-document.getElementById("ad_dipcode").innerHTML = parsedData.ad_dipcode;
-document.getElementById("ad_prno").innerHTML = parsedData.ad_prno;
-document.getElementById("ad_sesmon").innerHTML = parsedData.ad_sesmon;
-document.getElementById("ad_nofpapr").innerHTML = parsedData.ad_nofpapr;
-document.getElementById("ad_paidamt").innerHTML = parsedData.ad_paidamt;
-document.getElementById("ad_feeamt").innerHTML = parsedData.ad_feeamt;
-document.getElementById("ad_sesyr").innerHTML = parsedData.ad_sesyr;
+	//document.getElementById("ad_prcode").innerHTML = parsedData.ad_prcode;
+	document.getElementById("ad_dipcode").innerHTML = parsedData.ad_dipcode;
+	//document.getElementById("ad_prno").innerHTML = parsedData.ad_prno;
+	document.getElementById("ad_sesmon").innerHTML = parsedData.ad_sesmon;
+	document.getElementById("ad_nofpapr").innerHTML = parsedData.ad_nofpapr;
+	document.getElementById("ad_paidamt").innerHTML = parsedData.ad_paidamt;
+	document.getElementById("ad_feeamt").innerHTML = parsedData.ad_feeamt;
+	document.getElementById("ad_sesyr").innerHTML = parsedData.ad_sesyr;
 }else{
 alert('else');
 document.getElementById('resultTable').style.display = "hide";
@@ -69,6 +67,12 @@ function postAjax(url, data, callback) {
 	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	    xhr.send(params);
 	    return xhr;
+}
+
+function clearBtn(){
+	document.getElementById('prCode').value = "";
+	document.getElementById('prNo').value = "";
+	document.getElementById("resultTable").style.display="none";
 }
 
 

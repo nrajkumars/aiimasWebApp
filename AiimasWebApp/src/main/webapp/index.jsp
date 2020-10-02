@@ -348,12 +348,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="prCode" value='ABM2' >
+			<input class="w3-input w3-border " type="text" id="prCode" value='ABM2' placeholder="ABM2">
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" id="prNo"  value ='2'>
+			<input class="w3-input w3-border " type="text" id="prNo"  value ='2' placeholder="2">
 		  </div>
 
 		  <div class="w3-third">
@@ -427,7 +427,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		</table>
 		  
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="result" onclick="clear()">&nbsp; TODO &nbsp;Clear</button><br> <br>
+			<button class="w3-button w3-blue" id="result" onclick="clearBtn()">Clear</button><br> <br>
 		 <!--  SAKTHI todo 1 -->
 	 </div>
 	</div>
