@@ -143,14 +143,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		  
 		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
-		<input type="text" name="diplomaCode" maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
-  		<input type="text" name="diplomaName" maxlength="80" size="80"><br><br>
+		<input type="text" name="diplomaCode" id="diplomaCode"  maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
+  		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80"><br><br>
   		
   		<!--   SAKTHI todo 2 --   The above the fields should have the drop downs for diploma details -->
   		
 		<div class="w3-third">
 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
-		<select class="w3-select" name="option">
+		<select class="w3-select" name="option" id="duration">
     		<option value="" disabled selected>Choose your option</option>
     		<option value="1">Six Months</option>
     		<option value="2">One Year- PG</option>
@@ -166,19 +166,19 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>Semester Month:</b></label>
-			<input class="w3-input w3-border " type="text" >
+			<input class="w3-input w3-border " type="text" id="semMonth">
 		  </div>
 		  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>Semester Year:</b></label>
-			<input class="w3-input w3-border " type="year" >
+			<input class="w3-input w3-border " type="year" id="semYear" >
 		  </div>
 				  
 
 
  		  <div class="w3-third"> 
 			<label class="w3-text-brown"><b>Entered on:</b></label>
- 			<input class="w3-input w3-border " type="date"><br>
+ 			<input class="w3-input w3-border " type="date" id="enterDate"><br>
  		  </div> 
 
 		<div class="w3-third">
@@ -198,32 +198,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  </div>
 
 
-<!-- 		  <div class="w3-third"> -->
-<!-- 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br> -->
-<!-- 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br> -->
-<!--  			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br>  -->
-<!-- 			<br><br> -->
-<!-- 		  </div> -->
-		  
-<!-- 		  <div class="w3-third"> -->
-<!-- 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br> -->
-<!-- 			<button class="w3-button w3-blue" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> -->
-<!-- 			<br> -->
-<!-- 		  </div> -->
-
-<!-- 		<label class="w3-text-brown"><b>Reference:</b></label> -->
-<!-- 		<input class="w3-input w3-border " name="first" type="text"><br> -->
-
 
    
 		<label class="w3-text-brown"><b>Name:</b></label>
-		<input class="w3-input w3-border " name="last" type="text"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="stuName"><br>
 				
 		<div class="w3-third">
 		<label class="w3-text-brown"><b> Sex:</b>&nbsp;</label>
-		<select class="w3-select" name="option">
+		<select class="w3-select" name="option" id="sex">
     		<option value="" disabled selected>Choose your option</option>
-    		<option value="1">Male</option>
+    		<opstuNametion value="1">Male</option>
    	 	   	<option value="3">Female</option>
   		</select>&nbsp;&nbsp;
    		</div>
@@ -231,19 +215,19 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    
    		<div class="w3-third"> 
 			<label class="w3-text-brown"><b>Date of Birth:</b></label>
- 			<input class="w3-input w3-border " type="date"><br>
+ 			<input class="w3-input w3-border " type="date" id="dob"><br>
  		  </div> 
    
 		<br><br><br><br>
 		
 		<label class="w3-text-brown"><b>Address 1:</b></label>
-		<input class="w3-input w3-border " name="last" type="text"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="address1"><br>
 		<label class="w3-text-brown"><b>Address 2:</b></label>
-		<input class="w3-input w3-border " name="last" type="text"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="address2"><br>
 		<label class="w3-text-brown"><b>Address 3:</b></label>
-		<input class="w3-input w3-border " name="last" type="text"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="address3"><br>
 		<label class="w3-text-brown"><b>Address 4:</b></label>
-		<input class="w3-input w3-border " name="last" type="text"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="address4"><br>
 		<label class="w3-text-brown"><b>Address 5:</b></label>
 		<input class="w3-input w3-border" name="last" type="text"><br>
 
@@ -269,8 +253,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 		<center>
-		<button class="w3-button w3-blue" onclick="" >Save</button>
-		<button class="w3-button w3-orange onclick="" >Update</button>
+<!-- 		<button class="w3-button w3-blue" onclick="" >Save</button> AddAdmission -->
+		
+			<button class="w3-button w3-blue" id="resultAddAdm" onclick="addAdmission()">&nbsp;&nbsp;Save</button><br> <br>
+<!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
 		<button class="w3-button w3-red" onclick="" >Delete</button>
 		</center>
 

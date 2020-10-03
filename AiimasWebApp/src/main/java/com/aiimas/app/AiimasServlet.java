@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.aiimas.dao.AddAdmission;
 import com.aiimas.dao.MasterTableValues;
 import com.aiimas.dao.Verification;
 import com.aiimas.util.PDFGenerator;
@@ -67,7 +68,7 @@ public class AiimasServlet extends HttpServlet {
 		try {
 			ObjectMapper om = new ObjectMapper();
 			
-			System.out.println("inside writeResponse ----------------------------");
+//			System.out.println("inside writeResponse ----------------------------");
 	
 			byte buf[] = om.writeValueAsString(mdata).getBytes();
 			System.out.println("Response json : " + new String(buf));
@@ -151,11 +152,33 @@ public class AiimasServlet extends HttpServlet {
 				
 				System.out.println(" RESPONSE GOT in MAP -- "+verifyedValues);
 				
-				//TODO
-				
 				writeResponse(verifyedValues, resp);
-			}
-			
+			}else if (module != null && module.equals("addAdmission")) {
+					
+					System.out.println("Inside module addAdmission : " + action);
+				
+													
+					String stuName = request.getParameter("stuName");
+					String address1 = request.getParameter("address1");
+					
+					System.out.println("Inside module addAdmission  :: stuName : " + stuName);
+					System.out.println("Inside module addAdmission  :: stuName : " + address1);
+					
+					AddAdmission addAdmission = new AddAdmission();
+					Map input = new HashMap();
+					input.put("stuName", stuName);
+					input.put("address1", address1);
+
+					//String[] username = (String[])data.get("username");
+					//input.put("username", username[0]);
+					
+					//Map verifyedValues = 
+							addAdmission.insertADMN(input);
+					
+					///System.out.println(" RESPONSE GOT in MAP -- "+verifyedValues);
+					
+					writeResponse(response, resp);
+				}
 			
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
