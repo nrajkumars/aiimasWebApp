@@ -7,20 +7,37 @@ import java.util.Map;
 public class AddAdmission extends BaseDao {
 
 	public void insertADMN(Map data) {
-		//employername,registerusername,contactname,phone,email,address
-		String[] employername = (String[]) data.get("stuName");
-		String[] registerusername = (String[]) data.get("address1");
-//		if (registerusername == null || registerusername.length == 0 || registerusername[0].trim().length() == 0) {
-//			registerusername = (String[]) data.get("registerusername");
-//		}
-		System.out.println("insertADMN:   employername" + employername[0]);
-//		String[] contactname = (String[]) data.get("contactname");
-//		String[] phone = (String[]) data.get("phone");
-//		String[] email = (String[]) data.get("email");
-//		String[] address = (String[]) data.get("address");
-//		
-//		String insertEmployer = "insert into employers (employername,username,contactname,phone,email,address) values (?,?,?,?,?,?)";
-//		executeUpdate(insertEmployer, new String[]{employername[0],registerusername[0],contactname[0],phone[0],email[0],address[0]});
+
+		
+		System.out.println("inside ADDADMINSSION   inside - insertADMN"+data.toString());
+		
+		Object stuName = data.get("stuName");
+		Object address1 = data.get("address1");
+		Object diplomaCode = data.get("diplomaCode");
+		Object duration = data.get("duration");
+		Object semMonth = data.get("semMonth");
+		Object semYear = data.get("semYear");
+		Object enterDate = data.get("enterDate");
+		Object prCode11 = data.get("prCode11");
+		Object prNo1 = data.get("prNo1");
+		Object sex = data.get("sex");
+		Object dob = data.get("dob");
+		Object address2 = data.get("address2");
+		Object address3 = data.get("address3");
+		Object address4 = data.get("address4");
+		Object pincode = data.get("pincode");
+		Object mobNum = data.get("mobNum");
+		Object emailid = data.get("emailid");
+		Object dueDate = data.get("dueDate");
+		Object totfee = data.get("totfee");
+		Object papers = data.get("papers");
+		
+//		String insertAddAdm = "insert into employers (employername,username,contactname,phone,email,address) values (?,?,?,?,?,?)";
+//		executeUpdate(insertAddAdm, new String[]{employername[0],registerusername[0],contactname[0],phone[0],email[0],address[0]});
+		
+
+//		String insertAddAdm = "insert into employers (employername,username,contactname,phone,email,address) values (?,?,?,?,?,?)";
+//		executeUpdate(insertAddAdm, new String[]{employername[0],registerusername[0],contactname[0],phone[0],email[0],address[0]});
 //		
 	}
 	public void saveEmployerData(Map data) {

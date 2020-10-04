@@ -40,6 +40,11 @@ public class AiimasServlet extends HttpServlet {
 
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	List diplmaDetails = new ArrayList();
 
 	
@@ -160,24 +165,60 @@ public class AiimasServlet extends HttpServlet {
 													
 					String stuName = request.getParameter("stuName");
 					String address1 = request.getParameter("address1");
+					String diplomaCode = request.getParameter("diplomaCode");
+					String duration = request.getParameter("duration");
+					String semMonth = request.getParameter("semMonth");
+					String semYear = request.getParameter("semYear");
+					String enterDate = request.getParameter("enterDate");
+					String prCode11 = request.getParameter("prCode11");
+					String prNo1 = request.getParameter("prNo1");
+					String sex = request.getParameter("sex");
+					String dob = request.getParameter("dob");
+					String address2 = request.getParameter("address2");
+					String address3 = request.getParameter("address3");
+					String address4 = request.getParameter("address4");
+					String pincode = request.getParameter("pincode");
+					String mobNum = request.getParameter("mobNum");
+					String emailid = request.getParameter("emailid");
+					String dueDate = request.getParameter("dueDate");
+					String totfee = request.getParameter("totfee");
+					String papers = request.getParameter("papers");
 					
 					System.out.println("Inside module addAdmission  :: stuName : " + stuName);
 					System.out.println("Inside module addAdmission  :: stuName : " + address1);
 					
-					AddAdmission addAdmission = new AddAdmission();
+					
 					Map input = new HashMap();
 					input.put("stuName", stuName);
 					input.put("address1", address1);
-
-					//String[] username = (String[])data.get("username");
-					//input.put("username", username[0]);
+					input.put("diplomaCode",diplomaCode );
+					input.put("duration",duration );
+					input.put("semMonth",semMonth );
+					input.put("semYear",semYear );
+					input.put("enterDate",enterDate );
+					input.put("prCode11",prCode11 );
+					input.put("prNo1",prNo1 );
+					input.put("sex",sex );
+					input.put("dob",dob );
+					input.put("address2",address2 );
+					input.put("address3",address3 );
+					input.put("address4",address4 );
+					input.put("pincode",pincode );
+					input.put("mobNum",mobNum );
+					input.put("emailid",emailid );
+					input.put("dueDate",dueDate );
+					input.put("totfee",totfee );
+					input.put("papers",papers );
 					
-					//Map verifyedValues = 
-							addAdmission.insertADMN(input);
+					System.out.println(" calling addadmission");
+					AddAdmission addAdmission = new AddAdmission();
+					addAdmission.insertADMN(input);
 					
-					///System.out.println(" RESPONSE GOT in MAP -- "+verifyedValues);
+					System.out.println(" RESPONSE GOT in MAP --  INSERT successsss");
 					
-					writeResponse(response, resp);
+					Map response1 = new HashMap();
+					response1.put("Success", "Admission is Done successfully");
+					writeResponse(response1, resp);
 				}
 			
 		} catch (Exception e) {
@@ -189,8 +230,8 @@ public class AiimasServlet extends HttpServlet {
 			
 			response = "Error : " + sw.toString();
 			Map ret = new HashMap();
-			ret.put("error", "Unable to process request due to technical error");
-		//	writeResponse(ret, resp);
+			ret.put("error", "Unable to process request due to technical error TRY again");
+			writeResponse(ret, resp);
 		}
 		
 		

@@ -15,7 +15,7 @@
 
 <!-- <script src="js/app1.js?ver=1"></script> -->
 
-<script src="js/app2.js?v=3"></script> 
+<script src="js/app2.js?v=4"></script> 
 
 
 
@@ -233,31 +233,30 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="pincode" maxlength="10" size="10"><br><br>
+		<input type="text" name="pincode" maxlength="10" size="10" id ="pincode"><br><br>
 
 		<label class="w3-text-brown" ><b>Ph/Mobile: &nbsp;</b></label>
 		<input type="text" name="mobile" maxlength="15" size="15" id="mobNum" value ="44444444"><br><br>
 
 		<label class="w3-text-brown" ><b>Email Add:&nbsp;</b></label>
-		<input type="text" name="email" maxlength="25" size="25" id =><br><br>
+		<input type="text" name="email" maxlength="25" size="25" id ="emailid"><br><br>
 
 
 		<label class="w3-text-brown" ><b>Due date:&nbsp;</b></label>
-		<input type="date" name="diplomaCode" maxlength="5" size="5"><br><br>
+		<input type="date" name="duedate" maxlength="5" size="5" id="dueDate"><br><br>
 
 		<label class="w3-text-brown" ><b>Total Fee:&nbsp;&nbsp;</b></label>
-		<input type="text" name="diplomaCode" maxlength="5" size="5"><br><br>
+		<input type="text" name="totalfee" maxlength="5" size="5" id="totfee"><br><br>
 
 		<label class="w3-text-brown" ><b>Papers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="2" size="2"><br><br><br>
+		<input type="text" name="papers" maxlength="2" size="2" id="papers"><br><br><br>
 
 
 		<center>
-<!-- 		<button class="w3-button w3-blue" onclick="" >Save</button> AddAdmission -->
 		
-			<button class="w3-button w3-blue" id="resultAddAdm" onclick="addAdmission()">&nbsp;&nbsp;Save</button><br> <br>
+			<button class="w3-button w3-blue" id="resultAddAdm" onclick="addAdmission()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
-		<button class="w3-button w3-red" onclick="" >Delete</button>
+			<button class="w3-button w3-red" onclick="" >Clear</button>
 		</center>
 
 		</p>

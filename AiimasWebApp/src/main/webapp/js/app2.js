@@ -57,48 +57,39 @@ function addAdmission() {
 	
 	var stuName = document.getElementById('stuName').value;
 	var address1 = document.getElementById('address1').value;
+		var diplomaCode = document.getElementById('diplomaCode').value;
+		var duration = document.getElementById('duration').value;
+		var semMonth = document.getElementById('semMonth').value;
+		var semYear = document.getElementById('semYear').value;
+		var enterDate = document.getElementById('enterDate').value;
+		var prCode11 = document.getElementById('prCode11').value;
+		var prNo1 = document.getElementById('prNo1').value;
+		var sex = document.getElementById('sex').value;
+		var dob = document.getElementById('dob').value;
+		var address2 = document.getElementById('address2').value;
+		var address3 = document.getElementById('address3').value;
+		var address4 = document.getElementById('address4').value;
+		var pincode = document.getElementById('pincode').value;
+		var mobNum = document.getElementById('mobNum').value;
+		var emailid = document.getElementById('emailid').value;
+		var dueDate = document.getElementById('dueDate').value;
+		var totfee = document.getElementById('totfee').value;
+		var papers = document.getElementById('papers').value;
 	
-	postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1}, onPostAddAdmission);
+	postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "sex":sex, "dob":dob, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers}, onPostAddAdmission);
 
 }
 
 
 
 function onPostAddAdmission(data) {
-	console.log('RESPONSE POST in app .JS:' + data);
-	//document.setElementbyId('returnvalue', data);
-	//var responseFromServer = request.responseText;
+	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
+
 		if (data != null) {
-			//document.getElementById("result").innerHTML = data;
-			document.getElementById('resultTable').style.display = "block";
-		
-		try {
-		// Parse a JSON
-		parsedData = JSON.parse(data);
-		} catch (e) {
-		
-		console.log(parsedData.ad_ref);
-		}
-		//{"ad_ref":"4799","ad_entdate":null,"ad_name":"CHARLES OWINO MUSUVI","ad_feedate":939493800000,"ad_durtn":"ONE YEAR","ad_prcode":"ABM2","ad_dipcode":"ADMN","ad_prno":"2","ad_sesmon":"MAY","ad_nofpapr":8,"ad_paidamt":0,"ad_feeamt":3600,"ad_enttime":null,"ad_sesyr":1999}
-			document.getElementById("ad_ref").innerHTML = parsedData.ad_ref;
-			document.getElementById("ad_name").innerHTML = parsedData.ad_name;
-			document.getElementById("ad_feedate").innerHTML = parsedData.ad_feedate;
-			document.getElementById("ad_durtn").innerHTML = parsedData.ad_durtn;
-		
-			//document.getElementById("ad_prcode").innerHTML = parsedData.ad_prcode;
-			document.getElementById("ad_dipcode").innerHTML = parsedData.ad_dipcode;
-			//document.getElementById("ad_prno").innerHTML = parsedData.ad_prno;
-			document.getElementById("ad_sesmon").innerHTML = parsedData.ad_sesmon;
-			document.getElementById("ad_nofpapr").innerHTML = parsedData.ad_nofpapr;
-			document.getElementById("ad_paidamt").innerHTML = parsedData.ad_paidamt;
-			document.getElementById("ad_feeamt").innerHTML = parsedData.ad_feeamt;
-			document.getElementById("ad_sesyr").innerHTML = parsedData.ad_sesyr;
-		}else{
-		alert('else');
-		document.getElementById('resultTable').style.display = "hide";
-		}
+			document.getElementById("resultAddAdm").innerHTML = data;
+			// SAKTHI todo display the success or error in a dialog box
 
-
+}
 }
 
 
