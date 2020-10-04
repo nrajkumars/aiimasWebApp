@@ -62,6 +62,10 @@ public class AiimasServlet extends HttpServlet {
 			diplmaDetails = masterTable.getListMasterTable();
 			
 			System.out.println(" RESPONSE GOT Master table in MAP -- "+diplmaDetails);
+			
+		    if(diplmaDetails!=null){
+		    		getServletContext().setAttribute( "diplomaCodeDetails", diplmaDetails );
+		    }
 					
 			} catch (Exception e) {
 				e.printStackTrace();
