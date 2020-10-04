@@ -172,8 +172,7 @@ public class AiimasServlet extends HttpServlet {
 					String enterDate = request.getParameter("enterDate");
 					String prCode11 = request.getParameter("prCode11");
 					String prNo1 = request.getParameter("prNo1");
-					String sex = request.getParameter("sex");
-					String dob = request.getParameter("dob");
+					String paidamt = request.getParameter("paidamt");
 					String address2 = request.getParameter("address2");
 					String address3 = request.getParameter("address3");
 					String address4 = request.getParameter("address4");
@@ -198,8 +197,7 @@ public class AiimasServlet extends HttpServlet {
 					input.put("enterDate",enterDate );
 					input.put("prCode11",prCode11 );
 					input.put("prNo1",prNo1 );
-					input.put("sex",sex );
-					input.put("dob",dob );
+					input.put("paidamt",paidamt);
 					input.put("address2",address2 );
 					input.put("address3",address3 );
 					input.put("address4",address4 );

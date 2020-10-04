@@ -182,12 +182,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		  </div> 
 
 		<div class="w3-third">
-			<label class="w3-text-brown"><b>P.R.Code:</b></label>
+			<label class="w3-text-red"><b>**P.R.Code:</b></label>
 			<input class="w3-input w3-border " type="text" value = "" id="prCode11" value ="BM2">
 		  </div>
 				  
 		  <div class="w3-third">
-			<label class="w3-text-brown"><b>P.R.No:</b></label>
+			<label class="w3-text-red"><b>**P.R.No:</b></label>
 			<input class="w3-input w3-border " type="text" value = ""  id="prNo1" value="2">
 		  </div>
 		  
@@ -203,22 +203,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-brown"><b>Name:</b></label>
 		<input class="w3-input w3-border " name="last" type="text" id="stuName" value="RAJ"><br>
 				
-		<div class="w3-third">
-		<label class="w3-text-brown"><b> Sex:</b>&nbsp;</label>
-		<select class="w3-select" name="option" id="sex">
-    		<option value="" disabled selected>Choose your option</option>
-    		<opstuNametion value="1">Male</option>
-   	 	   	<option value="3">Female</option>
-  		</select>&nbsp;&nbsp;
-   		</div>
+<!-- 		<div class="w3-third"> -->
+<!-- 		<label class="w3-text-brown"><b> Sex:</b>&nbsp;</label> -->
+<!-- 		<select class="w3-select" name="option" id="sex"> -->
+<!--     		<option value="" disabled selected>Choose your option</option> -->
+<!--     		<opstuNametion value="1">Male</option> -->
+<!--    	 	   	<option value="3">Female</option> -->
+<!--   		</select>&nbsp;&nbsp; -->
+<!--    		</div> -->
    
    
-   		<div class="w3-third"> 
-			<label class="w3-text-brown"><b>Date of Birth:</b></label>
- 			<input class="w3-input w3-border " type="date" id="dob"><br>
- 		  </div> 
+<!--    		<div class="w3-third">  -->
+<!-- 			<label class="w3-text-brown"><b>Date of Birth:</b></label> -->
+<!--  			<input class="w3-input w3-border " type="date" id="dob"><br> -->
+<!--  		  </div>  -->
    
-		<br><br><br><br>
+	
 		
 		<label class="w3-text-brown"><b>Address 1:</b></label>
 		<input class="w3-input w3-border " name="last" type="text" id="address1" value ="chennai 119"><br>
@@ -242,14 +242,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input type="text" name="email" maxlength="25" size="25" id ="emailid"><br><br>
 
 
-		<label class="w3-text-brown" ><b>Due date:&nbsp;</b></label>
+		<label class="w3-text-brown" ><b>Fee Due date:&nbsp;</b></label>
 		<input type="date" name="duedate" maxlength="5" size="5" id="dueDate"><br><br>
 
 		<label class="w3-text-brown" ><b>Total Fee:&nbsp;&nbsp;</b></label>
-		<input type="text" name="totalfee" maxlength="5" size="5" id="totfee"><br><br>
+		<input type="text" name="totalfee" maxlength="5" size="5" id="totfee" ><br><br>
 
 		<label class="w3-text-brown" ><b>Papers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="2" size="2" id="papers"><br><br><br>
+		<input type="text" name="papers" maxlength="2" size="2" id="papers" ><br><br>
+		
+		<label class="w3-text-brown" ><b>Paid Amount:&nbsp;&nbsp;</b></label>
+		<input type="text" name="paidamt" maxlength="5" size="5" id="paidamt" ><br><br><br>
 
 
 		<center>

@@ -1,13 +1,16 @@
 package com.aiimas.dao;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class AddAdmission extends BaseDao {
 
 	public void insertADMN(Map data) {
-
+		try {
 		
 		System.out.println("inside ADDADMINSSION   inside - insertADMN"+data.toString());
 		
@@ -20,8 +23,6 @@ public class AddAdmission extends BaseDao {
 		Object enterDate = data.get("enterDate");
 		Object prCode11 = data.get("prCode11");
 		Object prNo1 = data.get("prNo1");
-		Object sex = data.get("sex");
-		Object dob = data.get("dob");
 		Object address2 = data.get("address2");
 		Object address3 = data.get("address3");
 		Object address4 = data.get("address4");
@@ -31,13 +32,59 @@ public class AddAdmission extends BaseDao {
 		Object dueDate = data.get("dueDate");
 		Object totfee = data.get("totfee");
 		Object papers = data.get("papers");
+		Object paidamt = data.get("paidamt");
 		
-//		String insertAddAdm = "insert into employers (employername,username,contactname,phone,email,address) values (?,?,?,?,?,?)";
-//		executeUpdate(insertAddAdm, new String[]{employername[0],registerusername[0],contactname[0],phone[0],email[0],address[0]});
+	
 		
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		Date feeDuedate = null;
+		Date enterDatef =null;
+		
+		if((dueDate != null && dueDate.toString().trim().length() > 8)) {
+			System.out.println(" INSIDE if add mission dte check"+dueDate);
+			 feeDuedate = formatter.parse(dueDate.toString());
+		}else {
+			//feeDuedate = formatter.parse("0000-00-00");
+		}
+		
+		if((enterDate != null && enterDate.toString().trim().length() > 8)) {
+			System.out.println(" INSIDE if add mission dte check"+enterDate);
+			enterDatef = formatter.parse(dueDate.toString());
+		}else {
+			//feeDuedate = formatter.parse("0000-00-00");
+		}
+		
+		if((paidamt != null && paidamt.toString().trim().length() > 0)) {
+			System.out.println(" INSIDE if paidamt"+paidamt);
+		}else {
+			paidamt="0";
+		}
+		
+		if((papers != null && papers.toString().trim().length() > 0)) {
+			System.out.println(" INSIDE if  papers "+papers);
+		}else {
+			papers="0";
+		}
+		
+		if((totfee != null && totfee.toString().trim().length() > 0)) {
+			System.out.println(" INSIDE if  totfee"+totfee);
+		}else {
+			totfee="0";
+		}
+		
+			
+		String insertAddAdm = "insert into public.ADMIN (AD_DIPCODE, AD_PRCODE, AD_PRNO, AD_SESMON, AD_SESYR, AD_NAME,AD_NOFPAPR, AD_FEEAMT, AD_DURTN, AD_PAIDAMT,AD_FEEDATE, AD_ENTDATE) values(?,?,?,?,?,?,?,?,?,?,?,?);";
+		executeUpdate(insertAddAdm, new Object[]{diplomaCode.toString(),prCode11.toString(),Integer.parseInt(prNo1.toString()),semMonth.toString(),Integer.parseInt(semYear.toString()),stuName.toString(),Integer.parseInt(papers.toString()),Integer.parseInt(totfee.toString()), duration.toString(), Integer.parseInt(paidamt.toString()),feeDuedate,enterDatef });
+	
+		//AD_REF ??? todo find what it this ?
+		// END time is not required
 
-//		String insertAddAdm = "insert into employers (employername,username,contactname,phone,email,address) values (?,?,?,?,?,?)";
-//		executeUpdate(insertAddAdm, new String[]{employername[0],registerusername[0],contactname[0],phone[0],email[0],address[0]});
+		}catch( Exception ex) {
+			
+			System.out.println(" INSIDE insertADMN ERROR  -"+ex.toString());
+			ex.printStackTrace();
+		}
 //		
 	}
 	public void saveEmployerData(Map data) {
