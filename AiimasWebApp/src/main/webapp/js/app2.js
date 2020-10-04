@@ -118,7 +118,7 @@ function clearBtn(){
 
 
 function sort_select() { 
-    $("#elmt").append($("#elmt option") 
+    $("#idiplomaCode").append($("#idiplomaCode option") 
                       .remove().sort(function(a, b) { 
         var at = $(a).text(), 
             bt = $(b).text(); 
@@ -131,4 +131,9 @@ function sort_select() {
 function itemSelect(s) { 
     
         s.options[0].selected = true;
+}
+
+function getSelectedDipcode() {
+    d = document.getElementById("diplomaCode").value;
+    //alert(d);
 }

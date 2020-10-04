@@ -192,7 +192,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80">
   		-->
   		
-  		<select class="w3-select"  id="diplomaCode"">
+  		<select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">
 		<option value="Choose your option"  selected>Choose your option</option>	
 			<%
 			if(wholeList.size()>0 ){
@@ -206,10 +206,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     	</select>
   		<script> 
     	sort_select();
-    	itemSelect(document.getElementById('diplomaCode'));
+    	itemSelect(document.getElementById('diplomaCodeName'));
     	</script>
   		<br><br>
-  		
+  		<input type="hidden" name="diplomaCode" >
   		<!--   SAKTHI todo 1 --   The above the fields should have the drop downs for diploma details -->
   		
 		<div class="w3-third">
