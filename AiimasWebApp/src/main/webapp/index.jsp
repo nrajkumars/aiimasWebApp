@@ -192,7 +192,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80">
   		-->
   		
-  		<select class="w3-select"  id="elmt">
+  		<select class="w3-select"  id="diplomaCode"">
 		<option value="Choose your option"  selected>Choose your option</option>	
 			<%
 			if(wholeList.size()>0 ){
@@ -206,7 +206,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     	</select>
   		<script> 
     	sort_select();
-    	itemSelect(document.getElementById('elmt'));
+    	itemSelect(document.getElementById('diplomaCode'));
     	</script>
   		<br><br>
   		
