@@ -206,10 +206,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     	</select>
   		<script> 
     	sort_select();
-    	itemSelect(document.getElementById('diplomaCodeName'));
+    	itemSelect(document.getElementById('diplomaCode'));
     	</script>
   		<br><br>
-  		<input type="hidden" name="diplomaCode" >
+  		<input type="hidden" name="diplomaCodeName" >
   		<!--   SAKTHI todo 1 --   The above the fields should have the drop downs for diploma details -->
   		
 		<div class="w3-third">
