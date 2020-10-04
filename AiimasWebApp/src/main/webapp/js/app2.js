@@ -117,3 +117,18 @@ function clearBtn(){
 }
 
 
+function sort_select() { 
+    $("#elmt").append($("#elmt option") 
+                      .remove().sort(function(a, b) { 
+        var at = $(a).text(), 
+            bt = $(b).text(); 
+        
+        return (at > bt) ? 1 : ((at < bt) ? -1 : 0); 
+    })); 
+    //el_down.innerHTML = "Select options are sorted"; 
+} 
+
+function itemSelect(s) { 
+    
+        s.options[0].selected = true;
+}
