@@ -35,7 +35,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AiimasServlet
  */
-@WebServlet("/rs")
+
+@WebServlet(
+	    urlPatterns = "/rs",
+	    loadOnStartup = 1
+	    
+	)
 public class AiimasServlet extends HttpServlet {
 
 	
@@ -45,7 +50,7 @@ public class AiimasServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	List diplmaDetails = new ArrayList();
+	static List diplmaDetails = new ArrayList();
 
 	
 	public void init() throws ServletException { 
