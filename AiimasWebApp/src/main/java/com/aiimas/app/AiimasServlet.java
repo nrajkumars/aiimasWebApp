@@ -142,9 +142,7 @@ public class AiimasServlet extends HttpServlet {
 				String prn = request.getParameter("prNo");
 				String prc = request.getParameter("prCode");
 				
-				System.out.println("Inside module Verification  :: prn : " + prn);
-				System.out.println("Inside module Verification  :: prc : " + prc);
-				
+							
 				Verification verification = new Verification();
 				Map input = new HashMap();
 				input.put("prNum", prn);
@@ -155,7 +153,7 @@ public class AiimasServlet extends HttpServlet {
 				
 				Map verifyedValues = verification.getVerficationDetail1(input);
 				
-				System.out.println(" RESPONSE GOT in MAP -- "+verifyedValues);
+				System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedValues);
 				
 				writeResponse(verifyedValues, resp);
 			}else if (module != null && module.equals("addAdmission")) {
@@ -183,9 +181,7 @@ public class AiimasServlet extends HttpServlet {
 					String totfee = request.getParameter("totfee");
 					String papers = request.getParameter("papers");
 					
-					System.out.println("Inside module addAdmission  :: stuName : " + stuName);
-					System.out.println("Inside module addAdmission  :: stuName : " + address1);
-					
+								
 					
 					Map input = new HashMap();
 					input.put("stuName", stuName);

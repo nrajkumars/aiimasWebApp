@@ -56,7 +56,7 @@ public class BaseDao {
 				}
 			}
 			int cnt = ps.executeUpdate();
-			System.out.println("updated : " + cnt + " records");
+		//	System.out.println("updated : " + cnt + " records");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
