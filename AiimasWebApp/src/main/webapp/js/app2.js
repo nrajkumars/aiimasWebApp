@@ -118,7 +118,7 @@ function clearBtn(){
 
 
 function sort_select() { 
-    $("#idiplomaCode").append($("#idiplomaCode option") 
+    $("#diplomaCode").append($("#diplomaCode option") 
                       .remove().sort(function(a, b) { 
         var at = $(a).text(), 
             bt = $(b).text(); 
