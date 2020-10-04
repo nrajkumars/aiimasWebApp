@@ -15,7 +15,7 @@
 
 <!-- <script src="js/app1.js?ver=1"></script> -->
 
-<script src="js/app2.js"></script> 
+<script src="js/app2.js?v=3"></script> 
 
 
 
@@ -166,12 +166,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>Semester Month:</b></label>
-			<input class="w3-input w3-border " type="text" id="semMonth">
+			<input class="w3-input w3-border " type="text" id="semMonth" value="May">
 		  </div>
 		  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>Semester Year:</b></label>
-			<input class="w3-input w3-border " type="year" id="semYear" >
+			<input class="w3-input w3-border " type="year" id="semYear" value ="1996" >
 		  </div>
 				  
 
@@ -183,12 +183,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" value = "" id="prCode11" >
+			<input class="w3-input w3-border " type="text" value = "" id="prCode11" value ="BM2">
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" value = ""  id="prNo1">
+			<input class="w3-input w3-border " type="text" value = ""  id="prNo1" value="2">
 		  </div>
 		  
 		  
@@ -201,7 +201,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
    
 		<label class="w3-text-brown"><b>Name:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="stuName"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="stuName" value="RAJ"><br>
 				
 		<div class="w3-third">
 		<label class="w3-text-brown"><b> Sex:</b>&nbsp;</label>
@@ -221,7 +221,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<br><br><br><br>
 		
 		<label class="w3-text-brown"><b>Address 1:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="address1"><br>
+		<input class="w3-input w3-border " name="last" type="text" id="address1" value ="chennai 119"><br>
 		<label class="w3-text-brown"><b>Address 2:</b></label>
 		<input class="w3-input w3-border " name="last" type="text" id="address2"><br>
 		<label class="w3-text-brown"><b>Address 3:</b></label>
@@ -236,10 +236,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input type="text" name="pincode" maxlength="10" size="10"><br><br>
 
 		<label class="w3-text-brown" ><b>Ph/Mobile: &nbsp;</b></label>
-		<input type="text" name="mobile" maxlength="15" size="15"><br><br>
+		<input type="text" name="mobile" maxlength="15" size="15" id="mobNum" value ="44444444"><br><br>
 
 		<label class="w3-text-brown" ><b>Email Add:&nbsp;</b></label>
-		<input type="text" name="email" maxlength="25" size="25"><br><br>
+		<input type="text" name="email" maxlength="25" size="25" id =><br><br>
 
 
 		<label class="w3-text-brown" ><b>Due date:&nbsp;</b></label>

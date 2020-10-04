@@ -55,7 +55,7 @@ function addAdmission() {
 	
 	console.log('addAdmission clicked rajjj ');
 	
-	var stuName = document.getElementById('stdName1').value;
+	var stuName = document.getElementById('stuName').value;
 	var address1 = document.getElementById('address1').value;
 	
 	postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1}, onPostAddAdmission);
