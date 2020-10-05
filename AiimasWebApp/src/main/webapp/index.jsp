@@ -48,6 +48,8 @@ tr:nth-child(even) {
 
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+
+  input[name='diplomaCodeName']{width: 350px;}   
 </style>
 <body class="w3-content" style="max-width:1200px">
 
@@ -192,21 +194,25 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80">
   		-->
   		
-  		<select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">
-		<option value="Choose your option"  selected>Choose your option</option>	
+  		<!--  <select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">  -->
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode">
+  		<datalist id="diplomaCodeList">
+  		<option selected value="Choose your option"></option>
+		<!-- <option value="Choose your option"  selected>Choose your option</option>	  -->
 			<%
 			if(wholeList.size()>0 ){
 				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
 				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
 				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
 				%>
-    			<option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option>
+				<option value="<%=code%> / <%=value %>"></option>
+    			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
     		<%}} %>
-    		
-    	</select>
+    		</datalist>
+    	<!-- </select>  -->
   		<script> 
-    	sort_select();
-    	itemSelect(document.getElementById('diplomaCode'));
+    	//sort_select();
+    	//itemSelect(document.getElementById('diplomaCode'));
     	</script>
   		<br><br>
   		<input type="hidden" name="diplomaCodeName" >
