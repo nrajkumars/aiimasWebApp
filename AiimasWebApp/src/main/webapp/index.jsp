@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,java.math.BigDecimal,java.util.Map.Entry" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
     
@@ -15,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"> -->
 
 <!-- <script src="js/app1.js?ver=1"></script> -->
-<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">     </script> 
+
 <script src="js/app2.js?v=4"></script> 
 
 
@@ -139,55 +138,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<center> <h2>ADD - Admission Application</h2>
 		<p>Add, Modify and Delete the Student application</p>
 		</center>
-		
-		
-		<%
-		
-		ServletContext sc = request.getServletContext();
-		List diplomaDetails = (ArrayList)sc.getAttribute("diplomaCodeDetails");
-		HashMap<String, String> wholeList = new HashMap<String, String>();
-		
-		if(diplomaDetails!=null && diplomaDetails.size()>0){
-		for(int i=0;i<diplomaDetails.size();i++){
-			HashMap<String,String> map = (HashMap)diplomaDetails.get(i);
-			
-			String[] perRow = new String[6];
-			
-				int j=0;
-				for(Object str : map.keySet()){
-			              Object key=str;
-			              Object value=map.get(str);
-			              
-			              //System.out.println(j+" "+key);
-			              //System.out.println(j+" "+value);
-			              
-			              if(j==0){
-			            	  perRow[0] = key.toString();
-			            	  perRow[1] = value.toString();
-			              }else  if(j==1){
-			            	  perRow[2] = key.toString();
-			            	  perRow[3] = value.toString();
-			              }else  if(j==2){
-			            	  perRow[4] = key.toString();
-			            	  perRow[5] = value.toString();
-			              }
-			              j++;
-				}
-				
-			wholeList.put(perRow[2]+"~"+perRow[3], perRow[0]+"~"+perRow[1]+"@"+perRow[4]+"^"+perRow[5]);
-			perRow = new String[6];
-			
-		}
-		System.out.println("wholeList size "+wholeList.size());
-		}
-		
-		%>
-		
 	  <div class="w3-container">
 		<p>   
 		
 		  
 		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
+<<<<<<< master
 		<!--  <input type="text" name="diplomaCode" id="diplomaCode"  maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
   		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80">
   		-->
@@ -210,6 +166,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     	</script>
   		<br><br>
   		<input type="hidden" name="diplomaCodeName" >
+=======
+		<input type="text" name="diplomaCode" id="diplomaCode"  maxlength="5" size="5">&nbsp;&nbsp;&nbsp;
+  		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80"><br><br>
+  		
+>>>>>>> 507589e display selectbox - diploma code and details
   		<!--   SAKTHI todo 1 --   The above the fields should have the drop downs for diploma details -->
   		
 		<div class="w3-third">
