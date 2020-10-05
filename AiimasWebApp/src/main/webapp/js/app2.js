@@ -117,7 +117,6 @@ function clearBtn(){
 }
 
 
-<<<<<<< master
 function sort_select() { 
     $("#diplomaCode").append($("#diplomaCode option") 
                       .remove().sort(function(a, b) { 
@@ -138,5 +137,3 @@ function getSelectedDipcode() {
     d = document.getElementById("diplomaCode").value;
     //alert(d);
 }
-=======
->>>>>>> 507589e display selectbox - diploma code and details

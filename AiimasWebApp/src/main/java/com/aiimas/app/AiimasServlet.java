@@ -35,19 +35,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AiimasServlet
  */
-//
-//@WebServlet(
-//	    urlPatterns = "/rs",
-//	    loadOnStartup = 1
-//	    
-//	)
 
-
-@WebServlet("/rs")
-
-
-
+@WebServlet(
+	    urlPatterns = "/rs",
+	    loadOnStartup = 1
+	    
+	)
 public class AiimasServlet extends HttpServlet {
+
 	
 	
 	/**
