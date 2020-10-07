@@ -14,6 +14,10 @@
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"> -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+
 <!-- <script src="js/app1.js?ver=1"></script> -->
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">     </script> 
 <script src="js/app2.js?v=4"></script> 
@@ -49,7 +53,7 @@ tr:nth-child(even) {
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
-  input[name='diplomaCodeName']{width: 350px;}   
+  input[name='diplomaCodeName']{width: 550px;}   
 </style>
 <body class="w3-content" style="max-width:1200px">
 
@@ -195,7 +199,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		-->
   		
   		<!--  <select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">  -->
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode">
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option">
   		<datalist id="diplomaCodeList">
   		<option selected value="Choose your option"></option>
 		<!-- <option value="Choose your option"  selected>Choose your option</option>	  -->
@@ -205,7 +209,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
 				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
 				%>
-				<option value="<%=code%> / <%=value %>"></option>
+				<option data-id="<%=code%>" value="<%=code%> / <%=value %>"></option>
     			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
     		<%}} %>
     		</datalist>
@@ -299,7 +303,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-brown"><b>Address 4:</b></label>
 		<input class="w3-input w3-border " name="last" type="text" id="address4"><br>
 		<label class="w3-text-brown"><b>Address 5:</b></label>
-		<input class="w3-input w3-border" name="last" type="text"><br>
+		<input class="w3-input w3-border" name="last" type="text" id="address5"><br>
 
 
 		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
@@ -329,7 +333,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 			<button class="w3-button w3-blue" id="resultAddAdm" onclick="addAdmission()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
-			<button class="w3-button w3-red" onclick="" >Clear</button>
+			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
 			
 			<!--  Sakthi to disply the success or error got from response
 				 clear button clear all values
@@ -624,6 +628,42 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Logout</button>
 
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="newadmission" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('newadmission').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">New Admission</h2>
+      <p>Successful !!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmission').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal aria-labelledby="Modal-vert-center-demo-label" aria-hidden="true" -->
+ <div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="Modal-Admission" tabindex="-1" role="dialog" >  -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Modal-vert-center-demo-label">Add Admission</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+ 
+      <div class="modal-body">
+        Admission created successfully
+      </div>
+ 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>

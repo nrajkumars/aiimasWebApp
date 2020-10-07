@@ -74,8 +74,16 @@ function addAdmission() {
 		var dueDate = document.getElementById('dueDate').value;
 		var totfee = document.getElementById('totfee').value;
 		var papers = document.getElementById('papers').value;
+		
+		//alert(diplomaCode);
+		
+		if (prCode11 == "" || prNo1 == "")
+		   {
+			alert("Please enter values for required fields whicha are marked in Red")
+		   }else{
 	
 	postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers}, onPostAddAdmission);
+		   }
 
 }
 
@@ -85,10 +93,18 @@ function onPostAddAdmission(data) {
 	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			document.getElementById("resultAddAdm").innerHTML = data;
+			//document.getElementById("resultAddAdm").innerHTML = data;
 			// SAKTHI todo display the success or error in a dialog box
+			
+			
+			//$("#Modal-Admission .modal-body").load(data);
+            
+            // open the other modal
+           // $("#myModal2").modal("show");
+           // document.getElementById("newadmission").showModal();
+			document.getElementById('newadmission').style.display='block';
 
-}
+		}
 }
 
 
@@ -137,3 +153,34 @@ function getSelectedDipcode() {
     d = document.getElementById("diplomaCode").value;
     //alert(d);
 }
+
+
+function clearAllAtrbutes() {
+	document.getElementById('diplomaCode').value="";
+	document.getElementById('duration').value="";
+	document.getElementById('semMonth').value="";
+	document.getElementById('semYear').value="";
+	document.getElementById('enterDate').value="";
+	document.getElementById('prCode11').value="";
+	document.getElementById('prNo1').value="";
+	document.getElementById('paidamt').value="";
+	document.getElementById('address2').value="";
+	document.getElementById('address3').value="";
+	document.getElementById('address4').value="";
+	document.getElementById('address5').value="";
+	document.getElementById('pincode').value="";
+	document.getElementById('mobNum').value="";
+	document.getElementById('emailid').value="";
+	document.getElementById('dueDate').value="";
+	document.getElementById('totfee').value="";
+	document.getElementById('papers').value="";
+}
+
+
+$(function(){
+    $('#diplomaCode').change(function(){
+        var codeval = $("#diplomaCodeList option[value='" + $('#diplomaCode').val() + "']").attr('data-id');
+        //alert(codeval);
+        document.getElementById('diplomaCode').value=codeval;
+    });
+});
