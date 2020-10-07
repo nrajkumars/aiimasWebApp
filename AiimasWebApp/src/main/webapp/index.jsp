@@ -226,10 +226,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
 		<select class="w3-select" name="option" id="duration">
     		<option value="" disabled selected>Choose your option</option>
-    		<option value="1">Six Months</option>
-    		<option value="2">One Year- PG</option>
-    		<option value="3">18 Months- PG</option>
-   		 	<option value="3">One Year</option>
+    		<option value="Six Months">Six Months</option>
+    		<option value="One Year - PG">One Year - PG</option>
+    		<option value="18 Months - PG">18 Months - PG</option>
+   		 	<option value="One Year">One Year</option>
   		</select>
   	</div>
    

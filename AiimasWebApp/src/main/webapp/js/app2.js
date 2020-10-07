@@ -75,11 +75,11 @@ function addAdmission() {
 		var totfee = document.getElementById('totfee').value;
 		var papers = document.getElementById('papers').value;
 		
-		//alert(diplomaCode);
+		//alert(duration);
 		
 		if (prCode11 == "" || prNo1 == "")
 		   {
-			alert("Please enter values for required fields whicha are marked in Red")
+			alert("Please enter values for required fields, Required fields are marked in Red")
 		   }else{
 	
 	postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers}, onPostAddAdmission);
