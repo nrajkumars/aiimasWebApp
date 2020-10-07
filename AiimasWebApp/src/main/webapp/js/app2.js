@@ -180,7 +180,14 @@ function clearAllAtrbutes() {
 $(function(){
     $('#diplomaCode').change(function(){
         var codeval = $("#diplomaCodeList option[value='" + $('#diplomaCode').val() + "']").attr('data-id');
-        //alert(codeval);
-        document.getElementById('diplomaCode').value=codeval;
+        //alert($('#diplomaCode').val());
+        var description = $('#diplomaCode').val();
+        
+        var parts = codeval.split('$', 2);
+        var code = parts[0];
+        var paper  = parts[1];
+        document.getElementById('papers').value=paper;
+        //document.getElementById('diplomaCode').value=code;
+        document.getElementById('diplomaCode').value=description;
     });
 });
