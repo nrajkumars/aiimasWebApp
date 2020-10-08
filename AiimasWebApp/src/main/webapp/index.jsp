@@ -14,13 +14,9 @@
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
-
 <!-- <script src="js/app1.js?ver=1"></script> -->
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">     </script> 
-<script src="js/app2.js?v=4"></script> 
+<script src="js/app2.js?v=5"></script> 
 
 
 
@@ -30,30 +26,23 @@
   <link href="lib/roboto.css" rel="stylesheet">
 
 <style>
-
 <!-- for table -->
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
-
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-
 tr:nth-child(even) {
   background-color: #dddddd;
 }
 <!-- end table -->
-
-
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-
-  input[name='diplomaCodeName']{width: 550px;}   
 </style>
 <body class="w3-content" style="max-width:1200px">
 
@@ -96,7 +85,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </a>
     <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 	  <a href="#search1" class="w3-bar-item w3-button">Search by P.R.No</a>
-      <a href="#search2" class="w3-bar-item w3-button">Search by Name</a>
+<!--       <a href="#search2" class="w3-bar-item w3-button">Search by Name</a> -->
 
     </div>
 
@@ -188,7 +177,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		}
 		
 		%>
-		
+		<div class="w3-panel w3-pale-green">
 	  <div class="w3-container">
 		<p>   
 		
@@ -198,38 +187,34 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		<input type="text" name="diplomaName" id="diplomaName"  maxlength="80" size="80">
   		-->
   		
-  		<!--  <select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">  -->
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option">
-  		<datalist id="diplomaCodeList">
-  		<option selected value="Choose your option"></option>
-		<!-- <option value="Choose your option"  selected>Choose your option</option>	  -->
+  		<select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">
+		<option value="Choose your option"  selected>Choose your option</option>	
 			<%
 			if(wholeList.size()>0 ){
 				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
 				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
 				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
 				%>
-				<option data-id="<%=code%>" value="<%=code%> / <%=value %>"></option>
-    			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
+    			<option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option>
     		<%}} %>
-    		</datalist>
-    	<!-- </select>  -->
+    		
+    	</select>
   		<script> 
-    	//sort_select();
-    	//itemSelect(document.getElementById('diplomaCode'));
+    	sort_select();
+    	itemSelect(document.getElementById('diplomaCodeName'));
     	</script>
   		<br><br>
-  		<input type="hidden" name="diplomaCodeName" >
+  		<input type="hidden" name="diplomaCode" >
   		<!--   SAKTHI todo 1 --   The above the fields should have the drop downs for diploma details -->
   		
 		<div class="w3-third">
 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
 		<select class="w3-select" name="option" id="duration">
     		<option value="" disabled selected>Choose your option</option>
-    		<option value="Six Months">Six Months</option>
-    		<option value="One Year - PG">One Year - PG</option>
-    		<option value="18 Months - PG">18 Months - PG</option>
-   		 	<option value="One Year">One Year</option>
+    		<option value="1">Six Months</option>
+    		<option value="2">One Year- PG</option>
+    		<option value="3">18 Months- PG</option>
+   		 	<option value="3">One Year</option>
   		</select>
   	</div>
    
@@ -302,38 +287,90 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input class="w3-input w3-border " name="last" type="text" id="address3"><br>
 		<label class="w3-text-brown"><b>Address 4:</b></label>
 		<input class="w3-input w3-border " name="last" type="text" id="address4"><br>
-		<label class="w3-text-brown"><b>Address 5:</b></label>
-		<input class="w3-input w3-border" name="last" type="text" id="address5"><br>
-
-
-		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="pincode" maxlength="10" size="10" id ="pincode"><br><br>
-
-		<label class="w3-text-brown" ><b>Ph/Mobile: &nbsp;</b></label>
-		<input type="text" name="mobile" maxlength="15" size="15" id="mobNum" ><br><br>
-
-		<label class="w3-text-brown" ><b>Email Add:&nbsp;</b></label>
-		<input type="text" name="email" maxlength="25" size="25" id ="emailid"><br><br>
-
-
-		<label class="w3-text-brown" ><b>Fee Due date:&nbsp;</b></label>
-		<input type="date" name="duedate" maxlength="5" size="5" id="dueDate"><br><br>
-
-		<label class="w3-text-brown" ><b>Total Fee:&nbsp;&nbsp;</b></label>
-		<input type="text" name="totalfee" maxlength="5" size="5" id="totfee" ><br><br>
-
-		<label class="w3-text-brown" ><b>Papers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="2" size="2" id="papers" ><br><br>
 		
-		<label class="w3-text-brown" ><b>Paid Amount:&nbsp;&nbsp;</b></label>
-		<input type="text" name="paidamt" maxlength="5" size="5" id="paidamt" ><br><br><br>
+		
+		
+		
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Pincode:</b></label>
+			<input class="w3-input w3-border " type="text" name="pincode" maxlength="10" size="10" id ="pincode">
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>State:</b></label>
+			<input class="w3-input w3-border " type="text" name="state" maxlength="10" size="10" id ="state" >
+		  </div>
+				  
 
 
+ 		  <div class="w3-third"> 
+			<label class="w3-text-brown"><b>Phone Number:</b></label>
+ 			<input class="w3-input w3-border " type="text" name="phonenum" maxlength="15" size="15" id="phonenum"><br>
+ 		  </div> 
+ 		  
+ 		  
+ 		  
+ 		  
+ 		  <!-- new -->
+		
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Mobile:</b></label>
+			<input class="w3-input w3-border " type="text" name="mobile" maxlength="15" size="15" id="mobNum">
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Email Address:</b></label>
+			<input class="w3-input w3-border " type="text" name="email" maxlength="25" size="25" id ="emailid" >
+		  </div>
+				  
+
+
+ 		  <div class="w3-third"> 
+			<label class="w3-text-brown"><b>Papers:</b></label>
+ 			<input class="w3-input w3-border " type="text" name="papers" maxlength="2" size="2" id="papers" ><br>
+ 		  </div> 
+		
+		
+		
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Fee Due date:</b></label>
+			<input class="w3-input w3-border " type="date" name="duedate" maxlength="5" size="5" id="dueDate">
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Total Fee Amount:</b></label>
+			<input class="w3-input w3-border " type="text" name="totalfee" maxlength="5" size="5" id="totfee" >
+		  </div>
+			
+ 		  <div class="w3-third"> 
+			<label class="w3-text-brown"><b>Fee Paid Amount:</b></label>
+ 			<input class="w3-input w3-border " type="text" name="paidamt" maxlength="5" size="5" id="paidamt" ><br>
+ 		  </div> 
+ 		  
+ 		  
+ 		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Fee Paid date:</b></label>
+			<input class="w3-input w3-border " type="date" name="feepaiddate" maxlength="5" size="5" id="feepaiddate">
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Fee paid mode:</b></label>
+			<input class="w3-input w3-border " type="text" name="feepaidmode" maxlength="25" size="2" id="feepaidmode">
+		  </div>
+			
+ 		  <div class="w3-third"> 
+			<label class="w3-text-brown"><b>Fee reference:</b></label>
+ 			<input class="w3-input w3-border " type="text" name="feeref" maxlength="25" size="2" id="feeref"  ><br>
+ 		  </div> 
+ 		  
+		
+		<br><br><br>
+		
 		<center>
 		
 			<button class="w3-button w3-blue" id="resultAddAdm" onclick="addAdmission()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
-			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
+			<button class="w3-button w3-red" onclick="" >Clear</button>
 			
 			<!--  Sakthi to disply the success or error got from response
 				 clear button clear all values
@@ -345,6 +382,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		</p>
 	  </div>
+	  	  </div>
 	</div>
 
 
@@ -417,12 +455,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="prCode" value='ABM2' placeholder="ABM2">
+			<input class="w3-input w3-border " type="text" id="prCode" value='APR13' placeholder="APR13">
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" id="prNo"  value ='2' placeholder="2">
+			<input class="w3-input w3-border " type="text" id="prNo"  value ='286' placeholder="286">
 		  </div>
 
 		  <div class="w3-third">
@@ -461,15 +499,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  				<td>Diploma Code</td> 
 				<td id="ad_dipcode"></td> 
 			</tr>
-			<tr>
-				<td >Address Ref</td>
-				<td id="ad_ref"></td>
-
-			</tr>
-			<tr>
-				<td >Fee Date</td>
-				<td id="ad_feedate"></td> 
-			</tr>
+			
+			
 			<tr>
 				<td >Admission Semester Month</td>
 				<td id="ad_sesmon"></td> 
@@ -487,8 +518,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<td id="ad_feeamt"></td> 
 			</tr>
 			<tr>
-				<td >Fee Paid</td>
+				<td >Fee Paid Amount</td>
 				<td id="ad_paidamt"></td> 
+			</tr>
+			<tr>
+				<td >Fee paid Date</td>
+				<td id="ad_feedate"></td> 
+			</tr>
+			<tr>
+				<td >Address1</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Address2</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Address3</td>
+				<td id=""></td> 
+			</tr>
+				<tr>
+				<td >Address4</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Address5</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >State</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Pincode</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Phone</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Mobile</td>
+				<td id=""></td> 
+			</tr>
+			<tr>
+				<td >Email</td>
+				<td id=""></td> 
 			</tr>
 			
 		</tbody>
@@ -553,25 +628,50 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 	<div class="w3-padding-64 w3-light-grey w3-card-4" id=diplomaUpdate>
 		<center> <h2>Diplomas updation</h2></center><br><br>
-	  <div class="w3-container" >
-	    <label class="w3-text-brown"><b></b></label>
-	
 		
-		<label class="w3-text-brown" ><b>Diploma Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="10" size="10"><br><br>
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+
+	<div class="w3-container">
+
+		 <div class="w3-third">
+			
+		
+			<label class="w3-text-brown"><b>Diploma Code:</b></label>
+			<input class="w3-input w3-border " type="text" id="diplomaCode1"  >
+		
+		  
+		  </div>
+		  
+		   <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="diplomaResult" onclick="searchDiplomas()">&nbsp;&nbsp;Search</button><br>
+		  </div>
+				  
+		  <div class="w3-third">
+		
+		  </div>
+
+	 </div>
+
+<br>
 		
 	  	<label class="w3-text-brown"><b>Diploma Name:</b></label>
-		<input class="w3-input w3-border " name="instituteName" type="text"><br>
+		<input class="w3-input w3-border " name="diplomaName" id="diplomaName" type="text"><br>
 		
 		<label class="w3-text-brown"><b>DC Diploma Name:</b></label>
-		<input class="w3-input w3-border " name="instituteAddress" type="text"><br>
+		<input class="w3-input w3-border " name="dcDiplomaName" id="dcDiplomaName" type="text"><br>
 		
 		<label class="w3-text-brown" ><b>Number of Papers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="2" size="2"><br><br>
+		<input type="text" name="papers" maxlength="2" id="noPaper" size="2"><br><br>
 		
 		<p><center>
-		<button class="w3-button w3-blue">Save</button>
+		<button class="w3-button w3-blue" onclick="updateDiplomas()" >Update</button>
+		
+			<button class="w3-button w3-blue" onclick="insertDiplomas()" >Add New Diploma</button>
 		</center></p>
+	  </div>
 	  </div>
 	</div>
 	
@@ -583,24 +683,53 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=addressUpdate>
 		<center> <h2>Institute Address updation</h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
 	  <div class="w3-container" >
-	    <label class="w3-text-brown"><b></b></label>
-	
+	  
+	  
+	  
+	   	<div class="w3-container">
+
+		 <div class="w3-third">
+			<label class="w3-text-brown"><b> Institute Code::</b>&nbsp;</label>
+		<select class="w3-select" name="option" id="insituteCode">
+    		<option value="" disabled selected>Choose your option</option>
+    		<option value="1">AIIMS</option>
+    		<option value="2">AICOMAS</option>
+    		<option value="3">IIMT</option>
+   		 	<option value="3">NCLM</option>
+  		</select>
+		  </div>
+		  
+		   <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="instResult" onclick="searchInstitue()">&nbsp;&nbsp;Search</button><br>
+		  </div>
+				  
+		  <div class="w3-third">
 		
-		<label class="w3-text-brown" ><b>Institute Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="10" size="10"><br><br>
+		  </div>
+
+	 </div>
+	  
+	  	    <label class="w3-text-brown"><b></b></label>
+			 		
+  		
+		<br><br>
 		
-	  	<label class="w3-text-brown"><b>Institute Name:</b></label>
+	  	<label class="w3-text-brown"><b>Institute Name::</b></label>
 		<input class="w3-input w3-border " name="instituteName" type="text"><br>
 		
 		<label class="w3-text-brown"><b>Institute Address:</b></label>
 		<input class="w3-input w3-border " name="instituteAddress" type="text"><br>
 		
 		<label class="w3-text-brown"><b>Institute PhoneNumber:</b></label>
-		<input class="w3-input w3-border " name="instituteNumbers" type="text"><br>
+		<input class="w3-input w3-border " name="institutePhNumbers" type="text"><br>
 		<p><center>
-		<button class="w3-button w3-blue">Save</button>
+		<button class="w3-button w3-blue" onclick="updateInstitue()">Update</button>
 		</center></p>
+	  </div>
 	  </div>
 	</div>
 
@@ -610,8 +739,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 </div>
 
-  <div class="w3-black w3-center w3-padding-24">By <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">AIIMAS Group</a>
-  </div>
+  <div class="w3-black w3-center w3-padding-24">By AIIMAS Group  </div>
   
  </div>
 
@@ -632,49 +760,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   </div>
 </div>
 
-
-<div id="newadmission" class="w3-modal">
-  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
-    <div class="w3-container w3-white w3-center">
-      <i onclick="document.getElementById('newadmission').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">New Admission</h2>
-      <p>Successful !!</p>
-     
-	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmission').style.display='none'">OK</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal aria-labelledby="Modal-vert-center-demo-label" aria-hidden="true" -->
- <div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<!-- <div class="modal fade" id="Modal-Admission" tabindex="-1" role="dialog" >  -->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Modal-vert-center-demo-label">Add Admission</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
- 
-      <div class="modal-body">
-        Admission created successfully
-      </div>
- 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-
-
-
-
-
-
 // Accordion 
 function myAccFunc() {
   var x = document.getElementById("demoAcc");
@@ -684,8 +770,6 @@ function myAccFunc() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-
-
 // Accordion  for print
 function myAccFunc1() {
   var x = document.getElementById("demoAcc1");
@@ -695,7 +779,6 @@ function myAccFunc1() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-
 // Accordion  for Verify
 function myAccFunc2() {
   var x = document.getElementById("demoAcc2");
@@ -705,7 +788,6 @@ function myAccFunc2() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-
 // Accordion  for Maintenace
 function myAccFunc3() {
   var x = document.getElementById("demoAcc3");
@@ -715,9 +797,6 @@ function myAccFunc3() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-
-
-
 // Open and close sidebar
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -732,4 +811,3 @@ function w3_close() {
 
 </body>
 </html>
-    
