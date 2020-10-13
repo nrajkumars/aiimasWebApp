@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 import com.aiimas.dao.AddAdmission;
 import com.aiimas.dao.Maintenance;
 import com.aiimas.dao.MasterTableValues;
+import com.aiimas.dao.PrintView;
 import com.aiimas.dao.Verification;
 import com.aiimas.util.PDFGenerator;
 
@@ -58,7 +59,7 @@ public class AiimasServlet extends HttpServlet {
 		
 		try { 
 			
-			System.out.println(" RESPONSE insdie -------??----***********---------init  ");
+			System.out.println(" RESPONSE insdie ------***********---------init  ");
 
 			MasterTableValues masterTable = new MasterTableValues();
 				
@@ -165,6 +166,60 @@ public class AiimasServlet extends HttpServlet {
 				System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedValues);
 				
 				writeResponse(verifyedValues, resp);
+			}else if (module != null && module.equals("printView1")) {
+				
+				if(action != null && action.equals("searchQ")) {
+					// search Institute
+					System.out.println(" AIIMAS SERVLET  --  search QUESTION ");
+					
+					String diplomaCode1 = request.getParameter("diplomaCode1");
+						
+					Map input = new HashMap();
+					input.put("diplomaCode1", diplomaCode1);
+
+					
+					PrintView printView = new PrintView();
+					List searchQuestions = printView.getQuestions(input);
+														
+					System.out.println(" RESPONSE  searchQ GOT in LIST  -- "+searchQuestions);
+					
+					writeResponse(searchQuestions, resp);
+					
+				}else if(action != null && action.equals("printAdmInit")) {
+						
+					System.out.println(" AIIMAS SERVLET  --  search printAdmInit ");
+					
+					String adprCode = request.getParameter("adprCode");
+					String adpprNo = request.getParameter("adpprNo");
+						
+					Map input = new HashMap();
+					input.put("adprCode", adprCode);
+					input.put("adpprNo", adpprNo);
+
+					
+					PrintView printView = new PrintView();
+					Map searchAdmIniti = printView.getAdmInitimationetails(input);
+														
+					System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+searchAdmIniti);
+					
+					// GENERATING the PDF
+					
+					System.out.println(" Going to  GENERATE the PDF file ");
+					
+					PDFGenerator pdfGenerator = new PDFGenerator();
+					pdfGenerator.PrintPDF();
+					
+					System.out.println("DONE GENERATE the PDF file and saved in c:\\ temp\\ FirstPdf.pdf");
+					
+					String gfile = new String("c:\\ temp\\ FirstPdf.pdf");
+					
+					Map retrunMap = new HashMap();
+					retrunMap.put("File name ", gfile);
+					
+					writeResponse(retrunMap, resp);
+				}
+				
+				
 			}else if (module != null && module.equals("addAdmission")) {
 					
 					System.out.println("Inside module addAdmission : " + action);
@@ -278,11 +333,11 @@ public class AiimasServlet extends HttpServlet {
 						
 						writeResponse(searchDiploma, resp);
 						
-					}
+					}	// end of 	Maintenance		
 					
 					
-					
-				}
+				} // end of overall elseif
+			
 			
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();

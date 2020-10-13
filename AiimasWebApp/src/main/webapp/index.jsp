@@ -79,7 +79,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       Print/View&nbsp;<i class="fa fa-caret-down"></i>
     </a>
     <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-	  <a href="#ack1" class="w3-bar-item w3-button">Ack./ Intimation</a>
+	  <a href="#ack1" class="w3-bar-item w3-button">Admission Intimation</a>
+      <a href="#questions" class="w3-bar-item w3-button">Question Paper</a>
       <a href="#markSheet" class="w3-bar-item w3-button">Mark Sheet</a>
       <a href="#mailAddress" class="w3-bar-item w3-button">Mailing Address</a>
     </div>
@@ -178,7 +179,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			perRow = new String[6];
 			
 		}
-		System.out.println("wholeList size "+wholeList.size());
+		//System.out.println("wholeList size "+wholeList.size());
 		}
 		
 		%>
@@ -428,15 +429,73 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 <!-- PRINT / VIEW ---------------------------------------------------------------------------------------------------------------------------------->
 
- <div class="w3-padding-64 w3-light-grey w3-card-4" id=ack1> 
-		<center> <h2>View and Print Ack./ Intimation</h2></center>
-	  <form class="w3-container" action="/action_page.php">
-		<p><center>
-		<button class="w3-button w3-green">Print</button>
-		</center></p>
-	  </form>
+
+<!-- PRINT  ADmission Intimation -------------->
+
+ <div class="w3-padding-64 w3-light-grey w3-card-4" id=ack1>
+		<center> <h2>Admission Intimation</h2></center>
+	<div class="w3-panel w3-pale-green">
+		 <p>To print the Admission Intimation letter.</p>
+  	<div class="w3-container">
+		<p>
+		 <div class="w3-third">
+			<label class="w3-text-brown"><b>P.R.Code:</b></label>
+			<input class="w3-input w3-border " type="text" id="adprCode" value='APR13' placeholder="APR13">
+		  </div>
+				  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>P.R.No:</b></label>
+			<input class="w3-input w3-border " type="text" id="adpprNo"  value ='286' placeholder="286">
+		  </div>
+
+		  <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="adresult" onclick="printAdmInit()">&nbsp;&nbsp;GenerateFile</button><br> <br>
+		  </div>
+		 
+
+		</p>
+
 	</div>
+	</div>
+	 </div>
+	 
+	 
+	 <!-- PRINT  Question Papers -------------->
   
+<div class="w3-padding-64 w3-light-grey w3-card-4" id=questions>
+		<center> <h2>Question Papers</h2></center><br><br>
+		
+ <div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+
+	<div class="w3-container">
+
+		 <div class="w3-third">
+			
+			<label class="w3-text-brown"><b>Diploma Code:</b></label>
+			<input class="w3-input w3-border " type="text" id="qdiplomaCode" value="BM" >
+		
+		  
+		  </div>
+		  
+		   <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="searchquestion" onclick="getQuestion1()">&nbsp;&nbsp;Get Question Paper</button><br>
+		  </div>
+				  
+		  <div class="w3-third">
+		
+		  </div>
+	<br>
+	 </div>
+   </div>
+   <br>
+ </div>
+</div>
+ 
+ <!-- PRINT  Mark Sheet -------------->
  
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=markSheet>
 		<center> <h2>View and Print Mark sheet </h2></center>
@@ -590,49 +649,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </div>
 	 
 		
-<!--  <div class="w3-padding-64 w3-light-grey w3-card-4" id=search2> -->
-<!-- 	<center> <h2>Verfication by Name and Diploma name.</h2></center> -->
-<!-- 		<div class="w3-panel w3-pale-green"> -->
-<!-- 		 <p>Search for Student information based on Name and Diploma name.</p> -->
-
-<!-- 		<div class="w3-container"> -->
-<!-- 		 <p>    -->
-		
-		  
-<!-- 		<label class="w3-text-brown" ><b>Diploma:&nbsp;</label> -->
-<!-- 		<input type="text" name="diplomaCode" maxlength="5" size="5">&nbsp;&nbsp;&nbsp; -->
-<!--   		<input type="text" name="diplomaName" maxlength="80" size="60"><br><br> -->
-
-<!-- 		<label class="w3-text-brown" ><b>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
-<!-- 		<input type="text" name="pincode" maxlength="80" size="60"><br><br> -->
-			
-			  
-<!-- 	    <label class="w3-text-brown" ><b>Semester:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
-<!-- 		<input type="text" name="pincode" maxlength="10" size="10"><br><br> -->
-
-<!-- 		<label class="w3-text-brown" ><b>Duration:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
-<!-- 		<input type="text" name="pincode" maxlength="10" size="10"><br><br> -->
-
-	 
-		
-<!-- 		<label class="w3-text-brown" ><b>Pincode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
-<!-- 		<input type="text" name="pincode" maxlength="10" size="10"><br><br> -->
-
-<!-- 		<label class="w3-text-brown" ><b>Ph/Mobile: &nbsp;</label> -->
-<!-- 		<input type="text" name="mobile" maxlength="15" size="15"><br><br> -->
-
-<!-- 		<label class="w3-text-brown" ><b>Email Add:&nbsp;</label> -->
-<!-- 		<input type="text" name="email" maxlength="25" size="25"><br><br> -->
-<!-- 		<center> -->
-<!-- 			<button class="w3-button w3-blue" id="result1" onclick="searchByPrCodePrNo1()">&nbsp;&nbsp;Search</button><br> <br> -->
-<!-- 			<!-- <button class="w3-button w3-blue">Search</button> --> 
-<!-- 		</center> -->
-		
-		
-
-<!-- 		</p> -->
-<!-- 	  </div> -->
-<!-- 	  </div> -->
 
 
 <!-- MAINTANCE  - Diploma update -------------------------------------------------------------------------------------------------------------->
@@ -651,7 +667,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			
 		
 			<label class="w3-text-brown"><b>Diploma Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="diplomaCode1"  >
+			<input class="w3-input w3-border " type="text" id="diplomaCode1"  value="BM" >
 		
 		  
 		  </div>
@@ -664,8 +680,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  <div class="w3-third">
 		
 		  </div>
+		  
+	
 
 	 </div>
+	 
+	 
 
 <br>
 		
@@ -682,6 +702,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<button class="w3-button w3-blue" onclick="updateDiplomas()" >Update</button>
 		
 			<button class="w3-button w3-blue" onclick="insertDiplomas()" >Add New Diploma</button>
+			
+			 <button class="w3-button w3-red" onclick="clearAllAtrbutes1()" >Clear</button>
 		</center></p>
 	  </div>
 	  </div>
@@ -746,6 +768,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input class="w3-input w3-border " id="institutePhNumbers" type="text"><br>
 		<p><center>
 		<button class="w3-button w3-blue" onclick="updateInstitue()">Update</button>
+		<button class="w3-button w3-red" onclick="clearAllAtrbutes2()" >Clear</button>
 		</center></p>
 	  </div>
 	  </div>
