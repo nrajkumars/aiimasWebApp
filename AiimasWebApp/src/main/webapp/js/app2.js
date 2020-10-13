@@ -13,33 +13,89 @@ function searchByPrCodePrNo() {
 
 function onPostsearchByPrCodePrNo(data) {
 	console.log('RESPONSE POST in app .JS:' + data);
-	//document.setElementbyId('returnvalue', data);
-	//var responseFromServer = request.responseText;
-		if (data != null) {
-			//document.getElementById("result").innerHTML = data;
+	var parsedData;
+		
+	if (data != null) {
 			document.getElementById('resultTable').style.display = "block";
 		
-		try {
-		// Parse a JSON
-		parsedData = JSON.parse(data);
-		} catch (e) {
+			try {
+			// Parse JSON
+			parsedData = JSON.parse(data);
+			
 		
-		console.log(parsedData.ad_ref);
-		}
-		//{"ad_ref":"4799","ad_entdate":null,"ad_name":"CHARLES OWINO MUSUVI","ad_feedate":939493800000,"ad_durtn":"ONE YEAR","ad_prcode":"ABM2","ad_dipcode":"ADMN","ad_prno":"2","ad_sesmon":"MAY","ad_nofpapr":8,"ad_paidamt":0,"ad_feeamt":3600,"ad_enttime":null,"ad_sesyr":1999}
-			document.getElementById("ad_ref").innerHTML = parsedData.ad_ref;
-			document.getElementById("ad_name").innerHTML = parsedData.ad_name;
-			document.getElementById("ad_feedate").innerHTML = parsedData.ad_feedate;
-			document.getElementById("ad_durtn").innerHTML = parsedData.ad_durtn;
+			if(parsedData.Address["sa_name"]!=null){
+				document.getElementById("sa_name").innerHTML = parsedData.Address["sa_name"];
+			}
 		
-			//document.getElementById("ad_prcode").innerHTML = parsedData.ad_prcode;
-			document.getElementById("ad_dipcode").innerHTML = parsedData.ad_dipcode;
-			//document.getElementById("ad_prno").innerHTML = parsedData.ad_prno;
-			document.getElementById("ad_sesmon").innerHTML = parsedData.ad_sesmon;
-			document.getElementById("ad_nofpapr").innerHTML = parsedData.ad_nofpapr;
-			document.getElementById("ad_paidamt").innerHTML = parsedData.ad_paidamt;
-			document.getElementById("ad_feeamt").innerHTML = parsedData.ad_feeamt;
-			document.getElementById("ad_sesyr").innerHTML = parsedData.ad_sesyr;
+				
+				if(parsedData.Admin["ad_durtn"]!=null){
+					document.getElementById("ad_durtn").innerHTML = parsedData.Admin["ad_durtn"];
+				}
+		
+				if(parsedData.Address["sa_dipcode"]!=null){
+					document.getElementById("ad_dipcode").innerHTML = parsedData.Address["sa_dipcode"];
+				}
+				if(parsedData.Admin["ad_sesmon"]!=null){
+					document.getElementById("ad_sesmon").innerHTML = parsedData.Admin["ad_sesmon"];
+				}
+		
+				if(parsedData.Admin["ad_sesyr"]!=null){
+					document.getElementById("ad_sesyr").innerHTML = parsedData.Admin["ad_sesyr"];
+				}
+				if(parsedData.Admin["ad_nofpapr"]!=null){
+					document.getElementById("ad_nofpapr").innerHTML = parsedData.Admin["ad_nofpapr"];
+				}
+				if(parsedData.Admin["ad_feeamt"]!=null){
+					document.getElementById("ad_feeamt").innerHTML = parsedData.Admin["ad_feeamt"];
+				}
+				if(parsedData.Fee["fe_amount"]!=null){
+					document.getElementById("fe_amount").innerHTML = parsedData.Fee["fe_amount"];
+				}
+							
+				if(parsedData.Fee["fe_date"]!=null){
+					document.getElementById("fe_date").innerHTML = parsedData.Address["fe_date"];
+				}		
+				if(parsedData.Address["sa_add1"]!=null){
+					document.getElementById("sa_add1").innerHTML = parsedData.Address["sa_add1"];
+				}
+				if(parsedData.Address["sa_add2"]!=null){
+					document.getElementById("sa_add2").innerHTML = parsedData.Address["sa_add2"];
+				}	
+				if(parsedData.Address["sa_add3"]!=null){
+					document.getElementById("sa_add3").innerHTML = parsedData.Address["sa_add3"];
+				}
+				if(parsedData.Address["sa_add4"]!=null){
+					document.getElementById("sa_add4").innerHTML = parsedData.Address["sa_add4"];
+				}
+				if(parsedData.Address["sa_add5"]!=null){
+					document.getElementById("sa_add5").innerHTML = parsedData.Address["sa_add5"];
+				}	
+				if(parsedData.Address["sa_state"]!=null){
+					document.getElementById("sa_state").innerHTML = parsedData.Address["sa_state"];
+				}
+				if(parsedData.Address["sa_pincode"]!=null){
+					document.getElementById("sa_pincode").innerHTML = parsedData.Address["sa_pincode"];
+				}
+				if(parsedData.Address["sa_phone"]!=null){
+					document.getElementById("sa_phone").innerHTML = parsedData.Address["sa_phone"];
+				}
+				if(parsedData.Address["sa_mobile"]!=null){
+					document.getElementById("sa_mobile").innerHTML = parsedData.Address["sa_mobile"];
+				}
+				if(parsedData.Address["sa_email"]!=null){
+					document.getElementById("sa_email").innerHTML = parsedData.Address["sa_email"];
+				}
+			
+		
+			
+			
+			} catch (e) {
+				console.log("data error, please check administrator");
+			}
+		
+		
+		
+
 		}else{
 		alert('else');
 		document.getElementById('resultTable').style.display = "hide";
@@ -85,10 +141,9 @@ function addAdmission() {
 		
 		if (prCode11 == "" || prNo1 == "")
 		   {
-			alert("Please enter values for required fields, Required fields are marked in Red")
+			alert("Please enter the values in P.R.Code and P.R.No")
 		   }else{
 	
-	//postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers}, onPostAddAdmission);
 	  postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostAddAdmission);
 
 		   }
@@ -136,9 +191,20 @@ function onPostSearchInstitue(data) {
 	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			document.getElementById("instResult").innerHTML = data;
-			// SAKTHI todo display the success or error in a dialog box
 
+			parsedData = JSON.parse(data);
+			
+			if(parsedData["coyname"]!=null){
+				document.getElementById("instituteName").value =  parsedData["coyname"];
+			}
+			
+			if(parsedData["coyadd1"]!=null){
+				document.getElementById("instituteAddress").value =  parsedData["coyadd1"];
+			}
+			
+			if(parsedData["coyadd2"] != null){
+				document.getElementById("institutePhNumbers").value = parsedData["coyadd2"];
+			}
 	}
 }
 
@@ -149,7 +215,7 @@ function searchDiplomas() {
 	
 	console.log('searchDiplomas clicked rajjj ');
 	
-		var diplomaCode1 = document.getElementById('diplomaCode1').value;
+		var diplomaCode1 = document.getElementById('diplomaCode1').value.toUpperCase();
 		
 	
 	postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchDiploma","diplomaCode1":diplomaCode1,}, onPostSearchDiplomas);
@@ -159,9 +225,20 @@ function onPostSearchDiplomas(data) {
 	console.log(' onPostSearchDiplomas  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			document.getElementById("diplomaResult").innerHTML = data;
-			// SAKTHI todo display the success or error in a dialog box
-
+			
+			parsedData = JSON.parse(data);
+				
+			if(parsedData["dcdipname"]!=null){
+				document.getElementById("dcDiplomaName").value =  parsedData["dcdipname"];
+			}
+			
+			if(parsedData["dipname"]!=null){
+				document.getElementById("diplomaName").value =  parsedData["dipname"];
+			}
+			
+			if(parsedData["nofpapr"]!=null){
+				document.getElementById("noPaper").value =  parsedData["nofpapr"];
+			}
 	}
 }
 
@@ -206,8 +283,8 @@ function itemSelect(s) {
 }
 
 function getSelectedDipcode() {
-    d = document.getElementById("diplomaCode").value;
-    //alert(d);
+    var d_1 = document.getElementById("diplomaCode").value;
+    alert(d_1);
 }
 
 
@@ -236,7 +313,14 @@ function clearAllAtrbutes() {
 $(function(){
     $('#diplomaCode').change(function(){
         var codeval = $("#diplomaCodeList option[value='" + $('#diplomaCode').val() + "']").attr('data-id');
-        //alert(codeval);
-        document.getElementById('diplomaCode').value=codeval;
+        //alert($('#diplomaCode').val());
+        var description = $('#diplomaCode').val();  //course description. ex :: SALES & MARKETING
+        
+        var parts = codeval.split('$', 2);
+        var code = parts[0]; //diploma code.  ex :: SM
+        var paper  = parts[1]; // no of papers  ex :: 6
+        
+        document.getElementById('papers').value=paper;
+        document.getElementById('diplomaCode').value=description;
     });
 });

@@ -194,20 +194,23 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		
   		<!--  <select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">  -->
   		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option">
-  		<datalist id="diplomaCodeList">
+  		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
-		<!-- <option value="Choose your option"  selected>Choose your option</option>	  -->
+		
 			<%
 			if(wholeList.size()>0 ){
 				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
+					System.out.println(entry.getKey()+"- - "+entry.getValue());
 				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
 				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
+				String no_of_paper = entry.getValue().substring(entry.getValue().indexOf("~")+1,entry.getValue().indexOf("@"));
+				//System.out.println("paper - - "+no_of_paper.length());
 				%>
-				<option data-id="<%=code%>" value="<%=code%> / <%=value %>"></option>
+				<option data-id="<%=code%>$<%=no_of_paper%>" value="<%=code%> / <%=value %>"></option>
     			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
     		<%}} %>
     		</datalist>
-    	<!-- </select>  -->
+    	
   		<script> 
     	//sort_select();
     	//itemSelect(document.getElementById('diplomaCode'));
@@ -497,7 +500,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<tbody>
 			<tr>
 				<td>Student Name</td>
-				<td id="ad_name"></td>
+				<td id="sa_name"></td>
 
 			</tr>
 			<tr>
@@ -528,51 +531,51 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</tr>
 			<tr>
 				<td >Fee Paid Amount</td>
-				<td id="ad_paidamt"></td> 
+				<td id="fe_amount"></td> 
 			</tr>
 			<tr>
 				<td >Fee paid Date</td>
-				<td id="ad_feedate"></td> 
+				<td id="fe_date"></td> 
 			</tr>
 			<tr>
 				<td >Address1</td>
-				<td id=""></td> 
+				<td id="sa_add1"></td> 
 			</tr>
 			<tr>
 				<td >Address2</td>
-				<td id=""></td> 
+				<td id="sa_add2"></td> 
 			</tr>
 			<tr>
 				<td >Address3</td>
-				<td id=""></td> 
+				<td id="sa_add3"></td> 
 			</tr>
 				<tr>
 				<td >Address4</td>
-				<td id=""></td> 
+				<td id="sa_add4"></td> 
 			</tr>
 			<tr>
 				<td >Address5</td>
-				<td id=""></td> 
+				<td id="sa_add5"></td> 
 			</tr>
 			<tr>
 				<td >State</td>
-				<td id=""></td> 
+				<td id="sa_state"></td> 
 			</tr>
 			<tr>
 				<td >Pincode</td>
-				<td id=""></td> 
+				<td id="sa_pincode"></td> 
 			</tr>
 			<tr>
 				<td >Phone</td>
-				<td id=""></td> 
+				<td id="sa_phone"></td> 
 			</tr>
 			<tr>
 				<td >Mobile</td>
-				<td id=""></td> 
+				<td id="sa_mobile"></td> 
 			</tr>
 			<tr>
 				<td >Email</td>
-				<td id=""></td> 
+				<td id="sa_email"></td> 
 			</tr>
 			
 		</tbody>
@@ -667,13 +670,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <br>
 		
 	  	<label class="w3-text-brown"><b>Diploma Name:</b></label>
-		<input class="w3-input w3-border " name="diplomaName" id="diplomaName" type="text"><br>
+		<input class="w3-input w3-border "  id="diplomaName" type="text"><br>
 		
 		<label class="w3-text-brown"><b>DC Diploma Name:</b></label>
-		<input class="w3-input w3-border " name="dcDiplomaName" id="dcDiplomaName" type="text"><br>
+		<input class="w3-input w3-border"  id="dcDiplomaName" type="text"><br>
 		
 		<label class="w3-text-brown" ><b>Number of Papers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text" name="papers" maxlength="2" id="noPaper" size="2"><br><br>
+		<input type="text"  maxlength="2" id="noPaper" size="2"><br><br>
 		
 		<p><center>
 		<button class="w3-button w3-blue" onclick="updateDiplomas()" >Update</button>
@@ -734,13 +737,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<br><br>
 		
 	  	<label class="w3-text-brown"><b>Institute Name::</b></label>
-		<input class="w3-input w3-border " name="instituteName" type="text"><br>
+		<input class="w3-input w3-border " id="instituteName" type="text"><br>
 		
 		<label class="w3-text-brown"><b>Institute Address:</b></label>
-		<input class="w3-input w3-border " name="instituteAddress" type="text"><br>
+		<input class="w3-input w3-border " id="instituteAddress" type="text"><br>
 		
 		<label class="w3-text-brown"><b>Institute PhoneNumber:</b></label>
-		<input class="w3-input w3-border " name="institutePhNumbers" type="text"><br>
+		<input class="w3-input w3-border " id="institutePhNumbers" type="text"><br>
 		<p><center>
 		<button class="w3-button w3-blue" onclick="updateInstitue()">Update</button>
 		</center></p>
