@@ -51,7 +51,7 @@ public class AddAdmission extends BaseDao {
 		}
 		
 		if((enterDate != null && enterDate.toString().trim().length() > 8)) {
-			enterDatef = formatter.parse(enterDate.toString());
+			enterDatef = formatter.parse(dueDate.toString());
 		}
 		
 		if((feepaiddate != null && feepaiddate.toString().trim().length() > 8)) {

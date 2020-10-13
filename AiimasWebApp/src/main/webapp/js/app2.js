@@ -209,6 +209,55 @@ function onPostSearchInstitue(data) {
 }
 
 
+//Print Questions
+function getQuestion1() {
+	
+	console.log('getQuestion1 clicked rajjj ');
+	
+		var qdiplomaCode2 = document.getElementById('qdiplomaCode').value;
+		
+	
+	//postAjax('rs',{"app":"AiimasPost","module":"printView","action":"searchQ","diplomaCode1":qdiplomaCode2}, onPostSearchQuestion1);
+	
+	postAjax('rs',{"app":"AiimasPost","module":"printView1","action":"searchQ","diplomaCode1":qdiplomaCode2,}, onPostSearchQuestion1);
+	
+
+
+}
+function onPostSearchQuestion1(data) {
+	console.log(' onPostSearchQuestion1  RESPONSE POST in app .JS:' + data);
+
+		if (data != null) {
+			document.getElementById("searchquestion").innerHTML = data;
+			// SAKTHI todo display the success or error in a dialog box
+
+	}
+}
+
+//PRINT  - Admmission Initimation
+
+function printAdmInit() {
+	
+	console.log('printAdmInit clicked rajjj ');
+	
+		var adprCode = document.getElementById('adprCode').value;
+		var adpprNo = document.getElementById('adpprNo').value;
+		
+	
+	postAjax('rs',{"app":"AiimasPost","module":"printView1","action":"printAdmInit","adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+
+}
+function onPostSearchAdmIniti(data) {
+	console.log('onPostSearchAdmIniti  RESPONSE POST in app .JS:' + data);
+
+		if (data != null) {
+			document.getElementById("adresult").innerHTML = data;
+			// SAKTHI todo display the success or error in a dialog box
+
+	}
+}
+
+
 //MAintenance  - Diploma
 
 function searchDiplomas() {

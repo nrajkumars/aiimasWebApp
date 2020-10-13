@@ -13,6 +13,12 @@ package com.aiimas.util;
 	import com.itextpdf.text.DocumentException;
 	import com.itextpdf.text.Element;
 	import com.itextpdf.text.Font;
+	
+//	import com.itextpdf.io.image.ImageData; 
+//	import com.itextpdf.io.image.ImageDataFactory; 
+//	import com.itextpdf.layout.element.Image;  
+	
+import com.itextpdf.text.Image;
 	import com.itextpdf.text.List;
 	import com.itextpdf.text.ListItem;
 	import com.itextpdf.text.Paragraph;
@@ -39,10 +45,13 @@ package com.aiimas.util;
 	    // for print pdf using itextPDF
 	    public void PrintPDF() {
 	        try {
+	        	
+	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF");
 	            Document document = new Document();
 	            PdfWriter.getInstance(document, new FileOutputStream(FILE));
 	            document.open();
 	            addMetaData(document);
+	            addLOGOPage(document);
 	            addTitlePage(document);
 	            addContent(document);
 	            document.close();
@@ -55,11 +64,41 @@ package com.aiimas.util;
 	    // Reader
 	    // under File -> Properties
 	    private static void addMetaData(Document document) {
+	    	
+	    	   	    	
 	        document.addTitle("AIIMAS");
 	        document.addSubject("Aiimas");
 	        document.addKeywords("Java, PDF, iText");
 	        document.addAuthor("aiimas");
 	        document.addCreator("aiimas");
+	    }
+	    
+	    private static void addLOGOPage(Document document)
+	            throws DocumentException {
+	    try {
+	    	
+//	    	String imFile = "c:/temp/HEADER1.jpg"; 
+//	    	ImageData data = ImageDataFactory.create(imFile); 
+//	    	Image image = new Image(data); 
+//	    	image.setFixedPosition(100,250); 
+//	    	 document.add(image);
+//	    	// document.close();
+//	         System.out.println("Image Scaled"); 
+	        
+	        Image img = Image.getInstance("c:/temp/HEADER1.jpg");
+	        img.scaleToFit(400,400);
+	       // img.setFixedPosition(100,250)
+	        //(100,250); 
+//	        Image watermark_image = Image.getInstance("abstract(0307).bmp"); 
+//	        int i = 0; 
+//	        watermark_image.setAbsolutePosition(0, 0);
+//	        watermark_image.scaleToFit(826, 1100);
+//	        
+	        
+	        document.add(img);
+	      } catch (Exception x) {
+	        x.printStackTrace();
+	      }
 	    }
 
 	    private static void addTitlePage(Document document)
