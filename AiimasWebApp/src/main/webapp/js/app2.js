@@ -289,24 +289,33 @@ function getSelectedDipcode() {
 
 
 function clearAllAtrbutes() {
-	document.getElementById('diplomaCode').value="";
-	document.getElementById('duration').value="";
-	document.getElementById('semMonth').value="";
-	document.getElementById('semYear').value="";
-	document.getElementById('enterDate').value="";
-	document.getElementById('prCode11').value="";
-	document.getElementById('prNo1').value="";
-	document.getElementById('paidamt').value="";
-	document.getElementById('address2').value="";
-	document.getElementById('address3').value="";
-	document.getElementById('address4').value="";
-	document.getElementById('address5').value="";
-	document.getElementById('pincode').value="";
-	document.getElementById('mobNum').value="";
-	document.getElementById('emailid').value="";
-	document.getElementById('dueDate').value="";
-	document.getElementById('totfee').value="";
-	document.getElementById('papers').value="";
+	document.getElementById("duration").selectedIndex = "0";
+	
+		document.getElementById('semMonth').value="";
+		document.getElementById('semYear').value="";
+		document.getElementById('enterDate').value="";
+		document.getElementById('prCode11').value="";
+		document.getElementById('prNo1').value="";
+		document.getElementById('stuName').value="";
+		document.getElementById('prNo1').value="";
+		
+		document.getElementById('pincode').value="";
+		document.getElementById('state').value="";
+		
+		document.getElementById('address1').value="";
+		document.getElementById('address2').value="";
+		document.getElementById('address3').value="";
+		document.getElementById('address4').value="";
+		document.getElementById('phonenum').value="";
+		document.getElementById('mobNum').value="";
+		document.getElementById('emailid').value="";
+		document.getElementById('papers').value="";
+		document.getElementById('dueDate').value="";
+		document.getElementById('totfee').value="";
+		document.getElementById('paidamt').value="";
+		document.getElementById('feepaiddate').value="";
+		document.getElementById('feepaidmode').value="";
+		document.getElementById('feeref').value="";
 }
 
 
