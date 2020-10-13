@@ -254,12 +254,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		<div class="w3-third">
 			<label class="w3-text-red"><b>**P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" value = "" id="prCode11" >
+			<input class="w3-input w3-border " type="text"  id="prCode11" >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-red"><b>**P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" value = ""  id="prNo1" >
+			<input class="w3-input w3-border " type="text"   id="prNo1" >
 		  </div>
 		  
 		  
@@ -292,13 +292,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	
 		
 		<label class="w3-text-brown"><b>Address 1:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="address1" ><br>
+		<input class="w3-input w3-border " name="address1" type="text" id="address1" ><br>
 		<label class="w3-text-brown"><b>Address 2:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="address2"><br>
+		<input class="w3-input w3-border " name="address2" type="text" id="address2"><br>
 		<label class="w3-text-brown"><b>Address 3:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="address3"><br>
+		<input class="w3-input w3-border " name="address3" type="text" id="address3"><br>
 		<label class="w3-text-brown"><b>Address 4:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="address4"><br>
+		<input class="w3-input w3-border " name="address4" type="text" id="address4"><br>
 
 
 

@@ -58,7 +58,7 @@ public class AiimasServlet extends HttpServlet {
 		
 		try { 
 			
-			System.out.println(" RESPONSE insdie -----------***********---------init  ");
+			System.out.println(" RESPONSE insdie -------??----***********---------init  ");
 
 			MasterTableValues masterTable = new MasterTableValues();
 				
@@ -264,8 +264,15 @@ public class AiimasServlet extends HttpServlet {
 						input.put("diplomaCode1", diplomaCode1);
 
 						
+						System.out.println(" RESPONSE  CALLING PDF generration  ------------------------------GOT in MAP -- ");
+						
+						PDFGenerator pdfGenerator = new PDFGenerator();
+						pdfGenerator.PrintPDF();
+						
 						Maintenance maintenance = new Maintenance();
 						Map searchDiploma = maintenance.getDiplomaDetails(input);
+						
+						
 															
 						System.out.println(" RESPONSE  searchInsitute GOT in MAP -- "+searchDiploma);
 						
