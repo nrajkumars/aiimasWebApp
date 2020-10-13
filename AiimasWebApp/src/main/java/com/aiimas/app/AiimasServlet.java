@@ -266,8 +266,8 @@ public class AiimasServlet extends HttpServlet {
 						
 						System.out.println(" RESPONSE  CALLING PDF generration  ------------------------------GOT in MAP -- ");
 						
-						PDFGenerator pdfGenerator = new PDFGenerator();
-						pdfGenerator.PrintPDF();
+//						PDFGenerator pdfGenerator = new PDFGenerator();
+//						pdfGenerator.PrintPDF();
 						
 						Maintenance maintenance = new Maintenance();
 						Map searchDiploma = maintenance.getDiplomaDetails(input);
