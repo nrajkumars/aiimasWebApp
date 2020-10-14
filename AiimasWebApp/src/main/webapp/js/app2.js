@@ -138,8 +138,11 @@ function addAdmission() {
 		//alert(duration);
 		
 		console.log('addAdmission clicked duration '+duration);
-		
-		if (prCode11 == "" || prNo1 == "")
+	
+		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
+			alert("Please enter only numbers for PINCODE, PHONE NUMBER, SEM YEAR, MOBILE, NO OF PAPERS, TOTAL FEE AMT, FEE PAID AMOUNT ")
+			
+		}else if (prCode11 == "" || prNo1 == "")
 		   {
 			alert("Please enter the values in P.R.Code and P.R.No")
 		   }else{
@@ -228,10 +231,54 @@ function onPostSearchQuestion1(data) {
 	console.log(' onPostSearchQuestion1  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			document.getElementById("searchquestion").innerHTML = data;
-			// SAKTHI todo display the success or error in a dialog box
+			
+			parsedData = JSON.parse(data);
 
-	}
+		        var col = [];
+		        for (var i = 0; i < parsedData.length; i++) {
+		            for (var key in parsedData[i]) {
+		                if (col.indexOf(key) === -1) {
+		                    col.push(key);
+		                }
+		            }
+		        }
+
+		        // CREATING DYNAMIC TABLE.
+		       // var table = document.createElement("table");  quesTable
+		        var table = document.getElementById("quesTable");  
+		        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+		        for (var i = 0; i < col.length; i++) {
+		            var th = document.createElement("th");      // TABLE HEADER.
+		            th.setAttribute("style","white-space: nowrap;");
+		            th.innerHTML = col[i];
+		            if(col[i] == 'q_paperno')
+		            	th.innerHTML = 'Paper No';
+		            if(col[i] == 'q_filename')
+		            	th.innerHTML = 'File Name';
+		            if(col[i] == 'q_dipcode')
+		            	th.innerHTML = 'Diploma Code';
+		            if(col[i] == 'q_papernam')
+		            	th.innerHTML = 'Paper Name';
+		            tr.appendChild(th);
+		        }
+
+		        // ADD JSON DATA TO THE TABLE AS ROWS.
+		        for (var i = 0; i < parsedData.length; i++) {
+
+		            tr = table.insertRow(-1);
+
+		            for (var j = 0; j < col.length; j++) {
+		                var tabCell = tr.insertCell(-1);
+		                tabCell.setAttribute("style","white-space: nowrap;");
+		                tabCell.innerHTML = parsedData[i][col[j]];
+		            }
+		        }
+
+		        var divContainer = document.getElementById("showData");
+		        divContainer.appendChild(table);
+		    }
+
 }
 
 //PRINT  - Admmission Initimation
@@ -250,11 +297,25 @@ function printAdmInit() {
 function onPostSearchAdmIniti(data) {
 	console.log('onPostSearchAdmIniti  RESPONSE POST in app .JS:' + data);
 
-		if (data != null) {
-			document.getElementById("adresult").innerHTML = data;
-			// SAKTHI todo display the success or error in a dialog box
-
+	parsedData = JSON.parse(data);
+	
+	if(parsedData["File name "]!=null){   
+		
+		var e = document.getElementById('viewhref');
+	    if(e.style.display == 'block')
+	       e.style.display = 'none';
+	    else
+	       e.style.display = 'block';
+		
+			var filePath = parsedData["File name "];
+			document.getElementById('intimationpdf').value = filePath;
 	}
+}
+
+function openIntimationPDF() {
+    var myInput = document.getElementById("intimationpdf").value;
+    var websitelink = "https://www." + myInput + ".com";
+    window.open(websitelink,'_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }
 
 
@@ -312,6 +373,20 @@ function clearBtn(){
 	document.getElementById('prCode').value = "";
 	document.getElementById('prNo').value = "";
 	document.getElementById("resultTable").style.display="none";
+}
+function clearDiplomaUpdation(){
+	document.getElementById('diplomaName').value = "";
+	document.getElementById('dcDiplomaName').value = "";
+	document.getElementById("noPaper").value = "";
+	document.getElementById('diplomaCode1').value = "";
+	
+	
+}
+function clearInstituteUpdation(){
+	document.getElementById('instituteName').value = "";
+	document.getElementById('instituteAddress').value = "";
+	document.getElementById('institutePhNumbers').value = "";
+	document.getElementById('insituteCode').options[0].selected = true;
 }
 
 

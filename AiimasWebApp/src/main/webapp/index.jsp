@@ -452,6 +452,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
 			<button class="w3-button w3-blue" id="adresult" onclick="printAdmInit()">&nbsp;&nbsp;GenerateFile</button><br> <br>
 		  </div>
+		  
+		  
+		  <div class="w3-third" id="viewhref" style="display: none;">
+		    <input id="intimationpdf" value="" type="hidden">  
+			<button style='' id="myButton" onclick="openIntimationPDF()">Click to open PDF</button>
+		    
+		  </div>
+		  
 		 
 
 		</p>
@@ -484,11 +492,18 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
 			<button class="w3-button w3-blue" id="searchquestion" onclick="getQuestion1()">&nbsp;&nbsp;Get Question Paper</button><br>
 		  </div>
-				  
-		  <div class="w3-third">
-		
-		  </div>
+	</div>
 	<br>
+	<div class="w3-container">
+
+		 <div class="w3-third">			  
+		  	 <div class="table-responsive"  id="quesTableDiv"  align ="center"> <!-- style="display: none;" -->
+				<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" id="quesTable">
+				</table>
+				</div>
+			</div>
+	<br>
+	
 	 </div>
    </div>
    <br>
@@ -703,16 +718,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 			<button class="w3-button w3-blue" onclick="insertDiplomas()" >Add New Diploma</button>
 			
-			 <button class="w3-button w3-red" onclick="clearAllAtrbutes1()" >Clear</button>
+			 <button class="w3-button w3-red" onclick="clearDiplomaUpdation()" >Clear</button>
 		</center></p>
 	  </div>
 	  </div>
 	</div>
 	
-
-
-
-
 	<!-- Institute Address update -->
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=addressUpdate>
@@ -768,7 +779,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input class="w3-input w3-border " id="institutePhNumbers" type="text"><br>
 		<p><center>
 		<button class="w3-button w3-blue" onclick="updateInstitue()">Update</button>
-		<button class="w3-button w3-red" onclick="clearAllAtrbutes2()" >Clear</button>
+		<button class="w3-button w3-red" onclick="clearInstituteUpdation()" >Clear</button>
 		</center></p>
 	  </div>
 	  </div>
