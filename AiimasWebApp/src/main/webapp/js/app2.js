@@ -271,7 +271,13 @@ function onPostSearchQuestion1(data) {
 		            for (var j = 0; j < col.length; j++) {
 		                var tabCell = tr.insertCell(-1);
 		                tabCell.setAttribute("style","white-space: nowrap;");
-		                tabCell.innerHTML = parsedData[i][col[j]];
+		                var fileName = parsedData[i][col[j]];
+		                var linkName="";
+		                if ((fileName.toString()).indexOf("EM") !== -1) { //add .pdf here to send only pdf as link reference
+		                	linkName=fileName;
+		                }
+		                var innerHtmlText = "<a  href='' onclick='javascript:hrefWindowOpen(&quot;"+linkName+"&quot;)'>"+fileName+"</a>";
+		                tabCell.innerHTML = innerHtmlText;
 		            }
 		        }
 
@@ -279,6 +285,13 @@ function onPostSearchQuestion1(data) {
 		        divContainer.appendChild(table);
 		    }
 
+}
+
+
+function hrefWindowOpen(dataItem){
+	
+	var websitelink = window.location.href+"qpaper/" + dataItem;   //appending the path :: pdf :: to the localhost address
+    window.open(websitelink,'_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }
 
 //PRINT  - Admmission Initimation
@@ -314,7 +327,10 @@ function onPostSearchAdmIniti(data) {
 
 function openIntimationPDF() {
     var myInput = document.getElementById("intimationpdf").value;
-    var websitelink = "https://www." + myInput + ".com";
+    var  firstindex=  myInput.lastIndexOf("\\")+1; //this to get the file name, once u send only the file name i will remove this code
+    myInput = myInput.substring( firstindex, myInput.length); //extracting the file name from c:\\temp\\Firstpdf.pdf
+    myInput = myInput.trim();
+    var websitelink = window.location.href+"pdf/" + myInput;   //appending the path :: pdf :: to the localhost address
     window.open(websitelink,'_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }
 
@@ -324,10 +340,7 @@ function openIntimationPDF() {
 function searchDiplomas() {
 	
 	console.log('searchDiplomas clicked rajjj ');
-	
 		var diplomaCode1 = document.getElementById('diplomaCode1').value.toUpperCase();
-		
-	
 	postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchDiploma","diplomaCode1":diplomaCode1,}, onPostSearchDiplomas);
 
 }
