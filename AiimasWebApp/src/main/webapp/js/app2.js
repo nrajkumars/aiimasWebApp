@@ -273,7 +273,7 @@ function onPostSearchQuestion1(data) {
 		                tabCell.setAttribute("style","white-space: nowrap;");
 		                var fileName = parsedData[i][col[j]];
 		                var linkName="";
-		                if ((fileName.toString()).indexOf("EM") !== -1) { //add .pdf here to send only pdf as link reference
+		                if ((fileName.toString()).indexOf(".pdf") !== -1) { //add .pdf here to send only pdf as link reference
 		                	linkName=fileName;
 		                }
 		                var innerHtmlText = "<a  href='' onclick='javascript:hrefWindowOpen(&quot;"+linkName+"&quot;)'>"+fileName+"</a>";
