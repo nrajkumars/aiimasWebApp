@@ -490,13 +490,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="searchquestion" onclick="getQuestion1()">&nbsp;&nbsp;Get Question Paper</button><br>
+			<button class="w3-button w3-blue" id="searchquestion" onclick="getQuestion1()">&nbsp;&nbsp;Get Question Paper</button>
+			<button class="w3-button w3-red" onclick="clearQuestionPaper()" >Clear</button>
 		  </div>
 	</div>
 	<br>
-	<div class="w3-container">
+	<div class="w3-container" id="showData">
 
-		 <div class="w3-third">			  
+		 <div class="w3-third" id="showTableData">			  
 		  	 <div class="table-responsive"  id="quesTableDiv"  align ="center"> <!-- style="display: none;" -->
 				<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" id="quesTable">
 				</table>

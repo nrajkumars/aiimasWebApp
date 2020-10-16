@@ -233,7 +233,21 @@ function onPostSearchQuestion1(data) {
 		if (data != null) {
 			
 			parsedData = JSON.parse(data);
-
+				if(parsedData!=null){
+					
+					//document.getElementById('showData').parentElement.removeChild(document.getElementById('quesTableDiv'));
+					var element = document.getElementById("quesTable"); 
+					if (element.style.display === "none") {
+					  element.style.display = "block";
+					}
+					
+					if(element.rows.length > 0){
+						while(element.hasChildNodes())
+						{
+							element.removeChild(element.firstChild);
+						}
+					}
+					
 		        var col = [];
 		        for (var i = 0; i < parsedData.length; i++) {
 		            for (var key in parsedData[i]) {
@@ -273,16 +287,32 @@ function onPostSearchQuestion1(data) {
 		                tabCell.setAttribute("style","white-space: nowrap;");
 		                var fileName = parsedData[i][col[j]];
 		                var linkName="";
+		                var innerHtmlText = "";
 		                if ((fileName.toString()).indexOf(".pdf") !== -1) { //add .pdf here to send only pdf as link reference
 		                	linkName=fileName;
+		                	innerHtmlText = "<a  href='' target='_blank' onclick='javascript:hrefWindowOpen(&quot;"+linkName+"&quot;)'>"+fileName+"</a>";
+		                }else{
+		                	innerHtmlText = fileName;
 		                }
-		                var innerHtmlText = "<a  href='' onclick='javascript:hrefWindowOpen(&quot;"+linkName+"&quot;)'>"+fileName+"</a>";
+		                
 		                tabCell.innerHTML = innerHtmlText;
 		            }
 		        }
 
-		        var divContainer = document.getElementById("showData");
+		        var divContainer = document.getElementById("quesTableDiv");
 		        divContainer.appendChild(table);
+		        
+		       
+				}else{
+					/*var element = document.getElementById("quesTable"); 
+					if (element.style.display === "none") {
+					  element.style.display = "block";
+					}else{*/
+					var element = document.getElementById("quesTable"); 
+						element.style.display = "none";
+					//}
+				}
+		        
 		    }
 
 }
@@ -401,7 +431,11 @@ function clearInstituteUpdation(){
 	document.getElementById('institutePhNumbers').value = "";
 	document.getElementById('insituteCode').options[0].selected = true;
 }
-
+function clearQuestionPaper(){
+	document.getElementById('qdiplomaCode').value = "";  
+	var x = document.getElementById("quesTable");
+	    x.style.display = "none";
+}
 
 function sort_select() { 
     $("#diplomaCode").append($("#diplomaCode option") 
