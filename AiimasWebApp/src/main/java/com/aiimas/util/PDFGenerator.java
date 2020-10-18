@@ -4,6 +4,7 @@ package com.aiimas.util;
 
 	import java.io.FileOutputStream;
 	import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.aiimas.dao.Verification;
@@ -51,7 +52,6 @@ import com.itextpdf.text.Image;
 	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF");
 	        	Object action = input.get("action");
 	        	
-	        	System.out.println(" RESPONSE  CALLING PDF PrintPDF generration  ----------------  in prindPDF for reprot ="+action.toString());
 	            Document document = new Document();
 	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
@@ -130,11 +130,17 @@ import com.itextpdf.text.Image;
 	    
 	    private static void addAdmInitimationContent(Document document, Map input)
 	            throws DocumentException {
-	    	
+
+	    	Object prn = input.get("adpprNo");
+        	Object prc = input.get("adprCode");
+        	
+        	Map input1 = new HashMap();
+        	input1.put("prNum", prn);
+        	input1.put("prCode", prc);
 	    	
 	    	// get the required data
 	    	Verification verification = new Verification();
-	    	Map verifyedValues = verification.getVerficationDetail1(input);
+	    	Map verifyedValues = verification.getVerficationDetail1(input1);
 			
 			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
 	    		   
@@ -166,9 +172,18 @@ import com.itextpdf.text.Image;
 	    private static void addAcknowledgeContent(Document document, Map input)
 	            throws DocumentException {
 	    	
+	    	Object prn = input.get("adpprNo");
+        	Object prc = input.get("adprCode");
+        	
+        	Map input1 = new HashMap();
+        	input1.put("prNum", prn);
+        	input1.put("prCode", prc);
+	    	
 	    	// get the required data
 	    	Verification verification = new Verification();
-	    	Map verifyedValues = verification.getVerficationDetail1(input);
+	    	Map verifyedValues = verification.getVerficationDetail1(input1);
+	    	
+	    	
 			
 			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent  GOT in MAP -- "+verifyedValues);
 	    	
@@ -199,9 +214,16 @@ import com.itextpdf.text.Image;
 	    private static void addAnswerSheetAcknowledge(Document document, Map input)
 	            throws DocumentException {
 	    	
+	    	Object prn = input.get("adpprNo");
+        	Object prc = input.get("adprCode");
+        	
+        	Map input1 = new HashMap();
+        	input1.put("prNum", prn);
+        	input1.put("prCode", prc);
+	    	
 	    	// get the required data
 	    	Verification verification = new Verification();
-	    	Map verifyedValues = verification.getVerficationDetail1(input);
+	    	Map verifyedValues = verification.getVerficationDetail1(input1);
 			
 			System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge  GOT in MAP -- "+verifyedValues);
 	    	

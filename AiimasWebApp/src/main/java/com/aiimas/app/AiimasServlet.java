@@ -195,7 +195,10 @@ public class AiimasServlet extends HttpServlet {
 				String adprCode = request.getParameter("adprCode");
 				String adpprNo = request.getParameter("adpprNo");
 				
-						
+					
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
+				
 				Map input = new HashMap();
 				input.put("action", action);
 				input.put("adprCode", adprCode);
