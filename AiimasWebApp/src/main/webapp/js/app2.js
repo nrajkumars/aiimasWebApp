@@ -222,7 +222,7 @@ function getQuestion1() {
 	
 	//postAjax('rs',{"app":"AiimasPost","module":"printView","action":"searchQ","diplomaCode1":qdiplomaCode2}, onPostSearchQuestion1);
 	
-	postAjax('rs',{"app":"AiimasPost","module":"printView1","action":"searchQ","diplomaCode1":qdiplomaCode2,}, onPostSearchQuestion1);
+	postAjax('rs',{"app":"AiimasPost","module":"printViewQuestion","action":"searchQ","diplomaCode1":qdiplomaCode2,}, onPostSearchQuestion1);
 	
 
 
@@ -326,15 +326,15 @@ function hrefWindowOpen(dataItem){
 
 //PRINT  - Admmission Initimation
 
-function printAdmInit() {
+function printAdmInit(reportType) {
 	
-	console.log('printAdmInit clicked rajjj ');
+	console.log('printAdmInit clicked rajjj '+reportType);
 	
 		var adprCode = document.getElementById('adprCode').value;
 		var adpprNo = document.getElementById('adpprNo').value;
 		
 	
-	postAjax('rs',{"app":"AiimasPost","module":"printView1","action":"printAdmInit","adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+	postAjax('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
 
 }
 function onPostSearchAdmIniti(data) {
@@ -342,7 +342,7 @@ function onPostSearchAdmIniti(data) {
 
 	parsedData = JSON.parse(data);
 	
-	if(parsedData["File name "]!=null){   
+	if(parsedData["Filename"]!=null){   
 		
 		var e = document.getElementById('viewhref');
 	    if(e.style.display == 'block')

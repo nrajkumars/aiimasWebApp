@@ -166,7 +166,7 @@ public class AiimasServlet extends HttpServlet {
 				System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedValues);
 				
 				writeResponse(verifyedValues, resp);
-			}else if (module != null && module.equals("printView1")) {
+			}else if (module != null && module.equals("printViewQuestion")) {
 				
 				if(action != null && action.equals("searchQ")) {
 					// search Institute
@@ -184,42 +184,46 @@ public class AiimasServlet extends HttpServlet {
 					System.out.println(" RESPONSE  searchQ GOT in LIST  -- "+searchQuestions);
 					
 					writeResponse(searchQuestions, resp);
-					
-				}else if(action != null && action.equals("printAdmInit")) {
-						
-					System.out.println(" AIIMAS SERVLET  --  search printAdmInit ");
-					
-					String adprCode = request.getParameter("adprCode");
-					String adpprNo = request.getParameter("adpprNo");
-						
-					Map input = new HashMap();
-					input.put("adprCode", adprCode);
-					input.put("adpprNo", adpprNo);
-
-					
-					PrintView printView = new PrintView();
-					Map searchAdmIniti = printView.getAdmInitimationetails(input);
-														
-					System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+searchAdmIniti);
-					
-					// GENERATING the PDF
-					
-					System.out.println(" Going to  GENERATE the PDF file ");
-					
-					PDFGenerator pdfGenerator = new PDFGenerator();
-					pdfGenerator.PrintPDF();
-					
-					System.out.println("DONE GENERATE the PDF file and saved in c:\\ temp\\ FirstPdf.pdf");
-					
-					String gfile = new String("c:\\ temp\\ FirstPdf.pdf");
-					
-					Map retrunMap = new HashMap();
-					retrunMap.put("File name ", gfile);
-					
-					writeResponse(retrunMap, resp);
 				}
+					
+				// may be need else later else remove the if
 				
+			}else if(module != null && module.equals("printReport")) {
 				
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  ");
+				
+				String adprCode = request.getParameter("adprCode");
+				String adpprNo = request.getParameter("adpprNo");
+				
+						
+				Map input = new HashMap();
+				input.put("action", action);
+				input.put("adprCode", adprCode);
+				input.put("adpprNo", adpprNo);
+
+				
+			//	PrintView printView = new PrintView();
+			//	Map searchAdmIniti = printView.getAdmInitimationetails(input);
+				//Map printReports = printView.getPrintReports(input);
+							// MOVING DATA fetch to  PDFGenerator.java						
+				//System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+printReports);
+				
+				// GENERATING the PDF
+				
+				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file ");
+				
+				PDFGenerator pdfGenerator = new PDFGenerator();
+				String gfile = pdfGenerator.PrintPDF(input);
+				
+				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+				//String gfile = new String("c:\\ temp\\ FirstPdf.pdf");
+				
+				Map retrunMap = new HashMap();
+				
+				retrunMap.put("Filename", gfile);
+				
+				writeResponse(retrunMap, resp);
 			}else if (module != null && module.equals("addAdmission")) {
 					
 					System.out.println("Inside module addAdmission : " + action);

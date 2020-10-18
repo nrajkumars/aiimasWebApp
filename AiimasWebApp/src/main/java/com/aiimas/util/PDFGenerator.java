@@ -4,8 +4,10 @@ package com.aiimas.util;
 
 	import java.io.FileOutputStream;
 	import java.util.Date;
+import java.util.Map;
 
-	import com.itextpdf.text.Anchor;
+import com.aiimas.dao.Verification;
+import com.itextpdf.text.Anchor;
 	import com.itextpdf.text.BadElementException;
 	import com.itextpdf.text.BaseColor;
 	import com.itextpdf.text.Chapter;
@@ -28,9 +30,8 @@ import com.itextpdf.text.Image;
 	import com.itextpdf.text.pdf.PdfPTable;
 	import com.itextpdf.text.pdf.PdfWriter;
 
-
 	public class PDFGenerator {
-	    private static String FILE = "c:/temp/FirstPdf.pdf";
+	    //private static String FILE = "c:/temp/FirstPdf.pdf";
 	    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 	            Font.BOLD);
 	    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
@@ -43,20 +44,42 @@ import com.itextpdf.text.Image;
 	  
 
 	    // for print pdf using itextPDF
-	    public void PrintPDF() {
+	    public String PrintPDF(Map input) {
+	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
 	        try {
 	        	
 	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF");
+	        	Object action = input.get("action");
+	        	
+	        	System.out.println(" RESPONSE  CALLING PDF PrintPDF generration  ----------------  in prindPDF for reprot ="+action.toString());
 	            Document document = new Document();
-	            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
 	            addMetaData(document);
-	            addLOGOPage(document);
-	            addTitlePage(document);
-	            addContent(document);
+	            addLOGOPage(document); // add the header image
+	            
+	            
+	            // for each Report this has to be changed
+	            if (action != null && action.equals("admInit")) {
+	            	addAdmInitimationContent(document, input);
+	            }else if(action != null && action.equals("ackLetter")) {
+	            	addAcknowledgeContent(document, input);
+	            }else if(action != null && action.equals("ansSheet")) {
+	            	addAnswerSheetAcknowledge(document, input);
+	            }else if(action != null && action.equals("hallTck")) {
+	            	//addHallTicketContent(document, input);
+	            }else if(action != null && action.equals("mrkSheet")) {
+	            	//addMarkSheetContent(document, input);
+	            }
+	           	           
+	           // addTitlePage(document); // refer for sample
+	           // addContent(document); // refer for sample
+	            
 	            document.close();
+	            return genPDFfile;
 	        } catch (Exception e) {
 	            e.printStackTrace();
+	            return null;
 	        }
 	    }
 
@@ -100,6 +123,117 @@ import com.itextpdf.text.Image;
 	        x.printStackTrace();
 	      }
 	    }
+	    
+	    	    	    
+	    
+	    /// KEEP adding method for each report
+	    
+	    private static void addAdmInitimationContent(Document document, Map input)
+	            throws DocumentException {
+	    	
+	    	
+	    	// get the required data
+	    	Verification verification = new Verification();
+	    	Map verifyedValues = verification.getVerficationDetail1(input);
+			
+			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
+	    		   
+	    	
+	        Paragraph preface = new Paragraph();
+	        // We add one empty line
+	        addEmptyLine(preface, 1);
+	        // Lets write a big header
+	        preface.add(new Paragraph("Admission Intimation", catFont));
+
+	        addEmptyLine(preface, 1);
+	   
+	        preface.add(new Paragraph(
+	                " TODO letter here,",smallBold));
+	        addEmptyLine(preface, 3);
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
+
+	        addEmptyLine(preface, 8);
+
+	        document.add(preface);
+	        
+	    }
+	    
+	   
+	    
+	    
+	    private static void addAcknowledgeContent(Document document, Map input)
+	            throws DocumentException {
+	    	
+	    	// get the required data
+	    	Verification verification = new Verification();
+	    	Map verifyedValues = verification.getVerficationDetail1(input);
+			
+			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent  GOT in MAP -- "+verifyedValues);
+	    	
+	        Paragraph preface = new Paragraph();
+	        // We add one empty line
+	        addEmptyLine(preface, 1);
+	        // Lets write a big header
+	        preface.add(new Paragraph("Acknowledgement /Intimation Letter", catFont));
+
+	        addEmptyLine(preface, 1);
+	 	   
+	        preface.add(new Paragraph(
+	                " TODO letter here",smallBold));
+	        addEmptyLine(preface, 3);
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
+
+	        addEmptyLine(preface, 8);
+
+	        document.add(preface);
+	         
+	    }
+	    
+	    
+	    //addAnswerSheetAcknowledge(document, input);
+	    
+	    private static void addAnswerSheetAcknowledge(Document document, Map input)
+	            throws DocumentException {
+	    	
+	    	// get the required data
+	    	Verification verification = new Verification();
+	    	Map verifyedValues = verification.getVerficationDetail1(input);
+			
+			System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge  GOT in MAP -- "+verifyedValues);
+	    	
+	        Paragraph preface = new Paragraph();
+	        // We add one empty line
+	        addEmptyLine(preface, 1);
+	        // Lets write a big header
+	        preface.add(new Paragraph("Answer Sheet Acknowledgement Letter", catFont));
+
+	        addEmptyLine(preface, 1);
+	 	   
+	        preface.add(new Paragraph(
+	                " TODO letter here, ", smallBold));
+	        addEmptyLine(preface, 3);
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
+
+	        addEmptyLine(preface, 8);
+
+	        document.add(preface);
+	         
+	    }
+
+    	//addHallTicketContent(document, input);  todo
+
+    	//addMarkSheetContent(document, input);   TODO
+	    
+	    
+	    
+	    
+	    
 
 	    private static void addTitlePage(Document document)
 	            throws DocumentException {
@@ -115,14 +249,14 @@ import com.itextpdf.text.Image;
 	                "Report generated by: " + System.getProperty("user.name") + ", " + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	                smallBold));
 	        addEmptyLine(preface, 3);
-	        preface.add(new Paragraph(
-	                "This document describes something which is very important ",
-	                smallBold));
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
 
 	        addEmptyLine(preface, 8);
 
 	        preface.add(new Paragraph(
-	                "This document is a preliminary version and not subject to your license agreement or any other agreement with AIIMAS",
+	                "This document is a computer generated  no signature required - AIIMAS",
 	                redFont));
 
 	        document.add(preface);

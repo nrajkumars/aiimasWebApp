@@ -6,9 +6,7 @@ import java.util.Map;
 
 public class PrintView extends BaseDao {
 
-
-	
-	
+		
 	public List getQuestions(Map input) {
 		
 		System.out.println(" INSIDE PRINT VIEW DAO getQuestions ");
@@ -27,7 +25,6 @@ public class PrintView extends BaseDao {
 			
 		
 	}
-	
 	
 	
 	

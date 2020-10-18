@@ -79,7 +79,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       Print/View&nbsp;<i class="fa fa-caret-down"></i>
     </a>
     <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-	  <a href="#ack1" class="w3-bar-item w3-button">Admission Intimation</a>
+	  <a href="#ack1" class="w3-bar-item w3-button">Student Letters</a>
       <a href="#questions" class="w3-bar-item w3-button">Question Paper</a>
       <a href="#markSheet" class="w3-bar-item w3-button">Mark Sheet</a>
       <a href="#mailAddress" class="w3-bar-item w3-button">Mailing Address</a>
@@ -433,9 +433,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <!-- PRINT  ADmission Intimation -------------->
 
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=ack1>
-		<center> <h2>Admission Intimation</h2></center>
+		<center> <h2>Print Student Letters</h2></center>
 	<div class="w3-panel w3-pale-green">
-		 <p>To print the Admission Intimation letter.</p>
+		 <p>Click the Report to generate the file and then Open to print.</p>
   	<div class="w3-container">
 		<p>
 		 <div class="w3-third">
@@ -450,14 +450,44 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="adresult" onclick="printAdmInit()">&nbsp;&nbsp;GenerateFile</button><br> <br>
+			<button class="w3-button w3-red" id="adresult" onclick="cleartodo()">&nbsp;&nbsp;Clear</button><br> <br>
+		  </div>
+		  
+		   <div class="w3-third">
+			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult" onclick="printAdmInit('admInit')">&nbsp;&nbsp;Admission Intimation Letter</button><br> <br>
+		  </div>
+				  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult1" onclick="printAdmInit('ackLetter')">&nbsp;&nbsp;Admission Acknowledgement Letter</button><br> <br>
+		  </div>
+
+		  <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult2" onclick="printAdmInit('ansSheet')">&nbsp;&nbsp; Answer Sheet Acknowledgement Letter</button><br> <br>
+		  </div>
+		    <div class="w3-third">
+			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult3" onclick="printAdmInit('hallTck')">&nbsp;&nbsp;Examination Hall Ticket</button><br> <br>
+		  </div>
+				  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult4" onclick="printAdmInit('mrkSheet')">&nbsp;&nbsp;Student Mark Sheet</button><br> <br>
+		  </div>
+
+		  <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult5" onclick="printAdmInit()">&nbsp;&nbsp;Student Diploma Certificate</button><br> <br>
 		  </div>
 		  
 		  
 		  <div class="w3-third" id="viewhref" style="display: none;">
 		    <input id="intimationpdf" value="" type="hidden">  
-			<button style='' id="myButton" onclick="openIntimationPDF()">Click to open PDF</button>
-		    
+			<button class="w3-button w3-orange" style='' id="myButton" onclick="openIntimationPDF()">Click to open Generated PDF Letter</button>
+		    <BR>
+		 <BR>
 		  </div>
 		  
 		 
