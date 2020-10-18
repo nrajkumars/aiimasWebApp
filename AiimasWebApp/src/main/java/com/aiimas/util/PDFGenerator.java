@@ -7,6 +7,7 @@ package com.aiimas.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.aiimas.dao.PrintView;
 import com.aiimas.dao.Verification;
 import com.itextpdf.text.Anchor;
 	import com.itextpdf.text.BadElementException;
@@ -49,9 +50,9 @@ import com.itextpdf.text.Image;
 	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
 	        try {
 	        	
-	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF");
-	        	Object action = input.get("action");
 	        	
+	        	Object action = input.get("action");
+	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
 	            Document document = new Document();
 	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
@@ -67,9 +68,11 @@ import com.itextpdf.text.Image;
 	            }else if(action != null && action.equals("ansSheet")) {
 	            	addAnswerSheetAcknowledge(document, input);
 	            }else if(action != null && action.equals("hallTck")) {
-	            	//addHallTicketContent(document, input);
+	            	addHallTicketContent(document, input);
 	            }else if(action != null && action.equals("mrkSheet")) {
-	            	//addMarkSheetContent(document, input);
+	            	addMarkSheetContent(document, input);
+	            }else if(action != null && action.equals("diplomaCerti")) {
+	            	addDiplomaCertiContent(document, input);
 	            }
 	           	           
 	           // addTitlePage(document); // refer for sample
@@ -130,17 +133,10 @@ import com.itextpdf.text.Image;
 	    
 	    private static void addAdmInitimationContent(Document document, Map input)
 	            throws DocumentException {
-
-	    	Object prn = input.get("adpprNo");
-        	Object prc = input.get("adprCode");
-        	
-        	Map input1 = new HashMap();
-        	input1.put("prNum", prn);
-        	input1.put("prCode", prc);
-	    	
+    	
 	    	// get the required data
-	    	Verification verification = new Verification();
-	    	Map verifyedValues = verification.getVerficationDetail1(input1);
+	    	PrintView printView = new PrintView();
+	    	Map verifyedValues = printView.getAdmInitimationetails(input);
 			
 			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
 	    		   
@@ -172,17 +168,9 @@ import com.itextpdf.text.Image;
 	    private static void addAcknowledgeContent(Document document, Map input)
 	            throws DocumentException {
 	    	
-	    	Object prn = input.get("adpprNo");
-        	Object prc = input.get("adprCode");
-        	
-        	Map input1 = new HashMap();
-        	input1.put("prNum", prn);
-        	input1.put("prCode", prc);
-	    	
 	    	// get the required data
-	    	Verification verification = new Verification();
-	    	Map verifyedValues = verification.getVerficationDetail1(input1);
-	    	
+	    	PrintView printView = new PrintView();
+	    	Map verifyedValues = printView.getAcknowledgeContent(input);
 	    	
 			
 			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent  GOT in MAP -- "+verifyedValues);
@@ -214,16 +202,8 @@ import com.itextpdf.text.Image;
 	    private static void addAnswerSheetAcknowledge(Document document, Map input)
 	            throws DocumentException {
 	    	
-	    	Object prn = input.get("adpprNo");
-        	Object prc = input.get("adprCode");
-        	
-        	Map input1 = new HashMap();
-        	input1.put("prNum", prn);
-        	input1.put("prCode", prc);
-	    	
-	    	// get the required data
-	    	Verification verification = new Verification();
-	    	Map verifyedValues = verification.getVerficationDetail1(input1);
+	    	PrintView printView = new PrintView();
+	    	Map verifyedValues = printView.getAnswerSheetAcknowledge(input);
 			
 			System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge  GOT in MAP -- "+verifyedValues);
 	    	
@@ -249,10 +229,97 @@ import com.itextpdf.text.Image;
 	    }
 
     	//addHallTicketContent(document, input);  todo
+	    
+	    private static void addHallTicketContent(Document document, Map input)
+	            throws DocumentException {
+	    	
+	    	PrintView printView = new PrintView();
+	    	Map verifyedValues = printView.getHallTicketContent(input);
+			
+			System.out.println(" RESPONSE  LETTER in addHallTicketContent  GOT in MAP -- "+verifyedValues);
+	    	
+	        Paragraph preface = new Paragraph();
+	        // We add one empty line
+	        addEmptyLine(preface, 1);
+	        // Lets write a big header
+	        preface.add(new Paragraph("Hall Ticket", catFont));
+
+	        addEmptyLine(preface, 1);
+	 	   
+	        preface.add(new Paragraph(
+	                " TODO letter here, ", smallBold));
+	        addEmptyLine(preface, 3);
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
+
+	        addEmptyLine(preface, 8);
+
+	        document.add(preface);
+	         
+	    }
 
     	//addMarkSheetContent(document, input);   TODO
 	    
+	    private static void addMarkSheetContent(Document document, Map input)
+	            throws DocumentException {
+	    	
+	    	PrintView printView = new PrintView();
+	    	Map verifyedValues = printView.getMarkSheetContent(input);
+			
+			System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent  GOT in MAP -- "+verifyedValues);
+	    	
+	        Paragraph preface = new Paragraph();
+	        // We add one empty line
+	        addEmptyLine(preface, 1);
+	        // Lets write a big header
+	        preface.add(new Paragraph("Mark Sheet", catFont));
+
+	        addEmptyLine(preface, 1);
+	 	   
+	        preface.add(new Paragraph(
+	                " TODO letter here, ", smallBold));
+	        addEmptyLine(preface, 3);
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
+
+	        addEmptyLine(preface, 8);
+
+	        document.add(preface);
+	         
+	    }
 	    
+//addDiplomaCertiContent(document, input);   TODO
+	    
+	    private static void addDiplomaCertiContent(Document document, Map input)
+	            throws DocumentException {
+	    	
+	    	PrintView printView = new PrintView();
+	    	Map verifyedValues = printView.getMarkSheetContent(input);
+			
+			System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent  GOT in MAP -- "+verifyedValues);
+	    	
+	        Paragraph preface = new Paragraph();
+	        // We add one empty line
+	        addEmptyLine(preface, 1);
+	        // Lets write a big header
+	        preface.add(new Paragraph("Mark Sheet", catFont));
+
+	        addEmptyLine(preface, 1);
+	 	   
+	        preface.add(new Paragraph(
+	                " TODO letter here, ", smallBold));
+	        addEmptyLine(preface, 3);
+	       // preface.add(new Paragraph(
+	       //         "This document describes something which is very important ",
+	       //         smallBold));
+
+	        addEmptyLine(preface, 8);
+
+	        document.add(preface);
+	         
+	    }
 	    
 	    
 	    
