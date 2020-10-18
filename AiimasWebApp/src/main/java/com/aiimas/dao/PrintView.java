@@ -46,7 +46,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {
@@ -94,7 +94,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {
@@ -142,7 +142,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {
@@ -184,7 +184,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {
@@ -224,7 +224,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admin where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {

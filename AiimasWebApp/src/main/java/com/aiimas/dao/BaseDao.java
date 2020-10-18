@@ -94,7 +94,7 @@ public class BaseDao {
 					data.put(columns[i - 1], value);
 				}
 				al.add(data);
-				System.out.println(data);
+				//System.out.println(data);
 
 			}
 		} catch (Exception e) {
