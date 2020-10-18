@@ -38,8 +38,13 @@ public class AddAdmission extends BaseDao {
 		Object feepaidmode = data.get("feepaidmode");
 		Object feeref = data.get("feeref");
 		
-	
+		System.out.println("RRRRRRRRRRRRRRRRRR -"+diplomaCode);
+		String newDipCode =  diplomaCode.toString();
+		int subcount = newDipCode.indexOf("/");
+		System.out.println("RRRRRRRRRRRRRRRRRR - "+subcount);
+		newDipCode = newDipCode.substring(0, subcount-1);
 		
+		System.out.println("RRRRRRRRRRRRRRRRRR  2222    -"+newDipCode);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		Date feeDuedate = null;
@@ -51,7 +56,7 @@ public class AddAdmission extends BaseDao {
 		}
 		
 		if((enterDate != null && enterDate.toString().trim().length() > 8)) {
-			enterDatef = formatter.parse(dueDate.toString());
+			enterDatef = formatter.parse(enterDate.toString());
 		}
 		
 		if((feepaiddate != null && feepaiddate.toString().trim().length() > 8)) {
@@ -96,12 +101,12 @@ public class AddAdmission extends BaseDao {
 		
 				
 		String insertAddAdm = "insert into public.ADMIN (AD_DIPCODE, AD_PRCODE, AD_PRNO, AD_SESMON, AD_SESYR, AD_NAME,AD_NOFPAPR, AD_FEEAMT, AD_DURTN, AD_PAIDAMT,AD_FEEDATE, AD_ENTDATE) values(?,?,?,?,?,?,?,?,?,?,?,?);";
-		executeUpdate(insertAddAdm, new Object[]{diplomaCode.toString(),prCode11.toString(),Integer.parseInt(prNo1.toString()),semMonth.toString(),Integer.parseInt(semYear.toString()),stuName.toString(),Integer.parseInt(papers.toString()),Integer.parseInt(totfee.toString()), duration.toString(), Integer.parseInt(paidamt.toString()),feeDuedate,enterDatef });
+		executeUpdate(insertAddAdm, new Object[]{newDipCode,prCode11.toString(),Integer.parseInt(prNo1.toString()),semMonth.toString(),Integer.parseInt(semYear.toString()),stuName.toString(),Integer.parseInt(papers.toString()),Integer.parseInt(totfee.toString()), duration.toString(), Integer.parseInt(paidamt.toString()),feeDuedate,enterDatef });
 		// END time is not required //AD_REF not required
 		
 		
 		String insertAddAddress = "insert into public.STADDR (SA_DIPCODE, SA_PRCODE, SA_PRNO, SA_NAME, SA_ADD1, SA_ADD2, SA_ADD3, SA_ADD4, SA_STATE, SA_PINCODE, SA_PHONE, SA_MOBILE, SA_EMAIL) values(?,?,?,?,?,?,?,?,?,?,?,?,?);";
-		executeUpdate(insertAddAddress, new Object[]{diplomaCode.toString(),prCode11.toString(),Integer.parseInt(prNo1.toString()),stuName.toString(), address1.toString(),address2.toString(),address3.toString(),address4.toString(),state.toString(), Integer.parseInt(pincode.toString()),phonenum.toString(), mobNum.toString(),emailid.toString() });
+		executeUpdate(insertAddAddress, new Object[]{newDipCode.toString(),prCode11.toString(),Integer.parseInt(prNo1.toString()),stuName.toString(), address1.toString(),address2.toString(),address3.toString(),address4.toString(),state.toString(), Integer.parseInt(pincode.toString()),phonenum.toString(), mobNum.toString(),emailid.toString() });
 				
 		String insertAddfee = "insert into public.FEES (FE_PRCODE, FE_PRNO, FE_SESMON, FE_SESYR, FE_NAME, FE_DATE, FE_AMOUNT, FE_MODE, FE_REF) values(?,?,?,?,?,?,?,?,?);";
 		executeUpdate(insertAddfee, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString()),semMonth.toString(),Integer.parseInt(semYear.toString()),stuName.toString(),feepaiddatef, Integer.parseInt(paidamt.toString()), feepaidmode.toString(), feeref.toString() });
