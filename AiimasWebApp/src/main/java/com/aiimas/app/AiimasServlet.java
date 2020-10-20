@@ -161,6 +161,13 @@ public class AiimasServlet extends HttpServlet {
 				//String[] username = (String[])data.get("username");
 				//input.put("username", username[0]);
 				
+				if(action != null && action.equals("fullDetails")) {
+					Map verifyedFullValues = verification.getVerficationFULLDetail1(input);
+					System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedFullValues);
+				
+					writeResponse(verifyedFullValues, resp);
+				}
+				
 				Map verifyedValues = verification.getVerficationDetail1(input);
 				
 				System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedValues);
@@ -295,6 +302,91 @@ public class AiimasServlet extends HttpServlet {
 					response1.put("Success", "Admission is Done successfully");
 					
 					writeResponse(response1, resp);
+				}else if (module != null && module.equals("modifyAdmission")) {
+					
+					System.out.println("Inside module modifyAdmission : " + action);
+				
+													
+					String stuName = request.getParameter("stuName");
+					String address1 = request.getParameter("address1");
+					String diplomaCode = request.getParameter("diplomaCode");
+					String duration = request.getParameter("duration");
+					String semMonth = request.getParameter("semMonth");
+					String semYear = request.getParameter("semYear");
+					String enterDate = request.getParameter("enterDate");
+					String prCode11 = request.getParameter("prCode11");
+					String prNo1 = request.getParameter("prNo1");
+					String paidamt = request.getParameter("paidamt");
+					String address2 = request.getParameter("address2");
+					String address3 = request.getParameter("address3");
+					String address4 = request.getParameter("address4");
+					String pincode = request.getParameter("pincode");
+					String mobNum = request.getParameter("mobNum");
+					String phonenum = request.getParameter("phonenum");
+					String state = request.getParameter("state");
+					String emailid = request.getParameter("emailid");
+					String dueDate = request.getParameter("dueDate");
+					String totfee = request.getParameter("totfee");
+					String papers = request.getParameter("papers");
+					String feepaiddate= request.getParameter("feepaiddate");
+					String feepaidmode = request.getParameter("feepaidmode");
+					String feeref= request.getParameter("feeref");
+					
+								
+					
+					Map input = new HashMap();
+					input.put("stuName", stuName);
+					input.put("address1", address1);
+					input.put("diplomaCode",diplomaCode );
+					input.put("duration",duration );
+					input.put("semMonth",semMonth );
+					input.put("semYear",semYear );
+					input.put("enterDate",enterDate );
+					input.put("prCode11",prCode11 );
+					input.put("prNo1",prNo1 );
+					input.put("paidamt",paidamt);
+					input.put("address2",address2 );
+					input.put("address3",address3 );
+					input.put("address4",address4 );
+					input.put("state",state );
+					input.put("pincode",pincode );
+					input.put("phonenum",phonenum );
+					input.put("mobNum",mobNum );
+					input.put("emailid",emailid );
+					input.put("dueDate",dueDate );
+					input.put("totfee",totfee );
+					input.put("papers",papers );
+					input.put("feepaiddate",feepaiddate );
+					input.put("feepaidmode",feepaidmode );
+					input.put("feeref",feeref );
+					
+				 if(action != null && action.equals("updateAdm")) {
+					
+						System.out.println(" **** calling UPDATE admission");
+						AddAdmission addAdmission = new AddAdmission();
+						addAdmission.updateADMN(input);
+						
+						System.out.println(" RESPONSE GOT in MAP --  UPDATE Admission successsss");
+						
+						Map response1 = new HashMap();
+						response1.put("Success", " UPDATE Admission is Done successfully");
+						
+						writeResponse(response1, resp);
+						//end of UPDATE admission
+					}else if(action != null && action.equals("deleteAdm")) {
+						
+						System.out.println(" **** calling delete admission");
+						AddAdmission addAdmission = new AddAdmission();
+						addAdmission.deleteADMN(input);
+						
+						System.out.println(" RESPONSE GOT in MAP --  DELETE  Admission successsss");
+						
+						Map response1 = new HashMap();
+						response1.put("Success", " DELETE Admission is Done successfully");
+						
+						writeResponse(response1, resp);
+						//end of Delete admission
+					}
 				}else if (module != null && module.equals("Maintenance")) {
 								
 					//	 Maintenance
@@ -326,11 +418,9 @@ public class AiimasServlet extends HttpServlet {
 						input.put("diplomaCode1", diplomaCode1);
 
 						
-						System.out.println(" RESPONSE  CALLING PDF generration  ------------------------------GOT in MAP -- ");
+						System.out.println(" RESPONSE  searchDiploma  ------------------------------GOT in MAP -- "+diplomaCode1);
 						
-//						PDFGenerator pdfGenerator = new PDFGenerator();
-//						pdfGenerator.PrintPDF();
-						
+
 						Maintenance maintenance = new Maintenance();
 						Map searchDiploma = maintenance.getDiplomaDetails(input);
 						

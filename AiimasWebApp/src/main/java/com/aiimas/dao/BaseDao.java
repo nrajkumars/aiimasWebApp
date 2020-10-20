@@ -38,6 +38,7 @@ public class BaseDao {
 			conn = getConnection();
 
 			PreparedStatement ps = conn.prepareStatement(sql);
+			//System.out.println(" exute - "+sql);
 			if (args != null) {
 				int i=1;
 				for (Object each : args) {
@@ -50,7 +51,7 @@ public class BaseDao {
 				}
 			}
 			int cnt = ps.executeUpdate();
-		//	System.out.println("updated : " + cnt + " records");
+			//System.out.println("updated : " + cnt + " records"+sql);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -66,6 +67,7 @@ public class BaseDao {
 	protected List executeFetchSql(String sql) {
 		return executeFetchSql(sql, null);
 	}
+	
 	protected List executeFetchSql(String sql, Object[] args) {
 		Connection conn = null;
 		List al = new ArrayList();

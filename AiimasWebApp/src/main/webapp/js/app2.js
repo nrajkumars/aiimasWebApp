@@ -1,12 +1,17 @@
 function searchByPrCodePrNo() {
 	
-	console.log('searchByPrCodePrNo clicked rajjj ');
+	console.log('searchByPrCodePrNo  on VERIFICATION clicked rajjj ');
 	
 	var prcode = document.getElementById('prCode').value;
 	var prno = document.getElementById('prNo').value;
 	
-	postAjax('rs',{"app":"AiimasPost","module":"verification","action":"searchByPrCodePrNo1","prNo":prno,"prCode":prcode}, onPostsearchByPrCodePrNo);
-
+	
+	if (prcode == "" || prno == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+	postAjax('rs',{"app":"AiimasPost","module":"verification","action":"fullDetails","prNo":prno,"prCode":prcode}, onPostsearchByPrCodePrNo);
+	}
 }
 
 
@@ -104,6 +109,148 @@ function onPostsearchByPrCodePrNo(data) {
 
 }
 
+
+// Modify Adm -  LOAD data 
+function getModifyAdmData() {
+	
+	console.log('getModifyAdmData  on Modify Admin clicked rajjj ');
+	
+	var prcode = document.getElementById('prCode111').value;
+	var prno = document.getElementById('prNo11').value;
+	
+	if (prcode == "" || prno == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+		postAjax('rs',{"app":"AiimasPost","module":"verification","action":"admDetails","prNo":prno,"prCode":prcode}, onPostgetModifyAdmData);
+	}
+}
+
+
+
+function onPostgetModifyAdmData(data) {
+	console.log('RESPONSE POST in   onPostgetModifyAdmData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+		console.log(' NMAE'+parsedData1.Admin["ad_name"]);
+		
+			if(parsedData1.Admin["ad_name"]!=null){
+				
+				console.log(' NMAE'+parsedData1.Admin["ad_name"]);
+				//document.getElementById("stuName1").innerHTML = parsedData1.Admin["ad_name"];
+				document.getElementById("stuName1").value =  parsedData1.Admin["ad_name"];
+			}
+			
+			//TODO SAKTHI
+			
+			
+			
+//			console.log(' onPostSearchDiplomas  RESPONSE POST in app .JS:' + data);
+//
+//		if (data != null) {
+//			
+//			parsedData = JSON.parse(data);
+//				
+//			if(parsedData["dcdipname"]!=null){
+//				document.getElementById("dcDiplomaName").value =  parsedData["dcdipname"];
+//			}
+//			
+//			if(parsedData["dipname"]!=null){
+//				document.getElementById("diplomaName").value =  parsedData["dipname"];
+//			}
+//			
+//			if(parsedData["nofpapr"]!=null){
+//				document.getElementById("noPaper").value =  parsedData["nofpapr"];
+//			}
+//	}
+		
+				
+//				if(parsedData.Admin["ad_durtn"]!=null){
+//					document.getElementById("ad_durtn").innerHTML = parsedData.Admin["ad_durtn"];
+//				}
+//		
+//				if(parsedData.Address["sa_dipcode"]!=null){
+//					document.getElementById("ad_dipcode").innerHTML = parsedData.Address["sa_dipcode"];
+//				}
+//				if(parsedData.Admin["ad_sesmon"]!=null){
+//					document.getElementById("ad_sesmon").innerHTML = parsedData.Admin["ad_sesmon"];
+//				}
+//		
+//				if(parsedData.Admin["ad_sesyr"]!=null){
+//					document.getElementById("ad_sesyr").innerHTML = parsedData.Admin["ad_sesyr"];
+//				}
+//				if(parsedData.Admin["ad_nofpapr"]!=null){
+//					document.getElementById("ad_nofpapr").innerHTML = parsedData.Admin["ad_nofpapr"];
+//				}
+//				if(parsedData.Admin["ad_feeamt"]!=null){
+//					document.getElementById("ad_feeamt").innerHTML = parsedData.Admin["ad_feeamt"];
+//				}
+//				if(parsedData.Fee["fe_amount"]!=null){
+//					document.getElementById("fe_amount").innerHTML = parsedData.Fee["fe_amount"];
+//				}
+//							
+//				if(parsedData.Fee["fe_date"]!=null){
+//					document.getElementById("fe_date").innerHTML = parsedData.Address["fe_date"];
+//				}		
+//				if(parsedData.Address["sa_add1"]!=null){
+//					document.getElementById("sa_add1").innerHTML = parsedData.Address["sa_add1"];
+//				}
+//				if(parsedData.Address["sa_add2"]!=null){
+//					document.getElementById("sa_add2").innerHTML = parsedData.Address["sa_add2"];
+//				}	
+//				if(parsedData.Address["sa_add3"]!=null){
+//					document.getElementById("sa_add3").innerHTML = parsedData.Address["sa_add3"];
+//				}
+//				if(parsedData.Address["sa_add4"]!=null){
+//					document.getElementById("sa_add4").innerHTML = parsedData.Address["sa_add4"];
+//				}
+//				if(parsedData.Address["sa_add5"]!=null){
+//					document.getElementById("sa_add5").innerHTML = parsedData.Address["sa_add5"];
+//				}	
+//				if(parsedData.Address["sa_state"]!=null){
+//					document.getElementById("sa_state").innerHTML = parsedData.Address["sa_state"];
+//				}
+//				if(parsedData.Address["sa_pincode"]!=null){
+//					document.getElementById("sa_pincode").innerHTML = parsedData.Address["sa_pincode"];
+//				}
+//				if(parsedData.Address["sa_phone"]!=null){
+//					document.getElementById("sa_phone").innerHTML = parsedData.Address["sa_phone"];
+//				}
+//				if(parsedData.Address["sa_mobile"]!=null){
+//					document.getElementById("sa_mobile").innerHTML = parsedData.Address["sa_mobile"];
+//				}
+//				if(parsedData.Address["sa_email"]!=null){
+//					document.getElementById("sa_email").innerHTML = parsedData.Address["sa_email"];
+//				}
+//			
+		
+			
+			
+			} catch (e) {
+				console.log("data error, please check administrator");
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+
+
+
+}
+//
+
 // ADD ADMISSION
 
 function addAdmission() {
@@ -142,9 +289,9 @@ function addAdmission() {
 		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
 			alert("Please enter only numbers for PINCODE, PHONE NUMBER, SEM YEAR, MOBILE, NO OF PAPERS, TOTAL FEE AMT, FEE PAID AMOUNT ")
 			
-		}else if (prCode11 == "" || prNo1 == "")
+		}else if (prCode11 == "" || prNo1 == "" || diplomaCode == "")
 		   {
-			alert("Please enter the values in P.R.Code and P.R.No")
+			alert("Please enter the values in Diploma, P.R.Code and P.R.No")
 		   }else{
 	
 	  postAjax('rs',{"app":"AiimasPost","module":"addAdmission","action":"saveAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostAddAdmission);
@@ -154,24 +301,75 @@ function addAdmission() {
 }
 
 
-
 function onPostAddAdmission(data) {
 	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			//document.getElementById("resultAddAdm").innerHTML = data;
-			// SAKTHI todo display the success or error in a dialog box
-			
-			
-			//$("#Modal-Admission .modal-body").load(data);
-            
-            // open the other modal
-           // $("#myModal2").modal("show");
-           // document.getElementById("newadmission").showModal();
 			document.getElementById('newadmission').style.display='block';
 
 		}
 }
+
+
+// UPDATE Admission
+function updateAdmission(admType) {
+	
+	console.log('updateAdmission clicked rajjj ');
+	
+	var stuName = document.getElementById('stuName1').value;
+	var address1 = document.getElementById('address11').value;
+		var diplomaCode = document.getElementById('diplomaCode3').value;
+		var duration = document.getElementById('duration1').value;
+		var semMonth = document.getElementById('semMonth1').value;
+		var semYear = document.getElementById('semYear1').value;
+		var enterDate = document.getElementById('enterDate1').value;
+		var prCode11 = document.getElementById('prCode111').value;
+		var prNo1 = document.getElementById('prNo11').value;
+		var paidamt = document.getElementById('paidamt1').value;
+		var address2 = document.getElementById('address21').value;
+		var address3 = document.getElementById('address31').value;
+		var address4 = document.getElementById('address41').value;
+		var pincode = document.getElementById('pincode1').value;
+		var mobNum = document.getElementById('mobNum1').value;
+		var state = document.getElementById('state1').value;
+		var phonenum = document.getElementById('phonenum1').value;
+		var emailid = document.getElementById('emailid1').value;
+		var dueDate = document.getElementById('dueDate1').value;
+		var totfee = document.getElementById('totfee1').value;
+		var papers = document.getElementById('papers1').value;
+		var feepaiddate = document.getElementById('feepaiddate1').value;
+		var feepaidmode = document.getElementById('feepaidmode1').value;
+		var feeref = document.getElementById('feeref1').value;
+		
+	
+		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
+			alert("Please enter only numbers for PINCODE, PHONE NUMBER, SEM YEAR, MOBILE, NO OF PAPERS, TOTAL FEE AMT, FEE PAID AMOUNT ")
+			
+		}else if (prCode11 == "" || prNo1 == "" || diplomaCode == "")
+		   {
+			alert("Please enter the values in Diploma, P.R.Code and P.R.No")
+		   }else{
+	
+	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":admType,"stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
+
+		   }
+
+}
+
+
+function onPostUpdateAdmission(data) {
+	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
+
+		if (data != null) {
+			document.getElementById('newadmission').style.display='block';
+
+		}
+}
+
+
+// DELETE admission
+
+
 
 //MAintenance  - Institute search
 
@@ -369,9 +567,10 @@ function openIntimationPDF() {
 
 function searchDiplomas() {
 	
-	console.log('searchDiplomas clicked rajjj ');
+	
 		var diplomaCode1 = document.getElementById('diplomaCode1').value.toUpperCase();
-	postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchDiploma","diplomaCode1":diplomaCode1,}, onPostSearchDiplomas);
+		
+		postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchDiploma","diplomaCode1":diplomaCode1,}, onPostSearchDiplomas);
 
 }
 function onPostSearchDiplomas(data) {

@@ -35,6 +35,8 @@ public void saveDiplomaDetail(Map data) {
 	public Map getDiplomaDetails(Map input) {
 		
 		Object diplomaCode1 =  input.get("diplomaCode1");
+		
+		System.out.println(" INSIDE getDiplomaDetails "+diplomaCode1);
 	
 		String getDiplomaDataSql = "select * from public.dipmast where dipcode = ?";
 		List data1 = executeFetchSql(getDiplomaDataSql, new Object[]{diplomaCode1.toString() });
