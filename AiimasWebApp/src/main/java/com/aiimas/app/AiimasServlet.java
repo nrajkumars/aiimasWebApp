@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.aiimas.dao.AddAdmission;
+import com.aiimas.dao.ExamApplication;
 import com.aiimas.dao.Maintenance;
+import com.aiimas.dao.MarkUpdate;
 import com.aiimas.dao.MasterTableValues;
 import com.aiimas.dao.PrintView;
 import com.aiimas.dao.Verification;
@@ -161,18 +163,13 @@ public class AiimasServlet extends HttpServlet {
 				//String[] username = (String[])data.get("username");
 				//input.put("username", username[0]);
 				
-				if(action != null && action.equals("fullDetails")) {
-					Map verifyedFullValues = verification.getVerficationFULLDetail1(input);
-					System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedFullValues);
 				
-					writeResponse(verifyedFullValues, resp);
-				}
+				Map verifyedFullValues = verification.getVerficationFULLDetail1(input);
+				System.out.println(" RESPONSE  FULL verification GOT in MAP -- "+verifyedFullValues);
 				
-				Map verifyedValues = verification.getVerficationDetail1(input);
+				writeResponse(verifyedFullValues, resp);
 				
-				System.out.println(" RESPONSE  verification GOT in MAP -- "+verifyedValues);
 				
-				writeResponse(verifyedValues, resp);
 			}else if (module != null && module.equals("printViewQuestion")) {
 				
 				if(action != null && action.equals("searchQ")) {
@@ -387,8 +384,82 @@ public class AiimasServlet extends HttpServlet {
 						writeResponse(response1, resp);
 						//end of Delete admission
 					}
-				}else if (module != null && module.equals("Maintenance")) {
+				}else if (module != null && module.equals("UpdateAdmission")) {
+
+				// GET STudent Details
+					
+					System.out.println(" start --  UPDATE  Admission ");
+					
+					String prn = request.getParameter("prNo");
+					String prc = request.getParameter("prCode");
+					
 								
+					AddAdmission addAdmission = new AddAdmission();
+					Map input = new HashMap();
+					input.put("prNum", prn);
+					input.put("prCode", prc);
+
+					
+					Map studentDetails = addAdmission.getStudentDetails(input);
+					System.out.println(" RESPONSE getStudentDetails GOT in MAP -- "+studentDetails);
+					
+					writeResponse(studentDetails, resp);
+					
+					
+					System.out.println(" RESPONSE GOT in MAP --  UPDATE  Admission success");
+					
+				
+				}else if (module != null && module.equals("ExamApplication")) {
+
+					// GET EXAM Details
+						
+						System.out.println(" start --  UPDATE  Admission ");
+						
+						String prn = request.getParameter("prNo");
+						String prc = request.getParameter("prCode");
+						
+									
+						ExamApplication examApplication = new ExamApplication();
+						Map input = new HashMap();
+						input.put("prNum", prn);
+						input.put("prCode", prc);
+
+						
+						Map examDetails = examApplication.getExamDetails(input);
+						System.out.println(" RESPONSE examDetails GOT in MAP -- "+examDetails);
+						
+						writeResponse(examDetails, resp);
+						
+						
+						System.out.println(" RESPONSE GOT in MAP --  Exam application success");
+						
+					
+					}else if (module != null && module.equals("MarkApplication")) {
+
+						// GET MARK Details
+							
+							System.out.println(" start --  MARK application  Admission ");
+							
+							String prn = request.getParameter("prNo");
+							String prc = request.getParameter("prCode");
+							
+										
+							MarkUpdate markUpdate = new MarkUpdate();
+							Map input = new HashMap();
+							input.put("prNum", prn);
+							input.put("prCode", prc);
+
+							
+							Map marksDetails = markUpdate.getMarkDetails(input);
+							System.out.println(" RESPONSE MarkApplication GOT in MAP -- "+marksDetails);
+							
+							writeResponse(marksDetails, resp);
+							
+							
+							System.out.println(" RESPONSE GOT in MAP --  MARKs applicatoin success");
+							
+						
+						}else if (module != null && module.equals("Maintenance")) {				
 					//	 Maintenance
 					
 					if(action != null && action.equals("searchInsitute")) {

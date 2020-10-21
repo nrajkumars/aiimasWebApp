@@ -109,9 +109,103 @@ function onPostsearchByPrCodePrNo(data) {
 
 }
 
+// get EXam details
+
+function getExamData() {
+	
+	console.log('getExamData  on EXAM clicked rajjj ');
+	
+	var prcode = document.getElementById('prCodeExam').value;
+	var prno = document.getElementById('prNoExam').value;
+	
+	if (prcode == "" || prno == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+		postAjax('rs',{"app":"AiimasPost","module":"ExamApplication","action":"examDetail","prNo":prno,"prCode":prcode}, onPostgetExamData);
+	}
+}
+
+function onPostgetExamData(data) {
+	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+					
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+
+
+		} catch (e) {
+				console.log("data error, please check administrator");
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
+// MARKS deails
+
+function getMarkData() {
+	
+	console.log('getMarkData  on MArk clicked rajjj ');
+	
+	var prcode = document.getElementById('prCodeMark').value;
+	var prno = document.getElementById('prNoMark').value;
+	
+	if (prcode == "" || prno == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+		postAjax('rs',{"app":"AiimasPost","module":"MarkApplication","action":"markDetail","prNo":prno,"prCode":prcode}, onPostgetMarkData);
+	}
+}
+
+function onPostgetMarkData(data) {
+	console.log('RESPONSE POST in   onPostgetMarkData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+					
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+
+
+		} catch (e) {
+				console.log("data error, please check administrator");
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
 
 // Modify Adm -  LOAD data 
-function getModifyAdmData() {
+function getStudentDetail() {
 	
 	console.log('getModifyAdmData  on Modify Admin clicked rajjj ');
 	
@@ -122,7 +216,7 @@ function getModifyAdmData() {
 			alert("Please enter the values in P.R.Code and P.R.No")
 	  }else{
 	
-		postAjax('rs',{"app":"AiimasPost","module":"verification","action":"admDetails","prNo":prno,"prCode":prcode}, onPostgetModifyAdmData);
+		postAjax('rs',{"app":"AiimasPost","module":"UpdateAdmission","action":"admDetails","prNo":prno,"prCode":prcode}, onPostgetModifyAdmData);
 	}
 }
 
@@ -144,7 +238,7 @@ function onPostgetModifyAdmData(data) {
 			if(parsedData1.Admin["ad_name"]!=null){
 				
 				console.log(' NMAE'+parsedData1.Admin["ad_name"]);
-				//document.getElementById("stuName1").innerHTML = parsedData1.Admin["ad_name"];
+	
 				document.getElementById("stuName1").value =  parsedData1.Admin["ad_name"];
 			}
 			
@@ -367,7 +461,7 @@ function onPostUpdateAdmission(data) {
 }
 
 
-// DELETE admission
+
 
 
 

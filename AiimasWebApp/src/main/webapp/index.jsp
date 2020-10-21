@@ -426,7 +426,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="result1" onclick="getModifyAdmData()">&nbsp;&nbsp;GET Student Detail</button><br> <br>
+			<button class="w3-button w3-blue" id="result1" onclick="getStudentDetail()">&nbsp;&nbsp;GET Student Detail</button><br> <br>
 			<br>
 		  </div>
 		  
