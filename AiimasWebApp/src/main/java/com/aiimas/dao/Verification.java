@@ -84,5 +84,43 @@ public class Verification extends BaseDao {
 		return null;
 	}
 	
+	// search by NAME
+	//select * from public.admn where ad_name LIKE '%APR1%'
+	
+	public Map getVerficationByName(Map input) {
+		Object studentName =  input.get("studentName");
+	//	Object prCode =  input.get("prCode");
+		
+	
+		Map finaldata = new HashMap();
+		
+		if (studentName != null && studentName.toString().trim().length() > 0) {
+		//	if((prCode != null && prCode.toString().trim().length() > 0)) {
+				
+				String studentNameNew = studentName.toString();
+				studentNameNew= "%"+studentNameNew+"%";
+					
+				System.out.println(" INSIDE VERIFICATION BY NAME --  going to run the SQL = "+studentNameNew);
+				
+				// Read form Admn table by name search
+				String getMarksDataSql = "select ad_dipcode,ad_prcode, ad_prno, ad_name from public.admn where ad_name LIKE ? LIMIT 10";
+				List data5 = executeFetchSql(getMarksDataSql, new Object[]{studentNameNew});
+			
+				if (data5 != null && data5.size() > 0) {
+					//return (Map) data2.get(0);
+					for (int ii = 1; ii <= data5.size()-1; ii++) {
+						String marks = new String(" by NAME "+ii);
+						finaldata.put(marks, data5.get(ii));
+						
+					}
+				}
+				
+				return finaldata;
+			}
+		//}
+		return null;
+	}
+	
+	
 }
 

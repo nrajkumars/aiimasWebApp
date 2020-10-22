@@ -170,6 +170,26 @@ public class AiimasServlet extends HttpServlet {
 				writeResponse(verifyedFullValues, resp);
 				
 				
+			}else if (module != null && module.equals("verifyByName")) {
+				System.out.println("Inside module Verification  by name : " + action);
+				
+				
+				String studentName = request.getParameter("studentName");
+			//	String prc = request.getParameter("prCode");
+				
+							
+				Verification verification = new Verification();
+				Map input = new HashMap();
+				input.put("studentName", studentName);
+			//	input.put("prCode", prc);
+
+			
+				
+				Map verifyedbyName = verification.getVerficationByName(input);
+				
+				System.out.println(" RESPONSE   verification by NAME GOT in MAP -- "+verifyedbyName);
+				
+				writeResponse(verifyedbyName, resp);
 			}else if (module != null && module.equals("printViewQuestion")) {
 				
 				if(action != null && action.equals("searchQ")) {
@@ -413,7 +433,7 @@ public class AiimasServlet extends HttpServlet {
 
 					// GET EXAM Details
 						
-						System.out.println(" start --  UPDATE  Admission ");
+						System.out.println(" start --  serach Eaxm ");
 						
 						String prn = request.getParameter("prNo");
 						String prc = request.getParameter("prCode");
@@ -434,7 +454,68 @@ public class AiimasServlet extends HttpServlet {
 						System.out.println(" RESPONSE GOT in MAP --  Exam application success");
 						
 					
-					}else if (module != null && module.equals("MarkApplication")) {
+					}else if (module != null && module.equals("AddExamApplication")) {
+
+						// SAVE EXAM Details
+							
+							System.out.println(" start --  SAVE  Admission ");
+							
+							String prCodeExam = request.getParameter("prCodeExam");
+							String prNoExam = request.getParameter("prNoExam");
+							String diplomaCodeExam = request.getParameter("diplomaCodeExam");
+							String durationExam = request.getParameter("durationExam");
+							String noofPaperExam = request.getParameter("noofPaperExam");
+							String semMonthExam = request.getParameter("semMonthExam");
+							String semYearExam = request.getParameter("semYearExam");
+							String enterDateExam = request.getParameter("enterDateExam");
+							String stuNameExam = request.getParameter("stuNameExam");
+							String examStateCode = request.getParameter("examStateCode");
+							String examCenterCode = request.getParameter("examCenterCode");
+							String examPapers = request.getParameter("examPapers");
+							String examSemstr = request.getParameter("examSemstr");
+							String examNewnoPapers = request.getParameter("examNewnoPapers");
+							String examOldnoPapers = request.getParameter("examOldnoPapers");
+							String examTotalPaper = request.getParameter("examTotalPaper");
+							String examPassFlag = request.getParameter("examPassFlag");
+							
+										
+							ExamApplication examApplication = new ExamApplication();
+							Map input = new HashMap();
+							input.put("prCodeExam", prCodeExam);
+							input.put("prNoExam", prNoExam);
+							input.put("diplomaCodeExam", diplomaCodeExam);
+							input.put("durationExam", durationExam);
+							input.put("noofPaperExam", noofPaperExam);
+							input.put("semMonthExam", semMonthExam);
+							input.put("semYearExam", semYearExam);
+							input.put("enterDateExam", enterDateExam);
+							input.put("stuNameExam", stuNameExam);
+							input.put("examStateCode", examStateCode);
+							input.put("examCenterCode", examCenterCode);
+							input.put("examPapers", examPapers);
+							input.put("examSemstr", examSemstr);
+							input.put("examNewnoPapers", examNewnoPapers);
+							input.put("examOldnoPapers", examOldnoPapers);
+							input.put("examTotalPaper", examTotalPaper);
+							input.put("examPassFlag", examPassFlag);
+
+							
+							
+							
+							//Map examDetails = 
+								examApplication.insertExam(input);
+							System.out.println(" RESPONSE examDetails sucesses -- ");
+							
+							Map response1 = new HashMap();
+							response1.put("Success", "EXAM Insert is Done successfully");
+							
+							writeResponse(response1, resp);
+							
+							
+							System.out.println(" RESPONSE GOT in MAP --  Exam application success");
+							
+						
+						}else if (module != null && module.equals("MarkApplication")) {
 
 						// GET MARK Details
 							

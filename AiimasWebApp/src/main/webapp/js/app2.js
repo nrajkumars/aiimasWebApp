@@ -109,6 +109,43 @@ function onPostsearchByPrCodePrNo(data) {
 
 }
 
+// SEARCH by NAME for Verification
+
+function searchByName() {
+	
+	console.log('searchByName  on VERIFICATION clicked rajjj ');
+	
+	var studentName = document.getElementById('studentName').value;
+	//var prno = document.getElementById('prNo').value;
+	
+	
+	if (studentName == "" ) {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+	postAjax('rs',{"app":"AiimasPost","module":"verifyByName","action":"byName","studentName":studentName}, onPostsearchByName);
+	}
+}
+
+
+
+function onPostsearchByName(data) {
+	console.log('RESPONSE POST in app .JS:' + data);
+	var parsedData;
+		
+	if (data != null) {
+			// TODO Sakthi
+		
+			try {
+			// Parse JSON
+			parsedData = JSON.parse(data);
+			} catch (e) {
+				console.log("data error, please check administrator");
+			}
+	}
+}
+			
+
 // get EXam details
 
 function getExamData() {
@@ -156,6 +193,81 @@ function onPostgetExamData(data) {
 
 }
 
+// EXAM Save 
+
+function saveExamApplication() {
+	
+	console.log('saveExamApplication  on EXAM clicked rajjj ');
+	
+	var prCodeExam = document.getElementById('prCodeExam').value;
+	var prNoExam = document.getElementById('prNoExam').value;
+	var diplomaCodeExam = document.getElementById('diplomaCodeExam').value;
+	var durationExam = document.getElementById('durationExam').value;
+	var noofPaperExam = document.getElementById('noofPaperExam').value;
+	
+	var semMonthExam = document.getElementById('semMonthExam').value;
+	var semYearExam = document.getElementById('semYearExam').value;
+	var enterDateExam = document.getElementById('enterDateExam').value;
+	var stuNameExam = document.getElementById('stuNameExam').value;
+	var examStateCode= document.getElementById('examStateCode').value;
+	var examCenterCode= document.getElementById('examCenterCode').value;
+	var examPapers= document.getElementById('examPapers').value;
+	
+	var examSemstr= document.getElementById('examSemstr').value;
+	var examNewnoPapers= document.getElementById('examNewnoPapers').value;
+	var examOldnoPapers= document.getElementById('examOldnoPapers').value;
+	var examTotalPaper= document.getElementById('examTotalPaper').value;
+	var examPassFlag= document.getElementById('examPassFlag').value;
+	
+	//no of paper ??
+	
+//	if (examStateCode == "" || prno == "") {
+//			alert("Please enter the values in P.R.Code and P.R.No")
+//	  }else{
+	
+	
+	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
+	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
+	//}else{
+		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData);
+	//}
+}
+
+function onPostgetExamData(data) {
+	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+					
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+
+
+		} catch (e) {
+				console.log("data error, please check administrator");
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
+
+
+//Exam Update todo
+
+
 // MARKS deails
 
 function getMarkData() {
@@ -175,6 +287,76 @@ function getMarkData() {
 
 function onPostgetMarkData(data) {
 	console.log('RESPONSE POST in   onPostgetMarkData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+					
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+
+
+		} catch (e) {
+				console.log("data error, please check administrator");
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
+//MARKS SAVE
+
+function saveMarktodo() {
+	
+	console.log('save MARK clicked rajjj ');
+	
+	var prCodeExam = document.getElementById('prCodeExam').value;
+	var prNoExam = document.getElementById('prNoExam').value;
+	var diplomaCodeExam = document.getElementById('diplomaCodeExam').value;
+	var durationExam = document.getElementById('durationExam').value;
+	var noofPaperExam = document.getElementById('noofPaperExam').value;
+	
+	var semMonthExam = document.getElementById('semMonthExam').value;
+	var semYearExam = document.getElementById('semYearExam').value;
+	var enterDateExam = document.getElementById('enterDateExam').value;
+	var stuNameExam = document.getElementById('stuNameExam').value;
+	var examStateCode= document.getElementById('examStateCode').value;
+	var examCenterCode= document.getElementById('examCenterCode').value;
+	var examPapers= document.getElementById('examPapers').value;
+	
+	var examSemstr= document.getElementById('examSemstr').value;
+	var examNewnoPapers= document.getElementById('examNewnoPapers').value;
+	var examOldnoPapers= document.getElementById('examOldnoPapers').value;
+	var examTotalPaper= document.getElementById('examTotalPaper').value;
+	var examPassFlag= document.getElementById('examPassFlag').value;
+	
+
+	
+//	if (examStateCode == "" || prno == "") {
+//			alert("Please enter the values in P.R.Code and P.R.No")
+//	  }else{
+	
+	
+	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
+	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
+	//}else{
+		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData);
+	//}
+}
+
+function onPostgetExamData(data) {
+	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {

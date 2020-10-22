@@ -69,8 +69,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 	   <a href="#admApp" class="w3-bar-item w3-button"><b>Add</b> - Admission Application</a>
 	    <a href="#admApp1" class="w3-bar-item w3-button"><b>Modify</b> - Admission Application</a>
-      <a href="#examApp" class="w3-bar-item w3-button">Examination Application</a>
-      <a href="#markUpdate" class="w3-bar-item w3-button">Mark Update</a>
+      <a href="#examApp" class="w3-bar-item w3-button"><b>Add</b>Examination Application</a>
+      <a href="#markUpdate" class="w3-bar-item w3-button"><b>Add</b>b>Mark Update</a>
     </div>
 
 
@@ -91,7 +91,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </a>
     <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 	  <a href="#search1" class="w3-bar-item w3-button">Search by P.R.No</a>
-<!--       <a href="#search2" class="w3-bar-item w3-button">Search by Name</a> -->
+      <a href="#verifyName" class="w3-bar-item w3-button">Search by Name</a> 
 
     </div>
 
@@ -616,12 +616,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>   
 		
 		<div class="w3-third">
-			<label class="w3-text-red"><b>P.R.Code:</b></label>
+			<label class="w3-text-brown"><b>P.R.Code:</b></label>
 			<input class="w3-input w3-border " type="text"  id="prCodeExam" value='APR13'  >
 		  </div>
 				  
 		  <div class="w3-third">
-			<label class="w3-text-red"><b>P.R.No:</b></label>
+			<label class="w3-text-brown"><b>P.R.No:</b></label>
 			<input class="w3-input w3-border " type="text"   id="prNoExam"  value ='286' >
 		  </div>
 		  
@@ -632,10 +632,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<br>
 		  </div>
 		  
-		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
+		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
 		
   		 
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option">
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeExam" placeholder="Choose your option">
   		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
 		
@@ -669,7 +669,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		</select>
   	</div>
    
-    
+    	<div class="w3-third">
+			<label class="w3-text-brown"><b>No of paper:</b></label>
+			<input class="w3-input w3-border " type="text" id="noofPaperExam" >
+		  </div>
   		
 		<br><br><br><br>
 
@@ -701,7 +704,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<!--  Sakthi  ALL above fields to be Non editable 	 -->
 				
 		
-			<label class="w3-text-brwon"><b> Exam State:</b>&nbsp;</label>		
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
 			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option">
 	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
 	  		<option selected value="Choose your option"></option>	
@@ -717,7 +720,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		  <BR>
 		 
 		
- 		  <label class="w3-text-brwon"><b> Exam Center:</b>&nbsp;</label>		
+ 		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
 		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="examCenterCode" placeholder="Choose your option">
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
@@ -773,8 +776,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<center>
 		
-			<button class="w3-button w3-blue" id="resultexamApp" onclick="examApplication()">&nbsp;&nbsp;Save</button>
-<!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
+			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()">&nbsp;&nbsp;Save</button>
+ 			<button class="w3-button w3-orange id="resultUpdateExamApp" onclick="updateExamApplication()" >Update</button> 
 			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
 			
 			<!--  Sakthi  clear button
@@ -962,7 +965,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<center>
 		
-			<button class="w3-button w3-blue" id="resultMark" onclick="ExamMark()">&nbsp;&nbsp;Save</button>
+			<button class="w3-button w3-blue" id="resultMark" onclick="SaveMark()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
 			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
 			
@@ -1288,8 +1291,95 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	 </div>
 	</div>
 </div>
+
+<!--  verification search by NAME -->
 	 
 		
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=verifyName>
+		<center> <h2>Verification by Student Name</h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+
+	<div class="w3-container">
+
+		 <div class="w3-third">
+			
+		
+			<label class="w3-text-brown"><b>Student Name:</b></label>
+			<input class="w3-input w3-border " type="text" id="studentName"  value="RAJ" >
+		
+		  
+		  </div>
+		  
+		   <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="nameResult" onclick="searchByName()">&nbsp;&nbsp;Search</button><br>
+		  </div>
+				  
+		  <div class="w3-third">
+		
+		  </div>
+		  
+	
+
+	 </div>
+	 
+	 
+
+<br>
+		<!--  SAKTHI,  create a Dynamic Table with NAME, PRCode, PR No and Diploma Code \Diploma name -->
+		<!--  add a clear button -->	
+		
+		
+		
+		<div class="table-responsive" id="resultTable" align ="center">
+	  
+	 
+	 
+	 
+	 <!-- table base -->
+		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
+		<thead>
+			<tr>
+				<th >Name</th>
+				<th >PR Code</th>
+				<th >PR No</th>
+				<th >Diploma Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>from DB name 1</td>
+				<td>from DB PR code 1</td>
+				<td>from DB PR no 1</td>
+				<td>from DB diplom 1</td>
+				
+
+			</tr>
+			<tr>
+				<td>from DB name ..n</td>
+				<td>from DB PR code ..n</td>
+				<td>from DB PR no ..n</td>
+				<td>from DB diplom ..n</td>
+			</tr>
+			
+	
+			
+		</tbody>
+		
+		</table>
+		  
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="nameResult" onclick="clearBtn()">Clear</button><br> <br>
+		
+	 </div>
+		  
+		</center></p>
+	  </div>
+	  </div>
+	</div>
 
 
 <!-- MAINTANCE  - Diploma update -------------------------------------------------------------------------------------------------------------->
