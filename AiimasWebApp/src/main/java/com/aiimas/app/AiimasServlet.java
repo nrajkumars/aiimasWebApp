@@ -1,6 +1,10 @@
 package com.aiimas.app;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.Connection;
@@ -84,6 +88,30 @@ public class AiimasServlet extends HttpServlet {
 	private void writeResponse(Object mdata, HttpServletResponse response) {
 		try {
 			ObjectMapper om = new ObjectMapper();
+			
+			if (mdata instanceof Map) {
+				Map m = (Map) mdata;
+				String pdfFileName = (String) m.get("Filename");
+				if (pdfFileName != null && pdfFileName.endsWith("pdf")) {
+
+					File pdfFile = new File(pdfFileName);
+
+					response.setContentType("application/pdf");
+					response.setContentLength((int) pdfFile.length());
+
+					FileInputStream fileInputStream = new FileInputStream(pdfFile);
+					OutputStream responseOutputStream = response.getOutputStream();
+					int bytes;
+					while ((bytes = fileInputStream.read()) != -1) {
+						responseOutputStream.write(bytes);
+					}
+					fileInputStream.close();
+					responseOutputStream.flush();
+					responseOutputStream.close();
+					System.out.println("PDF data written to output stream:" +pdfFile.length());
+					return;
+				}
+			}
 			
 //			System.out.println("inside writeResponse ----------------------------");
 	

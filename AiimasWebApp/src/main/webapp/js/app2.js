@@ -808,12 +808,29 @@ function printAdmInit(reportType) {
 		var adpprNo = document.getElementById('adpprNo').value;
 		
 	
-	postAjax('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
 
 }
 function onPostSearchAdmIniti(data) {
-	console.log('onPostSearchAdmIniti  RESPONSE POST in app .JS:' + data);
 
+	console.log('pdf length :' + data.length);
+	
+	var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+//    
+//	// If you want to use the image in your DOM:
+//	  var blob = new Blob([data], {type: "application/pdf"});
+//	const url = window.URL.createObjectURL(blob);
+//    const a = document.createElement('a');
+//    a.style.display = 'none';
+//    a.href = url;
+//    // the filename you want
+//    a.download = 'qpaper.pdf';
+//    document.body.appendChild(a);
+//    a.click();
+//    window.URL.revokeObjectURL(url);
+    /*
 	parsedData = JSON.parse(data);
 	
 	if(parsedData["Filename"]!=null){   
@@ -827,6 +844,7 @@ function onPostSearchAdmIniti(data) {
 			var filePath = parsedData["File name "];
 			document.getElementById('intimationpdf').value = filePath;
 	}
+	*/
 }
 
 function openIntimationPDF() {
@@ -886,7 +904,23 @@ function postAjax(url, data, callback) {
 	    xhr.send(params);
 	    return xhr;
 }
+function postAjaxReturnBinary(url, data, callback) {
+    var params = typeof data == 'string' ? data : Object.keys(data).map(
+            function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
+        ).join('&');
 
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");    
+    xhr.responseType = 'arraybuffer';
+
+    xhr.open('POST', url);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState>3 && xhr.status==200) { callback(xhr.response); }
+    };
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(params);
+    return xhr;
+}
 function clearBtn(){
 	document.getElementById('prCode').value = "";
 	document.getElementById('prNo').value = "";
