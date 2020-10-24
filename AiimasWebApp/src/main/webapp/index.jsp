@@ -90,9 +90,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       Verification&nbsp;<i class="fa fa-caret-down"></i>
     </a>
     <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-	  <a href="#search1" class="w3-bar-item w3-button">Search by P.R.No</a>
-      <a href="#verifyName" class="w3-bar-item w3-button">Search by Name</a> 
-
+      <a href="#verifyName" class="w3-bar-item w3-button">Find PR.No</a> 
+	  <a href="#search1" class="w3-bar-item w3-button">Student History</a>
     </div>
 
 	
@@ -241,19 +240,19 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		
 		<div class="w3-third">
-			<label class="w3-text-brown"><b>Semester Month:</b></label>
+			<label class="w3-text-brown"><b>Admission Month:</b></label>
 			<input class="w3-input w3-border " type="text" id="semMonth" >
 		  </div>
 		  
 		  <div class="w3-third">
-			<label class="w3-text-brown"><b>Semester Year:</b></label>
+			<label class="w3-text-brown"><b>Admission Year:</b></label>
 			<input class="w3-input w3-border " type="year" id="semYear"  >
 		  </div>
 				  
 
 
  		  <div class="w3-third"> 
-			<label class="w3-text-brown"><b>Entered on:</b></label>
+			<label class="w3-text-brown"><b>Admission Date:</b></label>
  			<input class="w3-input w3-border " type="date" id="enterDate"><br>
  		  </div> 
 
@@ -269,8 +268,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		  
 		  <div class= "w3-third w3-container w3-border w3-Small">
-  			<div class="w3-left-align"><p>Current Batch No:</p></div>
-  			<div class="w3-left-align"><p>Last Batch No:</p></div>
+		  <button class="w3-button w3-blue" id="result1" onclick="getCurrnetPRNo()">&nbsp;&nbsp;Get Current PR No:</button>
+  			<div class="w3-left-align"><p>Value from DB</p></div>
 		  </div>
 
 
@@ -402,7 +401,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	  </div>
 	</div>
 
-<!-- UPDATE Admission ----------->
+<!-- UPDATE Admission -------------------------------------------------------------------->
 
    <div class="w3-padding-64 w3-light-grey w3-card-4" id=admApp1>
 		<center> <h2>UPDATE - Admission Application</h2>
@@ -1120,8 +1119,128 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 <!-- VERIFICATION ----------------------------------------------------------------------------------------------------------------------------------->
 
+<!--  get PR no by NAME -->
+	 
+		
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=verifyName>
+		<center> <h2>Find PR Code and PR No: </h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+	<BR>
+	
+	<label class="w3-text-red"><b>Name:</b></label>
+		<input class="w3-input w3-border " name="last" type="text" id="stuNamesearch" ><br>
+		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
+		
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeame" placeholder="Choose your option">
+  		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
+  		<option selected value="Choose your option"></option>
+		
+			<%
+			if(wholeList.size()>0 ){
+				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
+					//System.out.println(entry.getKey()+"- - "+entry.getValue());
+				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
+				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
+				String no_of_paper = entry.getValue().substring(entry.getValue().indexOf("~")+1,entry.getValue().indexOf("@"));
+				//System.out.println("paper - - "+no_of_paper.length());
+				%>
+				<option data-id="<%=code%>$<%=no_of_paper%>" value="<%=code%> / <%=value %>"></option>
+    			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
+    		<%}} %>
+    		</datalist>
+    	
+  		<script> 
+    	//sort_select();
+    	//itemSelect(document.getElementById('diplomaCode'));
+    	</script>
+  		<br><br>
+  		<input type="hidden" name="diplomaCodeName" >
+  		
+				
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="semMonthName" >
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" id="semYearName"  >
+		  </div>
+				  
+ 		<div class="w3-third">
+			<BR><BR><BR>
+		  </div>
+
+ 		
+		<BR>
+   
+		
+		
+		<Center>
+				 
+ 			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="nameResultName" onclick="searchByNamefind()">Search</button><br> <br>
+	 </Center>
+
+<br>
+		<!--  SAKTHI,  create a Dynamic Table with NAME, PRCode, PR No and Diploma Code \Diploma name -->
+		<!--  add a clear button -->	
+		
+		
+		
+		<div class="table-responsive" id="resultTableName1" align ="center">
+	  
+	 
+	 
+	 
+	 <!-- table base -->
+		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
+		<thead>
+			<tr>
+				<th >Name</th>
+				<th >PR Code</th>
+				<th >PR No</th>
+				<th >Diploma Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>from DB name 1</td>
+				<td>from DB PR code 1</td>
+				<td>from DB PR no 1</td>
+				<td>from DB diplom 1</td>
+				
+
+			</tr>
+			<tr>
+				<td>from DB name ..n</td>
+				<td>from DB PR code ..n</td>
+				<td>from DB PR no ..n</td>
+				<td>from DB diplom ..n</td>
+			</tr>
+				
+			
+		</tbody>
+		
+		</table>
+		  
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="nameResultName" onclick="clearBtn()">Clear</button><br> <br>
+		
+	 </div>
+		  
+		</center></p>
+	  </div>
+	  </div>
+	</div>
+
+<!--  student History -->
+
  <div class="w3-padding-64 w3-light-grey w3-card-4" id=search1>
-		<center> <h2>Verification by P.R. No.</h2></center>
+		<center> <h2>Student History</h2></center>
 	<div class="w3-panel w3-pale-green">
 		 <p>Search for Student information based on P.R.No.</p>
   	<div class="w3-container">
@@ -1273,13 +1392,27 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<td id="ap_paprname"></td> 
 			</tr>
 			<tr>
-				<td >Marks End Date</td>
+				<td >Marks </td>
 				<td id="ap_mark"></td> 
 			</tr>
 			<tr>
-				<td >Marks Date</td>
+				<td >Exam Date</td>
+				<td id=""></td> 
+			</tr>
+			
+			<tr>
+				<td >Intimation Date</td>
 				<td id="ap_mrkdate"></td> 
 			</tr>
+			
+			<tr>
+				<td >Hallticket Date</td>
+				<td id="ap_mrkdate"></td> 
+			</tr>
+			
+			
+			
+			
 			
 		</tbody>
 		
@@ -1292,94 +1425,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	</div>
 </div>
 
-<!--  verification search by NAME -->
-	 
-		
-	<div class="w3-padding-64 w3-light-grey w3-card-4" id=verifyName>
-		<center> <h2>Verification by Student Name</h2></center><br><br>
-		
-		<div class="w3-panel w3-pale-green">
-	  <div class="w3-container" >
-	
 
-	<div class="w3-container">
-
-		 <div class="w3-third">
-			
-		
-			<label class="w3-text-brown"><b>Student Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="studentName"  value="RAJ" >
-		
-		  
-		  </div>
-		  
-		   <div class="w3-third">
-		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="nameResult" onclick="searchByName()">&nbsp;&nbsp;Search</button><br>
-		  </div>
-				  
-		  <div class="w3-third">
-		
-		  </div>
-		  
-	
-
-	 </div>
-	 
-	 
-
-<br>
-		<!--  SAKTHI,  create a Dynamic Table with NAME, PRCode, PR No and Diploma Code \Diploma name -->
-		<!--  add a clear button -->	
-		
-		
-		
-		<div class="table-responsive" id="resultTable" align ="center">
-	  
-	 
-	 
-	 
-	 <!-- table base -->
-		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
-		<thead>
-			<tr>
-				<th >Name</th>
-				<th >PR Code</th>
-				<th >PR No</th>
-				<th >Diploma Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>from DB name 1</td>
-				<td>from DB PR code 1</td>
-				<td>from DB PR no 1</td>
-				<td>from DB diplom 1</td>
-				
-
-			</tr>
-			<tr>
-				<td>from DB name ..n</td>
-				<td>from DB PR code ..n</td>
-				<td>from DB PR no ..n</td>
-				<td>from DB diplom ..n</td>
-			</tr>
-			
-	
-			
-		</tbody>
-		
-		</table>
-		  
-		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="nameResult" onclick="clearBtn()">Clear</button><br> <br>
-		
-	 </div>
-		  
-		</center></p>
-	  </div>
-	  </div>
-	</div>
 
 
 <!-- MAINTANCE  - Diploma update -------------------------------------------------------------------------------------------------------------->
