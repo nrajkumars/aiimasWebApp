@@ -764,7 +764,7 @@ function onPostSearchQuestion1(data) {
 		                var innerHtmlText = "";
 		                if ((fileName.toString()).indexOf(".pdf") !== -1) { //add .pdf here to send only pdf as link reference
 		                	linkName=fileName;
-		                	innerHtmlText = "<a href='secure/qpapers/EM.pdf'>"+fileName+"</a>";
+		                	innerHtmlText = "<a href='secure/qpapers/EM.pdf' target='_blank'>"+fileName+"</a>";
 		                }else{
 		                	innerHtmlText = fileName;
 		                }
