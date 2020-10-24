@@ -132,7 +132,7 @@ import com.itextpdf.text.Image;
 	    /// KEEP adding method for each report
 	    
 	    private static void addAdmInitimationContent(Document document, Map input)
-	            throws DocumentException {
+	            throws DocumentException, Exception {
     	
 	    	// get the required data
 	    	PrintView printView = new PrintView();
@@ -166,7 +166,7 @@ import com.itextpdf.text.Image;
 	    
 	    
 	    private static void addAcknowledgeContent(Document document, Map input)
-	            throws DocumentException {
+	            throws DocumentException, Exception{
 	    	
 	    	// get the required data
 	    	PrintView printView = new PrintView();
@@ -200,7 +200,7 @@ import com.itextpdf.text.Image;
 	    //addAnswerSheetAcknowledge(document, input);
 	    
 	    private static void addAnswerSheetAcknowledge(Document document, Map input)
-	            throws DocumentException {
+	            throws DocumentException, Exception {
 	    	
 	    	PrintView printView = new PrintView();
 	    	Map verifyedValues = printView.getAnswerSheetAcknowledge(input);
@@ -231,7 +231,7 @@ import com.itextpdf.text.Image;
     	//addHallTicketContent(document, input);  todo
 	    
 	    private static void addHallTicketContent(Document document, Map input)
-	            throws DocumentException {
+	            throws DocumentException, Exception {
 	    	
 	    	PrintView printView = new PrintView();
 	    	Map verifyedValues = printView.getHallTicketContent(input);
@@ -262,7 +262,7 @@ import com.itextpdf.text.Image;
     	//addMarkSheetContent(document, input);   TODO
 	    
 	    private static void addMarkSheetContent(Document document, Map input)
-	            throws DocumentException {
+	            throws DocumentException, Exception {
 	    	
 	    	PrintView printView = new PrintView();
 	    	Map verifyedValues = printView.getMarkSheetContent(input);
@@ -293,7 +293,7 @@ import com.itextpdf.text.Image;
 //addDiplomaCertiContent(document, input);   TODO
 	    
 	    private static void addDiplomaCertiContent(Document document, Map input)
-	            throws DocumentException {
+	            throws DocumentException, Exception {
 	    	
 	    	PrintView printView = new PrintView();
 	    	Map verifyedValues = printView.getMarkSheetContent(input);
@@ -325,7 +325,7 @@ import com.itextpdf.text.Image;
 	    
 
 	    private static void addTitlePage(Document document)
-	            throws DocumentException {
+	            throws DocumentException, Exception {
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
 	        addEmptyLine(preface, 1);

@@ -50,8 +50,6 @@ import javax.servlet.http.HttpServletResponse;
 	)
 public class AiimasServlet extends HttpServlet {
 
-	
-	
 	/**
 	 * 
 	 */
@@ -80,7 +78,9 @@ public class AiimasServlet extends HttpServlet {
 		    }
 					
 			} catch (Exception e) {
-				e.printStackTrace();
+				
+				System.out.println(" ERROR in SERVLET INIT method: "+e.toString());
+				
 			}
 		}
 	
@@ -113,10 +113,12 @@ public class AiimasServlet extends HttpServlet {
 				}
 			}
 			
-//			System.out.println("inside writeResponse ----------------------------");
+			System.out.println("inside writeResponse -----------writeResponse-----------------");
 	
 			byte buf[] = om.writeValueAsString(mdata).getBytes();
-			System.out.println("Response json : " + new String(buf));
+			System.out.println("inside AIIMAS Servlet writeResponse ---------Response json : " + new String(buf));
+			
+		
 			response.setContentLength(buf.length);
 			response.setContentType("application/json");
 			response.getOutputStream().write(buf);
@@ -126,7 +128,8 @@ public class AiimasServlet extends HttpServlet {
 		//	System.out.println("inside writeResponse  DONE ------ HERE----------------------"+response.toString());
 			
 		} catch (Exception e) {
-			// ignore
+			
+			System.out.println("inside AIIMAS Servlet writeResponse ---------Response json : "+e.toString());
 			e.printStackTrace();
 		}
 
@@ -617,16 +620,17 @@ public class AiimasServlet extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			StringWriter sw = new StringWriter();
-			PrintWriter pw = new PrintWriter(sw);
-			e.printStackTrace(pw);
-			pw.close();
-			sw.close();
+			System.out.println("in Servlet CATCH ERROR :: AIIMAS Servlet -- "+e.toString());
+//			StringWriter sw = new StringWriter();
+//			PrintWriter pw = new PrintWriter(sw);
+//			e.printStackTrace(pw);
+//			pw.close();
+//			sw.close();
 			
-			response = "Error : " + sw.toString();
-			Map ret = new HashMap();
-			ret.put("error", "Unable to process request due to technical error TRY again");
-			writeResponse(ret, resp);
+			response = "ERROR: " + e.toString();
+			//Map ret = new HashMap();
+			//ret.put("error", "Unable to process request due to technical error TRY again");
+			writeResponse(response, resp);
 		}
 		
 		

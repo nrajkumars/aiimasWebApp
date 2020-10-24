@@ -11,7 +11,7 @@ public class ExamApplication extends BaseDao {
 	
 	
 	// GET Exam details
-		public Map getExamDetails(Map input) {
+		public Map getExamDetails(Map input) throws Exception  {
 			Object prNum =  input.get("prNum");
 			Object prCode =  input.get("prCode");
 			
@@ -62,9 +62,7 @@ public class ExamApplication extends BaseDao {
 		
 		//insert EXAM
 		
-		public void insertExam(Map data) {
-			try {
-			
+		public void insertExam(Map data) throws Exception {
 			
 				Object prCodeExam = data.get("prCodeExam");
 				Object prNoExam = data.get("prNoExam");
@@ -154,10 +152,7 @@ public class ExamApplication extends BaseDao {
 			
 			System.out.println(" INSIDE insert EXAM SUCCESS");
 			
-			}catch( Exception ex) {
-				System.out.println(" INSIDE insert EXAM ERROR  -"+ex.toString());
-			ex.printStackTrace();
-		}
+			
 		}
 	}
 

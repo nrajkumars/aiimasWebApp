@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Maintenance extends BaseDao {
 
-	public void insertDiplomaData(Map data) {
+	public void insertDiplomaData(Map data) throws Exception {
 		
 		
 		Object diplomaCode1 =  data.get("diplomaCode1");
@@ -19,7 +19,7 @@ public class Maintenance extends BaseDao {
 		
 	}
 	
-public void saveDiplomaDetail(Map data) {
+public void saveDiplomaDetail(Map data) throws Exception {
 		
 		Object diplomaCode1 =  data.get("diplomaCode1");
 		Object diplomaName =  data.get("diplomaName");
@@ -32,7 +32,7 @@ public void saveDiplomaDetail(Map data) {
 	}
 	
 	
-	public Map getDiplomaDetails(Map input) {
+	public Map getDiplomaDetails(Map input) throws Exception  {
 		
 		Object diplomaCode1 =  input.get("diplomaCode1");
 		
@@ -52,7 +52,7 @@ public void saveDiplomaDetail(Map data) {
 	}
 	
 	
-	public void saveInstitueDetails(Map data) {
+	public void saveInstitueDetails(Map data) throws Exception  {
 		
 		Object insituteCode =  data.get("insituteCode");
 		Object instituteName =  data.get("instituteName");
@@ -65,7 +65,7 @@ public void saveDiplomaDetail(Map data) {
 	}
 	
 	
-	public Map getInstituteDetails(Map input) {
+	public Map getInstituteDetails(Map input) throws Exception {
 		
 		Object insituteCode =  input.get("insituteCode");
 		

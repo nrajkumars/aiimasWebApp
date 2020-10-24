@@ -15,7 +15,7 @@ public class MasterTableValues extends BaseDao {
 	
 	
 	
-	public List<Map> getListMasterTable() {
+	public List<Map> getListMasterTable() throws Exception  {
 		
 		
 				String getVerifyDataSql = "select DIPCODE, DIPNAME, NOFPAPR from public.DIPMAST ";

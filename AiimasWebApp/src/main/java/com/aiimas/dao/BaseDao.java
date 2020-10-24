@@ -19,19 +19,13 @@ public class BaseDao {
 	protected Connection getConnection() throws Exception {
 		Connection conn = null;
 		
-		
-		try {
 			Context ctx = new InitialContext();
 			DataSource ds = (DataSource) ctx.lookup( "java:/comp/env/jdbc/aiimas" );
 			conn = ds.getConnection();
-			//System.out.println("Db conn from DS ------------------"+conn);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		
 		return conn;
 	}
-	protected void executeUpdate(String sql, Object[] args) {
+	protected void executeUpdate(String sql, Object[] args) throws Exception {
 		Connection conn = null;
 
 		try {
@@ -52,23 +46,17 @@ public class BaseDao {
 			}
 			int cnt = ps.executeUpdate();
 			//System.out.println("updated : " + cnt + " records"+sql);
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			if (conn != null) {
-				try {
 					conn.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 		}
 	}
-	protected List executeFetchSql(String sql) {
+	protected List executeFetchSql(String sql) throws Exception {
 		return executeFetchSql(sql, null);
 	}
 	
-	protected List executeFetchSql(String sql, Object[] args) {
+	protected List executeFetchSql(String sql, Object[] args) throws Exception {
 		Connection conn = null;
 		List al = new ArrayList();
 		try {
@@ -99,15 +87,9 @@ public class BaseDao {
 				//System.out.println(data);
 
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			if (conn != null) {
-				try {
 					conn.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 		}
 		return al;

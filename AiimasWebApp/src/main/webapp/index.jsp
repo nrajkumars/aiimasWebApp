@@ -829,7 +829,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
 		
   		 
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option">
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeMark" placeholder="Choose your option">
   		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
 		

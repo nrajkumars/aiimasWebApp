@@ -91,13 +91,10 @@ function onPostsearchByPrCodePrNo(data) {
 					document.getElementById("sa_email").innerHTML = parsedData.Address["sa_email"];
 				}
 			
-		
-			
 			
 			} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error,Reason"+e.toString());
 			}
-		
 		
 		
 
@@ -140,7 +137,7 @@ function onPostsearchByName(data) {
 			// Parse JSON
 			parsedData = JSON.parse(data);
 			} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error, Reason"+e.toString());
 			}
 	}
 }
@@ -180,7 +177,7 @@ function onPostgetExamData(data) {
 
 
 		} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error, Reason"+e.toString());
 			}
 		
 		
@@ -250,7 +247,7 @@ function onPostgetExamData(data) {
 
 
 		} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error, Reason"+e.toString());
 			}
 		
 		
@@ -302,7 +299,7 @@ function onPostgetMarkData(data) {
 
 
 		} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error,Reason"+e.toString());
 			}
 		
 		
@@ -372,7 +369,7 @@ function onPostgetExamData(data) {
 
 
 		} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error,Reason"+e.toString());
 			}
 		
 		
@@ -510,7 +507,7 @@ function onPostgetModifyAdmData(data) {
 			
 			
 			} catch (e) {
-				console.log("data error, please check administrator");
+				console.log("data error, Reason"+e.toString());
 			}
 		
 		

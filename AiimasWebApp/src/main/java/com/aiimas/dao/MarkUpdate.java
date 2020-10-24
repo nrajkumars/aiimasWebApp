@@ -11,7 +11,7 @@ public class MarkUpdate extends BaseDao {
 	
 	
 	// GET Exam details
-		public Map getMarkDetails(Map input) {
+		public Map getMarkDetails(Map input) throws Exception  {
 			Object prNum =  input.get("prNum");
 			Object prCode =  input.get("prCode");
 			
@@ -66,9 +66,7 @@ public class MarkUpdate extends BaseDao {
 		
 		//insert MARK
 		
-				public void insertMark(Map data) {
-					try {
-					
+				public void insertMark(Map data) throws Exception  {
 					
 						Object prCodeExam = data.get("prCodeExam");
 						Object prNoExam = data.get("prNoExam");
@@ -147,10 +145,7 @@ public class MarkUpdate extends BaseDao {
 					
 					System.out.println(" INSIDE insert MARK SUCCESS");
 					
-					}catch( Exception ex) {
-						System.out.println(" INSIDE insert MARK ERROR  -"+ex.toString());
-					ex.printStackTrace();
-				}
+					
 				}
 		
 		

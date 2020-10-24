@@ -12,7 +12,7 @@ public class Verification extends BaseDao {
 	
 	
 	
-	public Map getVerficationFULLDetail1(Map input) {
+	public Map getVerficationFULLDetail1(Map input) throws Exception  {
 		Object prNum =  input.get("prNum");
 		Object prCode =  input.get("prCode");
 		
@@ -87,7 +87,7 @@ public class Verification extends BaseDao {
 	// search by NAME
 	//select * from public.admn where ad_name LIKE '%APR1%'
 	
-	public Map getVerficationByName(Map input) {
+	public Map getVerficationByName(Map input) throws Exception  {
 		Object studentName =  input.get("studentName");
 	//	Object prCode =  input.get("prCode");
 		

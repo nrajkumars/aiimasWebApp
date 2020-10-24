@@ -10,10 +10,8 @@ import java.util.Map;
 
 public class AddAdmission extends BaseDao {
 
-	public void insertADMN(Map data) {
-		try {
-		
-		
+	public void insertADMN(Map data)  throws Exception {
+			
 		Object stuName = data.get("stuName");
 		Object address1 = data.get("address1");
 		Object diplomaCode = data.get("diplomaCode");
@@ -113,20 +111,11 @@ public class AddAdmission extends BaseDao {
 		executeUpdate(insertAddfee, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString()),semMonth.toString(),Integer.parseInt(semYear.toString()),stuName.toString(),feepaiddatef, Integer.parseInt(paidamt.toString()), feepaidmode.toString(), feeref.toString() });
 	
 		
-		
-		
-
-		}catch( Exception ex) {
-				System.out.println(" INSIDE insertADMN ERROR  -"+ex.toString());
-			ex.printStackTrace();
-		}
 //	ADD admission	
 	}
 	
-	public void updateADMN(Map data) {
-		try {
-		
-		
+	public void updateADMN(Map data) throws Exception {
+			
 		Object stuName = data.get("stuName");
 		Object address1 = data.get("address1");
 		Object diplomaCode = data.get("diplomaCode");
@@ -227,16 +216,11 @@ public class AddAdmission extends BaseDao {
 		
 		System.out.println(" INSIDE UDATE SUCCESSFUL");
 
-		}catch( Exception ex) {
-				System.out.println(" INSIDE UPDATE  ADMN ERROR  -"+ex.toString());
-			ex.printStackTrace();
-		}
+		
 //	Update admission	
 	}
 	
-	public void deleteADMN(Map data) {
-		try {
-		
+	public void deleteADMN(Map data) throws Exception {
 		
 		Object prCode11 = data.get("prCode11");
 		Object prNo1 = data.get("prNo1");
@@ -257,17 +241,13 @@ public class AddAdmission extends BaseDao {
 		executeUpdate(deletefee, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString())});
 	
 		System.out.println(" INSIDE delete SUCCESSFUL");
-		
-		}catch( Exception ex) {
-				System.out.println(" INSIDE deleteADMN ERROR  -"+ex.toString());
-				ex.printStackTrace();
-		}
+				
 //	Delete admission	
 	}
 	
 	
 	// GET Student details
-	public Map getStudentDetails(Map input) {
+	public Map getStudentDetails(Map input) throws Exception {
 		Object prNum =  input.get("prNum");
 		Object prCode =  input.get("prCode");
 		

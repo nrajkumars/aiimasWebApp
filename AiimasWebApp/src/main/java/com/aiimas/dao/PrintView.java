@@ -8,7 +8,7 @@ import java.util.Map;
 public class PrintView extends BaseDao {
 
 		
-	public List getQuestions(Map input) {
+	public List getQuestions(Map input) throws Exception  {
 		
 		System.out.println(" INSIDE PRINT VIEW DAO getQuestions ");
 		
@@ -30,7 +30,7 @@ public class PrintView extends BaseDao {
 	
 	
 	
-	public Map getAdmInitimationetails(Map input) {
+	public Map getAdmInitimationetails(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");
 		
@@ -78,7 +78,7 @@ public class PrintView extends BaseDao {
 		return null;
 	}
 	
-	public Map getAcknowledgeContent(Map input) {
+	public Map getAcknowledgeContent(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");
 		
@@ -126,7 +126,7 @@ public class PrintView extends BaseDao {
 		return null;
 	}
 	
-	public Map getAnswerSheetAcknowledge(Map input) {
+	public Map getAnswerSheetAcknowledge(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");
 		
@@ -168,7 +168,7 @@ public class PrintView extends BaseDao {
 	
 	
 	//  HallTicketContent
-	public Map getHallTicketContent(Map input) {
+	public Map getHallTicketContent(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");
 		
@@ -208,7 +208,7 @@ public class PrintView extends BaseDao {
 		return null;
 	}
 	
-	public Map getMarkSheetContent(Map input) {
+	public Map getMarkSheetContent(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");
 		
