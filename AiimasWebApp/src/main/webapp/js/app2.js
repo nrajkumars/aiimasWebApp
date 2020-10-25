@@ -106,6 +106,46 @@ function onPostsearchByPrCodePrNo(data) {
 
 }
 
+
+
+// GET CURRENT PR No for Add amission screen
+
+
+
+function getCurrnetPRNo() {
+	
+	console.log('getCurrnetPRNo   clicked rajjj ');
+	
+	var prCode11 = document.getElementById('prCode11').value;
+	//var prno = document.getElementById('prNo').value;
+	
+	
+	if (prCode11 == "" ) {
+			alert("Please enter the values in P.R.Code")
+	  }else{
+	
+	postAjax('rs',{"app":"AiimasPost","module":"getCurrentPRno","action":"byPRNo","prCode11":prCode11}, onPostGetPRNo);
+	}
+}
+
+function onPostGetPRNo(data) {
+	console.log('RESPONSE POST  onPostGetPRNo in app .JS:' + data);
+	var parsedData;
+		
+	if (data != null) {
+			// TODO Sakthi
+		
+			try {
+			// Parse JSON
+			parsedData = JSON.parse(data);
+			} catch (e) {
+				console.log("data error, Reason"+e.toString());
+			}
+	}
+}
+
+
+
 // SEARCH by NAME for Verification
 
 function searchByName() {

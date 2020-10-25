@@ -69,8 +69,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 	   <a href="#admApp" class="w3-bar-item w3-button"><b>Add</b> - Admission Application</a>
 	    <a href="#admApp1" class="w3-bar-item w3-button"><b>Modify</b> - Admission Application</a>
-      <a href="#examApp" class="w3-bar-item w3-button"><b>Add</b>Examination Application</a>
-      <a href="#markUpdate" class="w3-bar-item w3-button"><b>Add</b>b>Mark Update</a>
+      <a href="#examApp" class="w3-bar-item w3-button"><b>Add</b>- Examination Application</a>
+      <a href="#markUpdate" class="w3-bar-item w3-button"><b>Add</b>- Mark Update</a>
     </div>
 
 
@@ -80,9 +80,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </a>
     <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 	  <a href="#ack1" class="w3-bar-item w3-button">Student Letters</a>
-      <a href="#questions" class="w3-bar-item w3-button">Question Paper</a>
-      <a href="#markSheet" class="w3-bar-item w3-button">Mark Sheet</a>
-      <a href="#mailAddress" class="w3-bar-item w3-button">Mailing Address</a>
+	  <a href="#applicantsList" class="w3-bar-item w3-button">Applicants List</a>
+      <a href="#diplomaQuestions" class="w3-bar-item w3-button">Question Papers - for Diploma</a>
+       <a href="#pickupQuestions" class="w3-bar-item w3-button">Question Papers - Pickup list</a>
+       <a href="#attendanceChart" class="w3-bar-item w3-button">Attendance Chart</a>
+<!--       <a href="#timeTable" class="w3-bar-item w3-button">Time Table update</a> -->
     </div>
 
 
@@ -258,7 +260,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCode11" >
+			<input class="w3-input w3-border " type="text"  id="prCode11"  value ='APR13'>
 		  </div>
 				  
 		  <div class="w3-third">
@@ -631,77 +633,54 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<br>
 		  </div>
 		  
-		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
+		<div class="w3-panel w3-border w3-border-red">
+  			
+		    
+		<label class="w3-text-brown"><b>Name:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="stuNameExam" ><br>
 		
-  		 
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeExam" placeholder="Choose your option">
-  		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
-  		<option selected value="Choose your option"></option>
 		
-			<%
-			if(wholeList.size()>0 ){
-				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
-					//System.out.println(entry.getKey()+"- - "+entry.getValue());
-				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
-				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
-				String no_of_paper = entry.getValue().substring(entry.getValue().indexOf("~")+1,entry.getValue().indexOf("@"));
-				//System.out.println("paper - - "+no_of_paper.length());
-				%>
-				<option data-id="<%=code%>$<%=no_of_paper%>" value="<%=code%> / <%=value %>"></option>
-    			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
-    		<%}} %>
-    		</datalist>
-    	
-  
-  		<br><br>
-  		<input type="hidden" name="diplomaCodeNameExam" >
-  		<!--   SAKTHI todo 1 --   The above the fields should have the drop downs for diploma details -->
-  		
-		<div class="w3-third">
-		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
-		<select class="w3-select" name="option" id="durationExam">
-    		<option value="" disabled selected>Choose your option</option>
-    		<option value="Six Months">Six Months</option>
-    		<option value="One Year - PG">One Year - PG</option>
-    		<option value="18 Months - PG">18 Months - PG</option>
-   		 	<option value="One Year">One Year</option>
-  		</select>
-  	</div>
+		
+		<label class="w3-text-brown"><b>Diploma:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeExam" ><br>
+		  
+ 
    
-    	<div class="w3-third">
+    	<div class="w3-half">
+			<label class="w3-text-brown"><b>Duration:</b></label>
+			<input class="w3-input w3-border " type="text" id="durationExam" ><br>
+		  </div>
+		  
+		  	<div class="w3-half">
 			<label class="w3-text-brown"><b>No of paper:</b></label>
-			<input class="w3-input w3-border " type="text" id="noofPaperExam" >
+			<input class="w3-input w3-border " type="text" id="noofPaperExam" ><br>
 		  </div>
   		
-		<br><br><br><br>
+		
+		</div>
+		
+		<!--  Sakthi  ALL above fields to be Non editable 	 -->
 
 		
 		<div class="w3-third">
-			<label class="w3-text-brown"><b>Semester Month:</b></label>
+			<label class="w3-text-brown"><b>Enter Semester Month:</b></label>
 			<input class="w3-input w3-border " type="text" id="semMonthExam" >
 		  </div>
 		  
 		  <div class="w3-third">
-			<label class="w3-text-brown"><b>Semester Year:</b></label>
+			<label class="w3-text-brown"><b>Enter Semester Year:</b></label>
 			<input class="w3-input w3-border " type="year" id="semYearExam"  >
 		  </div>
 				  
 
 
  		  <div class="w3-third"> 
-			<label class="w3-text-brown"><b>Entered on:</b></label>
+			<label class="w3-text-brown"><b>Exam Entered on:</b></label>
  			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
  		  </div> 
 
 		
 
-   
-		<label class="w3-text-brown"><b>Name:</b></label>
-		<input class="w3-input w3-border" name="last" type="text" id="stuNameExam" ><br>
-		
-		
-		<!--  Sakthi  ALL above fields to be Non editable 	 -->
-				
 		
 			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
 			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option">
@@ -736,40 +715,88 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		  <BR><BR>
  		  
  		 
- 		    
- 		    
- 		  
- 		   <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Papers:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPapers" placeholder="I, II, III, IV" >
+ 		    <div class="w3-panel w3-border-left w3-pale-red w3-border-red w3-border">
+    			<center><b><p>Ack Details.</p></b></center>
+    			
+    	 	<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Venue Initimation Letter:</b></label>
+			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
  		    </div> 
  		  
-  			<div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Semester:</b></label>
-			<input class="w3-input w3-border " type="text" id="examSemstr" placeholder="-1-2-" >
+  			<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Hall Ticket issue date:</b></label>
+			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
  		    </div> 
  		    
- 		 	 <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam New No of Paper:</b></label>
-			<input class="w3-input w3-border " type="text" id="examNewnoPapers"  ><br>
- 		    </div> 
- 		    
- 		    <br>
- 		    
- 		       <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Old No of Paper:</b></label>
-			<input class="w3-input w3-border " type="text" id="examOldnoPapers" >
+
+    			
+    	 	<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Exam Date 1:</b></label>
+			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
  		    </div> 
  		  
-  			<div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Total Paper:</b></label>
-			<input class="w3-input w3-border " type="text" id="examTotalPaper"  >
+  			<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Exam Date 2:</b></label>
+			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
  		    </div> 
+ 		 	
  		    
- 		 	 <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Pass Flag:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPassFlag"  ><br>
- 		    </div> 
+  			</div> <!--  broder end -->
+  			
+  			
+  			<!--    BASED on the no of papers - this has to come dynamic to match the paper count  -->
+  			<div class="w3-container w3-card-4">
+  			<h3>Papers</h3>
+			  <p>
+			  <input class="w3-check" type="checkbox" value="I" >
+			  <label>Paper 1</label></p>
+			  <p>
+			  <input class="w3-check" type="checkbox" vlue="II">
+			  <label> Paper 2</label></p>
+			  <p>
+			  <p>
+			  <input class="w3-check" type="checkbox" value="III" >
+			  <label>Paper 3</label></p>
+			  <p>
+			  <input class="w3-check" type="checkbox" value="IV">
+			  <label> Paper 4</label></p>
+			  <p>
+			</div>
+  			
+  			
+ 		    
+ 		  
+<!--  		   <div class="w3-third"> -->
+<!--  		   <label class="w3-text-brown"><b>Exam Papers:</b></label> -->
+<!-- 			<input class="w3-input w3-border " type="text" id="examPapers" placeholder="I, II, III, IV" > -->
+<!--  		    </div>  -->
+ 		  
+<!--   			<div class="w3-third"> -->
+<!--  		   <label class="w3-text-brown"><b>Exam Semester:</b></label> -->
+<!-- 			<input class="w3-input w3-border " type="text" id="examSemstr" placeholder="-1-2-" > -->
+<!--  		    </div>  -->
+ 		    
+<!--  		 	 <div class="w3-third"> -->
+<!--  		   <label class="w3-text-brown"><b>Exam New No of Paper:</b></label> -->
+<!-- 			<input class="w3-input w3-border " type="text" id="examNewnoPapers"  ><br> -->
+<!--  		    </div>  -->
+ 		    
+<!--  		    <br> -->
+ 		    
+<!--  		       <div class="w3-third"> -->
+<!--  		   <label class="w3-text-brown"><b>Exam Old No of Paper:</b></label> -->
+<!-- 			<input class="w3-input w3-border " type="text" id="examOldnoPapers" > -->
+<!--  		    </div>  -->
+ 		  
+<!--   			<div class="w3-third"> -->
+<!--  		   <label class="w3-text-brown"><b>Exam Total Paper:</b></label> -->
+<!-- 			<input class="w3-input w3-border " type="text" id="examTotalPaper"  > -->
+<!--  		    </div>  -->
+ 		    
+<!--  		 	 <div class="w3-third"> -->
+<!--  		   <label class="w3-text-brown"><b>Exam Pass Flag:</b></label> -->
+<!-- 			<input class="w3-input w3-border " type="text" id="examPassFlag"  ><br> -->
+<!--  		    </div>  -->
 		
 		<br><br><br>
 		
@@ -826,141 +853,70 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<br>
 		  </div>
 		  
-		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
-		
-  		 
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeMark" placeholder="Choose your option">
-  		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
-  		<option selected value="Choose your option"></option>
-		
-			<%
-			if(wholeList.size()>0 ){
-				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
-					//System.out.println(entry.getKey()+"- - "+entry.getValue());
-				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
-				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
-				String no_of_paper = entry.getValue().substring(entry.getValue().indexOf("~")+1,entry.getValue().indexOf("@"));
-				//System.out.println("paper - - "+no_of_paper.length());
-				%>
-				<option data-id="<%=code%>$<%=no_of_paper%>" value="<%=code%> / <%=value %>"></option>
-    			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
-    		<%}} %>
-    		</datalist>
-    	
-  
-  		<br><br>
-  		<input type="hidden" name="diplomaCodeNameMark" >
-  		<!--   SAKTHI todo 1 --   The above the fields should have the drop downs for diploma details -->
-  		
-<!-- 		<div class="w3-third"> -->
-<!-- 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label> -->
-<!-- 		<select class="w3-select" name="option" id="durationExam"> -->
-<!--     		<option value="" disabled selected>Choose your option</option> -->
-<!--     		<option value="Six Months">Six Months</option> -->
-<!--     		<option value="One Year - PG">One Year - PG</option> -->
-<!--     		<option value="18 Months - PG">18 Months - PG</option> -->
-<!--    		 	<option value="One Year">One Year</option> -->
-<!--   		</select> -->
-<!--   	</div> -->
-   
-    
-  		
-<!-- 		<br><br><br><br> -->
-
-		
-		<div class="w3-third">
-			<label class="w3-text-brown"><b>Semester Month:</b></label>
-			<input class="w3-input w3-border " type="text" id="semMonthMark" >
-		  </div>
-		  
-		  <div class="w3-third">
-			<label class="w3-text-brown"><b>Semester Year:</b></label>
-			<input class="w3-input w3-border " type="year" id="semYearMark"  >
-		  </div>
-				  
-
-
- 		  <div class="w3-third"> 
-			<label class="w3-text-brown"><b>Mark Entered on:</b></label>
- 			<input class="w3-input w3-border " type="date" id="enterDateMark"><br>
- 		  </div> 
-
-		
-
-   
+				<div class="w3-panel w3-border w3-border-red">
+  			
+		    
 		<label class="w3-text-brown"><b>Name:</b></label>
 		<input class="w3-input w3-border" name="last" type="text" id="stuNameMark" ><br>
 		
 		
+		
+		<label class="w3-text-brown"><b>Diploma Code:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeMark" ><br>
+		  
+  		<div class="w3-half">
+			<label class="w3-text-brown"><b>Duration:</b></label>
+			<input class="w3-input w3-border " type="text" id="durationMark" ><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>No of paper:</b></label>
+			<input class="w3-input w3-border " type="text" id="noofPaperMark" ><br>
+		  </div>
+  		
+   
+    	<div class="w3-half">
+			<label class="w3-text-brown"><b>State:</b></label>
+			<input class="w3-input w3-border " type="text" id="stateMark" ><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>Center:</b></label>
+			<input class="w3-input w3-border " type="text" id="centerMark" ><br>
+		  </div>
+  		
+		
+		</div>
+		
 		<!--  Sakthi  ALL above fields to be Non editable 	 -->
-			
-			
-		 
+				  
+
  		 
  		    <!--   based on the DB data this has to come dynamically  only MARKS to be updated by the user-->
  		    
- 		  
- 		   <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Papers No:</b></label>
-			<input class="w3-input w3-border " type="text" id="markPaperNo1"  >
- 		    </div> 
- 		  
-  			<div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Paper Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="markPaperName1"  >
- 		    </div> 
  		    
- 		 	 <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Mark:</b></label>
-			<input class="w3-input w3-border " type="text" id="examMark1" placeholder="user enter  only marks" ><br>
- 		    </div> 
- 		     <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Papers No:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPaperNo2"  >
- 		    </div> 
- 		  
-  			<div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Paper Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPaperName2"  >
- 		    </div> 
+ 		    <div class="w3-container w3-card-4">
+  			<h3>Enter Marks:</h3>
+			  <p>
+	  
+			  <div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text" id="Marksenter1" ><br>
+			  </div>
+			  
+			   <div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="Paper 1" id="markPaperno"><br>
+			  </div>
+			  
+			   <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder="Elements of managemnet"  id="markPapername"><br>
+			  </div>
+			  
+			  <p>
+			
+			</div>
  		    
- 		 	 <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Mark:</b></label>
-			<input class="w3-input w3-border " type="text" id="examMark2"  ><br>
- 		    </div> 
- 		     <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Papers No:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPaperNo3"  >
- 		    </div> 
- 		  
-  			<div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Paper Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPaperName3"  >
- 		    </div> 
- 		    
- 		 	 <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Mark:</b></label>
-			<input class="w3-input w3-border " type="text" id="examMark3"  ><br>
- 		    </div> 
- 		     <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Papers No:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPaperNo4"  >
- 		    </div> 
- 		  
-  			<div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Paper Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="examPaperName4"  >
- 		    </div> 
- 		    
- 		 	 <div class="w3-third">
- 		   <label class="w3-text-brown"><b>Exam Mark:</b></label>
-			<input class="w3-input w3-border " type="text" id="examMark4"  ><br>
- 		    </div> 
- 		    
- 		    
- 		   
 		
-		<br><br><br>
+		<br><br>
 		
 		<center>
 		
@@ -1054,9 +1010,92 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	 </div>
 	 
 	 
+	 
+	 <!--  Attendance LIST   ??? -->
+	 
+	 <!--  Serach by exam sem mon and year and the duration
+	 	per diploma name  get the name , prcode prno, and  for all diplomas 
+	  -->
+
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=applicantsList>
+		<center> <h2>Applicants List: </h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+	<BR>
+	
+				
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="ALsemMonthName" >
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" id="ALsemYearName"  >
+		  </div>
+			<div class="w3-third">
+				<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
+				<select class="w3-select" name="option" id="ALduration">
+		    		<option value="" disabled selected>Choose your option</option>
+		    		<option value="Six Months">Six Months</option>
+		    		<option value="One Year - PG">One Year - PG</option>
+		    		<option value="18 Months - PG">18 Months - PG</option>
+		   		 	<option value="One Year">One Year</option>
+		  		</select><br><br>
+  			</div>
+  			
+  			
+  			
+  			
+  			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ALexamStateCode" placeholder="Choose your option">
+	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
+	  		<option selected value="Choose your option"></option>	
+	  		<option value="AP / ANDHRA PRADESH"></option>	
+	
+	  		<!--  SAKTHI get from DB data-->
+	  		
+	  		</datalist>	
+	  
+		<BR>
+ 		  <BR>
+		 
+		
+ 		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="ALexamCenterCode" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
+  		<option selected value="Choose your option"></option>	
+  		
+  		<option value="HYD	/ HYDERABAD"></option>	
+  		<option value="VIJ	/ VIJAYAWADA"></option>	
+  		<option value="VIS	/ VISAKHAPATNAM"></option>	
+  			<option value="WAR/ WARANGAL"></option>	
+		
+  		<!--  SAKTHI get from DB data-->
+  		
+  		</datalist>	
+  		
+ 		  <BR><BR>
+ 	 
+		  </div>
+		
+		<BR>
+   		
+	
+		<Center>				 
+			<button class="w3-button w3-green" id="applicantListPdf" onclick="printApplicantList()">&nbsp;&nbsp;Get Applicants List</button><br> <br>
+		 </Center>
+
+<br>
+</div>
+</div>
+	 
+	 
 	 <!-- PRINT  Question Papers -------------->
   
-<div class="w3-padding-64 w3-light-grey w3-card-4" id=questions>
+<div class="w3-padding-64 w3-light-grey w3-card-4" id=diplomaQuestions>
 		<center> <h2>Question Papers</h2></center><br><br>
 		
  <div class="w3-panel w3-pale-green">
@@ -1095,6 +1134,186 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    <br>
  </div>
 </div>
+
+<!--  Print Questions Pickup list  -->
+
+	 
+	 <!--  Serach by exam sem mon and year and the duration
+	 	per diploma name  get the name , prcode prno, and  for all diplomas 
+	  -->
+
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=pickupQuestions>
+		<center> <h2>Question Papers Pick up List: </h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+	<BR>
+	
+				
+		<div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="ALsemMonthName" >
+		  </div>
+		  
+		  <div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" id="ALsemYearName"  ><br>
+		  </div>
+			
+  			
+  			
+  			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ALexamStateCode" placeholder="Choose your option">
+	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
+	  		<option selected value="Choose your option"></option>	
+	  		<option value="AP / ANDHRA PRADESH"></option>	
+	
+	  		<!--  SAKTHI get from DB data-->
+	  		
+	  		</datalist>	
+	  
+		<BR>
+ 		  <BR>
+		 
+		
+ 		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="examCenterCode" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
+  		<option selected value="Choose your option"></option>	
+  		
+  		<option value="HYD	/ HYDERABAD"></option>	
+  		<option value="VIJ	/ VIJAYAWADA"></option>	
+  		<option value="VIS	/ VISAKHAPATNAM"></option>	
+  			<option value="WAR/ WARANGAL"></option>	
+		
+  		<!--  SAKTHI get from DB data-->
+  		
+  		</datalist>	
+  		
+ 		  <BR><BR>
+ 	 
+		  </div>
+		
+		<BR>
+   		
+	
+		<Center>				 
+			<button class="w3-button w3-green" id="applicantListPdf" onclick="printAdmInit('applicantList')">&nbsp;&nbsp;Get Applicants List</button><br> <br>
+		 </Center>
+
+<br>
+</div>
+</div>
+
+<!--   attendanceChart  ???? -->
+
+<!--  Serach by exam sem mon and year and the duration
+	 	per diploma name  get the name , prcode prno, and  for all diplomas 
+	  -->
+
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=attendanceChart>
+		<center> <h2>Attendance Chart: </h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+	<BR>
+	
+				
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="ACsemMonthName" >
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" id="ACsemYearName"  >
+		  </div>
+			<div class="w3-third">
+				<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
+				<select class="w3-select" name="option" id="ACduration">
+		    		<option value="" disabled selected>Choose your option</option>
+		    		<option value="Six Months">Six Months</option>
+		    		<option value="One Year - PG">One Year - PG</option>
+		    		<option value="18 Months - PG">18 Months - PG</option>
+		   		 	<option value="One Year">One Year</option>
+		  		</select><br><br>
+  			</div>
+  			 			
+  					  
+		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
+		
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="ACdiplomaCode" placeholder="Choose your option">
+  		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
+  		<option selected value="Choose your option"></option>
+		
+			<%
+			if(wholeList.size()>0 ){
+				for (Map.Entry<String,String> entry : wholeList.entrySet()) { 
+					//System.out.println(entry.getKey()+"- - "+entry.getValue());
+				String code = entry.getKey().substring(entry.getKey().indexOf("~")+1, entry.getKey().length());
+				String value = entry.getValue().substring(entry.getValue().indexOf("^")+1, entry.getValue().length());
+				String no_of_paper = entry.getValue().substring(entry.getValue().indexOf("~")+1,entry.getValue().indexOf("@"));
+				//System.out.println("paper - - "+no_of_paper.length());
+				%>
+				<option data-id="<%=code%>$<%=no_of_paper%>" value="<%=code%> / <%=value %>"></option>
+    			<!-- <option value="<%=entry.getKey() %>" ><%=code%> / <%=value %></option> -->
+    		<%}} %>
+    		</datalist>
+    	
+  		<script> 
+    	//sort_select();
+    	//itemSelect(document.getElementById('diplomaCode'));
+    	</script>
+  		<br><br>
+  		<input type="hidden" name="diplomaCodeName" >
+  			
+  			
+  			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ACexamStateCode" placeholder="Choose your option">
+	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
+	  		<option selected value="Choose your option"></option>	
+	  		<option value="AP / ANDHRA PRADESH"></option>	
+	
+	  		<!--  SAKTHI get from DB data-->
+	  		
+	  		</datalist>	
+	  
+		<BR>
+ 		  <BR>
+		 
+		
+ 		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="ACexamCenterCode" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
+  		<option selected value="Choose your option"></option>	
+  		
+  		<option value="HYD	/ HYDERABAD"></option>	
+  		<option value="VIJ	/ VIJAYAWADA"></option>	
+  		<option value="VIS	/ VISAKHAPATNAM"></option>	
+  			<option value="WAR/ WARANGAL"></option>	
+		
+  		<!--  SAKTHI get from DB data-->
+  		
+  		</datalist>	
+  		
+ 		  <BR><BR>
+ 	 
+		  </div>
+		
+		<BR>
+   		
+	
+		<Center>				 
+			<button class="w3-button w3-green" id="applicantListPdf" onclick="printAttendanceChart()">&nbsp;&nbsp;Get Attendance Chart</button><br> <br>
+		 </Center>
+
+<br>
+</div>
+</div>
+	 
+
  
  <!-- PRINT  Mark Sheet -------------->
  
@@ -1132,9 +1351,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	
 	<label class="w3-text-red"><b>Name:</b></label>
 		<input class="w3-input w3-border " name="last" type="text" id="stuNamesearch" ><br>
-		<label class="w3-text-brown"><b> Diploma:</b>&nbsp;</label>
+	
 		
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeame" placeholder="Choose your option">
+		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
+		
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode3" placeholder="Choose your option">
   		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
 		

@@ -35,7 +35,7 @@ public class MarkUpdate extends BaseDao {
 						finaldata.put(admin, data1.get(0));
 					}
 					
-					// Read form Marks table
+					// Read form Marks table  READ many rows
 					String getMarksDataSql = "select * from public.appear where ap_prcode = ? and ap_prno = ?";
 					List data2 = executeFetchSql(getMarksDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 				

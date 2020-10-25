@@ -282,6 +282,23 @@ public class AiimasServlet extends HttpServlet {
 				retrunMap.put("Filename", gfile);
 				
 				writeResponse(retrunMap, resp);
+			}else if (module != null && module.equals("getCurrentPRno")) {
+				
+				String prCode11 = request.getParameter("prCode11");
+									
+				System.out.println(" AIIMAS SERVLET  --  getCurrentPRno " +prCode11);	
+	
+				
+				Map input = new HashMap();
+				input.put("prCode11", prCode11);
+				
+				AddAdmission addAdmission = new AddAdmission();
+				Map currentPRNo = addAdmission.getCurrentPRNo(input);
+				System.out.println(" RESPONSE MarkApplication GOT in MAP -- "+currentPRNo);
+				
+				writeResponse(currentPRNo, resp);
+				
+				
 			}else if (module != null && module.equals("addAdmission")) {
 					
 					System.out.println("Inside module addAdmission : " + action);

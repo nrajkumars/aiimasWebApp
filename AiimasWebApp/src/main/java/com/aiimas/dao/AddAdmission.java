@@ -295,6 +295,41 @@ public class AddAdmission extends BaseDao {
 		return null;
 	}
 	
+	// GET Student details
+		public Map getCurrentPRNo(Map input) throws Exception {
+			Object prCode11 =  input.get("prCode11");
+			
+				
+					
+			if (prCode11 != null && prCode11.toString().trim().length() > 0) {
+				
+				//Map finaldata = new HashMap();
+								
+				// Read form PRno  READ many rows
+				String getPRnoDataSql = "select MAX(ad_prno) from public.admn where ad_prcode = ?";
+				List data2 = executeFetchSql(getPRnoDataSql, new Object[]{prCode11.toString()});
+				
+				if (data2 != null && data2.size() > 0) {
+					return (Map) data2.get(0);
+					//finaldata.put(fee, data3.get(0));
+				}
+				
+				// for many values
+			
+//				if (data2 != null && data2.size() > 0) {
+//					//return (Map) data2.get(0);
+//					for (int ii = 1; ii <= data2.size()-1; ii++) {
+//						String marks = new String("PRno"+ii);
+//						finaldata.put(marks, data2.get(ii));
+//						System.out.println(" INSIDE PRNO = "+ii);  
+//					}
+//				}
+			//	return finaldata;
+				}
+		
+			return null;
+		}
+	
 	
 }
 
