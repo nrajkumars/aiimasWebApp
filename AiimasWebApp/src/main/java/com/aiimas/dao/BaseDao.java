@@ -15,6 +15,32 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class BaseDao {
+	
+//	//for PROD
+//	
+//	private static Connection getConnection()  throws Exception {
+//	  //  if (System.getProperty("RDS_HOSTNAME") != null) {
+//	    	  
+//	    	System.out.println("INSIDE DB connection -------------");
+//	      Class.forName("org.postgresql.Driver");
+//	      String dbName = System.getProperty("RDS_DB_NAME");
+//	      String userName = System.getProperty("RDS_USERNAME");
+//	      String password = System.getProperty("RDS_PASSWORD");
+//	      String hostname = System.getProperty("RDS_HOSTNAME");
+//	      String port = System.getProperty("RDS_PORT");
+//	      String jdbcUrl = "jdbc:postgresql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
+//	      
+//	      System.out.println("INSIDE DB connection --------jdbcUrl-----"+jdbcUrl);
+//	     // logger.trace("Getting remote connection with connection string from environment variables.");
+//	      Connection con = DriverManager.getConnection(jdbcUrl);
+//	    //  logger.info("Remote connection successful.");
+//	      
+//	      System.out.println("connection successful");
+//	      return con;
+//	  
+//	  }
+	
+	
 
 	protected Connection getConnection() throws Exception {
 		Connection conn = null;

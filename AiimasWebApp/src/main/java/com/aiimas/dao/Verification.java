@@ -57,7 +57,7 @@ public class Verification extends BaseDao {
 				
 				
 				// Read form Exam table
-				String getExamsDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
+				String getExamsDataSql = "select * from public.EAPPL where ea_prcode = ? and ea_prno = ?";
 				List data4 = executeFetchSql(getExamsDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data4 != null && data4.size() > 0) {
