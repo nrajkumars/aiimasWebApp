@@ -268,12 +268,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<input class="w3-input w3-border " type="text"   id="prNo1" >
 		  </div>
 		  
-		  
-		  <div class= "w3-third w3-container w3-border w3-Small">
-		  <button class="w3-button w3-blue" id="result1" onclick="getCurrnetPRNo()">&nbsp;&nbsp;Get Current PR No:</button>
-  			<div class="w3-left-align"><p>Value from DB</p></div>
+		  <div class="w3-third">
+	
+			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="resultCurPRNo" onclick="getNextPRNo()">&nbsp;&nbsp;Get NEXT PR No:</button><br><br>
 		  </div>
-
+		  
+		  
+		
 
    
 		<label class="w3-text-brown"><b>Name:</b></label>
@@ -427,7 +429,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="result1" onclick="getStudentDetail()">&nbsp;&nbsp;GET Student Detail</button><br> <br>
+			<button class="w3-button w3-blue" id="result11" onclick="getStudentDetail()">&nbsp;&nbsp;GET Student Detail</button><br> <br>
 			<br>
 		  </div>
 		  
@@ -436,7 +438,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
 		
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode3" placeholder="Choose your option">
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCodeUad" placeholder="Choose your option">
   		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
 		
@@ -687,10 +689,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
 	  		<option selected value="Choose your option"></option>	
 	  		
-	  		<option value="AP / ANDHRA PRADESH"></option>	
+	  		<option value="AP/ANDH"></option>	
 	  	
 			
 	  		<!--  SAKTHI get from DB data-->
+	  		
+	  			<!--  Sakthi this hase to be changed based on selection -->
+  			<input type="hidden" name="SATE NAME" id="examStateName"  value ="Andr">
+  			<input type="hidden" name="Center NAme" id="examCenterName"  value ="Vij">
+ 		    
+ 		  
 	  		
 	  		</datalist>	
 	  
@@ -703,11 +711,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
   		
-  		<option value="HYD	/ HYDERABAD"></option>	
-  		<option value="VIJ	/ VIJAYAWADA"></option>	
-  		<option value="VIS	/ VISAKHAPATNAM"></option>	
-  			<option value="WAR/ WARANGAL"></option>	
-		
+  		<option value="HYD/HYDD"></option>	
+  		<option value="VI/VIJYA"></option>	
+  		<option value="VS/VISAK"></option>
   		<!--  SAKTHI get from DB data-->
   		
   		</datalist>	
@@ -720,35 +726,38 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     			
     	 	<div class="w3-half">
  		   <label class="w3-text-brown"><b>Venue Initimation Letter:</b></label>
-			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
+			<input class="w3-input w3-border " type="date" id="ackIniLetterDate"><br>
  		    </div> 
  		  
   			<div class="w3-half">
  		   <label class="w3-text-brown"><b>Hall Ticket issue date:</b></label>
-			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
+			<input class="w3-input w3-border " type="date" id="ackHallTckDate"><br>
  		    </div> 
  		    
 
     			
     	 	<div class="w3-half">
  		   <label class="w3-text-brown"><b>Exam Date 1:</b></label>
-			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
+			<input class="w3-input w3-border " type="date" id="ackExamdate1"><br>
  		    </div> 
  		  
   			<div class="w3-half">
  		   <label class="w3-text-brown"><b>Exam Date 2:</b></label>
-			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
+			<input class="w3-input w3-border " type="date" id="ackExamdate2"><br>
  		    </div> 
  		 	
  		    
   			</div> <!--  broder end -->
   			
   			
+  			<!--  SAKTHI - No of checkbox selected  = oldnofpapr -->
+  			<!--  sakthi - selected checkboz values  = I,II  to values ea_paprstr -->
+  			
   			<!--    BASED on the no of papers - this has to come dynamic to match the paper count  -->
   			<div class="w3-container w3-card-4">
   			<h3>Papers</h3>
 			  <p>
-			  <input class="w3-check" type="checkbox" value="I" >
+			  <input class="w3-check" type="checkbox" value="I" > 
 			  <label>Paper 1</label></p>
 			  <p>
 			  <input class="w3-check" type="checkbox" vlue="II">
@@ -763,40 +772,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			  <p>
 			</div>
   			
-  			
+  			<!--  Sakthi this hase to be changed based on selection -->
+  			<input type="hidden" name="Old no of Paper selected" id="oldnofpapr"  value ="2">
+  			<input type="hidden" name="paper selected string" id="ea_paprstr"  value ="I,II">
  		    
  		  
-<!--  		   <div class="w3-third"> -->
-<!--  		   <label class="w3-text-brown"><b>Exam Papers:</b></label> -->
-<!-- 			<input class="w3-input w3-border " type="text" id="examPapers" placeholder="I, II, III, IV" > -->
-<!--  		    </div>  -->
- 		  
-<!--   			<div class="w3-third"> -->
-<!--  		   <label class="w3-text-brown"><b>Exam Semester:</b></label> -->
-<!-- 			<input class="w3-input w3-border " type="text" id="examSemstr" placeholder="-1-2-" > -->
-<!--  		    </div>  -->
- 		    
-<!--  		 	 <div class="w3-third"> -->
-<!--  		   <label class="w3-text-brown"><b>Exam New No of Paper:</b></label> -->
-<!-- 			<input class="w3-input w3-border " type="text" id="examNewnoPapers"  ><br> -->
-<!--  		    </div>  -->
- 		    
-<!--  		    <br> -->
- 		    
-<!--  		       <div class="w3-third"> -->
-<!--  		   <label class="w3-text-brown"><b>Exam Old No of Paper:</b></label> -->
-<!-- 			<input class="w3-input w3-border " type="text" id="examOldnoPapers" > -->
-<!--  		    </div>  -->
- 		  
-<!--   			<div class="w3-third"> -->
-<!--  		   <label class="w3-text-brown"><b>Exam Total Paper:</b></label> -->
-<!-- 			<input class="w3-input w3-border " type="text" id="examTotalPaper"  > -->
-<!--  		    </div>  -->
- 		    
-<!--  		 	 <div class="w3-third"> -->
-<!--  		   <label class="w3-text-brown"><b>Exam Pass Flag:</b></label> -->
-<!-- 			<input class="w3-input w3-border " type="text" id="examPassFlag"  ><br> -->
-<!--  		    </div>  -->
 		
 		<br><br><br>
 		
@@ -804,6 +784,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()">&nbsp;&nbsp;Save</button>
  			<button class="w3-button w3-orange id="resultUpdateExamApp" onclick="updateExamApplication()" >Update</button> 
+ 			<!--  during update add a flg for pass field  todo -->
 			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
 			
 			<!--  Sakthi  clear button
@@ -1053,7 +1034,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ALexamStateCode" placeholder="Choose your option">
 	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
 	  		<option selected value="Choose your option"></option>	
-	  		<option value="AP / ANDHRA PRADESH"></option>	
+	  		<option value="AP/ANDH"></option>	
 	
 	  		<!--  SAKTHI get from DB data-->
 	  		
@@ -1064,14 +1045,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		 
 		
  		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="ALexamCenterCode" placeholder="Choose your option">
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="eALxamCenterCode" id="ALexamCenterCode" placeholder="Choose your option">
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
-  		
-  		<option value="HYD	/ HYDERABAD"></option>	
-  		<option value="VIJ	/ VIJAYAWADA"></option>	
-  		<option value="VIS	/ VISAKHAPATNAM"></option>	
-  			<option value="WAR/ WARANGAL"></option>	
+  		<option value="HYD/HYDD"></option>	
+  		<option value="VI/VIJYA"></option>	
+  		<option value="VS/VISAK"></option>	
 		
   		<!--  SAKTHI get from DB data-->
   		
@@ -1153,21 +1132,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				
 		<div class="w3-half">
 			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
-			<input class="w3-input w3-border " type="text" id="ALsemMonthName" >
+			<input class="w3-input w3-border " type="text" id="QAsemMonthName" >
 		  </div>
 		  
 		  <div class="w3-half">
 			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
-			<input class="w3-input w3-border " type="year" id="ALsemYearName"  ><br>
+			<input class="w3-input w3-border " type="year" id="QAsemYearName"  ><br>
 		  </div>
 			
   			
   			
   			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ALexamStateCode" placeholder="Choose your option">
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="QAexamStateCode" placeholder="Choose your option">
 	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
 	  		<option selected value="Choose your option"></option>	
-	  		<option value="AP / ANDHRA PRADESH"></option>	
+	  		<option value="AP/ANdr"></option>	
 	
 	  		<!--  SAKTHI get from DB data-->
 	  		
@@ -1178,14 +1157,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		 
 		
  		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="examCenterCode" placeholder="Choose your option">
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="QAexamCenterCode" id="QAexamCenterCode" placeholder="Choose your option">
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
   		
-  		<option value="HYD	/ HYDERABAD"></option>	
-  		<option value="VIJ	/ VIJAYAWADA"></option>	
-  		<option value="VIS	/ VISAKHAPATNAM"></option>	
-  			<option value="WAR/ WARANGAL"></option>	
+  		<option value="HYD/HYDD"></option>	
+  		<option value="VI/VIJYA"></option>	
+  		<option value="VS/VISAK"></option>
 		
   		<!--  SAKTHI get from DB data-->
   		
@@ -1199,7 +1177,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    		
 	
 		<Center>				 
-			<button class="w3-button w3-green" id="applicantListPdf" onclick="printAdmInit('applicantList')">&nbsp;&nbsp;Get Applicants List</button><br> <br>
+			<button class="w3-button w3-green" id="QuestionPaperListPdf" onclick="printAdmInit('applicantList')">&nbsp;&nbsp;Get Applicants List</button><br> <br>
 		 </Center>
 
 <br>
@@ -1274,7 +1252,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ACexamStateCode" placeholder="Choose your option">
 	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
 	  		<option selected value="Choose your option"></option>	
-	  		<option value="AP / ANDHRA PRADESH"></option>	
+	  		<option value="AP/ANDHRA"></option>	
 	
 	  		<!--  SAKTHI get from DB data-->
 	  		
@@ -1285,14 +1263,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		 
 		
  		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="ACexamCenterCode" placeholder="Choose your option">
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="ACexamCenterCode" id="ACexamCenterCode" placeholder="Choose your option">
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
   		
-  		<option value="HYD	/ HYDERABAD"></option>	
-  		<option value="VIJ	/ VIJAYAWADA"></option>	
-  		<option value="VIS	/ VISAKHAPATNAM"></option>	
-  			<option value="WAR/ WARANGAL"></option>	
+  		<option value="HYD/HYDD"></option>	
+  		<option value="VI/VIJYA"></option>	
+  		<option value="VS/VISAK"></option>	
 		
   		<!--  SAKTHI get from DB data-->
   		
@@ -1468,12 +1445,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="prCode" value='APR13' placeholder="APR13">
+			<input class="w3-input w3-border " type="text" id="prCode"  placeholder="APR13">
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" id="prNo"  value ='286' placeholder="286">
+			<input class="w3-input w3-border " type="text" id="prNo"  placeholder="286">
 		  </div>
 
 		  <div class="w3-third">
@@ -1665,7 +1642,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			
 		
 			<label class="w3-text-brown"><b>Diploma Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="diplomaCode1"  value="BM" >
+			<input class="w3-input w3-border " type="text" id="diplomaCode1"  placeholder="BM" >
 		
 		  
 		  </div>
@@ -1720,7 +1697,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	   	<div class="w3-container">
 
 		 <div class="w3-third">
-			<label class="w3-text-brown"><b> Institute Code::</b>&nbsp;</label>
+			<label class="w3-text-brown"><b> Institute Code:</b>&nbsp;</label>
 		<select class="w3-select" name="option" id="insituteCode">
     		<option value="" disabled selected>Choose your option</option>
     		<option value="AIIMS">AIIMS</option>

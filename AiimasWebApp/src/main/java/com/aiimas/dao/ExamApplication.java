@@ -27,22 +27,21 @@ public class ExamApplication extends BaseDao {
 				if((prCode != null && prCode.toString().trim().length() > 0)) {
 					
 					// Read from ADMIN table
-					String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
+					String getAdminDataSql = "select ad_dipcode, ad_name, ad_durtn, ad_nofpapr from public.admn where ad_prcode = ? and ad_prno = ?";
 					List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 				
 					if (data1 != null && data1.size() > 0) {
-						//return (Map) data1.get(0);
 						finaldata.put(admin, data1.get(0));
 					}
 					
-					// Read form Exam table
-					String getExamsDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
-					List data2 = executeFetchSql(getExamsDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-				
-					if (data2 != null && data2.size() > 0) {
-						//return (Map) data2.get(0);
-						finaldata.put(exam, data2.get(0));
-					}
+//					// Read form Exam table
+//					String getExamsDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
+//					List data2 = executeFetchSql(getExamsDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+//				
+//					if (data2 != null && data2.size() > 0) {
+//						//return (Map) data2.get(0);
+//						finaldata.put(exam, data2.get(0));
+//					}
 					
 //					//// Read form Fee table
 //					String getFeeDataSql = "select * from public.fees where fe_prcode = ? and fe_prno = ?";
@@ -73,14 +72,35 @@ public class ExamApplication extends BaseDao {
 				Object semYearExam = data.get("semYearExam");
 				Object enterDateExam = data.get("enterDateExam");
 				Object stuNameExam = data.get("stuNameExam");
-				Object examStateCode = data.get("examStateCode");
-				Object examCenterCode = data.get("examCenterCode");
-				Object examPapers = data.get("examPapers");
-				Object examSemstr = data.get("examSemstr");
-				Object examNewnoPapers = data.get("examNewnoPapers");
-				Object examOldnoPapers = data.get("examOldnoPapers");
-				Object examTotalPaper = data.get("examTotalPaper");
-				Object examPassFlag = data.get("examPassFlag");
+				Object examCenterCodeNew = data.get("examStateCode");
+				Object examStateCodenew = data.get("examCenterCode");
+				
+				Object examStateNamenew = data.get("examStateName");
+				Object examCenterNameNew = data.get("examCenterName");
+				
+				
+				
+				Object ackIniLetterDate = data.get("ackIniLetterDate");
+				Object ackHallTckDate = data.get("ackHallTckDate");
+				Object ackExamdate1 = data.get("ackExamdate1");
+				Object ackExamdate2 = data.get("ackExamdate2");
+				
+				
+				Object examPapers = data.get("ea_paprstr");
+				
+		
+				
+				
+				Object examNewnoPapers = data.get("noofPaperExam");
+				
+				Object examOldnoPapers = data.get("oldnofpapr");
+				
+				
+				
+			//	Object examTotalPaper = data.get("examTotalPaper");
+			//	Object examPassFlag = data.get("examPassFlag");
+				
+				
 			
 			System.out.println("RRRRRRRRRRRRRRRRRR -"+diplomaCodeExam);
 			String newDipCode =  diplomaCodeExam.toString();
@@ -88,13 +108,33 @@ public class ExamApplication extends BaseDao {
 			System.out.println("RRRRRRRRRRRRRRRRRR - "+subcount);
 			newDipCode = newDipCode.substring(0, subcount-1);
 			
-			System.out.println("RRRRRRRRRRRRRRRRRR  2222    -"+newDipCode);
+			System.out.println("RRRRRRRRRRRRRRRRRR  2222 HAL ticket    -"+ackHallTckDate);
 			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 			Date enterDateExamnew = null;
 			
+			
+			
+			Date ackIniLetterDateNew = null;
+			Date ackHallTckDateNew = null;
+			Date ackExamdate1New = null;
+			Date ackExamdate2New = null;
+			
 			if((enterDateExam != null && enterDateExam.toString().trim().length() > 8)) {
 				enterDateExamnew = formatter.parse(enterDateExam.toString());
+			}
+			
+			if((ackIniLetterDate != null && ackIniLetterDate.toString().trim().length() > 8)) {
+				ackIniLetterDateNew = formatter.parse(ackIniLetterDate.toString());
+			}
+			if((ackHallTckDate != null && ackHallTckDate.toString().trim().length() > 8)) {
+				ackHallTckDateNew = formatter.parse(ackHallTckDate.toString());
+			}
+			if((ackExamdate1 != null && ackExamdate1.toString().trim().length() > 8)) {
+				ackExamdate1New = formatter.parse(ackExamdate1.toString());
+			}
+			if((ackExamdate2 != null && ackExamdate2.toString().trim().length() > 8)) {
+				ackExamdate2New = formatter.parse(ackExamdate2.toString());
 			}
 			
 			
@@ -111,17 +151,13 @@ public class ExamApplication extends BaseDao {
 				examOldnoPapers="0";
 			}
 			
-			if((examTotalPaper != null && examTotalPaper.toString().trim().length() > 0)) {
-				//System.out.println(" INSIDE if  totfee"+totfee);
-			}else {
-				examTotalPaper="0";
-			}
 			
-			if((examPassFlag != null && examPassFlag.toString().trim().length() > 0)) {
-				//System.out.println(" INSIDE if  semYear"+semYear);
-			}else {
-				examPassFlag="0";
-			}
+			
+//			if((examPassFlag != null && examPassFlag.toString().trim().length() > 0)) {
+//				//System.out.println(" INSIDE if  semYear"+semYear);
+//			}else {
+//				examPassFlag="0";
+//			}
 			
 			if((noofPaperExam != null && noofPaperExam.toString().trim().length() > 0)) {
 				//System.out.println(" INSIDE if  papers "+papers);
@@ -137,20 +173,23 @@ public class ExamApplication extends BaseDao {
 			
 			// NOT INSERTED EA_PRNUM = CODE+NO		 AND END TIME
 			//TOTAL 21 -2 = 19 ?
+						
 			
-			//todo
-			//examStateCodenew,examStateCode
-			//examCenterCodeNew, examCenterCode
-			//todo
-			String examCenterCodeNew = "TE";
-			String examStateCodenew ="TE";
-			String examStateNamenew = "STATENAME";
-			String examCenterNameNew ="CENTERNAME";
-			
-			String insertExamSQL = "insert into public.EAPPL (EA_DIPCODE, EA_PRCODE, EA_PRNO, EA_SESMON, EA_SESYR, EA_NAME, EA_STCODE, EA_STNAME, EA_CECODE, EA_CENTRE1, EA_NOFPAPR, EA_PAPRSTR, EA_SEMSTR, EA_DURTN, NEWNOFPAPR, OLDNOFPAPR, EA_TOTAPPR, EA_PASSFLG, EA_ENTDATE) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-			executeUpdate(insertExamSQL, new Object[]{newDipCode,prCodeExam.toString(),Integer.parseInt(prNoExam.toString()),semMonthExam.toString(),Integer.parseInt(semYearExam.toString()),stuNameExam.toString(),examStateCodenew ,examStateNamenew, examCenterCodeNew, examCenterNameNew, Integer.parseInt(noofPaperExam.toString()),examPapers.toString(), examSemstr.toString(), durationExam.toString(),Integer.parseInt(examNewnoPapers.toString()),Integer.parseInt(examOldnoPapers.toString()),Integer.parseInt(examTotalPaper.toString()),Integer.parseInt(examPassFlag.toString()),enterDateExamnew});
+			//SEM str -1- or 2 ?? wjere ??todo
+					
+			String insertExamSQL = "insert into public.EAPPL (EA_DIPCODE, EA_PRCODE, EA_PRNO, EA_SESMON, EA_SESYR, EA_NAME, EA_STCODE, EA_STNAME, EA_CECODE, EA_CENTRE1, EA_NOFPAPR, EA_PAPRSTR, EA_DURTN, NEWNOFPAPR, OLDNOFPAPR, EA_ENTDATE) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+			executeUpdate(insertExamSQL, new Object[]{newDipCode,prCodeExam.toString(),Integer.parseInt(prNoExam.toString()),semMonthExam.toString(),Integer.parseInt(semYearExam.toString()),stuNameExam.toString(),examStateCodenew ,examStateNamenew, examCenterCodeNew, examCenterNameNew, Integer.parseInt(noofPaperExam.toString()),examPapers.toString(),  durationExam.toString(),Integer.parseInt(examNewnoPapers.toString()),Integer.parseInt(examOldnoPapers.toString()),enterDateExamnew});
 			
 			System.out.println(" INSIDE insert EXAM SUCCESS");
+
+			//executeUpdate(insertExamSQL, new Object[]{newDipCode,prCodeExam.toString(),Integer.parseInt(prNoExam.toString()),semMonthExam.toString(),Integer.parseInt(semYearExam.toString()),stuNameExam.toString(),examStateCodenew ,examStateNamenew, examCenterCodeNew, examCenterNameNew, Integer.parseInt(noofPaperExam.toString()),examPapers.toString(), examSemstr.toString(), durationExam.toString(),Integer.parseInt(examNewnoPapers.toString()),Integer.parseInt(examOldnoPapers.toString()),Integer.parseInt(examTotalPaper.toString()),Integer.parseInt(examPassFlag.toString()),enterDateExamnew});
+			
+			
+			String insertACKLSQL = "insert into public.ACKBOX1 (AK_DIPCODE, AK_PRCODE, AK_PRNO, AK_SESMON, AK_SESYR, AK_NAME,ak_venudt,ak_examdt1,ak_examdt2,ak_halldt) values(?,?,?,?,?,?,?,?,?,?);";
+			executeUpdate(insertACKLSQL, new Object[]{newDipCode,prCodeExam.toString(),Integer.parseInt(prNoExam.toString()),semMonthExam.toString(),Integer.parseInt(semYearExam.toString()),stuNameExam.toString(),ackIniLetterDateNew,ackExamdate1New,ackExamdate2New,ackHallTckDateNew});
+			
+			System.out.println(" INSIDE insert ACK table SUCCESS");
+		
 			
 			
 		}

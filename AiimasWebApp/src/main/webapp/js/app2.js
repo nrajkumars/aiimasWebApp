@@ -28,17 +28,17 @@ function onPostsearchByPrCodePrNo(data) {
 			parsedData = JSON.parse(data);
 			
 		
-			if(parsedData.Address["sa_name"]!=null){
-				document.getElementById("sa_name").innerHTML = parsedData.Address["sa_name"];
-			}
+				if(parsedData.Admin["ad_name"]!=null){
+					document.getElementById("sa_name").innerHTML = parsedData.Admin["ad_name"];
+				}
 		
 				
 				if(parsedData.Admin["ad_durtn"]!=null){
 					document.getElementById("ad_durtn").innerHTML = parsedData.Admin["ad_durtn"];
 				}
 		
-				if(parsedData.Address["sa_dipcode"]!=null){
-					document.getElementById("ad_dipcode").innerHTML = parsedData.Address["sa_dipcode"];
+				if(parsedData.Admin["ad_dipcode"]!=null){
+					document.getElementById("ad_dipcode").innerHTML = parsedData.Admin["ad_dipcode"];
 				}
 				if(parsedData.Admin["ad_sesmon"]!=null){
 					document.getElementById("ad_sesmon").innerHTML = parsedData.Admin["ad_sesmon"];
@@ -112,7 +112,7 @@ function onPostsearchByPrCodePrNo(data) {
 
 
 
-function getCurrnetPRNo() {
+function getNextPRNo() {
 	
 	console.log('getCurrnetPRNo   clicked rajjj ');
 	
@@ -131,13 +131,17 @@ function getCurrnetPRNo() {
 function onPostGetPRNo(data) {
 	console.log('RESPONSE POST  onPostGetPRNo in app .JS:' + data);
 	var parsedData;
-		
+	
 	if (data != null) {
-			// TODO Sakthi
-		
-			try {
-			// Parse JSON
+
+		try{
 			parsedData = JSON.parse(data);
+			
+			if(parsedData["max"]!=null){
+					console.log('RESPONSE POST  onPostGetPRNo in app .JS:' + parsedData["max"]);
+			
+				document.getElementById("prNo1").value =  parsedData["max"] +1;
+			}
 			} catch (e) {
 				console.log("data error, Reason"+e.toString());
 			}
@@ -238,6 +242,8 @@ function saveExamApplication() {
 	
 	var prCodeExam = document.getElementById('prCodeExam').value;
 	var prNoExam = document.getElementById('prNoExam').value;
+	
+	var stuNameExam = document.getElementById('stuNameExam').value;
 	var diplomaCodeExam = document.getElementById('diplomaCodeExam').value;
 	var durationExam = document.getElementById('durationExam').value;
 	var noofPaperExam = document.getElementById('noofPaperExam').value;
@@ -245,18 +251,25 @@ function saveExamApplication() {
 	var semMonthExam = document.getElementById('semMonthExam').value;
 	var semYearExam = document.getElementById('semYearExam').value;
 	var enterDateExam = document.getElementById('enterDateExam').value;
-	var stuNameExam = document.getElementById('stuNameExam').value;
+	
 	var examStateCode= document.getElementById('examStateCode').value;
 	var examCenterCode= document.getElementById('examCenterCode').value;
-	var examPapers= document.getElementById('examPapers').value;
+	var examStateName= document.getElementById('examStateName').value;
+	var examCenterName= document.getElementById('examCenterName').value;
+
+	var ackIniLetterDate= document.getElementById('ackIniLetterDate').value
+	var ackHallTckDate = document.getElementById('ackHallTckDate').value
+	var ackExamdate1= document.getElementById('ackExamdate1').value
+	var ackExamdate2= document.getElementById('ackExamdate2').value
 	
-	var examSemstr= document.getElementById('examSemstr').value;
-	var examNewnoPapers= document.getElementById('examNewnoPapers').value;
-	var examOldnoPapers= document.getElementById('examOldnoPapers').value;
-	var examTotalPaper= document.getElementById('examTotalPaper').value;
-	var examPassFlag= document.getElementById('examPassFlag').value;
+	var oldnofpapr= document.getElementById('oldnofpapr').value;
+	var ea_paprstr= document.getElementById('ea_paprstr').value;
 	
-	//no of paper ??
+	
+	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
+	
+	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO
+	//var examTotalPaper= document.getElementById('examTotalPaper').value;
 	
 //	if (examStateCode == "" || prno == "") {
 //			alert("Please enter the values in P.R.Code and P.R.No")
@@ -266,7 +279,7 @@ function saveExamApplication() {
 	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
 	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
 	//}else{
-		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData);
+		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examStateName":examStateName,"examCenterName":examCenterName,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostgetExamData);
 	//}
 }
 

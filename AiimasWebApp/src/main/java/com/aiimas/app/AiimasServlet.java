@@ -506,7 +506,7 @@ public class AiimasServlet extends HttpServlet {
 
 						// SAVE EXAM Details
 							
-							System.out.println(" start --  SAVE  Admission ");
+							System.out.println(" start --  SAVE EXAM application");
 							
 							String prCodeExam = request.getParameter("prCodeExam");
 							String prNoExam = request.getParameter("prNoExam");
@@ -519,15 +519,20 @@ public class AiimasServlet extends HttpServlet {
 							String stuNameExam = request.getParameter("stuNameExam");
 							String examStateCode = request.getParameter("examStateCode");
 							String examCenterCode = request.getParameter("examCenterCode");
-							String examPapers = request.getParameter("examPapers");
-							String examSemstr = request.getParameter("examSemstr");
-							String examNewnoPapers = request.getParameter("examNewnoPapers");
-							String examOldnoPapers = request.getParameter("examOldnoPapers");
-							String examTotalPaper = request.getParameter("examTotalPaper");
-							String examPassFlag = request.getParameter("examPassFlag");
+							String examStateName = request.getParameter("examStateName");
+							String examCenterName = request.getParameter("examCenterName");
+							
+							String ackIniLetterDate = request.getParameter("ackIniLetterDate");
+							String ackHallTckDate= request.getParameter("ackHallTckDate");
+							String ackExamdate1 = request.getParameter("ackExamdate1");
+							String ackExamdate2 = request.getParameter("ackExamdate2");
+							
+							String oldnofpapr = request.getParameter("oldnofpapr");
+							String ea_paprstr = request.getParameter("ea_paprstr");
+						//	String examPassFlag = request.getParameter("examPassFlag");
 							
 										
-							ExamApplication examApplication = new ExamApplication();
+							
 							Map input = new HashMap();
 							input.put("prCodeExam", prCodeExam);
 							input.put("prNoExam", prNoExam);
@@ -540,18 +545,21 @@ public class AiimasServlet extends HttpServlet {
 							input.put("stuNameExam", stuNameExam);
 							input.put("examStateCode", examStateCode);
 							input.put("examCenterCode", examCenterCode);
-							input.put("examPapers", examPapers);
-							input.put("examSemstr", examSemstr);
-							input.put("examNewnoPapers", examNewnoPapers);
-							input.put("examOldnoPapers", examOldnoPapers);
-							input.put("examTotalPaper", examTotalPaper);
-							input.put("examPassFlag", examPassFlag);
-
 							
+							input.put("examStateName", examStateName);
+							input.put("examCenterName", examCenterName);
 							
+							input.put("ackIniLetterDate", ackIniLetterDate);
+							input.put("ackHallTckDate", ackHallTckDate);
+							input.put("ackExamdate1", ackExamdate1);
+							input.put("ackExamdate2", ackExamdate2);
+							input.put("oldnofpapr", oldnofpapr);
+							input.put("ea_paprstr", ea_paprstr);
 							
-							//Map examDetails = 
-								examApplication.insertExam(input);
+							System.out.println(" RESPONSE examDetails befr   ackHallTckDate -- "+ackHallTckDate);
+							
+							ExamApplication examApplication = new ExamApplication();
+							examApplication.insertExam(input);
 							System.out.println(" RESPONSE examDetails sucesses -- ");
 							
 							Map response1 = new HashMap();
