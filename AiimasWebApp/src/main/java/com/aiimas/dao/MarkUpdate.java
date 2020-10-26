@@ -17,45 +17,42 @@ public class MarkUpdate extends BaseDao {
 			
 		
 			Map finaldata = new HashMap();
-			String admin = new String("Admin");
+			String exam = new String("Exam");
 			
-			//String fee = new String("Fee");
+			
+			String mDipCode = new String("BA");  // todo get from first sql output
+			String mDuration = new String("SIX MONTHS");
 			
 			System.out.println(" INSIDE getMarkDetails --  going to run the SQL = "+prNum+","+prCode );
 			
 			if (prNum != null && prNum.toString().trim().length() > 0) {
 				if((prCode != null && prCode.toString().trim().length() > 0)) {
 					
-					// Read from ADMIN table
-					String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
-					List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-				
-					if (data1 != null && data1.size() > 0) {
-						//return (Map) data1.get(0);
-						finaldata.put(admin, data1.get(0));
-					}
 					
-					// Read form Marks table  READ many rows
-					String getMarksDataSql = "select * from public.appear where ap_prcode = ? and ap_prno = ?";
+					String getMarksDataSql = "select EA_DIPCODE, EA_SESMON, EA_SESYR, EA_DURTN, EA_NAME, EA_STNAME, EA_CENTRE1, EA_NOFPAPR from public.EAPPL WHERE EA_PRCODE =? and EA_PRNO=?";
 					List data2 = executeFetchSql(getMarksDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 				
 					if (data2 != null && data2.size() > 0) {
-						//return (Map) data2.get(0);
-						for (int ii = 1; ii <= data2.size()-1; ii++) {
-							String marks = new String("Marks"+ii);
-							finaldata.put(marks, data2.get(ii));
-							System.out.println(" INSIDE getMarkDetails MARKS - "+ii);  
-						}
+						//return (Map) data1.get(0);
+						finaldata.put(exam, data2.get(0));
 					}
 					
-//					//// Read form Fee table
-//					String getFeeDataSql = "select * from public.fees where fe_prcode = ? and fe_prno = ?";
-//					List data3 = executeFetchSql(getFeeDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-//				
-//					if (data3 != null && data3.size() > 0) {
-//						//return (Map) data3.get(0);
-//						finaldata.put(fee, data3.get(0));
-//					}
+							
+					// Todo get dipcode and duration from above sql
+					
+					
+//					//// Read form Dip PAPERS
+					String getPaperListSql = "select dp_semster, dp_paperno, dp_paprnam, dp_paperid FROM PUBLIC.DIPPAPER WHERE dp_dipcode= ? AND dp_durtn= ?";
+					List data5 = executeFetchSql(getPaperListSql, new Object[]{mDipCode, mDuration});
+				
+					if (data5 != null && data5.size() > 0) {
+						//return (Map) data2.get(0);
+						for (int ii = 1; ii <= data5.size()-1; ii++) {
+							String papers = new String(" PaperList "+ii);
+							finaldata.put(papers, data5.get(ii));
+							
+						}
+					}
 					
 					return finaldata;
 				}

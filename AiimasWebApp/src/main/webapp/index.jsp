@@ -854,15 +854,25 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<label class="w3-text-brown"><b>No of paper:</b></label>
 			<input class="w3-input w3-border " type="text" id="noofPaperMark" ><br>
 		  </div>
+		  
+		  <div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="SemMonthMark" ><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
+			<input class="w3-input w3-border " type="text" id="SemYearMark" ><br>
+		  </div>
   		
    
     	<div class="w3-half">
-			<label class="w3-text-brown"><b>State:</b></label>
+			<label class="w3-text-brown"><b>State Name:</b></label>
 			<input class="w3-input w3-border " type="text" id="stateMark" ><br>
 		  </div>
 		  
 		  	<div class="w3-half">
-			<label class="w3-text-brown"><b>Center:</b></label>
+			<label class="w3-text-brown"><b>Center Name:</b></label>
 			<input class="w3-input w3-border " type="text" id="centerMark" ><br>
 		  </div>
   		
