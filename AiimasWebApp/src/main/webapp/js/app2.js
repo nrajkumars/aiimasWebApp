@@ -633,6 +633,32 @@ function returnFormatDate(inputDate){
 	  
 	  return ad_entdate11 = yyyy+'-'+mm+'-'+dd;
 }
+
+function clearAllAtrbutes() {
+	
+	document.getElementById("stuName1").value =  "";
+	document.getElementById("papers1").value = ""; 
+	document.getElementById("emailid1").value = ""; 
+	document.getElementById("state1").value = ""; 
+	document.getElementById("pincode1").value = ""; 
+	document.getElementById("diplomaCodeUad").value = ""; 
+	document.getElementById("mobNum1").value = ""; 
+	document.getElementById("address31").value = ""; 
+	document.getElementById("address21").value = ""; 
+	document.getElementById("address11").value = ""; 
+	document.getElementById("address41").value = ""; 
+	document.getElementById("semMonth1").value = ""; 
+	document.getElementById("semYear1").value = ""; 
+	document.getElementById("duration1").value = ""; 
+	document.getElementById("feepaidmode1").value = ""; 
+	document.getElementById("feeref1").value = ""; 
+	document.getElementById("paidamt1").value = ""; 
+	document.getElementById("totfee1").value = ""; 
+		document.getElementById("dueDate1").value = ""; 
+		document.getElementById("feepaiddate1").value = ""; 
+}
+
+
 // ADD ADMISSION
 
 function addAdmission() {
@@ -1074,35 +1100,7 @@ function getSelectedDipcode() {
 }
 
 
-function clearAllAtrbutes() {
-	document.getElementById("duration").selectedIndex = "0";
-	
-		document.getElementById('semMonth').value="";
-		document.getElementById('semYear').value="";
-		document.getElementById('enterDate').value="";
-		document.getElementById('prCode11').value="";
-		document.getElementById('prNo1').value="";
-		document.getElementById('stuName').value="";
-		document.getElementById('prNo1').value="";
-		
-		document.getElementById('pincode').value="";
-		document.getElementById('state').value="";
-		
-		document.getElementById('address1').value="";
-		document.getElementById('address2').value="";
-		document.getElementById('address3').value="";
-		document.getElementById('address4').value="";
-		document.getElementById('phonenum').value="";
-		document.getElementById('mobNum').value="";
-		document.getElementById('emailid').value="";
-		document.getElementById('papers').value="";
-		document.getElementById('dueDate').value="";
-		document.getElementById('totfee').value="";
-		document.getElementById('paidamt').value="";
-		document.getElementById('feepaiddate').value="";
-		document.getElementById('feepaidmode').value="";
-		document.getElementById('feeref').value="";
-}
+
 
 
 $(function(){
