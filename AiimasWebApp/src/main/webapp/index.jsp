@@ -390,7 +390,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 			<button class="w3-button w3-blue" id="resultAddAdm" onclick="addAdmission()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
-			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
+			<button class="w3-button w3-red" onclick="clearaddAdmission()" >Clear</button>
 			
 			<!--  Sakthi to disply the success or error got from response
 				 clear button clear all values
@@ -1791,6 +1791,18 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <p>Successful !!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmission').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="newadmissionfail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('newadmissionfail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">New Admission</h2>
+      <p>Failed !!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmissionfail').style.display='none'">OK</button>
     </div>
   </div>
 </div>
