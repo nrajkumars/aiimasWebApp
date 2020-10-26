@@ -472,6 +472,48 @@ function onPostgetModifyAdmData(data) {
 				console.log(' NMAE'+parsedData1.Admin["ad_name"]);
 	
 				document.getElementById("stuName1").value =  parsedData1.Admin["ad_name"];
+				
+				document.getElementById("papers1").value = parsedData1.Admin["ad_nofpapr"]; 
+				
+				document.getElementById("emailid1").value = parsedData1.Address["sa_email"]; 
+				
+				document.getElementById("state1").value = parsedData1.Address["sa_state"]; 
+				document.getElementById("pincode1").value = parsedData1.Address["sa_pincode"]; 
+				document.getElementById("diplomaCodeUad").value = parsedData1.Address["sa_dipcode"]; 
+				document.getElementById("mobNum1").value = parsedData1.Address["sa_mobile"]; 
+				document.getElementById("address31").value = parsedData1.Address["sa_add3"]; 
+				document.getElementById("address21").value = parsedData1.Address["sa_add2"]; 
+				document.getElementById("address11").value = parsedData1.Address["sa_add1"]; 
+				document.getElementById("address41").value = parsedData1.Address["sa_add4"]; 
+				
+				document.getElementById("semMonth1").value = parsedData1.Fee["fe_sesmon"]; 
+				document.getElementById("semYear1").value = parsedData1.Fee["fe_sesyr"]; 
+				
+				document.getElementById("duration1").value = parsedData1.Admin["ad_durtn"]; 
+				 
+				  
+				
+				document.getElementById("feepaidmode1").value = parsedData1.Fee["fe_mode"]; 
+				document.getElementById("feeref1").value = parsedData1.Fee["fe_ref"]; 
+				
+				
+				document.getElementById("paidamt1").value = parsedData1.Admin["ad_paidamt"]; 
+				document.getElementById("totfee1").value = parsedData1.Admin["ad_feeamt"]; 
+				
+				if(parsedData1.Admin["ad_entdate"]!=null){
+					var endDate = returnFormatDate(parsedData1.Admin["ad_entdate"]);
+					document.getElementById("dueDate1").value = endDate; 
+				}
+				
+				  
+				if(parsedData1.Admin["ad_feedate"]!=null){
+					var feedate = returnFormatDate(parsedData1.Admin["ad_feedate"]);
+					document.getElementById("feepaiddate1").value = feedate; 
+				}  
+				
+				
+				
+				
 			}
 			
 			//TODO SAKTHI
@@ -576,7 +618,21 @@ function onPostgetModifyAdmData(data) {
 
 }
 //
+function returnFormatDate(inputDate){
+	var ad_entdate11 = new Date(inputDate);
+	  var dd = ad_entdate11.getDate();
 
+	  var mm = ad_entdate11.getMonth()+1; 
+	  var yyyy = ad_entdate11.getFullYear();
+	  if(dd<10)   {
+	      dd='0'+dd;
+	  } 
+	  if(mm<10)   {
+	      mm='0'+mm;
+	  } 
+	  
+	  return ad_entdate11 = yyyy+'-'+mm+'-'+dd;
+}
 // ADD ADMISSION
 
 function addAdmission() {
