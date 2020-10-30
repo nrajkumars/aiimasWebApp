@@ -631,7 +631,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="resultExam" onclick="getExamData()">&nbsp;&nbsp;GET Exam Detail</button><br> <br>
+			<button class="w3-button w3-blue" id="resultExam" onclick="getExamData1()">&nbsp;&nbsp;GET Exam Detail</button><br> <br>
 			<br>
 		  </div>
 		  
@@ -756,7 +756,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			<!--    BASED on the no of papers - this has to come dynamic to match the paper count  -->
   			<div class="w3-container w3-card-4">
   			<h3>Papers</h3>
-			  <p>
+  			<div id="slct2"></div>
+			<!--   <p>
 			  <input class="w3-check" type="checkbox" value="I" > 
 			  <label>Paper 1</label></p>
 			  <p>
@@ -769,12 +770,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			  <p>
 			  <input class="w3-check" type="checkbox" value="IV">
 			  <label> Paper 4</label></p>
-			  <p>
+			  <p>  -->
 			</div>
   			
   			<!--  Sakthi this hase to be changed based on selection -->
-  			<input type="hidden" name="Old no of Paper selected" id="oldnofpapr"  value ="2">
-  			<input type="hidden" name="paper selected string" id="ea_paprstr"  value ="I,II">
+  			<input type="hidden" name="Old no of Paper selected" id="oldnofpapr"  value ="">
+  			<input type="hidden" name="paper selected string" id="ea_paprstr"  value ="">
  		    
  		  
 		
@@ -1788,7 +1789,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('newadmission').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
       <h2 class="w3-wide">New Admission</h2>
-      <p>Successful !!</p>
+      <p>Successful !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmission').style.display='none'">OK</button>
     </div>

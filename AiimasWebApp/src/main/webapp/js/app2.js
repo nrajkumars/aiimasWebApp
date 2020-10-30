@@ -189,9 +189,9 @@ function onPostsearchByName(data) {
 
 // get EXam details
 
-function getExamData() {
+function getExamData1() {
 	
-	console.log('getExamData  on EXAM clicked rajjj ');
+	console.log('getExamData...  on EXAM clicked rajjj ');
 	
 	var prcode = document.getElementById('prCodeExam').value;
 	var prno = document.getElementById('prNoExam').value;
@@ -200,22 +200,75 @@ function getExamData() {
 			alert("Please enter the values in P.R.Code and P.R.No")
 	  }else{
 	
-		postAjax('rs',{"app":"AiimasPost","module":"ExamApplication","action":"examDetail","prNo":prno,"prCode":prcode}, onPostgetExamData);
+		postAjax('rs',{"app":"AiimasPost","module":"ExamApplication","action":"examDetail","prNo":prno,"prCode":prcode}, onPostgetExamData1);
 	}
 }
 
-function onPostgetExamData(data) {
+function onPostgetExamData1(data) {
 	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {
 						
-					
 			try {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
 			
+			//alert(parsedData1.Admin["ad_name"]);
+			//alert('im in')
+			//TODO SAKTHI  LOAD the exam application screen with this values
+			document.getElementById("stuNameExam").value =  parsedData1.Admin["ad_name"];
+			document.getElementById("diplomaCodeExam").value =  parsedData1.Admin["ad_dipcode"];
+			document.getElementById("durationExam").value =  parsedData1.Admin["ad_durtn"];
+			document.getElementById("noofPaperExam").value =  parsedData1.Admin["ad_nofpapr"];
+			
+			document.getElementById("stuNameExam").readOnly = true;
+			document.getElementById("diplomaCodeExam").readOnly = true;
+			document.getElementById("durationExam").readOnly = true;
+			document.getElementById("noofPaperExam").readOnly = true;
+			
+			document.getElementById("prCodeExam").readOnly = true;
+			document.getElementById("prNoExam").readOnly = true;
+			
+			
+			var paperNumbers = document.getElementById("noofPaperExam").value ;
+			
+			console.log('paperNumbers... '+paperNumbers);
+			
+			var s2 = document.getElementById('slct2');
+			for (var i = 1; i <= paperNumbers; i++) {
+				
+				console.log('paper... '+i);
+			  
+				 	var nameinp = ' Paper '+i;
+				 	var valinp = i;
+				 	
+				 	console.log('nameinp... '+nameinp);
+				 	console.log('valinp... '+valinp);
+				 	
+			        var checkbox = document.createElement("input");
+			        checkbox.type = "checkbox";
+			        checkbox.name = 'cboxpaper';
+			        checkbox.value = valinp;
+			        s2.appendChild(checkbox);
+
+			        var label = document.createElement('label')
+			        label.htmlFor = nameinp;
+			        label.appendChild(document.createTextNode(nameinp));
+
+			        s2.appendChild(label);
+			        s2.appendChild(document.createElement("br"));   
+			  
+			}
+			
+			
+			
+			    
+			        
+			 
 					
+			
+			
 			
 			//TODO SAKTHI  LOAD the exam application screen with this values
 
@@ -262,8 +315,19 @@ function saveExamApplication() {
 	var ackExamdate1= document.getElementById('ackExamdate1').value
 	var ackExamdate2= document.getElementById('ackExamdate2').value
 	
-	var oldnofpapr= document.getElementById('oldnofpapr').value;
-	var ea_paprstr= document.getElementById('ea_paprstr').value;
+	var oldnofpapr= document.getElementById('oldnofpapr').value=noofPaperExam;
+	
+	var items=document.getElementsByName('cboxpaper');
+	var selectedItems="";
+	for(var i=0; i<items.length; i++){
+		console.log('  '+i+'    '+items[i].checked)
+		if( items[i].checked==true)
+			selectedItems+=items[i].value+", ";
+	}
+	console.log('cboxpaper  '+selectedItems);
+	selectedItems = selectedItems.replace(/,\s*$/, "");    
+	console.log('selectedItems .... '+selectedItems);
+	document.getElementById('ea_paprstr').value = selectedItems;
 	
 	
 	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
@@ -335,6 +399,41 @@ function getMarkData() {
 	}
 }
 
+const sort_by = (field, reverse, primer) => {
+
+	  const key = primer ?
+	    function(x) {
+	      return primer(x[field])
+	    } :
+	    function(x) {
+	      return x[field]
+	    };
+
+	  reverse = !reverse ? 1 : -1;
+
+	  return function(a, b) {
+	    return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+	  }
+	}
+
+
+function sortByKey(jsObj){
+    var sortedArray = [];
+
+    // Push each JSON Object entry in array by [key, value]
+    for(var i in jsObj)
+    {
+        sortedArray.push([i, jsObj[i]]);
+    }
+
+    // Run native sort function and returns sorted array.
+    return sortedArray.sort();
+}
+
+
+
+
+
 function onPostgetMarkData(data) {
 	console.log('RESPONSE POST in   onPostgetMarkData  app .JS:' + data);
 	var parsedData1;
@@ -344,9 +443,38 @@ function onPostgetMarkData(data) {
 					
 			try {
 			// Parse JSON
-			parsedData1 = JSON.parse(data);
+			var parsedData1pr = JSON.parse(data);
 			
-					
+			var sortedbyKeyJSONArray = sortByKey(parsedData1pr);
+			console.log(sortedbyKeyJSONArray);
+			
+			
+			var paperNoPaperName = {};
+			var paperList = []
+			paperNoPaperName.paperList = paperList;
+			console.log(paperNoPaperName);
+
+			//sortedbyKeyJSONArray.PaperList 1["dp_paperno"]
+
+			var paperList = {
+			  "paperNoNew": firstName,
+			  "paperNameNew": lastName
+			}
+			paperNoPaperName.paperList.push(paperList);
+			console.log(paperNoPaperName);
+
+
+			console.log(JSON.stringify(paperNoPaperName));			
+			
+			console.log('---------'+parsedData1pr);
+			//Now you can sort by any field at will...
+
+			//const homes=[{h_id:"3",city:"Dallas",state:"TX",zip:"75201",price:"162500"},{h_id:"4",city:"Bevery Hills",state:"CA",zip:"90210",price:"319250"},{h_id:"5",city:"New York",state:"NY",zip:"00010",price:"962500"}];
+
+			// Sort by price high to low
+			//console.log(parsedData1pr.sort(sort_by('dp_paperno', false, parseInt)));
+			
+			//console.log(parsedData1pr.sort(sortByProperty('dp_paperno')));
 			
 			//TODO SAKTHI  LOAD the exam application screen with this values
 
@@ -415,10 +543,13 @@ function onPostgetExamData(data) {
 			try {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
-			
 					
-			
+			//alert('im in')
 			//TODO SAKTHI  LOAD the exam application screen with this values
+			document.getElementById("stuNameExam").value =  parsedData1.Admin["ad_name"];
+			document.getElementById("diplomaCodeExam").value =  parsedData1.Admin["ad_dipcode"];
+			document.getElementById("durationExam").value =  parsedData1.Admin["ad_durtn"];
+			document.getElementById("noofPaperExam").value =  parsedData1.Admin["ad_nofpapr"];
 
 
 		} catch (e) {
@@ -690,10 +821,10 @@ function clearaddAdmission() {
 
 function addAdmission() {
 	
-	console.log('addAdmission clicked rajjj ');
+		console.log('addAdmission clicked rajjj ');
 	
-	var stuName = document.getElementById('stuName').value;
-	var address1 = document.getElementById('address1').value;
+		var stuName = document.getElementById('stuName').value;
+		var address1 = document.getElementById('address1').value;
 		var diplomaCode = document.getElementById('diplomaCode').value;
 		var duration = document.getElementById('duration').value;
 		var semMonth = document.getElementById('semMonth').value;
@@ -737,11 +868,20 @@ function addAdmission() {
 
 
 function onPostAddAdmission(data) {
+	
 	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			document.getElementById('newadmission').style.display='block';
 
+			parsedData1 = JSON.parse(data);	
+			
+			if (parsedData1 != null) {
+				if(parsedData1.Success.trim().length>0){
+					document.getElementById('newadmission').style.display='block';
+				}else if(parsedData1.Failure.trim().length>0){
+					document.getElementById('newadmissionfail').style.display='block';
+				}
+			}
 		}
 }
 
@@ -749,32 +889,41 @@ function onPostAddAdmission(data) {
 // UPDATE Admission
 function updateAdmission(admType) {
 	
+	var confirmResult;
+	if(admType == 'deleteAdm'){
+	 confirmResult = confirm("Are you sure to delete?");
+	}
+	
 	console.log('updateAdmission clicked rajjj ');
 	
 	var stuName = document.getElementById('stuName1').value;
 	var address1 = document.getElementById('address11').value;
-		var diplomaCode = document.getElementById('diplomaCode3').value;
-		var duration = document.getElementById('duration1').value;
-		var semMonth = document.getElementById('semMonth1').value;
-		var semYear = document.getElementById('semYear1').value;
-		var enterDate = document.getElementById('enterDate1').value;
-		var prCode11 = document.getElementById('prCode111').value;
-		var prNo1 = document.getElementById('prNo11').value;
-		var paidamt = document.getElementById('paidamt1').value;
-		var address2 = document.getElementById('address21').value;
-		var address3 = document.getElementById('address31').value;
-		var address4 = document.getElementById('address41').value;
-		var pincode = document.getElementById('pincode1').value;
-		var mobNum = document.getElementById('mobNum1').value;
-		var state = document.getElementById('state1').value;
-		var phonenum = document.getElementById('phonenum1').value;
-		var emailid = document.getElementById('emailid1').value;
-		var dueDate = document.getElementById('dueDate1').value;
-		var totfee = document.getElementById('totfee1').value;
-		var papers = document.getElementById('papers1').value;
-		var feepaiddate = document.getElementById('feepaiddate1').value;
-		var feepaidmode = document.getElementById('feepaidmode1').value;
-		var feeref = document.getElementById('feeref1').value;
+	var diplomaCode = document.getElementById('diplomaCode3').value;
+	var duration = document.getElementById('duration1').value;
+	var semMonth = document.getElementById('semMonth1').value;
+	var semYear = document.getElementById('semYear1').value;
+	var enterDate = document.getElementById('enterDate1').value;
+	var prCode11 = document.getElementById('prCode111').value;
+	var prNo1 = document.getElementById('prNo11').value;
+	var paidamt = document.getElementById('paidamt1').value;
+	var address2 = document.getElementById('address21').value;
+	var address3 = document.getElementById('address31').value;
+	var address4 = document.getElementById('address41').value;
+	var pincode = document.getElementById('pincode1').value;
+	var mobNum = document.getElementById('mobNum1').value;
+	var state = document.getElementById('state1').value;
+	var phonenum = document.getElementById('phonenum1').value;
+	var emailid = document.getElementById('emailid1').value;
+	var dueDate = document.getElementById('dueDate1').value;
+	var totfee = document.getElementById('totfee1').value;
+	var papers = document.getElementById('papers1').value;
+	var feepaiddate = document.getElementById('feepaiddate1').value;
+	var feepaidmode = document.getElementById('feepaidmode1').value;
+	var feeref = document.getElementById('feeref1').value;
+	
+	if(confirmResult){
+	
+		console.log('updateAdmission delete process ');
 		
 	
 		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
@@ -788,12 +937,25 @@ function updateAdmission(admType) {
 	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":admType,"stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
 
 		   }
+	}else if(admType == 'updateAdm'){
+		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
+			alert("Please enter only numbers for PINCODE, PHONE NUMBER, SEM YEAR, MOBILE, NO OF PAPERS, TOTAL FEE AMT, FEE PAID AMOUNT ")
+			
+		}else if (prCode11 == "" || prNo1 == "" || diplomaCode == "")
+		   {
+			alert("Please enter the values in Diploma, P.R.Code and P.R.No")
+		   }else{
+	
+	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":admType,"stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
+
+		   }
+	}
 
 }
 
 
 function onPostUpdateAdmission(data) {
-	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
+	console.log(' onPostUpdateAdmission  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
 			document.getElementById('newadmission').style.display='block';
@@ -824,7 +986,7 @@ function searchInstitue() {
 
 }
 function onPostSearchInstitue(data) {
-	console.log(' onPostAddAdmission  RESPONSE POST in app .JS:' + data);
+	console.log(' onPostSearchInstitue  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
 
