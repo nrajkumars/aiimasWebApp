@@ -645,14 +645,14 @@ public class AiimasServlet extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			System.out.println("in Servlet CATCH ERROR :: AIIMAS Servlet -- "+e.toString());
+			System.out.println("in Servlet CATCH Failure :: AIIMAS Servlet -- "+e.toString());
 //			StringWriter sw = new StringWriter();
 //			PrintWriter pw = new PrintWriter(sw);
 //			e.printStackTrace(pw);
 //			pw.close();
 //			sw.close();
 			
-			response = "ERROR: " + e.toString();
+			response = "Failure" + e.toString();
 			//Map ret = new HashMap();
 			//ret.put("error", "Unable to process request due to technical error TRY again");
 			writeResponse(response, resp);
