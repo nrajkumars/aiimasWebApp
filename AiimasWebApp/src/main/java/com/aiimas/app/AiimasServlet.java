@@ -651,11 +651,13 @@ public class AiimasServlet extends HttpServlet {
 //			e.printStackTrace(pw);
 //			pw.close();
 //			sw.close();
-			
-			response = "Failure" + e.toString();
+			String responsestatus = new String("Failure");
+			Map responseerror = new HashMap();
+			responseerror.put(responsestatus, e.toString());
+		
 			//Map ret = new HashMap();
 			//ret.put("error", "Unable to process request due to technical error TRY again");
-			writeResponse(response, resp);
+			writeResponse(responseerror, resp);
 		}
 		
 		
