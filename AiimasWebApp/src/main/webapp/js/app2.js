@@ -330,6 +330,9 @@ function saveExamApplication() {
 	document.getElementById('ea_paprstr').value = selectedItems;
 	
 	
+	console.log('saveExamApplication  oldnofpapr'+oldnofpapr);
+	console.log('saveExamApplication  ea_paprstr'+ea_paprstr);
+	
 	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
 	
 	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO

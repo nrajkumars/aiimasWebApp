@@ -18,6 +18,7 @@ public class MarkUpdate extends BaseDao {
 		
 			Map finaldata = new HashMap();
 			String exam = new String("Exam");
+		
 			
 			
 			String mDipCode = new String("BA");  // todo get from first sql output
@@ -48,7 +49,7 @@ public class MarkUpdate extends BaseDao {
 					if (data5 != null && data5.size() > 0) {
 						//return (Map) data2.get(0);
 						for (int ii = 1; ii <= data5.size()-1; ii++) {
-							String papers = new String(" PaperList "+ii);
+							String papers = new String("PaperList"+ii);
 							finaldata.put(papers, data5.get(ii));
 							
 						}

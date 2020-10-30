@@ -19,8 +19,7 @@ public class ExamApplication extends BaseDao {
 			Map finaldata = new HashMap();
 			String admin = new String("Admin");
 			String exam = new String("Exam");
-			//String fee = new String("Fee");
-			
+		
 			System.out.println(" INSIDE getExamDetails --  going to run the SQL = "+prNum+","+prCode );
 			
 			if (prNum != null && prNum.toString().trim().length() > 0) {
@@ -34,23 +33,29 @@ public class ExamApplication extends BaseDao {
 						finaldata.put(admin, data1.get(0));
 					}
 					
-//					// Read form Exam table
-//					String getExamsDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
-//					List data2 = executeFetchSql(getExamsDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-//				
-//					if (data2 != null && data2.size() > 0) {
-//						//return (Map) data2.get(0);
-//						finaldata.put(exam, data2.get(0));
-//					}
+//					// Read form state table
+					String getStateDataSql = "select * from public.state";
+					List data2 = executeFetchSql(getStateDataSql);
+				
+					if (data2 != null && data2.size() > 0) {
+						for (int ii = 1; ii <= data2.size()-1; ii++) {
+							String state = new String("State"+ii);
+							finaldata.put(state, data2.get(ii));
+							
+						}
+					}
 					
-//					//// Read form Fee table
-//					String getFeeDataSql = "select * from public.fees where fe_prcode = ? and fe_prno = ?";
-//					List data3 = executeFetchSql(getFeeDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-//				
-//					if (data3 != null && data3.size() > 0) {
-//						//return (Map) data3.get(0);
-//						finaldata.put(fee, data3.get(0));
-//					}
+					//// Read form Center table
+					String getCenterDataSql = "select * from public.centre";
+					List data3 = executeFetchSql(getCenterDataSql);
+				
+					if (data3 != null && data3.size() > 0) {
+						for (int ii = 1; ii <= data3.size()-1; ii++) {
+							String centre = new String("Centre"+ii);
+							finaldata.put(centre, data3.get(ii));
+							
+						}
+					}
 					
 					return finaldata;
 				}
