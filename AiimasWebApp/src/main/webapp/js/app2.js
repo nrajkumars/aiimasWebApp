@@ -103,10 +103,7 @@ function onPostsearchByPrCodePrNo(data) {
 		document.getElementById('resultTable').style.display = "hide";
 		}
 
-
 }
-
-
 
 // GET CURRENT PR No for Add amission screen
 
@@ -118,7 +115,6 @@ function getNextPRNo() {
 	
 	var prCode11 = document.getElementById('prCode11').value;
 	//var prno = document.getElementById('prNo').value;
-	
 	
 	if (prCode11 == "" ) {
 			alert("Please enter the values in P.R.Code")
@@ -147,8 +143,6 @@ function onPostGetPRNo(data) {
 			}
 	}
 }
-
-
 
 // SEARCH by NAME for Verification
 
@@ -205,7 +199,7 @@ function getExamData1() {
 }
 
 function onPostgetExamData1(data) {
-	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
+	console.log('RESPONSE POST in   onPostgetExamData1  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {
@@ -261,33 +255,154 @@ function onPostgetExamData1(data) {
 			  
 			}
 			
-			
-			
-			    
+			var Stselect = document.getElementById("examStateCodeList"); 
+				
+				  var state = {};  var centre= {}; var state1course = [];
+				  
+				  for (var key in parsedData1) {
+					    if (parsedData1.hasOwnProperty(key)) {
+					        //console.log(key + " -> " + parsedData1[key]);
+					        
+					        if(key.includes('State')){
+					        	var obj = parsedData1[key];
+					        	var textval = '';
+					        	var textopt = '';
+					        	for (var key in obj) {
+					        		  if (obj.hasOwnProperty(key)) {
+					        		    var val = obj[key];
+					        		    console.log(val);
+					        		    console.log('Label '+key);
+					        		    var el = document.createElement("option");
+					        		    
+					        		    if(key.includes('st_stname')){
+					        		    	textval = val;
+					        		    	
+					        		    }
+					        		    if(key.includes('st_stcode')){
+					        		    	textopt = val;
+					        		    }
+					        		    
+					        		  }
+					        		}
+							    el.text = textopt;
+							    el.value = textval+' /'+el.text;
+					        	Stselect.appendChild(el);
+					        }
+					        
+					        if(key.includes('Centre')){
+					        	
+					        	var obj = parsedData1[key];
+					        	
+					        	var statecode1 = '';
+					        	var centrecode1 = '';
+					        	var centrename1 = '';
+					        	for (var key in obj) {
+					        		  if (obj.hasOwnProperty(key)) {
+					        		    var val = obj[key];
+					        		    
+					        		    if(key.includes('ce_stcode')){
+					        		    		statecode1 = val;
+					        		    }
+					        		    if(key.includes('ce_cecode')){
+					        		    	centrecode1 = val;
+					        		    }
+					        		    if(key.includes('ce_cename')){
+					        		    	centrename1 = val;
+					        		    }
+					        		    
+					        		    
+					        		  }
+					        		}
+					        	
+					        	 var objstcentre = {
+					        		        'statecode1': statecode1,
+					        		        'centrecode1': centrecode1,
+					        		        'centrename1': centrename1,
+					        		    }
+					        	 state1course.push(objstcentre);
+					        	 
+					        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
+					        	 
+					        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
+					 			console.log('retrievedObject: ', JSON.parse(retrievedObject));
+					        	
+								  
+					        }
+					    }
+				  }
 			        
-			 
-					
-			
-			
-			
 			//TODO SAKTHI  LOAD the exam application screen with this values
-
 
 		} catch (e) {
 				console.log("data error, Reason"+e.toString());
 			}
-		
-		
-		
-
 		}else{
-		//alert('else');
-		//document.getElementById('resultTable1').style.display = "hide";
 		}
 
 }
 
 // EXAM Save 
+function AddValue(el){
+	  if(el.value.trim() != ''){
+	    var opSelected = dl.querySelector(`[value="${el.value}"]`);
+	    var option = document.createElement("option");
+	    option.value = opSelected.value;
+	    option.text = opSelected.getAttribute('label');
+	    alert(option.text);
+	  }
+	}
+function getSelectedStatecode(){
+	
+	//alert('get selected code');
+	
+	var element_input = document.getElementById('examStateCode');
+    var element_datalist = document.getElementById('examStateCodeList');
+    var opSelected = element_datalist.querySelector(`[value="${element_input.value}"]`);
+    
+    var id = opSelected.getAttribute('value');
+    
+    var n = id.indexOf("/")+1;
+    var n1 = id.length;
+    var code = id.slice(n,n1);
+    
+    var coursebystate = document.getElementById("examCenterCodeList"); 
+    
+    coursebystate.textContent = '';
+    
+    var retrievedObjectTemp = localStorage.getItem('stateCentreMapObject');
+		console.log('retrievedObject2222: ', JSON.parse(retrievedObjectTemp));
+		var retrievedObjec = JSON.parse(retrievedObjectTemp);
+		for (var key in retrievedObjec) {
+		    if (retrievedObjec.hasOwnProperty(key)) {
+		        
+		        var objnk = retrievedObjec[key];
+	        	
+	        	var coursetextopt = '';
+	        	var coursetext = '';
+	        	var statecode1 = '';
+	        	var centrecode1 = '';
+	        	var centrename1 = '';
+	        	for (var key in objnk) {
+	        		  if (objnk.hasOwnProperty(key)) {
+	        		    var val = objnk[key];
+	        		    
+	        		    var el = document.createElement("option");
+	        		    if(key.includes('statecode1')){
+	        		    	if(val.includes(code)){
+	        		    		coursetextopt = objnk['centrecode1'];
+	        		    		coursetext = objnk['centrename1'];
+	        		    		
+	        		    		el.text = coursetextopt;
+	        				    el.value = coursetext+' /'+el.text;
+	        				    coursebystate.appendChild(el);
+	        		    	}
+	        		    }
+	        		  }
+	        	}
+		    }
+		}
+}
+
 
 function saveExamApplication() {
 	
@@ -361,9 +476,21 @@ function onPostgetExamData(data) {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
 			
-					
+			console.log('save exam response '+JSON.stringify(parsedData1));	
+			
+			var stringformjsondata = JSON.stringify(parsedData1);
+			
+			if (stringformjsondata != null) {
+				//if(parsedData1.Success.trim().length>0){   
+				if(stringformjsondata.includes('Success')){ 
+					document.getElementById('newadmission').style.display='block';
+				}else if(stringformjsondata.includes('Failure')){
+					document.getElementById('newadmissionfail').style.display='block';
+				}
+			}
 			
 			//TODO SAKTHI  LOAD the exam application screen with this values
+			
 
 
 		} catch (e) {
@@ -448,6 +575,72 @@ function onPostgetMarkData(data) {
 			// Parse JSON
 			var parsedData1pr = JSON.parse(data);
 			
+			var count = Object.keys(parsedData1pr).length;
+			  console.log('parsedData1pr '+count);
+			  var dict = {};
+			  
+			  for (var key in parsedData1pr) {
+				    if (parsedData1pr.hasOwnProperty(key)) {
+				        console.log(key + " -> " + parsedData1pr[key]);
+				        
+				        if(key == 'PaperList1'){
+					        console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
+					        console.log('PaperList1 paper param >> '+parsedData1pr.PaperList1["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList1["dp_paperno"]] = parsedData1pr.PaperList1["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList2'){
+					        console.log('PaperList2 paper no >> '+parsedData1pr.PaperList2["dp_paperno"]);
+					        console.log('PaperList2 paper param >> '+parsedData1pr.PaperList2["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList2["dp_paperno"]] = parsedData1pr.PaperList2["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList3'){
+					        console.log('PaperList3 paper no >> '+parsedData1pr.PaperList3["dp_paperno"]);
+					        console.log('PaperList3 paper param >> '+parsedData1pr.PaperList3["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList3["dp_paperno"]] = parsedData1pr.PaperList3["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList4'){
+					        console.log('PaperList4 paper no >> '+parsedData1pr.PaperList4["dp_paperno"]);
+					        console.log('PaperList4 paper param >> '+parsedData1pr.PaperList4["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList4["dp_paperno"]] = parsedData1pr.PaperList4["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList5'){
+					        console.log('PaperList5 paper no >> '+parsedData1pr.PaperList5["dp_paperno"]);
+					        console.log('PaperList5 paper param >> '+parsedData1pr.PaperList5["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList5["dp_paperno"]] = parsedData1pr.PaperList5["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList6'){
+					        console.log('PaperList65 paper no >> '+parsedData1pr.PaperList6["dp_paperno"]);
+					        console.log('PaperList6 paper param >> '+parsedData1pr.PaperList6["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList6["dp_paperno"]] = parsedData1pr.PaperList6["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList7'){
+					        console.log('PaperList7 paper no >> '+parsedData1pr.PaperList7["dp_paperno"]);
+					        console.log('PaperList7 paper param >> '+parsedData1pr.PaperList7["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList7["dp_paperno"]] = parsedData1pr.PaperList7["dp_paprnam"];
+				        }
+				        
+				        if(key == 'PaperList8'){
+					        console.log('PaperList8 paper no >> '+parsedData1pr.PaperList8["dp_paperno"]);
+					        console.log('PaperList8 paper param >> '+parsedData1pr.PaperList18["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList8["dp_paperno"]] = parsedData1pr.PaperList8["dp_paprnam"];
+				        }
+				        
+				    }
+				}
+			  
+			  var value = dict[key];
+
+			  var value = dict.key;
+			  for(var key in dict) {
+			     console.log('dict >> '+key + " : " + dict[key]);
+			  }
+			
 			var sortedbyKeyJSONArray = sortByKey(parsedData1pr);
 			console.log(sortedbyKeyJSONArray);
 			
@@ -458,7 +651,7 @@ function onPostgetMarkData(data) {
 			console.log(paperNoPaperName);
 
 			//sortedbyKeyJSONArray.PaperList 1["dp_paperno"]
-
+			/*
 			var paperList = {
 			  "paperNoNew": firstName,
 			  "paperNameNew": lastName
@@ -469,7 +662,7 @@ function onPostgetMarkData(data) {
 
 			console.log(JSON.stringify(paperNoPaperName));			
 			
-			console.log('---------'+parsedData1pr);
+			console.log('---------'+parsedData1pr);*/
 			//Now you can sort by any field at will...
 
 			//const homes=[{h_id:"3",city:"Dallas",state:"TX",zip:"75201",price:"162500"},{h_id:"4",city:"Bevery Hills",state:"CA",zip:"90210",price:"319250"},{h_id:"5",city:"New York",state:"NY",zip:"00010",price:"962500"}];
@@ -532,12 +725,12 @@ function saveMarktodo() {
 	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
 	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
 	//}else{
-		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData);
+		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData2);
 	//}
 }
 
-function onPostgetExamData(data) {
-	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
+function onPostgetExamData2(data) {
+	console.log('RESPONSE POST in   onPostgetExamData2  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {
@@ -546,8 +739,14 @@ function onPostgetExamData(data) {
 			try {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
+			
+			 if (JSON.stringify(parsedData1) == '{}'){
+                 console.log('it is empty');
+             } else{
+            	 console.log('it is not empty');  }
+
+           
 					
-			//alert('im in')
 			//TODO SAKTHI  LOAD the exam application screen with this values
 			document.getElementById("stuNameExam").value =  parsedData1.Admin["ad_name"];
 			document.getElementById("diplomaCodeExam").value =  parsedData1.Admin["ad_dipcode"];
@@ -877,6 +1076,7 @@ function onPostAddAdmission(data) {
 		if (data != null) {
 
 			parsedData1 = JSON.parse(data);	
+			console.log('------------------------------------------------'+parsedData1.Failure);
 			
 			if (parsedData1 != null) {
 				if(parsedData1.Success.trim().length>0){
@@ -946,6 +1146,9 @@ function updateAdmission(admType) {
 			
 		}else if (prCode11 == "" || prNo1 == "" || diplomaCode == "")
 		   {
+			console.log('prCode11 '+prCode11);
+			console.log('prNo1 '+prNo1);
+			console.log('diplomaCode '+diplomaCode);
 			alert("Please enter the values in Diploma, P.R.Code and P.R.No")
 		   }else{
 	
@@ -1291,7 +1494,9 @@ function getSelectedDipcode() {
     alert(d_1);
 }
 
-
+function populateState(){
+	
+}
 
 
 

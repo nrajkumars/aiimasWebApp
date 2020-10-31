@@ -684,12 +684,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 
 		
-			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option">
-	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		<!--  onchange="getSelectedStatecode()" -->
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option" onchange="getSelectedStatecode()">
+	  		<datalist id="examStateCodeList" >
 	  		<option selected value="Choose your option"></option>	
 	  		
-	  		<option value="AP/ANDH"></option>	
+	  		<option value=""></option>	
 	  	
 			
 	  		<!--  SAKTHI get from DB data-->
@@ -710,10 +710,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="examCenterCode" placeholder="Choose your option">
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
-  		
+  		<!--  
   		<option value="HYD/HYDD"></option>	
   		<option value="VI/VIJYA"></option>	
-  		<option value="VS/VISAK"></option>
+  		<option value="VS/VISAK"></option> -->
   		<!--  SAKTHI get from DB data-->
   		
   		</datalist>	
@@ -1878,6 +1878,9 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
+
+
+populateState();
 </script>
 
 </body>

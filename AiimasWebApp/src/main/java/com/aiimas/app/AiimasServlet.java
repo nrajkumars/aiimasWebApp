@@ -653,7 +653,7 @@ public class AiimasServlet extends HttpServlet {
 //			sw.close();
 			String responsestatus = new String("Failure");
 			Map responseerror = new HashMap();
-			responseerror.put(responsestatus, e.toString());
+			responseerror.put(responsestatus, "failed");
 		
 			//Map ret = new HashMap();
 			//ret.put("error", "Unable to process request due to technical error TRY again");
