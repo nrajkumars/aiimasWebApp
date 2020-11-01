@@ -199,7 +199,7 @@ function getExamData1() {
 }
 
 function onPostgetExamData1(data) {
-	console.log('RESPONSE POST in   onPostgetExamData1  app .JS:' + data);
+	//console.log('RESPONSE POST in   onPostgetExamData1  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {
@@ -221,44 +221,57 @@ function onPostgetExamData1(data) {
 			document.getElementById("durationExam").readOnly = true;
 			document.getElementById("noofPaperExam").readOnly = true;
 			
-			document.getElementById("prCodeExam").readOnly = true;
-			document.getElementById("prNoExam").readOnly = true;
+			//document.getElementById("prCodeExam").readOnly = true;
+			//document.getElementById("prNoExam").readOnly = true;
 			
 			
 			var paperNumbers = document.getElementById("noofPaperExam").value ;
-			
-			console.log('paperNumbers... '+paperNumbers);
-			
 			var s2 = document.getElementById('slct2');
+			var elementCb = document.querySelectorAll("input[id='cboxpaper']");
+			var mylabelforCbox = document.querySelectorAll("lbelnew");
+			
+			
+			 if(typeof(elementCb) != 'undefined' && elementCb != null){
+				 
+				 var elem=$("#slct2 input");
+				 $("#slct2").empty().html(elem);
+				 
+			        
+			        for(var i = 0,j=1; i < elementCb.length; i++){
+			        	elementCb[i].parentNode.removeChild(elementCb[i]);
+			        }
+			       
+			        
+			    } else{
+			        console.log('Element does not exist!');
+			       // console.log('==============================elements elements elements----== ---- '+element);
+			    }
+			 
+			
 			for (var i = 1; i <= paperNumbers; i++) {
-				
-				console.log('paper... '+i);
-			  
+				//console.log('paper... '+i);
 				 	var nameinp = ' Paper '+i;
 				 	var valinp = i;
-				 	
-				 	console.log('nameinp... '+nameinp);
-				 	console.log('valinp... '+valinp);
-				 	
+				 	//console.log('nameinp... '+nameinp);
+				 	//console.log('valinp... '+valinp);
 			        var checkbox = document.createElement("input");
 			        checkbox.type = "checkbox";
 			        checkbox.name = 'cboxpaper';
+			        checkbox.id = 'cboxpaper';
 			        checkbox.value = valinp;
 			        s2.appendChild(checkbox);
 
 			        var label = document.createElement('label')
 			        label.htmlFor = nameinp;
+			        label.id = 'labelnew';
 			        label.appendChild(document.createTextNode(nameinp));
 
 			        s2.appendChild(label);
 			        s2.appendChild(document.createElement("br"));   
-			  
 			}
 			
 			var Stselect = document.getElementById("examStateCodeList"); 
-				
 				  var state = {};  var centre= {}; var state1course = [];
-				  
 				  for (var key in parsedData1) {
 					    if (parsedData1.hasOwnProperty(key)) {
 					        //console.log(key + " -> " + parsedData1[key]);
@@ -270,8 +283,8 @@ function onPostgetExamData1(data) {
 					        	for (var key in obj) {
 					        		  if (obj.hasOwnProperty(key)) {
 					        		    var val = obj[key];
-					        		    console.log(val);
-					        		    console.log('Label '+key);
+					        		    //console.log(val);
+					        		    //console.log('Label '+key);
 					        		    var el = document.createElement("option");
 					        		    
 					        		    if(key.includes('st_stname')){
@@ -309,8 +322,6 @@ function onPostgetExamData1(data) {
 					        		    if(key.includes('ce_cename')){
 					        		    	centrename1 = val;
 					        		    }
-					        		    
-					        		    
 					        		  }
 					        		}
 					        	
@@ -320,13 +331,9 @@ function onPostgetExamData1(data) {
 					        		        'centrename1': centrename1,
 					        		    }
 					        	 state1course.push(objstcentre);
-					        	 
 					        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
-					        	 
 					        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
-					 			console.log('retrievedObject: ', JSON.parse(retrievedObject));
-					        	
-								  
+					 			//console.log('retrievedObject: ', JSON.parse(retrievedObject));
 					        }
 					    }
 				  }
@@ -339,6 +346,13 @@ function onPostgetExamData1(data) {
 		}else{
 		}
 
+}
+
+
+function removeElements(elements){
+    for(var i = 0; i < elements.length; i++){
+        elements[i].parentNode.removeChild(elements[i]);
+    }
 }
 
 // EXAM Save 
@@ -446,7 +460,7 @@ function saveExamApplication() {
 	
 	
 	console.log('saveExamApplication  oldnofpapr'+oldnofpapr);
-	console.log('saveExamApplication  ea_paprstr'+ea_paprstr);
+	console.log('saveExamApplication  ea_paprstr'+document.getElementById('ea_paprstr').value);
 	
 	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
 	

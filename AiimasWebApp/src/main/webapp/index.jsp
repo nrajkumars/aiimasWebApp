@@ -641,23 +641,23 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			
 		    
 		<label class="w3-text-brown"><b>Name:</b></label>
-		<input class="w3-input w3-border" name="last" type="text" id="stuNameExam" ><br>
+		<input class="w3-input w3-border" name="last" type="text" id="stuNameExam" disabled  ><br>
 		
 		
 		
 		<label class="w3-text-brown"><b>Diploma:</b></label>
-		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeExam" ><br>
+		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeExam" disabled ><br>
 		  
  
    
     	<div class="w3-half">
 			<label class="w3-text-brown"><b>Duration:</b></label>
-			<input class="w3-input w3-border " type="text" id="durationExam" ><br>
+			<input class="w3-input w3-border " type="text" id="durationExam" disabled ><br>
 		  </div>
 		  
 		  	<div class="w3-half">
 			<label class="w3-text-brown"><b>No of paper:</b></label>
-			<input class="w3-input w3-border " type="text" id="noofPaperExam" ><br>
+			<input class="w3-input w3-border " type="text" id="noofPaperExam" disabled ><br>
 		  </div>
   		
 		
@@ -682,7 +682,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<label class="w3-text-brown"><b>Exam Entered on:</b></label>
  			<input class="w3-input w3-border " type="date" id="enterDateExam"><br>
  		  </div> 
-
+<script> loadDate('enterDateExam');</script>
 		
 
 		
