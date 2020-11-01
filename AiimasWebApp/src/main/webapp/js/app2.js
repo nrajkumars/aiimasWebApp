@@ -1180,9 +1180,9 @@ function onPostAddAdmission(data) {
 			console.log('------------------------------------------------'+parsedData1.Failure);
 			
 			if (parsedData1 != null) {
-				if(parsedData1.Success.trim().length>0){
+				if(parsedData1['Success'] !== undefined){
 					document.getElementById('newadmission').style.display='block';
-				}else if(parsedData1.Failure.trim().length>0){
+				}else if(parsedData1['Failure'] !== undefined){
 					document.getElementById('newadmissionfail').style.display='block';
 				}
 			}
