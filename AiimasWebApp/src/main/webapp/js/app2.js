@@ -799,6 +799,12 @@ function onPostgetModifyAdmData(data) {
 			parsedData1 = JSON.parse(data);
 			console.log(' parsedData1'+parsedData1);
 		
+			if(parsedData1['Admin'] !== undefined || parsedData1['Address'] !== undefined || parsedData1['Fee'] !== undefined ){
+				$("#alertDetailFound").show();
+			}else if(parsedData1['Failure'] !== undefined){
+				$("#alertDetailNotFound").show();
+				clearAllAtrbutes();
+			}
 		
 		if(parsedData1['Admin'] !== undefined){
 			

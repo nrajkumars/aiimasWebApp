@@ -414,6 +414,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-panel w3-pale-green">
 	  <div class="w3-container">
+	  <div align="center" id='alertDetailNotFound' style="display:none"><span style="color:red"><b>NO STUDNET DETAIL FOUND</b></span></div>
+	  <div align="center" id='alertDetailFound' style="display:none"><span style="color:blue"><b>STUDENT DETAILS LOADED SUCCESSFULLY</b></span></div>
 		<p>   
 				
 		<div class="w3-third">
