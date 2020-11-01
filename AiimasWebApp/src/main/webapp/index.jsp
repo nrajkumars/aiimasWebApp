@@ -1096,7 +1096,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	
 
 	<div class="w3-container">
-
+	  <div align="center" id='questionDetailNotFound' style="display:none"><span style="color:red"><b>No Diploma found</b></span></div>
+	  <div align="center" id='questionDetailFound' style="display:none"><span style="color:blue"><b>QUESTION PAPER DETAILS LOADED SUCCESSFULLY</b></span></div>
 		 <div class="w3-third">
 			
 			<label class="w3-text-brown"><b>Diploma Code:</b></label>

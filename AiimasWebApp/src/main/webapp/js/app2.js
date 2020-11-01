@@ -770,7 +770,7 @@ function onPostgetMarkData(data) {
 
 //MARKS SAVE
 
-function saveMarktodo() {
+function saveMark() {
 	
 	console.log('save MARK clicked rajjj ');
 	
@@ -1458,6 +1458,16 @@ function onPostSearchQuestion1(data) {
 		if (data != null) {
 			
 			parsedData = JSON.parse(data);
+			
+			if(parsedData['Failure'] !== undefined){
+				$("#questionDetailNotFound").show();
+				clearQuestionPaper();
+			}else {
+				$("#questionDetailFound").show();
+				//clearAllAtrbutesV2();
+			}
+			
+			
 				if(parsedData!=null){
 					
 					//document.getElementById('showData').parentElement.removeChild(document.getElementById('quesTableDiv'));
