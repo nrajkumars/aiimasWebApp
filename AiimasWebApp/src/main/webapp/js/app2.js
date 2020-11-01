@@ -985,6 +985,25 @@ function selectItem(selector, label) {
 
 
 }*/
+function loadDate(getField){
+	
+	//var date = new Date();
+	///let dateToday =  ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+	//console.log('load date called ---------------------------------------------------------------------'+dateToday);
+	//document.getElementById(getField).value = ''+dateToday;
+	//document.getElementById('enterDate').value = dateToday;
+	//console.log('vvvvvvvvvvvvvvvvv '+getField);
+	
+	 var myDate = document.querySelector(getField);
+	 var myDate = document.getElementById(getField).id;
+	  var today = new Date();
+	  console.log('vvvvvvvvvvvvvvvvv '+today.toISOString().substr(0, 10));
+	  myDate.value = today.toISOString().substr(0, 10);
+	  console.log('vvvvvvvvvvvvvvvvv '+myDate.value);
+	
+	}
+
+
 
 function returnFormatDate(inputDate){
 	var ad_entdate11 = new Date(inputDate);
@@ -1003,6 +1022,47 @@ function returnFormatDate(inputDate){
 }
 
 function clearAllAtrbutes() {
+	
+	document.getElementById("stuName1").value =  "";
+	document.getElementById("papers1").value = ""; 
+	document.getElementById("emailid1").value = ""; 
+	document.getElementById("state1").value = ""; 
+	document.getElementById("pincode1").value = ""; 
+	document.getElementById("diplomaCodeUad").value = ""; 
+	document.getElementById("mobNum1").value = ""; 
+	document.getElementById("address31").value = ""; 
+	document.getElementById("address21").value = ""; 
+	document.getElementById("address11").value = ""; 
+	document.getElementById("address41").value = ""; 
+	document.getElementById("semMonth1").value = ""; 
+	document.getElementById("semYear1").value = ""; 
+	document.getElementById("duration1").value = ""; 
+	document.getElementById("feepaidmode1").value = ""; 
+	document.getElementById("feeref1").value = ""; 
+	document.getElementById("paidamt1").value = ""; 
+	document.getElementById("totfee1").value = ""; 
+		document.getElementById("dueDate1").value = ""; 
+		document.getElementById("feepaiddate1").value = ""; 
+}
+
+function clearAllAtrbutesV1() {
+	
+	  document.getElementById("prCodeMark").value =  "";
+	  document.getElementById("prNoMark").value =  "";
+	  document.getElementById("stuNameMark").value =  "";
+	  document.getElementById("diplomaCodeMark").value =  "";
+	  document.getElementById("durationMark").value =  "";
+	  document.getElementById("noofPaperMark").value =  "";
+	  document.getElementById("SemMonthMark").value =  "";
+	  document.getElementById("SemYearMark").value =  "";
+	  document.getElementById("stateMark").value =  "";
+	  document.getElementById("centerMark").value =  "";
+	  document.getElementById("Marksenter1").value =  "";
+	  document.getElementById("markPaperno").value =  "";
+	  document.getElementById("markPapername").value =  "";
+}
+
+function clearAllAtrbutesV2() {
 	
 	document.getElementById("stuName1").value =  "";
 	document.getElementById("papers1").value = ""; 

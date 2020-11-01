@@ -257,7 +257,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<label class="w3-text-brown"><b>Admission Date:</b></label>
  			<input class="w3-input w3-border " type="date" id="enterDate"><br>
  		  </div> 
-
+<script> loadDate(document.getElementById('enterDate').id);</script>
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
 			<input class="w3-input w3-border " type="text"  id="prCode11"  value ='APR13'>
@@ -786,7 +786,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()">&nbsp;&nbsp;Save</button>
  			<button class="w3-button w3-orange id="resultUpdateExamApp" onclick="updateExamApplication()" >Update</button> 
  			<!--  during update add a flg for pass field  todo -->
-			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
+			<button class="w3-button w3-red" onclick="clearAllAtrbutesV1()" >Clear</button>
 			
 			<!--  Sakthi  clear button
 			 -->
@@ -914,7 +914,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 			<button class="w3-button w3-blue" id="resultMark" onclick="SaveMark()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
-			<button class="w3-button w3-red" onclick="clearAllAtrbutes()" >Clear</button>
+			<button class="w3-button w3-red" onclick="clearAllAtrbutesV2()" >Clear</button>
 			
 			<!--  Sakthi  clear button
 			 -->
