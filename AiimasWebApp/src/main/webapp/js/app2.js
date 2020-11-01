@@ -789,7 +789,7 @@ function getStudentDetail() {
 
 function onPostgetModifyAdmData(data) {
 	console.log('RESPONSE POST in   onPostgetModifyAdmData  app .JS:' + data);
-	var parsedData1;
+	let parsedData1 = null;
 		
 	if (data != null) {
 						
@@ -797,51 +797,86 @@ function onPostgetModifyAdmData(data) {
 			try {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
-			
-		console.log(' NMAE'+parsedData1.Admin["ad_name"]);
+			console.log(' parsedData1'+parsedData1);
 		
-			if(parsedData1.Admin["ad_name"]!=null){
+		
+		if(parsedData1['Admin'] !== undefined){
+			
+			document.getElementById("stuName1").value =  parsedData1.Admin["ad_name"];
+			document.getElementById("papers1").value = parsedData1.Admin["ad_nofpapr"]; 
+			//document.getElementById("duration1").value = parsedData1.Admin["ad_durtn"];   
+			//document.querySelector('#duration1').value = parsedData1.Admin["ad_durtn"];
+			console.log('----------------------------------------------------------------'+ parsedData1.Admin["ad_durtn"]);
+			selectItem('#duration1', parsedData1.Admin["ad_durtn"]);
+			document.getElementById("paidamt1").value = parsedData1.Admin["ad_paidamt"]; 
+			document.getElementById("totfee1").value = parsedData1.Admin["ad_feeamt"]; 
+			var endDate = returnFormatDate(parsedData1.Admin["ad_entdate"]);
+			document.getElementById("dueDate1").value = endDate; 
+			var feedate = returnFormatDate(parsedData1.Admin["ad_feedate"]);
+			document.getElementById("feepaiddate1").value = feedate; 
+		}
+		
+		if(parsedData1['Address'] !== undefined){
+			document.getElementById("emailid1").value = parsedData1.Address["sa_email"]; 
+			document.getElementById("state1").value = parsedData1.Address["sa_state"]; 
+			document.getElementById("pincode1").value = parsedData1.Address["sa_pincode"]; 
+			document.getElementById("diplomaCodeUad").value = parsedData1.Address["sa_dipcode"]; 
+			document.getElementById("mobNum1").value = parsedData1.Address["sa_mobile"];  
+			document.getElementById("address31").value = parsedData1.Address["sa_add3"];
+			document.getElementById("address21").value = parsedData1.Address["sa_add2"]; 
+			document.getElementById("address11").value = parsedData1.Address["sa_add1"]; 
+			document.getElementById("address41").value = parsedData1.Address["sa_add4"]; 
+		}
+		
+		if(parsedData1['Fee'] !== undefined){
+			document.getElementById("semMonth1").value = parsedData1.Fee["fe_sesmon"]; 
+			document.getElementById("semYear1").value = parsedData1.Fee["fe_sesyr"]; 
+			document.getElementById("feepaidmode1").value = parsedData1.Fee["fe_mode"]; 
+			document.getElementById("feeref1").value = parsedData1.Fee["fe_ref"]; 
+		}
+		
+			} catch (e) {
+		console.log("data error, Reason"+e.toString());
+	}	
+			
+	}
+}
+
+function selectItem(selector, label) {     
+			/*console.log('label- - - - '+label);
+			console.log('label- - - - '+label.length);
+			const dropdown = document.querySelector(selector);     
+			console.log('dropdown- - - - '+dropdown.options);
+			const index = Array.from(dropdown.options).findIndex(option => option.label === label);    
+			console.log('index- - - - '+!index);
+			if (!index) 
+				return  dropdown.selectedIndex = index   */
+		const dd = document.querySelector(selector); 
+		for (var i = 0; i < dd.options.length; i++) {
+			console.log('dd.options[i].text- - - - '+dd.options[i].text);
+			console.log('label- - - - '+label);
+			console.log('are they equal- - - - '+dd.options[i].text === label);
+			//$('jqueryselector').val($(this).val().toUpperCase());
+			
+		    if (dd.options[i].text.toUpperCase() === label.toUpperCase()) {
+		        dd.selectedIndex = i;
+		        break;
+		    }
+		}
+	}  
+				/*
 				
-				console.log(' NMAE'+parsedData1.Admin["ad_name"]);
-	
-				document.getElementById("stuName1").value =  parsedData1.Admin["ad_name"];
-				
-				document.getElementById("papers1").value = parsedData1.Admin["ad_nofpapr"]; 
-				
-				document.getElementById("emailid1").value = parsedData1.Address["sa_email"]; 
-				
-				document.getElementById("state1").value = parsedData1.Address["sa_state"]; 
-				document.getElementById("pincode1").value = parsedData1.Address["sa_pincode"]; 
-				document.getElementById("diplomaCodeUad").value = parsedData1.Address["sa_dipcode"]; 
-				document.getElementById("mobNum1").value = parsedData1.Address["sa_mobile"]; 
-				document.getElementById("address31").value = parsedData1.Address["sa_add3"]; 
-				document.getElementById("address21").value = parsedData1.Address["sa_add2"]; 
-				document.getElementById("address11").value = parsedData1.Address["sa_add1"]; 
-				document.getElementById("address41").value = parsedData1.Address["sa_add4"]; 
-				
-				document.getElementById("semMonth1").value = parsedData1.Fee["fe_sesmon"]; 
-				document.getElementById("semYear1").value = parsedData1.Fee["fe_sesyr"]; 
-				
-				document.getElementById("duration1").value = parsedData1.Admin["ad_durtn"]; 
-				 
-				  
-				
-				document.getElementById("feepaidmode1").value = parsedData1.Fee["fe_mode"]; 
-				document.getElementById("feeref1").value = parsedData1.Fee["fe_ref"]; 
+			
 				
 				
-				document.getElementById("paidamt1").value = parsedData1.Admin["ad_paidamt"]; 
-				document.getElementById("totfee1").value = parsedData1.Admin["ad_feeamt"]; 
 				
 				if(parsedData1.Admin["ad_entdate"]!=null){
-					var endDate = returnFormatDate(parsedData1.Admin["ad_entdate"]);
-					document.getElementById("dueDate1").value = endDate; 
+					
 				}
 				
 				  
 				if(parsedData1.Admin["ad_feedate"]!=null){
-					var feedate = returnFormatDate(parsedData1.Admin["ad_feedate"]);
-					document.getElementById("feepaiddate1").value = feedate; 
+					
 				}  
 				
 				
@@ -949,8 +984,8 @@ function onPostgetModifyAdmData(data) {
 
 
 
-}
-//
+}*/
+
 function returnFormatDate(inputDate){
 	var ad_entdate11 = new Date(inputDate);
 	  var dd = ad_entdate11.getDate();
@@ -1101,7 +1136,8 @@ function updateAdmission(admType) {
 	
 	var stuName = document.getElementById('stuName1').value;
 	var address1 = document.getElementById('address11').value;
-	var diplomaCode = document.getElementById('diplomaCode3').value;
+	var diplomaCode = document.getElementById('diplomaCodeUad').value;
+	console.log('diplomaCode ------------------------------------------------'+diplomaCode);
 	var duration = document.getElementById('duration1').value;
 	var semMonth = document.getElementById('semMonth1').value;
 	var semYear = document.getElementById('semYear1').value;
