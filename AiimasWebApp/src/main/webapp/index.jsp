@@ -817,7 +817,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<div class="w3-panel w3-pale-green">
 		
 	  <div class="w3-container">
-	  
+	  <div align="center" id='markDetailNotFound' style="display:none"><span style="color:red"><b>NO MARK DETAIL FOUND</b></span></div>
+	  <div align="center" id='markDetailFound' style="display:none"><span style="color:blue"><b>MARK DETAILS LOADED SUCCESSFULLY</b></span></div>
 		<p>   
 		
 		<div class="w3-third">
@@ -841,42 +842,42 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			
 		    
 		<label class="w3-text-brown"><b>Name:</b></label>
-		<input class="w3-input w3-border" name="last" type="text" id="stuNameMark" ><br>
+		<input class="w3-input w3-border" name="last" type="text" id="stuNameMark" disabled><br>
 		
 		
 		
 		<label class="w3-text-brown"><b>Diploma Code:</b></label>
-		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeMark" ><br>
+		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeMark" disabled><br>
 		  
   		<div class="w3-half">
 			<label class="w3-text-brown"><b>Duration:</b></label>
-			<input class="w3-input w3-border " type="text" id="durationMark" ><br>
+			<input class="w3-input w3-border " type="text" id="durationMark" disabled><br>
 		  </div>
 		  
 		  	<div class="w3-half">
 			<label class="w3-text-brown"><b>No of paper:</b></label>
-			<input class="w3-input w3-border " type="text" id="noofPaperMark" ><br>
+			<input class="w3-input w3-border " type="text" id="noofPaperMark" disabled><br>
 		  </div>
 		  
 		  <div class="w3-half">
 			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
-			<input class="w3-input w3-border " type="text" id="SemMonthMark" ><br>
+			<input class="w3-input w3-border " type="text" id="SemMonthMark" disabled><br>
 		  </div>
 		  
 		  	<div class="w3-half">
 			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
-			<input class="w3-input w3-border " type="text" id="SemYearMark" ><br>
+			<input class="w3-input w3-border " type="text" id="SemYearMark" disabled><br>
 		  </div>
   		
    
     	<div class="w3-half">
 			<label class="w3-text-brown"><b>State Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="stateMark" ><br>
+			<input class="w3-input w3-border " type="text" id="stateMark" disabled><br>
 		  </div>
 		  
 		  	<div class="w3-half">
 			<label class="w3-text-brown"><b>Center Name:</b></label>
-			<input class="w3-input w3-border " type="text" id="centerMark" ><br>
+			<input class="w3-input w3-border " type="text" id="centerMark" disabled><br>
 		  </div>
   		
 		

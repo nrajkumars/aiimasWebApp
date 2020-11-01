@@ -589,6 +589,71 @@ function onPostgetMarkData(data) {
 			// Parse JSON
 			var parsedData1pr = JSON.parse(data);
 			
+			if(parsedData1pr['Failure'] !== undefined){
+				$("#markDetailNotFound").show();
+				clearAllAtrbutesV2();
+			}else {
+				$("#markDetailFound").show();
+				//clearAllAtrbutesV2();
+			}
+			
+	/*
+		if(parsedData1['Admin'] !== undefined || parsedData1['Address'] !== undefined || parsedData1['Fee'] !== undefined ){
+			$("#alertDetailFound").show();
+		}else if(parsedData1['Failure'] !== undefined){
+			$("#alertDetailNotFound").show();
+			clearAllAtrbutes();
+		}
+		*/	
+			
+			
+			
+			
+			
+			
+			for (var key in parsedData1pr) {
+			    if (parsedData1pr.hasOwnProperty(key)) {
+			        console.log(key + "  -> " + parsedData1pr[key]);
+			        
+			        if(key == 'Exam'){
+				        //console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
+				        //console.log('PaperList1 paper param >> '+parsedData1pr.PaperList1["dp_paprnam"]);
+				        //dict[parsedData1pr.PaperList1["dp_paperno"]] = parsedData1pr.PaperList1["dp_paprnam"];
+			        	
+			        	document.getElementById("stuNameMark").value =  parsedData1pr.Exam["ea_name"];
+						document.getElementById("diplomaCodeMark").value =  parsedData1pr.Exam["ea_dipcode"];
+						document.getElementById("durationMark").value =  parsedData1pr.Exam["ea_durtn"];
+						document.getElementById("noofPaperMark").value =  parsedData1pr.Exam["ea_nofpapr"];
+						document.getElementById("SemMonthMark").value =  parsedData1pr.Exam["ea_sesmon"];
+						document.getElementById("SemYearMark").value =  parsedData1pr.Exam["ea_sesyr"];
+						document.getElementById("stateMark").value =  parsedData1pr.Exam["ea_stname"];
+						document.getElementById("centerMark").value =  parsedData1pr.Exam["ea_centre1"];
+			        }
+			    }
+			}
+			
+			
+			//resultMark 
+			/*stuNameMark     ea_name
+			diplomaCodeMark  ea_dipcode
+			durationMark      ea_durtn
+			
+			noofPaperMark  ea_nofpapr
+			SemMonthMark    ea_sesmon
+			SemYearMark   ea_sesyr
+			stateMark ea_stname
+			centerMark          ea_centre1
+			
+			    "ea_sesyr": 2004,
+			    "ea_nofpapr": 4,
+			    "ea_name": "NITIN KAMRISHI",
+			    "ea_dipcode": "APR",
+			    "ea_sesmon": "FEB",
+			    "ea_stname": "POSTAL EXAMINATION",
+			    "ea_centre1": "POSTAL EXAMINATION",
+			    "ea_durtn": "SIX MONTHS" */
+			
+			
 			var count = Object.keys(parsedData1pr).length;
 			  console.log('parsedData1pr '+count);
 			  var dict = {};
@@ -598,14 +663,14 @@ function onPostgetMarkData(data) {
 				        console.log(key + " -> " + parsedData1pr[key]);
 				        
 				        if(key == 'PaperList1'){
-					        console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
-					        console.log('PaperList1 paper param >> '+parsedData1pr.PaperList1["dp_paprnam"]);
+					        //console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
+					        //console.log('PaperList1 paper param >> '+parsedData1pr.PaperList1["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList1["dp_paperno"]] = parsedData1pr.PaperList1["dp_paprnam"];
 				        }
 				        
 				        if(key == 'PaperList2'){
-					        console.log('PaperList2 paper no >> '+parsedData1pr.PaperList2["dp_paperno"]);
-					        console.log('PaperList2 paper param >> '+parsedData1pr.PaperList2["dp_paprnam"]);
+					        //console.log('PaperList2 paper no >> '+parsedData1pr.PaperList2["dp_paperno"]);
+					        //console.log('PaperList2 paper param >> '+parsedData1pr.PaperList2["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList2["dp_paperno"]] = parsedData1pr.PaperList2["dp_paprnam"];
 				        }
 				        
@@ -1081,12 +1146,12 @@ function clearAllAtrbutes() {
 
 function clearAllAtrbutesV1() {
 	
-	  document.getElementById("prCodeMark").value =  "";
-	  document.getElementById("prNoMark").value =  "";
-	  document.getElementById("stuNameMark").value =  "";
-	  document.getElementById("diplomaCodeMark").value =  "";
-	  document.getElementById("durationMark").value =  "";
-	  document.getElementById("noofPaperMark").value =  "";
+	  document.getElementById("prCodeExam").value =  "";
+	  document.getElementById("prNoExam").value =  "";
+	  document.getElementById("stuNameExam").value =  "";
+	  document.getElementById("diplomaCodeExam").value =  "";
+	  document.getElementById("durationExam").value =  "";
+	  document.getElementById("noofPaperExam").value =  "";
 	  document.getElementById("SemMonthMark").value =  "";
 	  document.getElementById("SemYearMark").value =  "";
 	  document.getElementById("stateMark").value =  "";
@@ -1097,7 +1162,7 @@ function clearAllAtrbutesV1() {
 }
 
 function clearAllAtrbutesV2() {
-	
+	/*
 	document.getElementById("stuName1").value =  "";
 	document.getElementById("papers1").value = ""; 
 	document.getElementById("emailid1").value = ""; 
@@ -1117,7 +1182,18 @@ function clearAllAtrbutesV2() {
 	document.getElementById("paidamt1").value = ""; 
 	document.getElementById("totfee1").value = ""; 
 		document.getElementById("dueDate1").value = ""; 
-		document.getElementById("feepaiddate1").value = ""; 
+		document.getElementById("feepaiddate1").value = ""; */
+	document.getElementById("stuNameMark").value =   "";
+	document.getElementById("diplomaCodeMark").value =   "";
+	document.getElementById("durationMark").value =   "";
+	document.getElementById("noofPaperMark").value =   "";
+	document.getElementById("SemMonthMark").value =   "";
+	document.getElementById("SemYearMark").value =   "";
+	document.getElementById("stateMark").value =   "";
+	document.getElementById("centerMark").value =  "";
+	document.getElementById("prCodeMark").value =  "";
+	document.getElementById("prNoMark").value =  "";
+	
 }
 
 function clearaddAdmission() {
