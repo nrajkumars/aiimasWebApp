@@ -255,9 +255,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
  		  <div class="w3-third"> 
 			<label class="w3-text-brown"><b>Admission Date:</b></label>
- 			<input class="w3-input w3-border " type="date" id="enterDate"><br>
+ 			<input class="w3-input w3-border " type="date" id="enterDate" value="" ><br>
  		  </div> 
-<script> loadDate(document.getElementById('enterDate').id);</script>
+<script> loadDate('enterDate');</script>
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
 			<input class="w3-input w3-border " type="text"  id="prCode11"  value ='APR13'>

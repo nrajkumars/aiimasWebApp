@@ -993,13 +993,19 @@ function loadDate(getField){
 	//document.getElementById(getField).value = ''+dateToday;
 	//document.getElementById('enterDate').value = dateToday;
 	//console.log('vvvvvvvvvvvvvvvvv '+getField);
-	
+	/*
 	 var myDate = document.querySelector(getField);
-	 var myDate = document.getElementById(getField).id;
+	 document.getElementById('enterDate').innerHTML = '11/12/2012';
 	  var today = new Date();
 	  console.log('vvvvvvvvvvvvvvvvv '+today.toISOString().substr(0, 10));
 	  myDate.value = today.toISOString().substr(0, 10);
-	  console.log('vvvvvvvvvvvvvvvvv '+myDate.value);
+	  console.log('vvvvvvvvvvvvvvvvv '+document.getElementById('enterDate').value);*/
+	var field = document.querySelector('input[id="'+getField+'"]');
+	var date = new Date();
+
+	// Set the date
+	field.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + 
+	    '-' + date.getDate().toString().padStart(2, 0);
 	
 	}
 
