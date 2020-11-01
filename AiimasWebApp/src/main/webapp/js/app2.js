@@ -793,7 +793,7 @@ function onPostgetModifyAdmData(data) {
 		
 	if (data != null) {
 						
-					
+					//alert('called in update');
 			try {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
@@ -806,6 +806,8 @@ function onPostgetModifyAdmData(data) {
 				clearAllAtrbutes();
 			}
 		
+			
+			
 		if(parsedData1['Admin'] !== undefined){
 			
 			document.getElementById("stuName1").value =  parsedData1.Admin["ad_name"];
@@ -816,8 +818,11 @@ function onPostgetModifyAdmData(data) {
 			selectItem('#duration1', parsedData1.Admin["ad_durtn"]);
 			document.getElementById("paidamt1").value = parsedData1.Admin["ad_paidamt"]; 
 			document.getElementById("totfee1").value = parsedData1.Admin["ad_feeamt"]; 
+			
 			var endDate = returnFormatDate(parsedData1.Admin["ad_entdate"]);
-			document.getElementById("dueDate1").value = endDate; 
+			//document.getElementById("dueDate1").value = endDate; 
+			document.getElementById("enterDate1").value = endDate; 
+			
 			var feedate = returnFormatDate(parsedData1.Admin["ad_feedate"]);
 			document.getElementById("feepaiddate1").value = feedate; 
 		}
@@ -832,6 +837,7 @@ function onPostgetModifyAdmData(data) {
 			document.getElementById("address21").value = parsedData1.Address["sa_add2"]; 
 			document.getElementById("address11").value = parsedData1.Address["sa_add1"]; 
 			document.getElementById("address41").value = parsedData1.Address["sa_add4"]; 
+			document.getElementById("phonenum1").value = parsedData1.Address["sa_phone"]; 
 		}
 		
 		if(parsedData1['Fee'] !== undefined){
@@ -1053,8 +1059,10 @@ function clearAllAtrbutes() {
 	document.getElementById("feeref1").value = ""; 
 	document.getElementById("paidamt1").value = ""; 
 	document.getElementById("totfee1").value = ""; 
-		document.getElementById("dueDate1").value = ""; 
-		document.getElementById("feepaiddate1").value = ""; 
+	document.getElementById("dueDate1").value = ""; 
+	document.getElementById("feepaiddate1").value = "";    
+	document.getElementById("prCode111").value = "";
+	document.getElementById("prNo11").value = "";
 }
 
 function clearAllAtrbutesV1() {
@@ -1272,7 +1280,25 @@ function onPostUpdateAdmission(data) {
 	console.log(' onPostUpdateAdmission  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
-			document.getElementById('newadmission').style.display='block';
+			parsedData1 = JSON.parse(data);
+			if(parsedData1['Failure'] !== undefined){
+				document.getElementById('update_admissionFail').style.display='block';
+			}else if(parsedData1['Success'] !== undefined){
+				document.getElementById('update_admission').style.display='block';
+			}
+			
+			if(parsedData1['UpdateSuccess'] !== undefined){
+				document.getElementById('update_admission').style.display='block';
+			}else if(parsedData1['UpdateFailure'] !== undefined){
+				document.getElementById('update_admissionFail').style.display='block';
+			}
+			
+			if(parsedData1['DeleteSuccess'] !== undefined){
+				document.getElementById('deleteadmission').style.display='block';
+			}else if(parsedData1['DeleteFailure'] !== undefined){
+				document.getElementById('deleteadmissionFail').style.display='block';
+			}
+			
 
 		}
 }
