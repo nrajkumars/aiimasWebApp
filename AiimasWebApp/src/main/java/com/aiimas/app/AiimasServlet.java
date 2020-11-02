@@ -259,24 +259,27 @@ public class AiimasServlet extends HttpServlet {
 				input.put("adprCode", adprCode);
 				input.put("adpprNo", adpprNo);
 
+				//RAJKUMAR to merge start
 				
-			//	PrintView printView = new PrintView();
-			//	Map searchAdmIniti = printView.getAdmInitimationetails(input);
+				// click on marksheet to get the test report
+				
+				PrintView printView = new PrintView();
+				Map applicListData = printView.getApplicantslist(input);
+				
 				//Map printReports = printView.getPrintReports(input);
 							// MOVING DATA fetch to  PDFGenerator.java						
 				//System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+printReports);
 				
 				// GENERATING the PDF
 				
-				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file ");
-				
+				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file " +applicListData);
+				 
 				PDFGenerator pdfGenerator = new PDFGenerator();
-				String gfile = pdfGenerator.PrintPDF(input);
+				String gfile = pdfGenerator.PrintLetterPDF(input, applicListData);
 				
 				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
 				
-				//String gfile = new String("c:\\ temp\\ FirstPdf.pdf");
-				
+							
 				Map retrunMap = new HashMap();
 				
 				retrunMap.put("Filename", gfile);

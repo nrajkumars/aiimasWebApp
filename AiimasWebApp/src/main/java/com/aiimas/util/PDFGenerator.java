@@ -5,10 +5,12 @@ package com.aiimas.util;
 	import java.io.FileOutputStream;
 	import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.aiimas.dao.PrintView;
 import com.aiimas.dao.Verification;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.Anchor;
 	import com.itextpdf.text.BadElementException;
 	import com.itextpdf.text.BaseColor;
@@ -17,7 +19,8 @@ import com.itextpdf.text.Anchor;
 	import com.itextpdf.text.DocumentException;
 	import com.itextpdf.text.Element;
 	import com.itextpdf.text.Font;
-	
+import com.itextpdf.text.FontFactory;
+
 //	import com.itextpdf.io.image.ImageData; 
 //	import com.itextpdf.io.image.ImageDataFactory; 
 //	import com.itextpdf.layout.element.Image;  
@@ -34,17 +37,250 @@ import com.itextpdf.text.Image;
 
 	public class PDFGenerator {
 	    //private static String FILE = "c:/temp/FirstPdf.pdf";
-	    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+	    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 	            Font.BOLD);
 	    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 	            Font.NORMAL, BaseColor.RED);
 	    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
 	            Font.BOLD);
-	    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+	    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 9,
 	            Font.BOLD);
+	    private static Font smallfont = new Font(Font.FontFamily.TIMES_ROMAN, 9,
+	            Font.NORMAL);
 	    
-	  
+	    
+	    
+	    
+	    // for print pdf using itextPDF
+	    public String PrintLetterPDF(Map input, Map data) {
+	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
+	        try {
+	        	
+	        	
+	        	Object action = input.get("action");
+	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
+	            Document document = new Document();
+	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
+	            document.open();
+	            addMetaData(document);
+	         //   addLOGOPage(document); // add the header image
+	            
+	            
+	            // for each Report this has to be changed
+	            if (action != null && action.equals("admInit")) {
+	            	addAdmInitimationContent(document, input);
+	            }else if(action != null && action.equals("ackLetter")) {
+	            	addAcknowledgeContent(document, input);
+	            }else if(action != null && action.equals("ansSheet")) {
+	            	addAnswerSheetAcknowledge(document, input);
+	            }else if(action != null && action.equals("hallTck")) {
+	            	addHallTicketContent(document, input);
+	            }else if(action != null && action.equals("mrkSheet")) { // RAJKUMAR 
+	            	System.out.println(" add app -- don pdf gen -----1-");
+	            	addApplicantList(document, input, data);
+	            	System.out.println(" add app -- don pdf gen ----2--");
+	            }else if(action != null && action.equals("diplomaCerti")) {
+	            	addDiplomaCertiContent(document, input);
+	            }
+	           	           
+	          //  addTitlePage(document); // refer for sample
+	          //  addContent(document); // refer for sample
+	            
+	            document.close();
+	            return genPDFfile;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
 
+//RAJKUMAR
+//	public Map saveAccountDetails(Map data) {
+//		Iterator iter = data.keySet().iterator();
+//		Map dataToSave = new HashMap();
+//		while (iter.hasNext()) {
+//			String key = (String) iter.next();
+//			String val[] = (String[]) data.get(key);
+//			if (val != null && val.length > 0 && val[0].trim().length() > 0) {
+//				dataToSave.put(key, val[0]);
+//				System.out.println(key + ":" + val[0]);
+//			}
+//		}
+
+
+	    
+	    //LETTER applicated
+	    private static void addApplicantList(Document document, Map input,  Map data)
+	            throws DocumentException, Exception {
+	    	
+	    	//PrintView printView = new PrintView();
+	    	//Map verifyedValues = printView.getMarkSheetContent(input);
+			
+			System.out.println(" RESPONSE  LETTER in Applicant list  GOT in DATA MAP -- "+data);
+			System.out.println(" RESPONSE  LETTER in Applicant list  GOT in INPUT MAP -- "+input);
+			
+			
+			//rajkumar todo read map
+
+			ObjectMapper oMapper = new ObjectMapper();
+			Iterator<String> iter = data.keySet().iterator();
+	   
+//			  while (iter.hasNext()) {
+//					String key = iter.next();
+//					Object val = data.get(key);
+//					 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+//					 System.out.println(map1.get("ea_dipcode"));
+//	     }
+
+			
+			
+			
+	    	
+	        Paragraph preface = new Paragraph();
+	   
+	        //addEmptyLine(preface, 1);
+	    
+	        preface.add(new Paragraph("Applicants List", catFont));
+
+	        //addEmptyLine(preface, 1);
+	        
+	  	        
+	        //TODo
+	        String sesMonth = new String ("AUG");
+			String sesYear = new String("2020");
+	        
+	        preface.add(new Paragraph(
+	                " List  of applicants for the "+sesMonth+" "+sesYear+" Examination.", smallBold));
+	        
+	        addEmptyLine(preface, 1);
+	        
+	        
+	        PdfPTable table = new PdfPTable(7);
+	        
+	        table.setTotalWidth(new float[]{ 25, 72, 72,100,72,72,100 });
+	        table.setLockedWidth(true);
+	        
+	        PdfPCell c1 = new PdfPCell(new Phrase("SNo",smallBold));
+	    
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("Dip Code", smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("P.R.No",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("Name",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("Centre",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        c1 = new PdfPCell(new Phrase("Duration",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        c1 = new PdfPCell(new Phrase("Appearing Papers",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        table.setHeaderRows(1);
+	         PdfPCell r1 = new PdfPCell(new Phrase("1.0",smallfont));
+	        int sno = 0;
+	        String strNo = new String("");
+	        String dipCode = new String("");
+	        String prCode = new String("");
+	        String prNo = new String("");
+	        String name = new String("");
+	        String centername = new String("");
+	        String duratin = new String("");
+	        String paprstring = new String("");
+	        
+	        
+	        while (iter.hasNext()) {
+				String key = iter.next();
+				Object val = data.get(key);
+				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+			
+				 
+				 sno = sno+1;
+				 strNo = String.valueOf(sno);
+				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
+			     table.addCell(r1);
+			     
+			     
+			     
+			    Object dipCodeobj = map1.get("ea_dipcode");
+			    if(dipCodeobj!=null) {
+			    	dipCode = dipCodeobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(dipCode,smallfont));
+			    table.addCell(r1);
+			     
+			     
+			     
+			     Object ea_prcodeobj = map1.get("ea_prcode");
+				    if(ea_prcodeobj!=null) {
+				    	prCode = ea_prcodeobj.toString();
+				    }
+				 Object ea_prnoeobj = map1.get("ea_prno");
+				   if(ea_prnoeobj!=null) {
+					   prNo = ea_prnoeobj.toString();
+				   }   
+				 
+				   prCode = prCode+"\\"+prNo;
+				   
+			    r1 = new PdfPCell(new Phrase(prCode,smallfont));
+			    table.addCell(r1);
+			     
+			  
+			    //4
+			    Object ea_nameobj = map1.get("ea_name");
+			    if(ea_nameobj!=null) {
+			    	name = ea_nameobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(name,smallfont));
+			    table.addCell(r1);
+			    
+			    
+			  //5
+			    Object ea_stnameobj = map1.get("ea_stname");
+			    if(ea_stnameobj!=null) {
+			    	centername = ea_stnameobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(centername,smallfont));
+			    table.addCell(r1);
+			    
+			    //6
+			    Object ea_durtnobj = map1.get("ea_durtn");
+			    if(ea_durtnobj!=null) {
+			    	duratin = ea_durtnobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(duratin,smallfont));
+			    table.addCell(r1);
+			    
+			  //7
+			    Object ea_paprstrobj = map1.get("ea_paprstr");
+			    if(ea_paprstrobj!=null) {
+			    	paprstring = ea_paprstrobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(paprstring,smallfont));
+			    table.addCell(r1);
+			  
+
+			}
+	        
+	        preface.add(table);
+	        
+	        addEmptyLine(preface, 1);
+
+	        document.add(preface);
+	         
+	    }
+	    
 	    // for print pdf using itextPDF
 	    public String PrintPDF(Map input) {
 	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
