@@ -73,14 +73,14 @@ import com.itextpdf.text.Image;
 	            	addAcknowledgeContent(document, input);
 	            }else if(action != null && action.equals("ansSheet")) {
 	            	addAnswerSheetAcknowledge(document, input);
-	            }else if(action != null && action.equals("hallTck")) {
+	            }else if(action != null && action.equals("hallTck")) {  // Question paper list 
 	            	addHallTicketContent(document, input);
-	            }else if(action != null && action.equals("mrkSheet")) { // RAJKUMAR 
+	            }else if(action != null && action.equals("mrkSheet")) { // RAJKUMAR  applicant List
 	            	System.out.println(" add app -- don pdf gen -----1-");
 	            	addApplicantList(document, input, data);
 	            	System.out.println(" add app -- don pdf gen ----2--");
-	            }else if(action != null && action.equals("diplomaCerti")) {
-	            	addDiplomaCertiContent(document, input);
+	            }else if(action != null && action.equals("diplomaCerti")) {  // attendance Chart
+	            	addAttendanceChart(document, input, data);
 	            }
 	           	           
 	          //  addTitlePage(document); // refer for sample
@@ -106,6 +106,261 @@ import com.itextpdf.text.Image;
 //				System.out.println(key + ":" + val[0]);
 //			}
 //		}
+	    
+	    
+	    //Attendance CHART
+	  //LETTER applicated
+	    private static void addAttendanceChart(Document document, Map input,  Map data)
+	            throws DocumentException, Exception {
+	    	
+	 			
+			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in DATA MAP -- "+data);
+			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in INPUT MAP -- "+input);
+			
+			
+			//rajkumar todo read map
+
+			ObjectMapper oMapper = new ObjectMapper();
+			
+	   
+    	
+	        Paragraph preface = new Paragraph();
+	   
+	        //addEmptyLine(preface, 1);
+	        //TODo
+	        String sesMonth = new String ("FEB");
+			String sesYear = new String("2006");
+			//String durationString = new String("SIX MONTHS");
+			String durationString = new String("ONE YEAR-PG");
+		
+	    
+	        preface.add(new Paragraph("ATTENDANCE CHART - "+sesMonth+" "+sesYear , catFont));
+
+	        //addEmptyLine(preface, 1);
+	        
+	  	        
+	        preface.add(new Paragraph(
+	                " COURSE: ", smallBold));
+	        preface.add(new Paragraph(
+	                " CENTRE: ", smallBold));
+	        preface.add(new Paragraph(
+	                " DURATION: ", smallBold));
+	       // addEmptyLine(preface, 1);
+	        
+	        preface.add(new Paragraph(
+	                " Paper information ---------------------------------------------------------------------------------------------", smallBold));
+	        
+	        addEmptyLine(preface, 1);
+	        
+	        String paperName = new String("");
+	        String paperno = new String("");
+	        
+	        Iterator<String> iter1 = data.keySet().iterator();
+	        while (iter1.hasNext()) {
+				String key = iter1.next();
+				if(key.contains("Paper")) {
+					//System.out.println(key);
+				Object val = data.get(key);
+				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+				 
+				// dp_paperno
+				 
+				 Object dp_papernoobj = map1.get("dp_paperno");
+				    if(dp_papernoobj!=null) {
+				    	paperno = dp_papernoobj.toString();
+				    }
+	
+				 
+				 Object dp_paprnamobj = map1.get("dp_paprnam");
+				    if(dp_paprnamobj!=null) {
+				    	paperName = dp_paprnamobj.toString();
+				    }
+				    preface.add(new Paragraph(paperno+". "+paperName, smallBold));
+				}
+			}
+	        
+	        addEmptyLine(preface, 1);
+	        
+	        PdfPTable table = null;
+	        
+	        // If six month
+	        
+	        if(durationString.equals("SIX MONTHS")) { 
+	        	table = new PdfPTable(8);
+	        	table.setTotalWidth(new float[]{ 25,72,100,63,63,63,63,63 });
+	        	
+	        }else {
+	        	//System.out.println("Elese column size");
+	        	table = new PdfPTable(12);
+	        	table.setTotalWidth(new float[]{ 25,72,100,60,30,30,30,30,30,30,30,30 });
+	        }
+	        table.setLockedWidth(true);
+	        
+	        PdfPCell c1 = new PdfPCell(new Phrase("SNo",smallBold));
+	    
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("P.R.No",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("Name",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("Appearing",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("Paper 1",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        c1 = new PdfPCell(new Phrase("Paper 2",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        c1 = new PdfPCell(new Phrase("Paper 3",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        c1 = new PdfPCell(new Phrase("Paper 4",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        if(durationString.equals("SIX MONTHS")) {
+	        	//System.out.println("if paper head");
+		    }else {
+		    	 //8
+		    	//System.out.println("Elese paper head");
+		    	 c1 = new PdfPCell(new Phrase("Paper 5",smallBold));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			    
+			    //8
+			        c1 = new PdfPCell(new Phrase("Paper 6",smallBold));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			    
+			    //9
+			        c1 = new PdfPCell(new Phrase("Paper 7",smallBold));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+ 
+			    //10
+			        c1 = new PdfPCell(new Phrase("Paper 8",smallBold));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+		    	
+		    }
+	        
+	        table.setHeaderRows(1);
+	         PdfPCell r1 = new PdfPCell(new Phrase("1.0",smallfont));
+	        int sno = 0;
+	        String strNo = new String("");
+	        String prCode = new String("");
+	        String prNo = new String("");
+	        String name = new String("");
+	        String paprstring = new String(""); 
+	        
+	  
+	        
+	        Iterator<String> iter2 = data.keySet().iterator();
+	        while (iter2.hasNext()) {
+				String key = iter2.next();
+				if(key.contains("appList")) {
+					System.out.println(key);
+				Object val = data.get(key);
+				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+			
+				 
+				 sno = sno+1;
+				 strNo = String.valueOf(sno);
+				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
+			     table.addCell(r1);
+			     
+			//2			     
+			     Object ea_prcodeobj = map1.get("ea_prcode");
+				    if(ea_prcodeobj!=null) {
+				    	prCode = ea_prcodeobj.toString();
+				    }
+				 Object ea_prnoeobj = map1.get("ea_prno");
+				   if(ea_prnoeobj!=null) {
+					   prNo = ea_prnoeobj.toString();
+				   }   
+				 
+				   prCode = prCode+"\\"+prNo;
+				   
+			    r1 = new PdfPCell(new Phrase(prCode,smallfont));
+			    table.addCell(r1);
+			     
+			  
+			    //3
+			    Object ea_nameobj = map1.get("ea_name");
+			    if(ea_nameobj!=null) {
+			    	name = ea_nameobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(name,smallfont));
+			    table.addCell(r1);
+			    
+			  //3
+			    Object ea_paprstrobj = map1.get("ea_paprstr");
+			    if(ea_paprstrobj!=null) {
+			    	paprstring = ea_paprstrobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(paprstring,smallfont));
+			    table.addCell(r1);
+			    
+			    
+			  //4
+			     r1 = new PdfPCell(new Phrase("",smallfont));
+			    table.addCell(r1);
+			    
+			    //5
+			    r1 = new PdfPCell(new Phrase("",smallfont));
+			    table.addCell(r1);
+			    
+			    //6
+			    r1 = new PdfPCell(new Phrase("",smallfont));
+			    table.addCell(r1);
+ 
+			    //7
+			    r1 = new PdfPCell(new Phrase("",smallfont));
+			    table.addCell(r1);
+			    
+			    //if se or more
+			    
+			    if(durationString.equals("SIX MONTHS")) {
+			    	//System.out.println("if paper row");
+			    }else {
+			    	 //8
+			    	//System.out.println("Elese rows");
+				     r1 = new PdfPCell(new Phrase("",smallfont));
+				    table.addCell(r1);
+				    
+				    //8
+				    r1 = new PdfPCell(new Phrase("",smallfont));
+				    table.addCell(r1);
+				    
+				    //9
+				    r1 = new PdfPCell(new Phrase("",smallfont));
+				    table.addCell(r1);
+	 
+				    //10
+				    r1 = new PdfPCell(new Phrase("",smallfont));
+				    table.addCell(r1);
+			    	
+			    }
+			  
+	        }
+			}
+	        
+	        preface.add(table);
+	        
+	        addEmptyLine(preface, 1);
+
+	        document.add(preface);
+	       
+	         
+	    }
 
 
 	    
@@ -140,7 +395,7 @@ import com.itextpdf.text.Image;
 	   
 	        //addEmptyLine(preface, 1);
 	    
-	        preface.add(new Paragraph("Applicants List", catFont));
+	        preface.add(new Paragraph("APPLICANTS LIST", catFont));
 
 	        //addEmptyLine(preface, 1);
 	        

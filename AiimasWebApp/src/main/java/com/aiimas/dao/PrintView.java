@@ -210,7 +210,74 @@ public class PrintView extends BaseDao {
 	}
 	
 	
-//  HallTicketContent
+//  Attendance Chart
+	public Map getAttendanceChart(Map input) throws Exception  {
+		Object prNum =  input.get("adpprNo");
+		Object prCode =  input.get("adprCode");
+		
+	
+	//	Map finaldata = new HashMap();
+		
+		Map<String, Object> finaldata = new TreeMap<String, Object>();
+		String paperList = new String("paperList");
+		
+		
+		String admin = new String("Admin");
+		String address = new String("Address");
+		
+		// get hard code for now
+		
+		String dipCode = new String ("FM");
+		String duration = new String("SIX MONTHS");
+		
+		
+		String sesMonth = new String ("FEB");
+		String sesYear = new String("2006");
+		String center = new String("BHI");
+		
+		
+		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+prNum+","+prCode );
+		
+		
+		//tod0 check to be change
+		if (prNum != null && prNum.toString().trim().length() > 0) {
+			if((prCode != null && prCode.toString().trim().length() > 0)) {
+				
+				
+				String getMarksDataSql = "SELECT DP_PAPERNO, DP_PAPRNAM FROM PUBLIC.DIPPAPER WHERE DP_DIPCODE =? AND DP_DURTN = ? GROUP BY DP_PAPERNO, DP_PAPRNAM";
+				List data2 = executeFetchSql(getMarksDataSql, new Object[]{dipCode,duration });
+				System.out.println("  ????????????????"+data2.size());
+				System.out.println("  ????????????????"+data2.toString());
+				if (data2 != null && data2.size() > 0) {
+					for (int ii = 1; ii <= data2.size()-1; ii++) {
+			
+						String paper = new String("Paper"+ii);
+						finaldata.put(paper, data2.get(ii));
+					}
+				}
+				
+				
+				
+				// Read from ADMIN table
+				String getAdminDataSql = "SELECT ea_dipcode,ea_name, ea_prcode, ea_prno, ea_paprstr FROM PUBLIC.EAPPL WHERE EA_SESMON=? AND EA_SESYR = ? AND EA_CECODE= ? AND EA_DIPCODE = ? AND EA_DURTN= ?";
+				List data1 = executeFetchSql(getAdminDataSql, new Object[]{sesMonth,Integer.parseInt(sesYear),center,dipCode, duration});
+			
+				if (data1 != null && data1.size() > 0) {
+					for (int ii = 1; ii <= data1.size()-1; ii++) {
+						String appList = new String("appList"+ii);
+						finaldata.put(appList, data1.get(ii));
+					}
+				}
+						
+				return finaldata;
+			}
+		}
+		return null;
+	}
+	
+	
+	
+//  applicants list
 	public Map getApplicantslist(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");

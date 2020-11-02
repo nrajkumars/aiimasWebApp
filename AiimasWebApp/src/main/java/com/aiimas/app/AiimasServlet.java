@@ -243,7 +243,7 @@ public class AiimasServlet extends HttpServlet {
 					
 				// may be need else later else remove the if
 				
-			}else if(module != null && module.equals("printReport")) {
+			}else if(module != null && module.equals("printReportTODO2")) {
 				
 				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  ");
 				
@@ -276,6 +276,129 @@ public class AiimasServlet extends HttpServlet {
 				 
 				PDFGenerator pdfGenerator = new PDFGenerator();
 				String gfile = pdfGenerator.PrintLetterPDF(input, applicListData);
+				
+				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+							
+				Map retrunMap = new HashMap();
+				
+				retrunMap.put("Filename", gfile);
+				
+				writeResponse(retrunMap, resp);
+			}else if(module != null && module.equals("printReport")) {
+				
+				System.out.println(" AIIMAS SERVLET  --  Attendance chart  ");
+				
+				String adprCode = request.getParameter("adprCode");
+				String adpprNo = request.getParameter("adpprNo");
+				
+					
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
+				
+				Map input = new HashMap();
+				input.put("action", action);
+				input.put("adprCode", adprCode);
+				input.put("adpprNo", adpprNo);
+
+				//RAJKUMAR to merge start
+				
+				// click on marksheet to get the test report
+				
+				PrintView printView = new PrintView();
+				Map attendanceChatData = printView.getAttendanceChart(input);
+				
+				
+				
+				// GENERATING the PDF
+				
+				System.out.println(" Going to  GENERATE attendanceChatData ====== " +attendanceChatData);
+				 
+				PDFGenerator pdfGenerator = new PDFGenerator();
+				String gfile = pdfGenerator.PrintLetterPDF(input, attendanceChatData);
+				
+				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+							
+				Map retrunMap = new HashMap();
+				
+				retrunMap.put("Filename", gfile);
+				
+				writeResponse(retrunMap, resp);
+			}else if(module != null && module.equals("printReport_APPLICANT")) {
+				
+				System.out.println(" AIIMAS SERVLET  --  APPLICANT LIST LETTER here  ");
+				
+				String adprCode = request.getParameter("adprCode");
+				String adpprNo = request.getParameter("adpprNo");
+				
+					
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
+				
+				Map input = new HashMap();
+				input.put("action", action);
+				input.put("adprCode", adprCode);
+				input.put("adpprNo", adpprNo);
+
+				//RAJKUMAR to merge start
+				
+			
+				
+				PrintView printView = new PrintView();
+				Map applicListData = printView.getApplicantslist(input);
+				
+							
+				// GENERATING the PDF
+				
+				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file " +applicListData);
+				 
+				PDFGenerator pdfGenerator = new PDFGenerator();
+				String gfile = pdfGenerator.PrintLetterPDF(input, applicListData);
+				
+				System.out.println("DONE GENERATE APPLICANT LIST the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+							
+				Map retrunMap = new HashMap();
+				
+				retrunMap.put("Filename", gfile);
+				
+				writeResponse(retrunMap, resp);
+			}else if(module != null && module.equals("printReport_ORGINAL")) {
+				
+				//printReport - ORGINAL 
+				
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  ");
+				
+				String adprCode = request.getParameter("adprCode");
+				String adpprNo = request.getParameter("adpprNo");
+				
+					
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
+				
+				Map input = new HashMap();
+				input.put("action", action);
+				input.put("adprCode", adprCode);
+				input.put("adpprNo", adpprNo);
+
+				//RAJKUMAR to merge start
+				
+				// click on marksheet to get the test report
+				
+			//	PrintView printView = new PrintView();
+			//	Map applicListData = printView.getApplicantslist(input);
+				
+				//Map printReports = printView.getPrintReports(input);
+							// MOVING DATA fetch to  PDFGenerator.java						
+				//System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+printReports);
+				
+				// GENERATING the PDF
+				
+				
+				 
+				PDFGenerator pdfGenerator = new PDFGenerator();
+				String gfile = pdfGenerator.PrintPDF(input);
 				
 				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
 				
