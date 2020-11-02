@@ -630,7 +630,29 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<input class="w3-input w3-border " type="text"   id="prNoExam"  value ='286' >
 		  </div>
 		  
-		  
+<div id="addExamGetExamDataLoad" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('addExamGetExamDataLoad').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>EXAM DETAILS LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('addExamGetExamDataLoad').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="addExamGetExamDataLoadFail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('addExamGetExamDataLoadFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>EXAM DETAILS NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('addExamGetExamDataLoadFail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
 			<button class="w3-button w3-blue" id="resultExam" onclick="getExamData1()">&nbsp;&nbsp;GET Exam Detail</button><br> <br>
@@ -782,11 +804,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		  
 		
 		<br><br><br>
+		<div class="w3-container">
+		<div class="w3-show-inline-block">
+				  <div class="w3-bar">
 		
-		<center>
-		
-			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()">&nbsp;&nbsp;Save</button>
- 			<button class="w3-button w3-orange id="resultUpdateExamApp" onclick="updateExamApplication()" >Update</button> 
+			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()"  style="display:none"   >&nbsp;&nbsp;Save</button>
+ 			<button class="w3-button w3-orange" id="resultUpdateExamApp" onclick="updateExamApplication()" style="display:none" >Update</button> 
  			<!--  during update add a flg for pass field  todo -->
 			<button class="w3-button w3-red" onclick="clearAllAtrbutesV1()" >Clear</button>
 			
@@ -794,7 +817,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			 -->
 			 
 			 
-		</center>
+		</div></div></div>
 
 		</p>
 	  </div>
@@ -813,12 +836,39 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<center> <h2>Mark Updataion</h2>
 		<p>Adding the Exam  Marks of an Student</p>
 		</center>
+
+<div id="markDetailFound" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('markDetailFound').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>MARK DETAILS LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('markDetailFound').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="markDetailNotFound" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('markDetailNotFound').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>DETAILS NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('markDetailNotFound').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>	
+
 		
 		<div class="w3-panel w3-pale-green">
 		
 	  <div class="w3-container">
+	  <!-- 
 	  <div align="center" id='markDetailNotFound' style="display:none"><span style="color:red"><b>NO MARK DETAIL FOUND</b></span></div>
 	  <div align="center" id='markDetailFound' style="display:none"><span style="color:blue"><b>MARK DETAILS LOADED SUCCESSFULLY</b></span></div>
+	  -->
 		<p>   
 		
 		<div class="w3-third">
@@ -908,7 +958,91 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			  
 			  <p>
 			
+			
+			
+			<div class="w3-container " id="displayPaper1" style="display: none;">
+			   <div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row1paper"><br>
+			  </div>
+			  
+			   <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row1papername"><br>
+			  </div>
+		</div>
+			
+			<div class="w3-container " id="displayPaper2" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row2paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row2papername"><br>
+			  </div>
 			</div>
+			
+						<div class="w3-container " id="displayPaper3" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row3paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row3papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper4" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row4paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row4papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper5" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row5paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row5papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper6" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row6paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row6papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper7" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row7paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row7papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper8" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row8paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row8papername"><br>
+			  </div>
+			</div>
+			
+			</div>
+			
+		
  		    
 		
 		<br><br>
@@ -1095,6 +1229,29 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	  <div class="w3-container" >
 	
 
+<div id="updateadmissionDataLoad" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('updateadmissionDataLoad').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>STUDENT DETAILS LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('updateadmissionDataLoad').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="updateadmissionDataLoadFail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('updateadmissionDataLoadFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>STUDENT NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('updateadmissionDataLoadFail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
 	<div class="w3-container">
 	  <div align="center" id='questionDetailNotFound' style="display:none"><span style="color:red"><b>No Diploma found</b></span></div>
 	  <div align="center" id='questionDetailFound' style="display:none"><span style="color:blue"><b>QUESTION PAPER DETAILS LOADED SUCCESSFULLY</b></span></div>

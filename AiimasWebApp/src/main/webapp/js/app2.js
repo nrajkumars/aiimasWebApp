@@ -208,22 +208,47 @@ function onPostgetExamData1(data) {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
 			
-			//alert(parsedData1.Admin["ad_name"]);
-			//alert('im in')
-			//TODO SAKTHI  LOAD the exam application screen with this values
-			document.getElementById("stuNameExam").value =  parsedData1.Admin["ad_name"];
-			document.getElementById("diplomaCodeExam").value =  parsedData1.Admin["ad_dipcode"];
-			document.getElementById("durationExam").value =  parsedData1.Admin["ad_durtn"];
-			document.getElementById("noofPaperExam").value =  parsedData1.Admin["ad_nofpapr"];
+			//console.log(' parseddata'+ JSON.stringify(parsedData1)   );
+		
+			if(parsedData1['Admin'] !== undefined ){
+				//$("#alertDetailFound").show();     
+				document.getElementById('addExamGetExamDataLoad').style.display='block';
+				var sbutton = document.getElementById('resultSaveExamApp');
+				if (sbutton.style.display === "none") {
+					sbutton.style.display = "block";
+				  } else {
+					  sbutton.style.display = "none";
+				  }   
+				
+				
+				
+				var ubutton = document.getElementById('resultUpdateExamApp');
+				if (ubutton.style.display === "none") {
+					ubutton.style.display = "block";
+				  } else {
+					  ubutton.style.display = "none";
+				  }
+				/*document.getElementById('resultSaveExamApp').style.display='block';
+				document.getElementById('resultUpdateExamApp').style.display='block';*/
+				
+				
+			}else {		//if(parsedData1['Failure'] !== undefined)
+				//$("#alertDetailNotFound").show();
+				document.getElementById('addExamGetExamDataLoadFail').style.display='block';
+				clearAllAtrbutesV1();
+			}
 			
-			document.getElementById("stuNameExam").readOnly = true;
-			document.getElementById("diplomaCodeExam").readOnly = true;
-			document.getElementById("durationExam").readOnly = true;
-			document.getElementById("noofPaperExam").readOnly = true;
-			
-			//document.getElementById("prCodeExam").readOnly = true;
-			//document.getElementById("prNoExam").readOnly = true;
-			
+			if(parsedData1['Admin'] !== undefined){
+				document.getElementById("stuNameExam").value =  parsedData1.Admin["ad_name"];
+				document.getElementById("diplomaCodeExam").value =  parsedData1.Admin["ad_dipcode"];
+				document.getElementById("durationExam").value =  parsedData1.Admin["ad_durtn"];
+				document.getElementById("noofPaperExam").value =  parsedData1.Admin["ad_nofpapr"];
+				
+				document.getElementById("stuNameExam").readOnly = true;
+				document.getElementById("diplomaCodeExam").readOnly = true;
+				document.getElementById("durationExam").readOnly = true;
+				document.getElementById("noofPaperExam").readOnly = true;
+			}
 			
 			var paperNumbers = document.getElementById("noofPaperExam").value ;
 			var s2 = document.getElementById('slct2');
@@ -244,7 +269,6 @@ function onPostgetExamData1(data) {
 			        
 			    } else{
 			        console.log('Element does not exist!');
-			       // console.log('==============================elements elements elements----== ---- '+element);
 			    }
 			 
 			
@@ -271,6 +295,8 @@ function onPostgetExamData1(data) {
 			}
 			
 			var Stselect = document.getElementById("examStateCodeList"); 
+			  $('#examStateCodeList option').remove();  
+			  $('#examCenterCodeList option').remove(); 
 				  var state = {};  var centre= {}; var state1course = [];
 				  for (var key in parsedData1) {
 					    if (parsedData1.hasOwnProperty(key)) {
@@ -590,10 +616,12 @@ function onPostgetMarkData(data) {
 			var parsedData1pr = JSON.parse(data);
 			
 			if(parsedData1pr['Failure'] !== undefined){
-				$("#markDetailNotFound").show();
+				document.getElementById('markDetailNotFound').style.display='block';
+				//$("#markDetailNotFound").show();
 				clearAllAtrbutesV2();
 			}else {
-				$("#markDetailFound").show();
+				document.getElementById('markDetailFound').style.display='block';
+				//$("#markDetailFound").show();
 				//clearAllAtrbutesV2();
 			}
 			
@@ -675,59 +703,76 @@ function onPostgetMarkData(data) {
 				        }
 				        
 				        if(key == 'PaperList3'){
-					        console.log('PaperList3 paper no >> '+parsedData1pr.PaperList3["dp_paperno"]);
-					        console.log('PaperList3 paper param >> '+parsedData1pr.PaperList3["dp_paprnam"]);
+					        //console.log('PaperList3 paper no >> '+parsedData1pr.PaperList3["dp_paperno"]);
+					        //console.log('PaperList3 paper param >> '+parsedData1pr.PaperList3["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList3["dp_paperno"]] = parsedData1pr.PaperList3["dp_paprnam"];
 				        }
 				        
 				        if(key == 'PaperList4'){
-					        console.log('PaperList4 paper no >> '+parsedData1pr.PaperList4["dp_paperno"]);
-					        console.log('PaperList4 paper param >> '+parsedData1pr.PaperList4["dp_paprnam"]);
+					        //console.log('PaperList4 paper no >> '+parsedData1pr.PaperList4["dp_paperno"]);
+					        //console.log('PaperList4 paper param >> '+parsedData1pr.PaperList4["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList4["dp_paperno"]] = parsedData1pr.PaperList4["dp_paprnam"];
 				        }
 				        
 				        if(key == 'PaperList5'){
-					        console.log('PaperList5 paper no >> '+parsedData1pr.PaperList5["dp_paperno"]);
-					        console.log('PaperList5 paper param >> '+parsedData1pr.PaperList5["dp_paprnam"]);
+					        //console.log('PaperList5 paper no >> '+parsedData1pr.PaperList5["dp_paperno"]);
+					        //console.log('PaperList5 paper param >> '+parsedData1pr.PaperList5["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList5["dp_paperno"]] = parsedData1pr.PaperList5["dp_paprnam"];
 				        }
 				        
 				        if(key == 'PaperList6'){
-					        console.log('PaperList65 paper no >> '+parsedData1pr.PaperList6["dp_paperno"]);
-					        console.log('PaperList6 paper param >> '+parsedData1pr.PaperList6["dp_paprnam"]);
+					        //console.log('PaperList65 paper no >> '+parsedData1pr.PaperList6["dp_paperno"]);
+					        //console.log('PaperList6 paper param >> '+parsedData1pr.PaperList6["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList6["dp_paperno"]] = parsedData1pr.PaperList6["dp_paprnam"];
 				        }
 				        
 				        if(key == 'PaperList7'){
-					        console.log('PaperList7 paper no >> '+parsedData1pr.PaperList7["dp_paperno"]);
-					        console.log('PaperList7 paper param >> '+parsedData1pr.PaperList7["dp_paprnam"]);
+					        //console.log('PaperList7 paper no >> '+parsedData1pr.PaperList7["dp_paperno"]);
+					        //console.log('PaperList7 paper param >> '+parsedData1pr.PaperList7["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList7["dp_paperno"]] = parsedData1pr.PaperList7["dp_paprnam"];
 				        }
 				        
 				        if(key == 'PaperList8'){
-					        console.log('PaperList8 paper no >> '+parsedData1pr.PaperList8["dp_paperno"]);
-					        console.log('PaperList8 paper param >> '+parsedData1pr.PaperList18["dp_paprnam"]);
+					        //console.log('PaperList8 paper no >> '+parsedData1pr.PaperList8["dp_paperno"]);
+					        //console.log('PaperList8 paper param >> '+parsedData1pr.PaperList18["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList8["dp_paperno"]] = parsedData1pr.PaperList8["dp_paprnam"];
 				        }
 				        
 				    }
 				}
-			  
-			  var value = dict[key];
+			/*  
+			var tbodyRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+			// Insert a row at the end of table
+			var newRow = tbodyRef.insertRow();
 
-			  var value = dict.key;
+			// Insert a cell at the end of the row
+			var newCell = newRow.insertCell();
+
+			// Append a text node to the cell
+			var newText = document.createTextNode('new row');
+			newCell.appendChild(newText);*/
+			  
+			  //var value = dict[key];
+
+			  var value = dict.key; var xyincrement = 1;
 			  for(var key in dict) {
-			     console.log('dict >> '+key + " : " + dict[key]);
+			     console.log('xyincrement '+xyincrement+'   dict === >> '+key + " : " + dict[key]);
+			     $("#displayPaper"+xyincrement).show();
+			     var temp1= "row"+xyincrement+"paper";
+			     var temp2= "row"+xyincrement+"papername";
+			     document.getElementById(temp1).value   = 'Paper '+key;
+			     document.getElementById(temp2).value   = dict[key];
+			     xyincrement++;
 			  }
 			
 			var sortedbyKeyJSONArray = sortByKey(parsedData1pr);
-			console.log(sortedbyKeyJSONArray);
+			//console.log(sortedbyKeyJSONArray);
 			
 			
-			var paperNoPaperName = {};
-			var paperList = []
-			paperNoPaperName.paperList = paperList;
-			console.log(paperNoPaperName);
+			//var paperNoPaperName = {};
+			//var paperList = []
+			//paperNoPaperName.paperList = paperList;
+			//console.log('paperNoPaperName = = = =  = = = = =  = = = = = =  = = = = '+paperNoPaperName);
 
 			//sortedbyKeyJSONArray.PaperList 1["dp_paperno"]
 			/*
@@ -879,9 +924,11 @@ function onPostgetModifyAdmData(data) {
 			console.log(' parsedData1'+parsedData1);
 		
 			if(parsedData1['Admin'] !== undefined || parsedData1['Address'] !== undefined || parsedData1['Fee'] !== undefined ){
-				$("#alertDetailFound").show();
+				//$("#alertDetailFound").show();     
+				document.getElementById('updateadmissionDataLoad').style.display='block';
 			}else if(parsedData1['Failure'] !== undefined){
-				$("#alertDetailNotFound").show();
+				//$("#alertDetailNotFound").show();
+				document.getElementById('updateadmissionDataLoadFail').style.display='block';
 				clearAllAtrbutes();
 			}
 		
@@ -1159,6 +1206,61 @@ function clearAllAtrbutesV1() {
 	  document.getElementById("Marksenter1").value =  "";
 	  document.getElementById("markPaperno").value =  "";
 	  document.getElementById("markPapername").value =  "";
+	  
+	  
+	  
+	  
+	  $('#examStateCodeList option').remove();  
+	  $('#examCenterCodeList option').remove(); 
+	  //$('#examStateCodeList text').val('');
+	 // document.getElementById("examStateCode").innerHTML =  "";   
+	 // document.getElementById("examStateCodeList").innerHTML =  "";
+	  
+	  
+	 /* $('#examStateCode option').remove();
+	  $('#examStateCodeList option').remove();   
+	  $('#examCenterCodeList option').remove();  
+	  $('#examCenterCode text').remove();
+	  
+	  $('#examStateCode value').remove();
+	  $('#examStateCodeList value').remove();   
+	  $('#examCenterCodeList value').remove();  
+	  $('#examCenterCode value').remove();*/
+	  
+	  var elementStCode = document.querySelectorAll("input[id='examStateCodeList']");
+	  if(typeof(elementStCode) != 'undefined' && elementStCode != null){
+		  console.log('drop down data list '+elementStCode.length);
+			 /*
+			for(var i = 0,j=1; i < elementStCode.length; i++){
+				elementStCode.children[elementStCode[i]].remove()
+				//elementStCode[i].parentNode.removeChild(elementStCode[i]);
+			}
+			
+			 var childArray = elementStCode.children;
+		        var cL = childArray.length;
+		        while(cL > 0) {
+		            cL--;
+		            elementStCode.removeChild(childArray[cL]);
+		        }
+				*/	   
+						
+	}
+	  var elementCb = document.querySelectorAll("input[id='cboxpaper']");
+
+		 if(typeof(elementCb) != 'undefined' && elementCb != null){
+						 
+				 var elem=$("#slct2 input");
+				 $("#slct2").empty().html(elem);
+				 
+					
+				for(var i = 0,j=1; i < elementCb.length; i++){
+					elementCb[i].parentNode.removeChild(elementCb[i]);
+				}
+						   
+							
+		} else{
+			console.log('Element does not exist!');
+		}
 }
 
 function clearAllAtrbutesV2() {
@@ -1373,6 +1475,7 @@ function onPostUpdateAdmission(data) {
 			parsedData1 = JSON.parse(data);
 			if(parsedData1['Failure'] !== undefined){
 				document.getElementById('update_admissionFail').style.display='block';
+				
 			}else if(parsedData1['Success'] !== undefined){
 				document.getElementById('update_admission').style.display='block';
 			}
@@ -1385,6 +1488,7 @@ function onPostUpdateAdmission(data) {
 			
 			if(parsedData1['DeleteSuccess'] !== undefined){
 				document.getElementById('deleteadmission').style.display='block';
+				clearAllAtrbutes();
 			}else if(parsedData1['DeleteFailure'] !== undefined){
 				document.getElementById('deleteadmissionFail').style.display='block';
 			}
@@ -1695,6 +1799,9 @@ function clearDiplomaUpdation(){
 	
 	
 }
+
+
+
 function clearInstituteUpdation(){
 	document.getElementById('instituteName').value = "";
 	document.getElementById('instituteAddress').value = "";
