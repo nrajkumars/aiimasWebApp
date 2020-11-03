@@ -210,13 +210,80 @@ public class PrintView extends BaseDao {
 	}
 	
 	
+	
+//  Question paperlist
+	public Map getQuestionPaperList1(Map input) throws Exception  {
+		Object prNum =  input.get("adpprNo");
+		Object prCode =  input.get("adprCode");
+		
+	
+		//Map finaldata = new HashMap();
+		
+		Map<String, Object> finaldata = new TreeMap<String, Object>();
+		String paperList = new String("paperList");
+		
+		
+		String admin = new String("Admin");
+		String address = new String("Address");
+		
+		// get hard code for now
+		
+	//	String dipCode = new String ("FM");
+	//	String duration = new String("SIX MONTHS");
+		
+		
+		String sesMonth = new String ("FEB");
+		String sesYear = new String("2006");
+		String center = new String("BHI");
+		
+		
+		System.out.println(" INSIDE PRINT VIEW  getQuestionPaperList1 --  going to run the SQL = "+prNum+","+prCode );
+		
+		
+		//tod0 check to be change
+		if (prNum != null && prNum.toString().trim().length() > 0) {
+			if((prCode != null && prCode.toString().trim().length() > 0)) {
+				
+				
+				String getQuestionPapList = "SELECT count(EA_DIPCODE),EA_DIPCODE, EA_DURTN FROM PUBLIC.EAPPL WHERE EA_SESMON= ? AND EA_SESYR = ? AND EA_CECODE= ? GROUP BY EA_DIPCODE, EA_DURTN";
+				List data2 = executeFetchSql(getQuestionPapList, new Object[]{sesMonth,Integer.parseInt(sesYear),center });
+
+				if (data2 != null && data2.size() > 0) {
+					for (int ii = 0; ii <= data2.size()-1; ii++) {
+			
+						String paper = new String("QPaper"+ii);
+						finaldata.put(paper, data2.get(ii));
+					}
+				}
+				System.out.println("  ????after???????????"+finaldata.size());
+				System.out.println("  ??????after??????????"+finaldata.toString());
+				
+				
+//				// Read from ADMIN table
+//				String getAdminDataSql = "SELECT ea_dipcode,ea_name, ea_prcode, ea_prno, ea_paprstr FROM PUBLIC.EAPPL WHERE EA_SESMON=? AND EA_SESYR = ? AND EA_CECODE= ? AND EA_DIPCODE = ? AND EA_DURTN= ?";
+//				List data1 = executeFetchSql(getAdminDataSql, new Object[]{sesMonth,Integer.parseInt(sesYear),center,dipCode, duration});
+//			
+//				if (data1 != null && data1.size() > 0) {
+//					for (int ii = 0; ii <= data1.size()-1; ii++) {
+//						String appList = new String("appList"+ii);
+//						finaldata.put(appList, data1.get(ii));
+//					}
+//				}
+						
+				return finaldata;
+			}
+		}
+		return null;
+	}
+	
+	
 //  Attendance Chart
 	public Map getAttendanceChart(Map input) throws Exception  {
 		Object prNum =  input.get("adpprNo");
 		Object prCode =  input.get("adprCode");
 		
 	
-	//	Map finaldata = new HashMap();
+		//Map finaldata = new HashMap();
 		
 		Map<String, Object> finaldata = new TreeMap<String, Object>();
 		String paperList = new String("paperList");
@@ -249,13 +316,14 @@ public class PrintView extends BaseDao {
 				System.out.println("  ????????????????"+data2.size());
 				System.out.println("  ????????????????"+data2.toString());
 				if (data2 != null && data2.size() > 0) {
-					for (int ii = 1; ii <= data2.size()-1; ii++) {
+					for (int ii = 0; ii <= data2.size()-1; ii++) {
 			
 						String paper = new String("Paper"+ii);
 						finaldata.put(paper, data2.get(ii));
 					}
 				}
-				
+				System.out.println("  ????after???????????"+finaldata.size());
+				System.out.println("  ??????after??????????"+finaldata.toString());
 				
 				
 				// Read from ADMIN table
@@ -263,7 +331,7 @@ public class PrintView extends BaseDao {
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{sesMonth,Integer.parseInt(sesYear),center,dipCode, duration});
 			
 				if (data1 != null && data1.size() > 0) {
-					for (int ii = 1; ii <= data1.size()-1; ii++) {
+					for (int ii = 0; ii <= data1.size()-1; ii++) {
 						String appList = new String("appList"+ii);
 						finaldata.put(appList, data1.get(ii));
 					}

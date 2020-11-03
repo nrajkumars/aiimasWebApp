@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ExamApplication extends BaseDao {
 	
@@ -16,7 +17,8 @@ public class ExamApplication extends BaseDao {
 			Object prCode =  input.get("prCode");
 			
 		
-			Map finaldata = new HashMap();
+			//Map finaldata = new HashMap();
+			Map<String, Object> finaldata = new TreeMap<String, Object>();
 			String admin = new String("Admin");
 			String exam = new String("Exam");
 		
@@ -38,7 +40,7 @@ public class ExamApplication extends BaseDao {
 					List data2 = executeFetchSql(getStateDataSql);
 				
 					if (data2 != null && data2.size() > 0) {
-						for (int ii = 1; ii <= data2.size()-1; ii++) {
+						for (int ii = 0; ii <= data2.size()-1; ii++) {
 							String state = new String("State"+ii);
 							finaldata.put(state, data2.get(ii));
 							
@@ -50,7 +52,7 @@ public class ExamApplication extends BaseDao {
 					List data3 = executeFetchSql(getCenterDataSql);
 				
 					if (data3 != null && data3.size() > 0) {
-						for (int ii = 1; ii <= data3.size()-1; ii++) {
+						for (int ii = 0; ii <= data3.size()-1; ii++) {
 							String centre = new String("Centre"+ii);
 							finaldata.put(centre, data3.get(ii));
 							

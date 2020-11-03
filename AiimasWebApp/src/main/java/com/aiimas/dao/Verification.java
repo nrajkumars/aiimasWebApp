@@ -71,7 +71,7 @@ public class Verification extends BaseDao {
 			
 				if (data5 != null && data5.size() > 0) {
 					//return (Map) data2.get(0);
-					for (int ii = 1; ii <= data5.size()-1; ii++) {
+					for (int ii = 0; ii <= data5.size()-1; ii++) {
 						String marks = new String("Marks"+ii);
 						finaldata.put(marks, data5.get(ii));
 						
@@ -108,7 +108,7 @@ public class Verification extends BaseDao {
 			
 				if (data5 != null && data5.size() > 0) {
 					//return (Map) data2.get(0);
-					for (int ii = 1; ii <= data5.size()-1; ii++) {
+					for (int ii = 0; ii <= data5.size()-1; ii++) {
 						String marks = new String(" by NAME "+ii);
 						finaldata.put(marks, data5.get(ii));
 						

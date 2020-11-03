@@ -74,7 +74,7 @@ import com.itextpdf.text.Image;
 	            }else if(action != null && action.equals("ansSheet")) {
 	            	addAnswerSheetAcknowledge(document, input);
 	            }else if(action != null && action.equals("hallTck")) {  // Question paper list 
-	            	addHallTicketContent(document, input);
+	            	addQuestionPaperList(document, input,data);
 	            }else if(action != null && action.equals("mrkSheet")) { // RAJKUMAR  applicant List
 	            	System.out.println(" add app -- don pdf gen -----1-");
 	            	addApplicantList(document, input, data);
@@ -106,6 +106,142 @@ import com.itextpdf.text.Image;
 //				System.out.println(key + ":" + val[0]);
 //			}
 //		}
+	    
+	    
+	    
+	    
+	    
+	    
+	    //Question paper list
+	    private static void addQuestionPaperList(Document document, Map input,  Map data)
+	            throws DocumentException, Exception {
+	    	
+	    	//PrintView printView = new PrintView();
+	    	//Map verifyedValues = printView.getMarkSheetContent(input);
+			
+			System.out.println(" RESPONSE  LETTER in Question PaperList   GOT in DATA MAP -- "+data);
+			System.out.println(" RESPONSE  LETTER in Question PaperList list  GOT in INPUT MAP -- "+input);
+			
+			
+			//rajkumar todo read map
+
+			ObjectMapper oMapper = new ObjectMapper();
+			Iterator<String> iter = data.keySet().iterator();
+	  
+	        Paragraph preface = new Paragraph();
+	   
+	        //addEmptyLine(preface, 1);
+	    
+        preface.add(new Paragraph("QUESTION PAPER LIST", catFont));
+
+	        //addEmptyLine(preface, 1);
+	        
+	  	        
+	        //TODo
+	        String sesMonth = new String ("AUG");
+			String sesYear = new String("2020");
+	        
+	        preface.add(new Paragraph(
+	                " Question paper pick list for the "+sesMonth+" "+sesYear+" Examination.", smallBold));
+	        
+	        addEmptyLine(preface, 1);
+	 
+	        preface.add(new Paragraph(
+	                " CENTRE: ", smallBold));
+	        preface.add(new Paragraph(
+	                " SESSION: ", smallBold));
+	       // addEmptyLine(preface, 1);
+	        
+	
+
+	        //addEmptyLine(preface, 1);
+	        
+	  	        
+	        
+	        
+//	        preface.add(new Paragraph(
+//	                " Question Paper List ---------------------------------------------------------------------------------------------", smallBold));
+//	        
+	        addEmptyLine(preface, 1);
+	        
+	     //   document.add(preface);   // to move to next page
+	        
+	     //   document.newPage();
+	        
+	        
+	        
+	        
+	        PdfPTable table = new PdfPTable(3);
+	        
+	        table.setTotalWidth(new float[]{ 30, 200, 72 });
+	        table.setLockedWidth(true);
+	        
+	        PdfPCell c1 = new PdfPCell(new Phrase("SNo",smallBold));
+	    
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("Question Paper Name", smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("Paper Count",smallBold));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	       
+	        
+	        table.setHeaderRows(1);
+	         PdfPCell r1 = new PdfPCell(new Phrase("1.0",smallfont));
+	        int sno = 0;
+	        String strNo = new String("");
+	        String qPaperName = new String("");
+	        String paperCount = new String("");
+	        
+	        
+	        while (iter.hasNext()) {
+				String key = iter.next();
+				Object val = data.get(key);
+				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+			
+				 
+				 sno = sno+1;
+				 strNo = String.valueOf(sno);
+				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
+			     table.addCell(r1);
+			     
+			     
+			     
+			    Object dipCodeobj = map1.get("ea_dipcode");
+			    if(dipCodeobj!=null) {
+			    	qPaperName = dipCodeobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(qPaperName,smallfont));
+			    table.addCell(r1);
+			     
+			  
+			    //3
+			    Object ea_nameobj = map1.get("count");
+			    if(ea_nameobj!=null) {
+			    	paperCount = ea_nameobj.toString();
+			    }
+			    r1 = new PdfPCell(new Phrase(paperCount,smallfont));
+			    table.addCell(r1);
+			    
+
+			}
+	        
+	        preface.add(table);
+	        
+	        
+	        
+	        addEmptyLine(preface, 1);
+
+
+	        document.add(preface);
+	 
+	         
+	    }
 	    
 	    
 	    //Attendance CHART

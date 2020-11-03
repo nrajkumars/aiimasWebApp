@@ -243,9 +243,9 @@ public class AiimasServlet extends HttpServlet {
 					
 				// may be need else later else remove the if
 				
-			}else if(module != null && module.equals("printReportTODO2")) {
+			}else if(module != null && module.equals("printReport")) {
 				
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  ");
+				System.out.println(" AIIMAS SERVLET  --  Question Paper List  ");
 				
 				String adprCode = request.getParameter("adprCode");
 				String adpprNo = request.getParameter("adpprNo");
@@ -264,11 +264,10 @@ public class AiimasServlet extends HttpServlet {
 				// click on marksheet to get the test report
 				
 				PrintView printView = new PrintView();
-				Map applicListData = printView.getApplicantslist(input);
+				Map applicListData = printView.getQuestionPaperList1(input);
 				
-				//Map printReports = printView.getPrintReports(input);
-							// MOVING DATA fetch to  PDFGenerator.java						
-				//System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+printReports);
+
+
 				
 				// GENERATING the PDF
 				
@@ -285,7 +284,7 @@ public class AiimasServlet extends HttpServlet {
 				retrunMap.put("Filename", gfile);
 				
 				writeResponse(retrunMap, resp);
-			}else if(module != null && module.equals("printReport")) {
+			}else if(module != null && module.equals("printReport_Attendance")) {
 				
 				System.out.println(" AIIMAS SERVLET  --  Attendance chart  ");
 				
