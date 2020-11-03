@@ -243,7 +243,7 @@ public class AiimasServlet extends HttpServlet {
 					
 				// may be need else later else remove the if
 				
-			}else if(module != null && module.equals("printReport")) {
+			}else if(module != null && module.equals("printReport_QuestionPaper")) {
 				
 				System.out.println(" AIIMAS SERVLET  --  Question Paper List  ");
 				
@@ -363,7 +363,7 @@ public class AiimasServlet extends HttpServlet {
 				retrunMap.put("Filename", gfile);
 				
 				writeResponse(retrunMap, resp);
-			}else if(module != null && module.equals("printReport_ORGINAL")) {
+			}else if(module != null && module.equals("printReport")) {
 				
 				//printReport - ORGINAL 
 				
@@ -385,19 +385,34 @@ public class AiimasServlet extends HttpServlet {
 				
 				// click on marksheet to get the test report
 				
-			//	PrintView printView = new PrintView();
-			//	Map applicListData = printView.getApplicantslist(input);
 				
-				//Map printReports = printView.getPrintReports(input);
-							// MOVING DATA fetch to  PDFGenerator.java						
-				//System.out.println(" RESPONSE  printAdmInit GOT in MAP -- "+printReports);
+				//BASED on  Action , change the query
 				
+				PrintView printView = new PrintView();
+				Map pdfData = new HashMap();
+				
+				 // for each Report this has to be changed
+	            if (action != null && action.equals("admInit")) {
+	            	pdfData =  printView.getAdmInitimationetails(input);
+	            }else if(action != null && action.equals("ackLetter")) {
+	            	pdfData =  printView.getAcknowledgeContent(input);
+	            }else if(action != null && action.equals("ansSheet")) {
+	            	pdfData =  printView.getAnswerSheetAcknowledge(input);
+	            }else if(action != null && action.equals("hallTck")) {
+	            	pdfData =  printView.getHallTicketContent(input);
+	            }else if(action != null && action.equals("mrkSheet")) {
+	            	pdfData =  printView.getMarkSheetContent(input);
+	            }else if(action != null && action.equals("diplomaCerti")) {
+	            	pdfData =  printView.getDiplomaCertiContent(input);
+	            }
+				
+						
 				// GENERATING the PDF
 				
 				
 				 
 				PDFGenerator pdfGenerator = new PDFGenerator();
-				String gfile = pdfGenerator.PrintPDF(input);
+				String gfile = pdfGenerator.PrintPDF(input, pdfData );
 				
 				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
 				

@@ -673,7 +673,7 @@ import com.itextpdf.text.Image;
 	    }
 	    
 	    // for print pdf using itextPDF
-	    public String PrintPDF(Map input) {
+	    public String PrintPDF(Map input, Map data) {
 	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
 	        try {
 	        	

@@ -209,7 +209,89 @@ public class PrintView extends BaseDao {
 		return null;
 	}
 	
+	//  Marksheet content
+	public Map getMarkSheetContent(Map input) throws Exception  {
+		Object prNum =  input.get("adpprNo");
+		Object prCode =  input.get("adprCode");
+		
 	
+		Map finaldata = new HashMap();
+		String admin = new String("Admin");
+		String address = new String("Address");
+		
+		
+		System.out.println(" INSIDE PRINT VIEW  getAdmInitimationetails--  going to run the SQL = "+prNum+","+prCode );
+		
+		if (prNum != null && prNum.toString().trim().length() > 0) {
+			if((prCode != null && prCode.toString().trim().length() > 0)) {
+				
+				// Read from ADMIN table
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
+				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+			
+				if (data1 != null && data1.size() > 0) {
+					//return (Map) data1.get(0);
+					finaldata.put(admin, data1.get(0));
+				}
+				
+				// Read form ADDRESS table
+				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
+				List data2 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+			
+				if (data2 != null && data2.size() > 0) {
+					//return (Map) data2.get(0);
+					finaldata.put(address, data2.get(0));
+				}
+				
+						
+				return finaldata;
+			}
+		}
+		return null;
+	}
+	
+//  diplomaCerti
+	public Map getDiplomaCertiContent(Map input) throws Exception  {
+		Object prNum =  input.get("adpprNo");
+		Object prCode =  input.get("adprCode");
+		
+	
+		Map finaldata = new HashMap();
+		String admin = new String("Admin");
+		String address = new String("Address");
+		
+		
+		System.out.println(" INSIDE PRINT VIEW  getAdmInitimationetails--  going to run the SQL = "+prNum+","+prCode );
+		
+		if (prNum != null && prNum.toString().trim().length() > 0) {
+			if((prCode != null && prCode.toString().trim().length() > 0)) {
+				
+				// Read from ADMIN table
+				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
+				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+			
+				if (data1 != null && data1.size() > 0) {
+					//return (Map) data1.get(0);
+					finaldata.put(admin, data1.get(0));
+				}
+				
+				// Read form ADDRESS table
+				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
+				List data2 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+			
+				if (data2 != null && data2.size() > 0) {
+					//return (Map) data2.get(0);
+					finaldata.put(address, data2.get(0));
+				}
+				
+						
+				return finaldata;
+			}
+		}
+		return null;
+	}
+	
+	///  TO BE mapped to UI
 	
 //  Question paperlist
 	public Map getQuestionPaperList1(Map input) throws Exception  {
@@ -386,45 +468,7 @@ public class PrintView extends BaseDao {
 		return null;
 	}
 	
-	public Map getMarkSheetContent(Map input) throws Exception  {
-		Object prNum =  input.get("adpprNo");
-		Object prCode =  input.get("adprCode");
-		
 	
-		Map finaldata = new HashMap();
-		String admin = new String("Admin");
-		String address = new String("Address");
-		
-		
-		System.out.println(" INSIDE PRINT VIEW  getAdmInitimationetails--  going to run the SQL = "+prNum+","+prCode );
-		
-		if (prNum != null && prNum.toString().trim().length() > 0) {
-			if((prCode != null && prCode.toString().trim().length() > 0)) {
-				
-				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
-				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-			
-				if (data1 != null && data1.size() > 0) {
-					//return (Map) data1.get(0);
-					finaldata.put(admin, data1.get(0));
-				}
-				
-				// Read form ADDRESS table
-				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
-				List data2 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-			
-				if (data2 != null && data2.size() > 0) {
-					//return (Map) data2.get(0);
-					finaldata.put(address, data2.get(0));
-				}
-				
-						
-				return finaldata;
-			}
-		}
-		return null;
-	}
 		
 
 }
