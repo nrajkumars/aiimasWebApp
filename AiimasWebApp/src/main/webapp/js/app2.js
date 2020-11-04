@@ -615,28 +615,39 @@ function onPostgetMarkData(data) {
 			// Parse JSON
 			var parsedData1pr = JSON.parse(data);
 			
-			if(parsedData1pr['Failure'] !== undefined){
+			var jsonstring =  JSON.stringify(data) ;
+			console.log(' mark Detail  '+ jsonstring   );
+			
+			var executeFunction = false;
+			
+			if(jsonstring == "\"{}\""){
+				document.getElementById('markDetailNotFound').style.display='block'; 
+				clearAllAtrbutesV2();
+			}else if(parsedData1pr['Failure'] !== undefined){
 				document.getElementById('markDetailNotFound').style.display='block';
 				//$("#markDetailNotFound").show();
+				//executeFunction = true;
 				clearAllAtrbutesV2();
-			}else {
-				document.getElementById('markDetailFound').style.display='block';
+			}else if(parsedData1pr['Success'] !== undefined){
+				
+				
 				//$("#markDetailFound").show();
 				//clearAllAtrbutesV2();
+				executeFunction = true;
 			}
 			
-	/*
-		if(parsedData1['Admin'] !== undefined || parsedData1['Address'] !== undefined || parsedData1['Fee'] !== undefined ){
-			$("#alertDetailFound").show();
-		}else if(parsedData1['Failure'] !== undefined){
-			$("#alertDetailNotFound").show();
-			clearAllAtrbutes();
-		}
-		*/	
+			for (var key in parsedData1pr) {
+			    if (parsedData1pr.hasOwnProperty(key)) {
+			        console.log(key + "  -> " + parsedData1pr[key]);
+			        
+			        if(key == 'Exam' || key.includes('Paper')){
+			        	executeFunction = true;
+			        	document.getElementById('markDetailFound').style.display='block';
+			        }
+			    }
+			}
 			
-			
-			
-			
+			if(executeFunction){
 			
 			
 			for (var key in parsedData1pr) {
@@ -661,27 +672,6 @@ function onPostgetMarkData(data) {
 			}
 			
 			
-			//resultMark 
-			/*stuNameMark     ea_name
-			diplomaCodeMark  ea_dipcode
-			durationMark      ea_durtn
-			
-			noofPaperMark  ea_nofpapr
-			SemMonthMark    ea_sesmon
-			SemYearMark   ea_sesyr
-			stateMark ea_stname
-			centerMark          ea_centre1
-			
-			    "ea_sesyr": 2004,
-			    "ea_nofpapr": 4,
-			    "ea_name": "NITIN KAMRISHI",
-			    "ea_dipcode": "APR",
-			    "ea_sesmon": "FEB",
-			    "ea_stname": "POSTAL EXAMINATION",
-			    "ea_centre1": "POSTAL EXAMINATION",
-			    "ea_durtn": "SIX MONTHS" */
-			
-			
 			var count = Object.keys(parsedData1pr).length;
 			  console.log('parsedData1pr '+count);
 			  var dict = {};
@@ -694,6 +684,7 @@ function onPostgetMarkData(data) {
 					        //console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
 					        //console.log('PaperList1 paper param >> '+parsedData1pr.PaperList1["dp_paprnam"]);
 					        dict[parsedData1pr.PaperList1["dp_paperno"]] = parsedData1pr.PaperList1["dp_paprnam"];
+					        document.getElementById("marksentersegment").style.display = "block";
 				        }
 				        
 				        if(key == 'PaperList2'){
@@ -785,31 +776,23 @@ function onPostgetMarkData(data) {
 
 
 			console.log(JSON.stringify(paperNoPaperName));			
-			
 			console.log('---------'+parsedData1pr);*/
 			//Now you can sort by any field at will...
-
 			//const homes=[{h_id:"3",city:"Dallas",state:"TX",zip:"75201",price:"162500"},{h_id:"4",city:"Bevery Hills",state:"CA",zip:"90210",price:"319250"},{h_id:"5",city:"New York",state:"NY",zip:"00010",price:"962500"}];
-
 			// Sort by price high to low
 			//console.log(parsedData1pr.sort(sort_by('dp_paperno', false, parseInt)));
-			
 			//console.log(parsedData1pr.sort(sortByProperty('dp_paperno')));
-			
 			//TODO SAKTHI  LOAD the exam application screen with this values
-
+			}
 
 		} catch (e) {
 				console.log("data error,Reason"+e.toString());
 			}
-		
-		
-		
 
 		}else{
-		//alert('else');
-		//document.getElementById('resultTable1').style.display = "hide";
 		}
+		
+		
 
 }
 
@@ -917,7 +900,7 @@ function onPostgetModifyAdmData(data) {
 		
 	if (data != null) {
 						
-					//alert('called in update');
+		//console.log(' parseddata'+ JSON.stringify(data)   );
 			try {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
@@ -928,8 +911,14 @@ function onPostgetModifyAdmData(data) {
 				document.getElementById('updateadmissionDataLoad').style.display='block';
 			}else if(parsedData1['Failure'] !== undefined){
 				//$("#alertDetailNotFound").show();
-				document.getElementById('updateadmissionDataLoadFail').style.display='block';
+				document.getElementById('updateadmissionDataLoadFail').style.display='block'; 
 				clearAllAtrbutes();
+			}else{
+				var jsonstring =  JSON.stringify(data) ;
+				console.log(' parseddata empty '+ jsonstring   );
+				if(jsonstring == "\"{}\""){
+					document.getElementById('get_student_detail').style.display='block'; 
+				}
 			}
 		
 			
@@ -977,6 +966,8 @@ function onPostgetModifyAdmData(data) {
 		console.log("data error, Reason"+e.toString());
 	}	
 			
+	}else{
+		document.getElementById('get_student_detail').style.display='block'; 
 	}
 }
 
@@ -1203,12 +1194,16 @@ function clearAllAtrbutesV1() {
 	  document.getElementById("SemYearMark").value =  "";
 	  document.getElementById("stateMark").value =  "";
 	  document.getElementById("centerMark").value =  "";
-	  document.getElementById("Marksenter1").value =  "";
-	  document.getElementById("markPaperno").value =  "";
-	  document.getElementById("markPapername").value =  "";
 	  
+	  //document.getElementById("markPaperno").value =  "";
+	 // document.getElementById("markPapername").value =  "";
+	  document.getElementById("enterDateExam").value =  "";
 	  
+	  if($("#cboxpaper").length){
+		  document.getElementById('displayPaper1').style.display='none'; 
+	  }
 	  
+	 
 	  
 	  $('#examStateCodeList option').remove();  
 	  $('#examCenterCodeList option').remove(); 
@@ -1230,19 +1225,6 @@ function clearAllAtrbutesV1() {
 	  var elementStCode = document.querySelectorAll("input[id='examStateCodeList']");
 	  if(typeof(elementStCode) != 'undefined' && elementStCode != null){
 		  console.log('drop down data list '+elementStCode.length);
-			 /*
-			for(var i = 0,j=1; i < elementStCode.length; i++){
-				elementStCode.children[elementStCode[i]].remove()
-				//elementStCode[i].parentNode.removeChild(elementStCode[i]);
-			}
-			
-			 var childArray = elementStCode.children;
-		        var cL = childArray.length;
-		        while(cL > 0) {
-		            cL--;
-		            elementStCode.removeChild(childArray[cL]);
-		        }
-				*/	   
 						
 	}
 	  var elementCb = document.querySelectorAll("input[id='cboxpaper']");
@@ -1295,6 +1277,8 @@ function clearAllAtrbutesV2() {
 	document.getElementById("centerMark").value =  "";
 	document.getElementById("prCodeMark").value =  "";
 	document.getElementById("prNoMark").value =  "";
+	document.getElementById("marksentersegment").style.display = "none";
+	//$("marksentersegment").hide();
 	
 }
 
@@ -1446,7 +1430,7 @@ function updateAdmission(admType) {
 		   }else{
 	
 	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":admType,"stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
-
+	  		console.log(' - - - - - DELETE - - - - ');
 		   }
 	}else if(admType == 'updateAdm'){
 		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
@@ -1563,12 +1547,24 @@ function onPostSearchQuestion1(data) {
 			
 			parsedData = JSON.parse(data);
 			
-			if(parsedData['Failure'] !== undefined){
-				$("#questionDetailNotFound").show();
+			var jsonstring =  JSON.stringify(data) ;
+			//console.log(' mark Detail get question paper '+ jsonstring   );
+			
+			var executeFunction = false;
+			
+			if(jsonstring == "\"{}\"" || jsonstring =="" || jsonstring == "\"null\""){
+				console.log('caaaaaaaaseeeee 1'+jsonstring);
+				document.getElementById('getQuestPaperFail').style.display='block';
+				clearQuestionPaper();
+			}else 	if(parsedData['Failure'] == null || parsedData['Failure'] !== undefined){
+				console.log('caaaaaaaaseeeee 2'  +parsedData);
+				document.getElementById('getQuestPaperFail').style.display='block';
+				//$("#questionDetailNotFound").show();
 				clearQuestionPaper();
 			}else {
-				$("#questionDetailFound").show();
-				//clearAllAtrbutesV2();
+				console.log('caaaaaaaaseeeee 3   '+parsedData);
+				$("#getQuestPaper").show();
+				
 			}
 			
 			

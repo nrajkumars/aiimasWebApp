@@ -618,7 +618,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 	  <div class="w3-container">
 	  
-		<p>   
+		  
 		
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
@@ -781,20 +781,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			<div class="w3-container w3-card-4">
   			<h3>Papers</h3>
   			<div id="slct2"></div>
-			<!--   <p>
-			  <input class="w3-check" type="checkbox" value="I" > 
-			  <label>Paper 1</label></p>
-			  <p>
-			  <input class="w3-check" type="checkbox" vlue="II">
-			  <label> Paper 2</label></p>
-			  <p>
-			  <p>
-			  <input class="w3-check" type="checkbox" value="III" >
-			  <label>Paper 3</label></p>
-			  <p>
-			  <input class="w3-check" type="checkbox" value="IV">
-			  <label> Paper 4</label></p>
-			  <p>  -->
 			</div>
   			
   			<!--  Sakthi this hase to be changed based on selection -->
@@ -802,24 +788,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			<input type="hidden" name="paper selected string" id="ea_paprstr"  value ="">
  		    
  		  
-		
-		<br><br><br>
-		<div class="w3-container">
-		<div class="w3-show-inline-block">
-				  <div class="w3-bar">
-		
-			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()"  style="display:none"   >&nbsp;&nbsp;Save</button>
- 			<button class="w3-button w3-orange" id="resultUpdateExamApp" onclick="updateExamApplication()" style="display:none" >Update</button> 
+
+<p></p>
+<center>
+			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()"    >&nbsp;&nbsp;Save</button>
+ 			<button class="w3-button w3-orange" id="resultUpdateExamApp" onclick="updateExamApplication()"  >Update</button> 
  			<!--  during update add a flg for pass field  todo -->
 			<button class="w3-button w3-red" onclick="clearAllAtrbutesV1()" >Clear</button>
-			
-			<!--  Sakthi  clear button
-			 -->
-			 
-			 
-		</div></div></div>
+</center>
+<p></p>
 
-		</p>
+		
 	  </div>
 	  </div>
 	  	</div>
@@ -940,9 +919,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		    <!--   based on the DB data this has to come dynamically  only MARKS to be updated by the user-->
  		    
  		    
- 		    <div class="w3-container w3-card-4">
+ 		    <div class="w3-container w3-card-4" id="marksentersegment">
   			<h3>Enter Marks:</h3>
-			  <p>
+			<!--    <p>
 	  
 			  <div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text" id="Marksenter1" ><br>
@@ -956,11 +935,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			  <input class="w3-input w3-border" type="text"  disabled Placeholder="Elements of managemnet"  id="markPapername"><br>
 			  </div>
 			  
-			  <p>
+			  <p>-->
 			
 			
 			
 			<div class="w3-container " id="displayPaper1" style="display: none;">
+			
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row1papertext"><br>
+			  </div>
+			
 			   <div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row1paper"><br>
 			  </div>
@@ -971,6 +955,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		</div>
 			
 			<div class="w3-container " id="displayPaper2" style="display: none;">
+			
+						<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row2papertext"><br>
+			  </div>
+			
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row2paper"><br>
 			  </div>
@@ -981,6 +970,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</div>
 			
 						<div class="w3-container " id="displayPaper3" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row3papertext"><br>
+			  </div>
+						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row3paper"><br>
 			  </div>
@@ -991,6 +985,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</div>
 			
 						<div class="w3-container " id="displayPaper4" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row4papertext"><br>
+			  </div>
+						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row4paper"><br>
 			  </div>
@@ -1001,6 +1000,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</div>
 			
 						<div class="w3-container " id="displayPaper5" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row5papertext"><br>
+			  </div>
+						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row5paper"><br>
 			  </div>
@@ -1011,6 +1015,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</div>
 			
 						<div class="w3-container " id="displayPaper6" style="display: none;">
+						
+				<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row6papertext"><br>
+			  </div>
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row6paper"><br>
 			  </div>
@@ -1021,6 +1029,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</div>
 			
 						<div class="w3-container " id="displayPaper7" style="display: none;">
+						
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row7papertext"><br>
+			  </div>						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row7paper"><br>
 			  </div>
@@ -1031,6 +1044,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</div>
 			
 						<div class="w3-container " id="displayPaper8" style="display: none;">
+						
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row8papertext"><br>
+			  </div>						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row8paper"><br>
 			  </div>
@@ -1241,6 +1259,18 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   </div>
 </div>
 
+<div id="get_student_detail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('get_student_detail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>STUDENTS NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('get_student_detail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
 <div id="updateadmissionDataLoadFail" class="w3-modal">
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
@@ -1262,6 +1292,31 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		  
 		  </div>
+
+
+<div id="getQuestPaper" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('getQuestPaper').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>QUESTION PAPER LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('getQuestPaper').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="getQuestPaperFail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('getQuestPaperFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>QUESTION PAPER NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('getQuestPaperFail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
 		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
@@ -2000,7 +2055,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('newadmission').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">New Admission</h2>
+      <h2 class="w3-wide">ADD EXAM Application</h2>
       <p>Successful !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmission').style.display='none'">OK</button>
@@ -2012,7 +2067,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('newadmissionfail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">New Admission</h2>
+      <h2 class="w3-wide">ADD EXAM Application</h2>
       <p>Failed !!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmissionfail').style.display='none'">OK</button>
