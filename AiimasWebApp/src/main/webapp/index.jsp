@@ -44,6 +44,12 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+table#tbsty,
+table#tbsty td
+{
+    border: none !important;
+}
 <!-- end table -->
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
@@ -775,7 +781,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			
   			
   			<!--  SAKTHI - No of checkbox selected  = oldnofpapr -->
-  			<!--  sakthi - selected checkboz values  = I,II  to values ea_paprstr -->
   			
   			<!--    BASED on the no of papers - this has to come dynamic to match the paper count  -->
   			<div class="w3-container w3-card-4">
@@ -790,11 +795,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		  
 
 <p></p>
-<center>
-			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()"    >&nbsp;&nbsp;Save</button>
- 			<button class="w3-button w3-orange" id="resultUpdateExamApp" onclick="updateExamApplication()"  >Update</button> 
+<center><table id="tbsty" align="center" width="15%"  border="0" cellspacing="0" cellpadding="0"><tr><td>
+			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()"  style="display:none"  >&nbsp;&nbsp;Save</button> </td>
+ 		<td>	<button class="w3-button w3-orange" id="resultUpdateExamApp" onclick="updateExamApplication()" style="display:none" >Update</button>  </td>
  			<!--  during update add a flg for pass field  todo -->
-			<button class="w3-button w3-red" onclick="clearAllAtrbutesV1()" >Clear</button>
+		<td>	<button class="w3-button w3-red" onclick="clearAllAtrbutesV1()" >Clear</button> </td></tr></table>
 </center>
 <p></p>
 
