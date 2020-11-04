@@ -1541,25 +1541,21 @@ function getQuestion1() {
 
 }
 function onPostSearchQuestion1(data) {
-	console.log(' onPostSearchQuestion1  RESPONSE POST in app .JS:' + data);
+	//console.log(' onPostSearchQuestion1  RESPONSE POST in app .JS:' + data);
 
 		if (data != null) {
 			
 			parsedData = JSON.parse(data);
 			
 			var jsonstring =  JSON.stringify(data) ;
-			//console.log(' mark Detail get question paper '+ jsonstring   );
+			//console.log(' mark Detail get question paper '+ parsedData  );
+			//console.log(' mark Detail get question paper '+ parsedData['Failure']    );
 			
 			var executeFunction = false;
 			
 			if(jsonstring == "\"{}\"" || jsonstring =="" || jsonstring == "\"null\""){
-				console.log('caaaaaaaaseeeee 1'+jsonstring);
+				console.log('json empty '+jsonstring);
 				document.getElementById('getQuestPaperFail').style.display='block';
-				clearQuestionPaper();
-			}else 	if(parsedData['Failure'] == null || parsedData['Failure'] !== undefined){
-				console.log('caaaaaaaaseeeee 2'  +parsedData);
-				document.getElementById('getQuestPaperFail').style.display='block';
-				//$("#questionDetailNotFound").show();
 				clearQuestionPaper();
 			}else {
 				console.log('caaaaaaaaseeeee 3   '+parsedData);
@@ -1625,7 +1621,8 @@ function onPostSearchQuestion1(data) {
 		                var innerHtmlText = "";
 		                if ((fileName.toString()).indexOf(".PDF") !== -1) { //add .pdf here to send only pdf as link reference
 		                	linkName=fileName;
-		                	innerHtmlText = "<a href='public/qpapers/EM.PDF' target='_blank'>"+fileName+"</a>";
+		                	let hrefforupdate = "<a href=\'public/qpapers/"+fileName+"\'  target=\'_blank\'>"+fileName+"</a>";
+		                	innerHtmlText = hrefforupdate;
 		                }else{
 		                	innerHtmlText = fileName;
 		                }
