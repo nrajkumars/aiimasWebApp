@@ -1623,9 +1623,9 @@ function onPostSearchQuestion1(data) {
 		                var fileName = parsedData[i][col[j]];
 		                var linkName="";
 		                var innerHtmlText = "";
-		                if ((fileName.toString()).indexOf(".pdf") !== -1) { //add .pdf here to send only pdf as link reference
+		                if ((fileName.toString()).indexOf(".PDF") !== -1) { //add .pdf here to send only pdf as link reference
 		                	linkName=fileName;
-		                	innerHtmlText = "<a href='public/qpapers/EM.pdf' target='_blank'>"+fileName+"</a>";
+		                	innerHtmlText = "<a href='public/qpapers/fileName' target='_blank'>"+fileName+"</a>";
 		                }else{
 		                	innerHtmlText = fileName;
 		                }
