@@ -462,8 +462,7 @@ function saveExamApplication() {
 	
 	var examStateCode= document.getElementById('examStateCode').value;
 	var examCenterCode= document.getElementById('examCenterCode').value;
-	var examStateName= document.getElementById('examStateName').value;
-	var examCenterName= document.getElementById('examCenterName').value;
+
 
 	var ackIniLetterDate= document.getElementById('ackIniLetterDate').value
 	var ackHallTckDate = document.getElementById('ackHallTckDate').value
@@ -485,24 +484,25 @@ function saveExamApplication() {
 	document.getElementById('ea_paprstr').value = selectedItems;
 	
 	
-	console.log('saveExamApplication  oldnofpapr'+oldnofpapr);
-	console.log('saveExamApplication  ea_paprstr'+document.getElementById('ea_paprstr').value);
+	console.log('saveExamApplication  oldnofpapr '+oldnofpapr);
+	console.log('saveExamApplication  ea_paprstr '+document.getElementById('ea_paprstr').value);
 	
 	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
 	
 	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO
 	//var examTotalPaper= document.getElementById('examTotalPaper').value;
 	
-//	if (examStateCode == "" || prno == "") {
-//			alert("Please enter the values in P.R.Code and P.R.No")
-//	  }else{
+	if (prCodeExam == "" || prNoExam == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
 	
 	
-	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
-	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
-	//}else{
-		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examStateName":examStateName,"examCenterName":examCenterName,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostgetExamData);
-	//}
+		if(isNaN( semMonthExam == "" || semYearExam == "" || examCenterCode == "") ){
+				alert("Please enter values for Exam Semester Month and Year and Center,  Total paper,  and Exam Pass flag ");
+		}else{
+			postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostgetExamData);
+		}
+	}
 }
 
 function onPostgetExamData(data) {
@@ -550,7 +550,107 @@ function onPostgetExamData(data) {
 
 
 //Exam Update todo
+function updateExamApplication() {
+	
+	console.log('updateExamApplication  on EXAM clicked rajjj ');
+	
+	var prCodeExam = document.getElementById('prCodeExam').value;
+	var prNoExam = document.getElementById('prNoExam').value;
+	
+	var stuNameExam = document.getElementById('stuNameExam').value;
+	var diplomaCodeExam = document.getElementById('diplomaCodeExam').value;
+	var durationExam = document.getElementById('durationExam').value;
+	var noofPaperExam = document.getElementById('noofPaperExam').value;
+	
+	var semMonthExam = document.getElementById('semMonthExam').value;
+	var semYearExam = document.getElementById('semYearExam').value;
+	var enterDateExam = document.getElementById('enterDateExam').value;
+	
+	var examStateCode= document.getElementById('examStateCode').value;
+	var examCenterCode= document.getElementById('examCenterCode').value;
+	var examStateName= document.getElementById('examStateName').value;
+	var examCenterName= document.getElementById('examCenterName').value;
 
+	var ackIniLetterDate= document.getElementById('ackIniLetterDate').value
+	var ackHallTckDate = document.getElementById('ackHallTckDate').value
+	var ackExamdate1= document.getElementById('ackExamdate1').value
+	var ackExamdate2= document.getElementById('ackExamdate2').value
+	
+	var oldnofpapr= document.getElementById('oldnofpapr').value=noofPaperExam;
+	
+	var items=document.getElementsByName('cboxpaper');
+	var selectedItems="";
+	for(var i=0; i<items.length; i++){
+		console.log('  '+i+'    '+items[i].checked)
+		if( items[i].checked==true)
+			selectedItems+=items[i].value+", ";
+	}
+	console.log('cboxpaper  '+selectedItems);
+	selectedItems = selectedItems.replace(/,\s*$/, "");    
+	console.log('selectedItems .... '+selectedItems);
+	document.getElementById('ea_paprstr').value = selectedItems;
+	
+	
+	console.log('saveExamApplication  oldnofpapr'+oldnofpapr);
+	console.log('saveExamApplication  ea_paprstr'+document.getElementById('ea_paprstr').value);
+	
+	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
+	
+	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO
+	//var examTotalPaper= document.getElementById('examTotalPaper').value;
+	
+//	if (examStateCode == "" || prno == "") {
+//			alert("Please enter the values in P.R.Code and P.R.No")
+//	  }else{
+	
+	
+	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
+	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
+	//}else{
+		postAjax('rs',{"app":"AiimasPost","module":"UpdateExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examStateName":examStateName,"examCenterName":examCenterName,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostUpdateExamData);
+	//}
+}
+
+function onPostUpdateExamData(data) {
+	console.log('RESPONSE POST in   onPostUpdateExamData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+			console.log('save exam response '+JSON.stringify(parsedData1));	
+			
+			var stringformjsondata = JSON.stringify(parsedData1);
+			
+			if (stringformjsondata != null) {
+				//if(parsedData1.Success.trim().length>0){   
+				if(stringformjsondata.includes('Success')){ 
+					document.getElementById('newadmission').style.display='block';
+				}else if(stringformjsondata.includes('Failure')){
+					document.getElementById('newadmissionfail').style.display='block';
+				}
+			}
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+			
+
+
+		} catch (e) {
+				console.log("data error, Reason"+e.toString());
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
 
 // MARKS deails
 
@@ -832,11 +932,11 @@ function saveMark() {
 	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
 	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
 	//}else{
-		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData2);
+		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData);
 	//}
 }
 
-function onPostgetExamData2(data) {
+function onPostgetExamData(data) {
 	console.log('RESPONSE POST in   onPostgetExamData2  app .JS:' + data);
 	var parsedData1;
 		
@@ -865,8 +965,6 @@ function onPostgetExamData2(data) {
 				console.log("data error,Reason"+e.toString());
 			}
 		
-		
-		
 
 		}else{
 		//alert('else');
@@ -888,7 +986,7 @@ function getStudentDetail() {
 			alert("Please enter the values in P.R.Code and P.R.No")
 	  }else{
 	
-		postAjax('rs',{"app":"AiimasPost","module":"UpdateAdmission","action":"admDetails","prNo":prno,"prCode":prcode}, onPostgetModifyAdmData);
+		postAjax('rs',{"app":"AiimasPost","module":"getStudentData","action":"admDetails","prNo":prno,"prCode":prcode}, onPostgetModifyAdmData);
 	}
 }
 
@@ -1158,6 +1256,8 @@ function returnFormatDate(inputDate){
 
 function clearAllAtrbutes() {
 	
+	console.log('clear dong');
+	
 	document.getElementById("stuName1").value =  "";
 	document.getElementById("papers1").value = ""; 
 	document.getElementById("emailid1").value = ""; 
@@ -1379,14 +1479,13 @@ function onPostAddAdmission(data) {
 		}
 }
 
-
-// UPDATE Admission
-function updateAdmission(admType) {
+// DELETE Admission
+function deleteAdmission() {
 	
 	var confirmResult;
-	if(admType == 'deleteAdm'){
+
 	 confirmResult = confirm("Are you sure to delete?");
-	}
+
 	
 	console.log('updateAdmission clicked rajjj ');
 	
@@ -1429,10 +1528,63 @@ function updateAdmission(admType) {
 			alert("Please enter the values in Diploma, P.R.Code and P.R.No")
 		   }else{
 	
-	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":admType,"stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
+	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":"deleteAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostDeleteAdmission);
 	  		console.log(' - - - - - DELETE - - - - ');
 		   }
-	}else if(admType == 'updateAdm'){
+	}
+
+}
+
+function onPostDeleteAdmission(data) {
+	console.log(' onPostDeleteAdmission  RESPONSE POST in app .JS:' + data);
+
+		if (data != null) {
+			parsedData1 = JSON.parse(data);
+			if(parsedData1['Failure'] !== undefined){
+				document.getElementById('deleteadmissionFail').style.display='block';
+			
+			}else if(parsedData1['Success'] !== undefined){
+				document.getElementById('deleteadmission').style.display='block';
+				clearAllAtrbutes();
+			}
+			
+		}
+}
+
+
+
+// UPDATE Admission
+function updateAdmission() {
+	
+	console.log('updateAdmission clicked rajjj ');
+	
+	var stuName = document.getElementById('stuName1').value;
+	var address1 = document.getElementById('address11').value;
+	var diplomaCode = document.getElementById('diplomaCodeUad').value;
+	console.log('diplomaCode ------------------------------------------------'+diplomaCode);
+	var duration = document.getElementById('duration1').value;
+	var semMonth = document.getElementById('semMonth1').value;
+	var semYear = document.getElementById('semYear1').value;
+	var enterDate = document.getElementById('enterDate1').value;
+	var prCode11 = document.getElementById('prCode111').value;
+	var prNo1 = document.getElementById('prNo11').value;
+	var paidamt = document.getElementById('paidamt1').value;
+	var address2 = document.getElementById('address21').value;
+	var address3 = document.getElementById('address31').value;
+	var address4 = document.getElementById('address41').value;
+	var pincode = document.getElementById('pincode1').value;
+	var mobNum = document.getElementById('mobNum1').value;
+	var state = document.getElementById('state1').value;
+	var phonenum = document.getElementById('phonenum1').value;
+	var emailid = document.getElementById('emailid1').value;
+	var dueDate = document.getElementById('dueDate1').value;
+	var totfee = document.getElementById('totfee1').value;
+	var papers = document.getElementById('papers1').value;
+	var feepaiddate = document.getElementById('feepaiddate1').value;
+	var feepaidmode = document.getElementById('feepaidmode1').value;
+	var feeref = document.getElementById('feeref1').value;
+	
+
 		if(isNaN(semYear) || isNaN(pincode) || isNaN(phonenum) || isNaN(mobNum) || isNaN(papers) || isNaN(totfee) || isNaN(paidamt)){
 			alert("Please enter only numbers for PINCODE, PHONE NUMBER, SEM YEAR, MOBILE, NO OF PAPERS, TOTAL FEE AMT, FEE PAID AMOUNT ")
 			
@@ -1444,10 +1596,10 @@ function updateAdmission(admType) {
 			alert("Please enter the values in Diploma, P.R.Code and P.R.No")
 		   }else{
 	
-	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":admType,"stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
+	  		postAjax('rs',{"app":"AiimasPost","module":"modifyAdmission","action":"updateAdm","stuName":stuName,"address1":address1, "diplomaCode":diplomaCode, "duration":duration, "semMonth":semMonth, "semYear":semYear, "enterDate":enterDate, "prCode11":prCode11, "prNo1":prNo1, "paidamt":paidamt, "address2":address2, "address3":address3, "address4":address4, "pincode":pincode, "phonenum":phonenum, "state":state, "mobNum":mobNum, "emailid":emailid, "dueDate":dueDate, "totfee":totfee, "papers":papers,"feepaiddate":feepaiddate,"feepaidmode":feepaidmode,"feeref":feeref}, onPostUpdateAdmission);
 
 		   }
-	}
+
 
 }
 
@@ -1464,20 +1616,7 @@ function onPostUpdateAdmission(data) {
 				document.getElementById('update_admission').style.display='block';
 			}
 			
-			if(parsedData1['UpdateSuccess'] !== undefined){
-				document.getElementById('update_admission').style.display='block';
-			}else if(parsedData1['UpdateFailure'] !== undefined){
-				document.getElementById('update_admissionFail').style.display='block';
-			}
 			
-			if(parsedData1['DeleteSuccess'] !== undefined){
-				document.getElementById('deleteadmission').style.display='block';
-				clearAllAtrbutes();
-			}else if(parsedData1['DeleteFailure'] !== undefined){
-				document.getElementById('deleteadmissionFail').style.display='block';
-			}
-			
-
 		}
 }
 
@@ -1619,10 +1758,9 @@ function onPostSearchQuestion1(data) {
 		                var fileName = parsedData[i][col[j]];
 		                var linkName="";
 		                var innerHtmlText = "";
-		                if ((fileName.toString()).indexOf(".PDF") !== -1) { //add .pdf here to send only pdf as link reference
+		                if ((fileName.toString()).indexOf(".pdf") !== -1) { //add .pdf here to send only pdf as link reference
 		                	linkName=fileName;
-		                	let hrefforupdate = "<a href=\'public/qpapers/"+fileName+"\'  target=\'_blank\'>"+fileName+"</a>";
-		                	innerHtmlText = hrefforupdate;
+							innerHtmlText = "<a href=\'public/qpapers/"+fileName+"\'  target=\'_blank\'>"+fileName+"</a>";
 		                }else{
 		                	innerHtmlText = fileName;
 		                }
@@ -1654,6 +1792,83 @@ function hrefWindowOpen(dataItem){
 	
 	var websitelink = window.location.href+"qpaper/" + dataItem;   //appending the path :: pdf :: to the localhost address
     window.open(websitelink,'_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+}
+
+
+
+//ApplicantList
+
+function printApplicantList() {
+	
+	console.log('printApplicantList clicked rajjj ');
+	
+		var ALsemMonthName = document.getElementById('ALsemMonthName').value;
+		var ALsemYearName = document.getElementById('ALsemYearName').value;
+		var ALexamCenterCode = document.getElementById('ALexamCenterCode').value;
+	
+		
+	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_ApplicantList","action":"applicantList","ALsemMonthName":ALsemMonthName,"ALsemYearName":ALsemYearName,"ALexamCenterCode":ALexamCenterCode}, onPostprintApplicantList);
+
+}
+function onPostprintApplicantList(data) {
+
+	console.log('pdf length :' + data.length);
+	
+	var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+}
+
+
+//QuestionPaperList
+
+function printQuestionPaperList() {
+	
+	console.log('printQuestionPaperList clicked rajjj ');
+	
+		var QAsemMonthName = document.getElementById('QAsemMonthName').value;
+		var QAsemYearName = document.getElementById('QAsemYearName').value;
+		var QAexamCenterCode = document.getElementById('QAexamCenterCode').value;
+	
+		
+	
+	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_QuestionPaper","action":"QPaperList","QAsemMonthName":QAsemMonthName,"QAsemYearName":QAsemYearName,"QAexamCenterCode":QAexamCenterCode}, onPostQuestionPaperList);
+
+}
+function onPostQuestionPaperList(data) {
+
+	console.log('pdf length :' + data.length);
+	
+	var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+}
+
+
+
+//ATTENDANCE CHART
+
+function getAttendChart() {
+	
+	console.log('getAttendChart clicked rajjj ');
+	
+		var ACsemMonthName = document.getElementById('ACsemMonthName').value;
+		var ACsemYearName = document.getElementById('ACsemYearName').value;
+		var ACduration = document.getElementById('ACduration').value;
+		var ACdiplomaCode = document.getElementById('ACdiplomaCode').value;
+		var ACexamCenterCode = document.getElementById('ACexamCenterCode').value;
+		
+	
+	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_AttendChart","action":"AttendChart","ACsemMonthName":ACsemMonthName,"ACsemYearName":ACsemYearName,"ACduration":ACduration,"ACdiplomaCode":ACdiplomaCode,"ACexamCenterCode":ACexamCenterCode,}, onPostAttendChart);
+
+}
+function onPostAttendChart(data) {
+
+	console.log('pdf length :' + data.length);
+	
+	var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
 }
 
 //PRINT  - Admmission Initimation

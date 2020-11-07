@@ -247,17 +247,16 @@ public class AiimasServlet extends HttpServlet {
 				
 				System.out.println(" AIIMAS SERVLET  --  Question Paper List  ");
 				
-				String adprCode = request.getParameter("adprCode");
-				String adpprNo = request.getParameter("adpprNo");
-				
+				String QAsemMonthName = request.getParameter("QAsemMonthName");
+				String QAsemYearName = request.getParameter("QAsemYearName");
+				String QAexamCenterCode = request.getParameter("QAexamCenterCode");
 					
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
 				
 				Map input = new HashMap();
 				input.put("action", action);
-				input.put("adprCode", adprCode);
-				input.put("adpprNo", adpprNo);
+				input.put("QAsemMonthName", QAsemMonthName);
+				input.put("QAsemYearName", QAsemYearName);
+				input.put("QAexamCenterCode", QAexamCenterCode);
 
 				//RAJKUMAR to merge start
 				
@@ -284,21 +283,32 @@ public class AiimasServlet extends HttpServlet {
 				retrunMap.put("Filename", gfile);
 				
 				writeResponse(retrunMap, resp);
-			}else if(module != null && module.equals("printReport_Attendance")) {
+			}else if(module != null && module.equals("printReport_AttendChart")) {
 				
 				System.out.println(" AIIMAS SERVLET  --  Attendance chart  ");
 				
-				String adprCode = request.getParameter("adprCode");
-				String adpprNo = request.getParameter("adpprNo");
+			
+				String ACsemMonthName = request.getParameter("ACsemMonthName");
+				String ACsemYearName = request.getParameter("ACsemYearName");
+				String ACduration = request.getParameter("ACduration");
+				String ACdiplomaCode = request.getParameter("ACdiplomaCode");
+				String ACexamCenterCode = request.getParameter("ACexamCenterCode");
 				
-					
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +action);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACsemMonthName);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACsemYearName);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACduration);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACdiplomaCode);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACexamCenterCode);	
 				
 				Map input = new HashMap();
 				input.put("action", action);
-				input.put("adprCode", adprCode);
-				input.put("adpprNo", adpprNo);
+				input.put("ACsemMonthName", ACsemMonthName);
+				input.put("ACsemYearName", ACsemYearName);
+				input.put("ACduration", ACduration);
+				input.put("ACdiplomaCode", ACdiplomaCode);
+				input.put("ACexamCenterCode", ACexamCenterCode);
+
 
 				//RAJKUMAR to merge start
 				
@@ -324,7 +334,7 @@ public class AiimasServlet extends HttpServlet {
 				retrunMap.put("Filename", gfile);
 				
 				writeResponse(retrunMap, resp);
-			}else if(module != null && module.equals("printReport_APPLICANT")) {
+			}else if(module != null && module.equals("printReport_ApplicantList")) {
 				
 				System.out.println(" AIIMAS SERVLET  --  APPLICANT LIST LETTER here  ");
 				
@@ -592,7 +602,7 @@ public class AiimasServlet extends HttpServlet {
 						writeResponse(response1, resp);
 						//end of Delete admission
 					}
-				}else if (module != null && module.equals("UpdateAdmission")) {
+				}else if (module != null && module.equals("getStudentData")) {
 
 				// GET STudent Details
 					
@@ -659,8 +669,7 @@ public class AiimasServlet extends HttpServlet {
 							String stuNameExam = request.getParameter("stuNameExam");
 							String examStateCode = request.getParameter("examStateCode");
 							String examCenterCode = request.getParameter("examCenterCode");
-							String examStateName = request.getParameter("examStateName");
-							String examCenterName = request.getParameter("examCenterName");
+				
 							
 							String ackIniLetterDate = request.getParameter("ackIniLetterDate");
 							String ackHallTckDate= request.getParameter("ackHallTckDate");
@@ -686,8 +695,6 @@ public class AiimasServlet extends HttpServlet {
 							input.put("examStateCode", examStateCode);
 							input.put("examCenterCode", examCenterCode);
 							
-							input.put("examStateName", examStateName);
-							input.put("examCenterName", examCenterName);
 							
 							input.put("ackIniLetterDate", ackIniLetterDate);
 							input.put("ackHallTckDate", ackHallTckDate);
@@ -711,7 +718,76 @@ public class AiimasServlet extends HttpServlet {
 							System.out.println(" RESPONSE GOT in MAP --  Exam application success");
 							
 						
-						}else if (module != null && module.equals("MarkApplication")) {
+						}else if (module != null && module.equals("UpdateExamApplication")) {
+
+							// SAVE EXAM Details
+								
+								System.out.println(" start --  UPDATE EXAM application");
+								
+								String prCodeExam = request.getParameter("prCodeExam");
+								String prNoExam = request.getParameter("prNoExam");
+								String diplomaCodeExam = request.getParameter("diplomaCodeExam");
+								String durationExam = request.getParameter("durationExam");
+								String noofPaperExam = request.getParameter("noofPaperExam");
+								String semMonthExam = request.getParameter("semMonthExam");
+								String semYearExam = request.getParameter("semYearExam");
+								String enterDateExam = request.getParameter("enterDateExam");
+								String stuNameExam = request.getParameter("stuNameExam");
+								String examStateCode = request.getParameter("examStateCode");
+								String examCenterCode = request.getParameter("examCenterCode");
+								String examStateName = request.getParameter("examStateName");
+								String examCenterName = request.getParameter("examCenterName");
+								
+								String ackIniLetterDate = request.getParameter("ackIniLetterDate");
+								String ackHallTckDate= request.getParameter("ackHallTckDate");
+								String ackExamdate1 = request.getParameter("ackExamdate1");
+								String ackExamdate2 = request.getParameter("ackExamdate2");
+								
+								String oldnofpapr = request.getParameter("oldnofpapr");
+								String ea_paprstr = request.getParameter("ea_paprstr");
+							//	String examPassFlag = request.getParameter("examPassFlag");
+								
+											
+								
+								Map input = new HashMap();
+								input.put("prCodeExam", prCodeExam);
+								input.put("prNoExam", prNoExam);
+								input.put("diplomaCodeExam", diplomaCodeExam);
+								input.put("durationExam", durationExam);
+								input.put("noofPaperExam", noofPaperExam);
+								input.put("semMonthExam", semMonthExam);
+								input.put("semYearExam", semYearExam);
+								input.put("enterDateExam", enterDateExam);
+								input.put("stuNameExam", stuNameExam);
+								input.put("examStateCode", examStateCode);
+								input.put("examCenterCode", examCenterCode);
+								
+								input.put("examStateName", examStateName);
+								input.put("examCenterName", examCenterName);
+								
+								input.put("ackIniLetterDate", ackIniLetterDate);
+								input.put("ackHallTckDate", ackHallTckDate);
+								input.put("ackExamdate1", ackExamdate1);
+								input.put("ackExamdate2", ackExamdate2);
+								input.put("oldnofpapr", oldnofpapr);
+								input.put("ea_paprstr", ea_paprstr);
+								
+								System.out.println(" RESPONSE examDetails befr   ackHallTckDate -- "+ackHallTckDate);
+								
+								ExamApplication examApplication = new ExamApplication();
+								examApplication.updateExam(input);
+								System.out.println(" RESPONSE examDetails sucesses -- ");
+								
+								Map response1 = new HashMap();
+								response1.put("Success", "EXAM UPDATE is Done successfully");
+								
+								writeResponse(response1, resp);
+								
+								
+								System.out.println(" RESPONSE GOT in MAP --  Exam application success");
+								
+							
+							}else if (module != null && module.equals("MarkApplication")) {
 
 						// GET MARK Details
 							
@@ -793,7 +869,7 @@ public class AiimasServlet extends HttpServlet {
 //			sw.close();
 			String responsestatus = new String("Failure");
 			Map responseerror = new HashMap();
-			responseerror.put(responsestatus, "failed");
+			responseerror.put(responsestatus, "failed "+e.toString());
 		
 			//Map ret = new HashMap();
 			//ret.put("error", "Unable to process request due to technical error TRY again");

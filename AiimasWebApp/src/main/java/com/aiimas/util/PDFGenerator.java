@@ -67,19 +67,11 @@ import com.itextpdf.text.Image;
 	            
 	            
 	            // for each Report this has to be changed
-	            if (action != null && action.equals("admInit")) {
-	            	addAdmInitimationContent(document, input);
-	            }else if(action != null && action.equals("ackLetter")) {
-	            	addAcknowledgeContent(document, input);
-	            }else if(action != null && action.equals("ansSheet")) {
-	            	addAnswerSheetAcknowledge(document, input);
-	            }else if(action != null && action.equals("hallTck")) {  // Question paper list 
+	            if(action != null && action.equals("QPaperList")) {  // Question paper list 
 	            	addQuestionPaperList(document, input,data);
-	            }else if(action != null && action.equals("mrkSheet")) { // RAJKUMAR  applicant List
-	            	System.out.println(" add app -- don pdf gen -----1-");
+	            }else if(action != null && action.equals("applicantList")) { // RAJKUMAR  applicant List
 	            	addApplicantList(document, input, data);
-	            	System.out.println(" add app -- don pdf gen ----2--");
-	            }else if(action != null && action.equals("diplomaCerti")) {  // attendance Chart
+	            }else if(action != null && action.equals("AttendChart")) {  // attendance Chart
 	            	addAttendanceChart(document, input, data);
 	            }
 	           	           
@@ -249,6 +241,11 @@ import com.itextpdf.text.Image;
 	    private static void addAttendanceChart(Document document, Map input,  Map data)
 	            throws DocumentException, Exception {
 	    	
+	    	
+//	    	Object ALsemMonthName =  input.get("ALsemMonthName");
+//			Object ALsemYearName =  input.get("ALsemYearName");
+//			Object ALexamCenterCode =  input.get("ALexamCenterCode");
+//	    	
 	 			
 			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in DATA MAP -- "+data);
 			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in INPUT MAP -- "+input);
@@ -403,7 +400,7 @@ import com.itextpdf.text.Image;
 	        while (iter2.hasNext()) {
 				String key = iter2.next();
 				if(key.contains("appList")) {
-					System.out.println(key);
+					//System.out.println(key);
 				Object val = data.get(key);
 				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
 			
@@ -503,42 +500,37 @@ import com.itextpdf.text.Image;
 	    //LETTER applicated
 	    private static void addApplicantList(Document document, Map input,  Map data)
 	            throws DocumentException, Exception {
-	    	
-	    	//PrintView printView = new PrintView();
-	    	//Map verifyedValues = printView.getMarkSheetContent(input);
+	
 			
 			System.out.println(" RESPONSE  LETTER in Applicant list  GOT in DATA MAP -- "+data);
 			System.out.println(" RESPONSE  LETTER in Applicant list  GOT in INPUT MAP -- "+input);
 			
 			
-			//rajkumar todo read map
+			
+			Object ALsemMonthName =  input.get("ALsemMonthName");
+			Object ALsemYearName =  input.get("ALsemYearName");
+			Object ALexamCenterCode =  input.get("ALexamCenterCode");
+			
 
 			ObjectMapper oMapper = new ObjectMapper();
 			Iterator<String> iter = data.keySet().iterator();
 	   
-//			  while (iter.hasNext()) {
-//					String key = iter.next();
-//					Object val = data.get(key);
-//					 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
-//					 System.out.println(map1.get("ea_dipcode"));
-//	     }
-
-			
-			
-			
-	    	
 	        Paragraph preface = new Paragraph();
 	   
-	        //addEmptyLine(preface, 1);
 	    
 	        preface.add(new Paragraph("APPLICANTS LIST", catFont));
-
-	        //addEmptyLine(preface, 1);
+        
+	    	 String sesMonth = new String ("");
+	     	 String sesYear = new String("");
+	     	 
+	        if (ALsemMonthName!=null) {
+	        	sesMonth = ALsemMonthName.toString();
+	        }
 	        
-	  	        
-	        //TODo
-	        String sesMonth = new String ("AUG");
-			String sesYear = new String("2020");
+	        if(ALsemYearName!=null) {
+	        	 sesYear = ALsemYearName.toString();;
+	         }  
+	        
 	        
 	        preface.add(new Paragraph(
 	                " List  of applicants for the "+sesMonth+" "+sesYear+" Examination.", smallBold));

@@ -37,11 +37,15 @@ public class AddAdmission extends BaseDao {
 		Object feepaidmode = data.get("feepaidmode");
 		Object feeref = data.get("feeref");
 		
-		System.out.println("RRRRRRRRRRRRRRRRRR -"+diplomaCode);
+	
 		String newDipCode =  diplomaCode.toString();
-		int subcount = newDipCode.indexOf("/");
-		System.out.println("RRRRRRRRRRRRRRRRRR - "+subcount);
-		newDipCode = newDipCode.substring(0, subcount-1);
+		
+		if(newDipCode.contains("/")) {
+			int subcount = newDipCode.indexOf("/");
+			System.out.println("RRRRRRRRRRRRRRRRRR - "+subcount);
+			newDipCode = newDipCode.substring(0, subcount-1);
+		}
+		
 		
 		System.out.println("RRRRRRRRRRRRRRRRRR  2222    -"+newDipCode);
 		
@@ -143,11 +147,13 @@ public class AddAdmission extends BaseDao {
 		
 		System.out.println("RRRRRRRRRRRRRRRRRR -"+diplomaCode);
 		String newDipCode =  diplomaCode.toString();
-		int subcount = newDipCode.indexOf("/");
-		System.out.println("RRRRRRRRRRRRRRRRRR - "+subcount);
-		newDipCode = newDipCode.substring(0, subcount-1);
 		
-		System.out.println("RRRRRRRRRRRRRRRRRR  2222    -"+newDipCode);
+		if(newDipCode.contains("/")) {
+			int subcount = newDipCode.indexOf("/");
+			newDipCode = newDipCode.substring(0, subcount-1);
+		}
+		
+	
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		Date feeDuedate = null;
@@ -239,6 +245,11 @@ public class AddAdmission extends BaseDao {
 				
 		String deletefee = "DELETE from public.FEES where FE_PRCODE =? and FE_PRNO= ?";
 		executeUpdate(deletefee, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString())});
+		
+		
+		//public.EAPPL (EA_DIPCODE, EA_PRCODE, EA_PRNO
+		
+		//public.ACKBOX1 (AK_DIPCODE, AK_PRCODE, AK_PRNO,
 	
 		System.out.println(" INSIDE delete SUCCESSFUL");
 				

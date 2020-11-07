@@ -593,8 +593,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<center>
 		
-			<button class="w3-button w3-blue" id="updateAddAdm" onclick="updateAdmission('updateAdm')">&nbsp;&nbsp;Update</button>
- 			<button class="w3-button w3-red" id="deleteAddAdm" onclick="updateAdmission('deleteAdm')">Delete</button>
+			<button class="w3-button w3-blue" id="updateAddAdm" onclick="updateAdmission()">&nbsp;&nbsp;Update</button>
+ 			<button class="w3-button w3-red" id="deleteAddAdm" onclick="deleteAdmission()">Delete</button>
 			<button class="w3-button w3-green" onclick="clearAllAtrbutes()" >Clear</button>
 			
 
@@ -724,11 +724,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			
 	  		<!--  SAKTHI get from DB data-->
 	  		
-	  			<!--  Sakthi this hase to be changed based on selection -->
-  			<input type="hidden" name="SATE NAME" id="examStateName"  value ="Andr">
-  			<input type="hidden" name="Center NAme" id="examCenterName"  value ="Vij">
- 		    
- 		  
+	   
 	  		
 	  		</datalist>	
 	  
@@ -1409,7 +1405,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    		
 	
 		<Center>				 
-			<button class="w3-button w3-green" id="QuestionPaperListPdf" onclick="printAdmInit('applicantList')">&nbsp;&nbsp;Get Applicants List</button><br> <br>
+			<button class="w3-button w3-green" id="QuestionPaperListPdf" onclick="printQuestionPaperList()">&nbsp;&nbsp;Get QuestionPaper List</button><br> <br>
 		 </Center>
 
 <br>
@@ -1515,7 +1511,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    		
 	
 		<Center>				 
-			<button class="w3-button w3-green" id="applicantListPdf" onclick="printAttendanceChart()">&nbsp;&nbsp;Get Attendance Chart</button><br> <br>
+			<button class="w3-button w3-green" id="applicantListPdf" onclick="getAttendChart()">&nbsp;&nbsp;Get Attendance Chart</button><br> <br>
 		 </Center>
 
 <br>
@@ -2008,7 +2004,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('deleteadmission').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">Update Admission</h2>
+      <h2 class="w3-wide">Delete Admission</h2>
       <p>Successful !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('deleteadmission').style.display='none'">OK</button>
@@ -2021,8 +2017,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('deleteadmissionFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">Update Admission</h2>
-      <p>Failed !!!</p>
+      <h2 class="w3-wide">Delete Admission</h2>
+      <p style="color:red">Failed !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('deleteadmissionFail').style.display='none'">OK</button>
     </div>
@@ -2047,7 +2043,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('update_admissionFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
       <h2 class="w3-wide">Update Admission</h2>
-      <p>Failed !!!</p>
+      <p style="color:red">Failed !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('update_admissionFail').style.display='none'">OK</button>
     </div>
@@ -2060,7 +2056,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('newadmission').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">ADD EXAM Application</h2>
+      <h2 class="w3-wide">ADD Admission Application</h2>
       <p>Successful !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmission').style.display='none'">OK</button>
@@ -2072,8 +2068,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('newadmissionfail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">ADD EXAM Application</h2>
-      <p>Failed !!</p>
+      <h2 class="w3-wide">ADD Admission Application</h2>
+      <p style="color:red">Failed !!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newadmissionfail').style.display='none'">OK</button>
     </div>
