@@ -718,73 +718,99 @@ public class AiimasServlet extends HttpServlet {
 							System.out.println(" RESPONSE GOT in MAP --  Exam application success");
 							
 						
-						}else if (module != null && module.equals("UpdateExamApplication")) {
+						}else if (module != null && module.equals("ExamUpdateApplication")) {
 
-							// SAVE EXAM Details
+							// GET EXAM  and student detailf or update  exam Details
 								
-								System.out.println(" start --  UPDATE EXAM application");
+								System.out.println(" start --  serach  update Eaxm ");
 								
-								String prCodeExam = request.getParameter("prCodeExam");
-								String prNoExam = request.getParameter("prNoExam");
-								String diplomaCodeExam = request.getParameter("diplomaCodeExam");
-								String durationExam = request.getParameter("durationExam");
-								String noofPaperExam = request.getParameter("noofPaperExam");
-								String semMonthExam = request.getParameter("semMonthExam");
-								String semYearExam = request.getParameter("semYearExam");
-								String enterDateExam = request.getParameter("enterDateExam");
-								String stuNameExam = request.getParameter("stuNameExam");
-								String examStateCode = request.getParameter("examStateCode");
-								String examCenterCode = request.getParameter("examCenterCode");
-								String examStateName = request.getParameter("examStateName");
-								String examCenterName = request.getParameter("examCenterName");
+								String prn = request.getParameter("prNo");
+								String prc = request.getParameter("prCode");
 								
-								String ackIniLetterDate = request.getParameter("ackIniLetterDate");
-								String ackHallTckDate= request.getParameter("ackHallTckDate");
-								String ackExamdate1 = request.getParameter("ackExamdate1");
-								String ackExamdate2 = request.getParameter("ackExamdate2");
 								
-								String oldnofpapr = request.getParameter("oldnofpapr");
-								String ea_paprstr = request.getParameter("ea_paprstr");
-							//	String examPassFlag = request.getParameter("examPassFlag");
-								
+								System.out.println(" RESPONSE examupdateDetails GOT  prn in MAP"+prn);
+								System.out.println(" RESPONSE examupdateDetails GOT  prc in MAP"+prc);
 											
-								
-								Map input = new HashMap();
-								input.put("prCodeExam", prCodeExam);
-								input.put("prNoExam", prNoExam);
-								input.put("diplomaCodeExam", diplomaCodeExam);
-								input.put("durationExam", durationExam);
-								input.put("noofPaperExam", noofPaperExam);
-								input.put("semMonthExam", semMonthExam);
-								input.put("semYearExam", semYearExam);
-								input.put("enterDateExam", enterDateExam);
-								input.put("stuNameExam", stuNameExam);
-								input.put("examStateCode", examStateCode);
-								input.put("examCenterCode", examCenterCode);
-								
-								input.put("examStateName", examStateName);
-								input.put("examCenterName", examCenterName);
-								
-								input.put("ackIniLetterDate", ackIniLetterDate);
-								input.put("ackHallTckDate", ackHallTckDate);
-								input.put("ackExamdate1", ackExamdate1);
-								input.put("ackExamdate2", ackExamdate2);
-								input.put("oldnofpapr", oldnofpapr);
-								input.put("ea_paprstr", ea_paprstr);
-								
-								System.out.println(" RESPONSE examDetails befr   ackHallTckDate -- "+ackHallTckDate);
-								
 								ExamApplication examApplication = new ExamApplication();
-								examApplication.updateExam(input);
-								System.out.println(" RESPONSE examDetails sucesses -- ");
+								Map input = new HashMap();
+								input.put("prNum", prn);
+								input.put("prCode", prc);
+
 								
-								Map response1 = new HashMap();
-								response1.put("Success", "EXAM UPDATE is Done successfully");
+								Map examUpdateDetails = examApplication.getExamUpdateDetails(input);
+								System.out.println(" RESPONSE examDetails GOT in MAP -- "+examUpdateDetails);
 								
-								writeResponse(response1, resp);
+								writeResponse(examUpdateDetails, resp);
 								
 								
 								System.out.println(" RESPONSE GOT in MAP --  Exam application success");
+								
+							
+							}else if (module != null && module.equals("UpdateExamApplication")) {
+
+// UPDATE EXAM Details
+							
+							System.out.println(" start --   UPDATE EXAM application");
+							
+							String prCodeExam = request.getParameter("prCodeExam");
+							String prNoExam = request.getParameter("prNoExam");
+							String diplomaCodeExam = request.getParameter("diplomaCodeExam");
+							String durationExam = request.getParameter("durationExam");
+							String noofPaperExam = request.getParameter("noofPaperExam");
+							String semMonthExam = request.getParameter("semMonthExam");
+							String semYearExam = request.getParameter("semYearExam");
+							String enterDateExam = request.getParameter("enterDateExam");
+							String stuNameExam = request.getParameter("stuNameExam");
+							String examStateCode = request.getParameter("examStateCode");
+							String examCenterCode = request.getParameter("examCenterCode");
+				
+							
+							String ackIniLetterDate = request.getParameter("ackIniLetterDate");
+							String ackHallTckDate= request.getParameter("ackHallTckDate");
+							String ackExamdate1 = request.getParameter("ackExamdate1");
+							String ackExamdate2 = request.getParameter("ackExamdate2");
+							
+							String oldnofpapr = request.getParameter("oldnofpapr");
+							String ea_paprstr = request.getParameter("ea_paprstr");
+						//	String examPassFlag = request.getParameter("examPassFlag");
+							
+										
+							
+							Map input = new HashMap();
+							input.put("prCodeExam", prCodeExam);
+							input.put("prNoExam", prNoExam);
+							input.put("diplomaCodeExam", diplomaCodeExam);
+							input.put("durationExam", durationExam);
+							input.put("noofPaperExam", noofPaperExam);
+							input.put("semMonthExam", semMonthExam);
+							input.put("semYearExam", semYearExam);
+							input.put("enterDateExam", enterDateExam);
+							input.put("stuNameExam", stuNameExam);
+							input.put("examStateCode", examStateCode);
+							input.put("examCenterCode", examCenterCode);
+							
+							
+							input.put("ackIniLetterDate", ackIniLetterDate);
+							input.put("ackHallTckDate", ackHallTckDate);
+							input.put("ackExamdate1", ackExamdate1);
+							input.put("ackExamdate2", ackExamdate2);
+							input.put("oldnofpapr", oldnofpapr);
+							input.put("ea_paprstr", ea_paprstr);
+							
+							System.out.println(" RESPONSE examDetails befr   ackHallTckDate -- "+ackHallTckDate);
+							
+							ExamApplication examApplication = new ExamApplication();
+							examApplication.updateExam(input);
+							System.out.println(" RESPONSE examUPDATEDetails sucesses -- ");
+							
+							Map response1 = new HashMap();
+							response1.put("Success", "EXAM Update is Done successfully");
+							
+							writeResponse(response1, resp);
+							
+							
+							System.out.println(" RESPONSE GOT in MAP --  Exam UPDATE application success");
+							
 								
 							
 							}else if (module != null && module.equals("MarkApplication")) {
@@ -812,7 +838,89 @@ public class AiimasServlet extends HttpServlet {
 							System.out.println(" RESPONSE GOT in MAP --  MARKs applicatoin success");
 							
 						
-						}else if (module != null && module.equals("Maintenance")) {				
+						}else if (module != null && module.equals("SaveMark")) {
+
+							// Save Mark Details
+								
+								System.out.println(" start --  Save Mark      ");
+								
+								String prCodeMark = request.getParameter("prCodeMark");
+								String prNoMark = request.getParameter("prNoMark");
+								String diplomaCodeMark = request.getParameter("diplomaCodeMark");
+								String SemMonthMark = request.getParameter("SemMonthMark");
+								String SemYearMark = request.getParameter("SemYearMark");
+								String stuNameMark = request.getParameter("stuNameMark");
+								String row1paperMark= request.getParameter("row1paperMark");
+								String row1paper= request.getParameter("row1paper");
+								String row1papername= request.getParameter("row1papername");
+								String row2paperMark= request.getParameter("row2paperMark");
+								String row2paper= request.getParameter("row2paper");
+								String row2papername= request.getParameter("row2papername");
+								String row3paperMark= request.getParameter("row3paperMark");
+								String row3paper= request.getParameter("row3paper");
+								String row3papername= request.getParameter("row3papername");
+								String row4paperMark= request.getParameter("row4paperMark");
+								String row4paper= request.getParameter("row4paper");
+								String row4papername= request.getParameter("row4papername");
+								String row5paperMark= request.getParameter("row5paperMark");
+								String row5paper= request.getParameter("row5paper");
+								String row5papername= request.getParameter("row5papername");
+								String row6paperMark= request.getParameter("row6paperMark");
+								String row6paper= request.getParameter("row6paper");
+								String row6papername= request.getParameter("row6papername");
+								String row7paperMark= request.getParameter("row7paperMark");
+								String row7paper= request.getParameter("row7paper");
+								String row7papername= request.getParameter("row7papername");
+								String row8paperMark= request.getParameter("row8paperMark");
+								String row8paper= request.getParameter("row8paper");
+								String row8papername= request.getParameter("row8papername");
+											
+								MarkUpdate markUpdate = new MarkUpdate();
+								Map input = new HashMap();
+								input.put("prCodeMark", prCodeMark);
+								input.put("prNoMark", prNoMark);
+								input.put("diplomaCodeMark", diplomaCodeMark);
+								input.put("SemMonthMark", SemMonthMark);
+								input.put("SemYearMark", SemYearMark);
+								input.put("stuNameMark", stuNameMark);
+								input.put("row1paperMark", row1paperMark);
+								input.put("row1paper", row1paper);
+								input.put("row1papername", row1papername);
+								input.put("row2paperMark", row2paperMark);
+								input.put("row2paper", row2paper);
+								input.put("row2papername", row2papername);
+								input.put("row3paperMark", row3paperMark);
+								input.put("row3paper", row3paper);
+								input.put("row3papername", row3papername);
+								input.put("row4paperMark", row4paperMark);
+								input.put("row4paper", row4paper);
+								input.put("row4papername", row4papername);
+								input.put("row5paperMark", row5paperMark);
+								input.put("row5paper", row5paper);
+								input.put("row5papername", row5papername);
+								input.put("row6paperMark", row6paperMark);
+								input.put("row6paper", row6paper);
+								input.put("row6papername", row6papername);
+								input.put("row7paperMark", row7paperMark);
+								input.put("row7paper", row7paper);
+								input.put("row7papername", row7papername);
+								input.put("row8paperMark", row8paperMark);
+								input.put("row8paper", row8paper);
+								input.put("row8papername", row8papername);
+
+								
+								 markUpdate.saveMarks(input);
+							
+								System.out.println(" RESPONSE examUPDATEDetails sucesses -- ");
+								
+								Map response1 = new HashMap();
+								response1.put("Success", "SAVE Marks is Done successfully");
+								
+								writeResponse(response1, resp);
+
+								System.out.println(" RESPONSE GOT in MAP --  SAVE Marks success");
+								
+							}else if (module != null && module.equals("Maintenance")) {				
 					//	 Maintenance
 					
 					if(action != null && action.equals("searchInsitute")) {

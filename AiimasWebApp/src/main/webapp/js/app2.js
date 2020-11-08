@@ -179,9 +179,204 @@ function onPostsearchByName(data) {
 			}
 	}
 }
-			
 
+// GET STUDNET and EXAM details for update exam
 // get EXam details
+
+function getExamUpdateData1() {
+	
+	console.log('getExamUpdateData...  on EXAM clicked rajjj ');
+	
+	var prcode = document.getElementById('prCodeExam1').value;
+	var prno = document.getElementById('prNoExam1').value;
+	
+	if (prcode == "" || prno == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+		postAjax('rs',{"app":"AiimasPost","module":"ExamUpdateApplication","action":"examUpdateDetail1","prNo":prno,"prCode":prcode}, onPostgetExamUpdateData1);
+	}
+}
+
+function onPostgetExamUpdateData1(data) {
+	//console.log('RESPONSE POST in   onPostgetExamData1  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+			//console.log(' parseddata'+ JSON.stringify(parsedData1)   );
+		
+			if(parsedData1['Admin'] !== undefined ){
+				//$("#alertDetailFound").show();     
+				document.getElementById('addExamGetExamDataLoad1').style.display='block';
+				var sbutton = document.getElementById('resultSaveExamApp');
+				if (sbutton.style.display === "none") {
+					sbutton.style.display = "block";
+				  } else {
+					  sbutton.style.display = "none";
+				  }   
+				
+				
+				
+				var ubutton = document.getElementById('resultUpdateExamApp1');
+				if (ubutton.style.display === "none") {
+					ubutton.style.display = "block";
+				  } else {
+					  ubutton.style.display = "none";
+				  }
+				/*document.getElementById('resultSaveExamApp').style.display='block';
+				document.getElementById('resultUpdateExamApp').style.display='block';*/
+				
+				
+			}else {		//if(parsedData1['Failure'] !== undefined)
+				//$("#alertDetailNotFound").show();
+				document.getElementById('addExamGetExamDataLoadFail1').style.display='block';
+				clearAllAtrbutesV1();
+			}
+			
+			if(parsedData1['Admin'] !== undefined){
+				document.getElementById("stuNameExam1").value =  parsedData1.Admin["ad_name"];
+				document.getElementById("diplomaCodeExam1").value =  parsedData1.Admin["ad_dipcode"];
+				document.getElementById("durationExam1").value =  parsedData1.Admin["ad_durtn"];
+				document.getElementById("noofPaperExam1").value =  parsedData1.Admin["ad_nofpapr"];
+				
+				document.getElementById("stuNameExam1").readOnly = true;
+				document.getElementById("diplomaCodeExam1").readOnly = true;
+				document.getElementById("durationExam1").readOnly = true;
+				document.getElementById("noofPaperExam1").readOnly = true;
+			}
+			
+			var paperNumbers = document.getElementById("noofPaperExam1").value ;
+			var s2 = document.getElementById('slct2');
+			var elementCb = document.querySelectorAll("input[id='cboxpaper']");
+			var mylabelforCbox = document.querySelectorAll("lbelnew");
+			
+			
+			 if(typeof(elementCb) != 'undefined' && elementCb != null){
+				 
+				 var elem=$("#slct2 input");
+				 $("#slct2").empty().html(elem);
+				 
+			        
+			        for(var i = 0,j=1; i < elementCb.length; i++){
+			        	elementCb[i].parentNode.removeChild(elementCb[i]);
+			        }
+			       
+			        
+			    } else{
+			        console.log('Element does not exist!');
+			    }
+			 
+			
+			for (var i = 1; i <= paperNumbers; i++) {
+				//console.log('paper... '+i);
+				 	var nameinp = ' Paper '+i;
+				 	var valinp = i;
+				 	//console.log('nameinp... '+nameinp);
+				 	//console.log('valinp... '+valinp);
+			        var checkbox = document.createElement("input");
+			        checkbox.type = "checkbox";
+			        checkbox.name = 'cboxpaper';
+			        checkbox.id = 'cboxpaper';
+			        checkbox.value = valinp;
+			        s2.appendChild(checkbox);
+
+			        var label = document.createElement('label')
+			        label.htmlFor = nameinp;
+			        label.id = 'labelnew';
+			        label.appendChild(document.createTextNode(nameinp));
+
+			        s2.appendChild(label);
+			        s2.appendChild(document.createElement("br"));   
+			}
+			
+			var Stselect = document.getElementById("examStateCodeList1"); 
+			  $('#examStateCodeList option').remove();  
+			  $('#examCenterCodeList option').remove(); 
+				  var state = {};  var centre= {}; var state1course = [];
+				  for (var key in parsedData1) {
+					    if (parsedData1.hasOwnProperty(key)) {
+					        //console.log(key + " -> " + parsedData1[key]);
+					        
+					        if(key.includes('State')){
+					        	var obj = parsedData1[key];
+					        	var textval = '';
+					        	var textopt = '';
+					        	for (var key in obj) {
+					        		  if (obj.hasOwnProperty(key)) {
+					        		    var val = obj[key];
+					        		    //console.log(val);
+					        		    //console.log('Label '+key);
+					        		    var el = document.createElement("option");
+					        		    
+					        		    if(key.includes('st_stname')){
+					        		    	textval = val;
+					        		    	
+					        		    }
+					        		    if(key.includes('st_stcode')){
+					        		    	textopt = val;
+					        		    }
+					        		    
+					        		  }
+					        		}
+							    el.text = textopt;
+							    el.value = textval+' /'+el.text;
+					        	Stselect.appendChild(el);
+					        }
+					        
+					        if(key.includes('Centre')){
+					        	
+					        	var obj = parsedData1[key];
+					        	
+					        	var statecode1 = '';
+					        	var centrecode1 = '';
+					        	var centrename1 = '';
+					        	for (var key in obj) {
+					        		  if (obj.hasOwnProperty(key)) {
+					        		    var val = obj[key];
+					        		    
+					        		    if(key.includes('ce_stcode')){
+					        		    		statecode1 = val;
+					        		    }
+					        		    if(key.includes('ce_cecode')){
+					        		    	centrecode1 = val;
+					        		    }
+					        		    if(key.includes('ce_cename')){
+					        		    	centrename1 = val;
+					        		    }
+					        		  }
+					        		}
+					        	
+					        	 var objstcentre = {
+					        		        'statecode1': statecode1,
+					        		        'centrecode1': centrecode1,
+					        		        'centrename1': centrename1,
+					        		    }
+					        	 state1course.push(objstcentre);
+					        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
+					        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
+					 			console.log('retrievedObject: ', JSON.parse(retrievedObject));
+					        }
+					    }
+				  }
+			        
+			//TODO SAKTHI  LOAD the exam application screen with this values
+
+		} catch (e) {
+				console.log("data error, Reason"+e.toString());
+			}
+		}else{
+		}
+
+}			
+
+
+
+// get student  details for add exam getExamData1
 
 function getExamData1() {
 	
@@ -222,12 +417,12 @@ function onPostgetExamData1(data) {
 				
 				
 				
-				var ubutton = document.getElementById('resultUpdateExamApp');
-				if (ubutton.style.display === "none") {
-					ubutton.style.display = "block";
-				  } else {
-					  ubutton.style.display = "none";
-				  }
+//				var ubutton = document.getElementById('resultUpdateExamApp');
+//				if (ubutton.style.display === "none") {
+//					ubutton.style.display = "block";
+//				  } else {
+//					  ubutton.style.display = "none";
+//				  }
 				/*document.getElementById('resultSaveExamApp').style.display='block';
 				document.getElementById('resultUpdateExamApp').style.display='block';*/
 				
@@ -446,6 +641,9 @@ function getSelectedStatecode(){
 
 function saveExamApplication() {
 	
+	
+	//save add new exam
+	
 	console.log('saveExamApplication  on EXAM clicked rajjj ');
 	
 	var prCodeExam = document.getElementById('prCodeExam').value;
@@ -487,6 +685,9 @@ function saveExamApplication() {
 	console.log('saveExamApplication  oldnofpapr '+oldnofpapr);
 	console.log('saveExamApplication  ea_paprstr '+document.getElementById('ea_paprstr').value);
 	
+	var ea_paprstr= document.getElementById('ea_paprstr').value;
+
+	
 	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
 	
 	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO
@@ -500,13 +701,13 @@ function saveExamApplication() {
 		if(isNaN( semMonthExam == "" || semYearExam == "" || examCenterCode == "") ){
 				alert("Please enter values for Exam Semester Month and Year and Center,  Total paper,  and Exam Pass flag ");
 		}else{
-			postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostgetExamData);
+			postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostSAVEExamData);
 		}
 	}
 }
 
-function onPostgetExamData(data) {
-	console.log('RESPONSE POST in   onPostgetExamData  app .JS:' + data);
+function onPostSAVEExamData(data) {
+	console.log('RESPONSE POST in   onPostSAVEExamData  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {
@@ -523,9 +724,9 @@ function onPostgetExamData(data) {
 			if (stringformjsondata != null) {
 				//if(parsedData1.Success.trim().length>0){   
 				if(stringformjsondata.includes('Success')){ 
-					document.getElementById('newadmission').style.display='block';
+					document.getElementById('examApplication').style.display='block';
 				}else if(stringformjsondata.includes('Failure')){
-					document.getElementById('newadmissionfail').style.display='block';
+					document.getElementById('examApplicationfail').style.display='block';
 				}
 			}
 			
@@ -534,7 +735,7 @@ function onPostgetExamData(data) {
 
 
 		} catch (e) {
-				console.log("data error, Reason"+e.toString());
+				console.log("data onPostSAVEExamData  error, Reason"+e.toString());
 			}
 		
 		
@@ -552,63 +753,66 @@ function onPostgetExamData(data) {
 //Exam Update todo
 function updateExamApplication() {
 	
-	console.log('updateExamApplication  on EXAM clicked rajjj ');
+	console.log('saveExamApplication  on EXAM clicked rajjj ');
 	
-	var prCodeExam = document.getElementById('prCodeExam').value;
-	var prNoExam = document.getElementById('prNoExam').value;
+	var prCodeExam = document.getElementById('prCodeExam1').value;
+	var prNoExam = document.getElementById('prNoExam1').value;
 	
-	var stuNameExam = document.getElementById('stuNameExam').value;
-	var diplomaCodeExam = document.getElementById('diplomaCodeExam').value;
-	var durationExam = document.getElementById('durationExam').value;
-	var noofPaperExam = document.getElementById('noofPaperExam').value;
+	var stuNameExam = document.getElementById('stuNameExam1').value;
+	var diplomaCodeExam = document.getElementById('diplomaCodeExam1').value;
+	var durationExam = document.getElementById('durationExam1').value;
+	var noofPaperExam = document.getElementById('noofPaperExam1').value;
 	
-	var semMonthExam = document.getElementById('semMonthExam').value;
-	var semYearExam = document.getElementById('semYearExam').value;
-	var enterDateExam = document.getElementById('enterDateExam').value;
+	var semMonthExam = document.getElementById('semMonthExam1').value;
+	var semYearExam = document.getElementById('semYearExam1').value;
+	var enterDateExam = document.getElementById('enterDateExam1').value;
 	
-	var examStateCode= document.getElementById('examStateCode').value;
-	var examCenterCode= document.getElementById('examCenterCode').value;
-	var examStateName= document.getElementById('examStateName').value;
-	var examCenterName= document.getElementById('examCenterName').value;
+	var examStateCode= document.getElementById('examStateCode1').value;
+	var examCenterCode= document.getElementById('examCenterCode1').value;
 
-	var ackIniLetterDate= document.getElementById('ackIniLetterDate').value
-	var ackHallTckDate = document.getElementById('ackHallTckDate').value
-	var ackExamdate1= document.getElementById('ackExamdate1').value
-	var ackExamdate2= document.getElementById('ackExamdate2').value
+
+	var ackIniLetterDate= document.getElementById('ackIniLetterDate1').value
+	var ackHallTckDate = document.getElementById('ackHallTckDate1').value
+	var ackExamdate1= document.getElementById('ackExamdate11').value
+	var ackExamdate2= document.getElementById('ackExamdate21').value
 	
-	var oldnofpapr= document.getElementById('oldnofpapr').value=noofPaperExam;
+	var oldnofpapr= document.getElementById('oldnofpapr1').value=noofPaperExam;
 	
-	var items=document.getElementsByName('cboxpaper');
+	var items=document.getElementsByName('cboxpaper1');
 	var selectedItems="";
 	for(var i=0; i<items.length; i++){
 		console.log('  '+i+'    '+items[i].checked)
 		if( items[i].checked==true)
 			selectedItems+=items[i].value+", ";
 	}
-	console.log('cboxpaper  '+selectedItems);
+	console.log('cboxpaper1  '+selectedItems);
 	selectedItems = selectedItems.replace(/,\s*$/, "");    
 	console.log('selectedItems .... '+selectedItems);
-	document.getElementById('ea_paprstr').value = selectedItems;
+	document.getElementById('ea_paprstr1').value = selectedItems;
 	
 	
-	console.log('saveExamApplication  oldnofpapr'+oldnofpapr);
-	console.log('saveExamApplication  ea_paprstr'+document.getElementById('ea_paprstr').value);
+	console.log('saveExamApplication  oldnofpapr1 '+oldnofpapr);
+	console.log('saveExamApplication  ea_paprstr1 '+document.getElementById('ea_paprstr1').value);
 	
-	console.log('saveExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
+	var ea_paprstr= document.getElementById('ea_paprstr1').value;
+
+	
+	console.log('updateExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
 	
 	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO
 	//var examTotalPaper= document.getElementById('examTotalPaper').value;
 	
-//	if (examStateCode == "" || prno == "") {
-//			alert("Please enter the values in P.R.Code and P.R.No")
-//	  }else{
+	if (prCodeExam == "" || prNoExam == "" || semMonthExam == "" || semYearExam == "" || examCenterCode == "" ) {
+			alert("Please enter the values in P.R.Code and P.R.No, Exam Month, Exam year and  Center")
+	  }else{
 	
 	
-	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
-	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
-	//}else{
-		postAjax('rs',{"app":"AiimasPost","module":"UpdateExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examStateName":examStateName,"examCenterName":examCenterName,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostUpdateExamData);
-	//}
+		if(isNaN(semYearExam) ){
+				alert("Please enter Exam Semester Year in number ");
+		}else{
+			postAjax('rs',{"app":"AiimasPost","module":"UpdateExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostUpdateExamData);
+		}
+	}
 }
 
 function onPostUpdateExamData(data) {
@@ -628,9 +832,9 @@ function onPostUpdateExamData(data) {
 			if (stringformjsondata != null) {
 				//if(parsedData1.Success.trim().length>0){   
 				if(stringformjsondata.includes('Success')){ 
-					document.getElementById('newadmission').style.display='block';
+					document.getElementById('examUpdateApplication').style.display='block';
 				}else if(stringformjsondata.includes('Failure')){
-					document.getElementById('newadmissionfail').style.display='block';
+					document.getElementById('examUpdateApplicationfail').style.display='block';
 				}
 			}
 			
@@ -657,6 +861,8 @@ function onPostUpdateExamData(data) {
 function getMarkData() {
 	
 	console.log('getMarkData  on MArk clicked rajjj ');
+	
+	clearAllAtrbutesMarks();
 	
 	var prcode = document.getElementById('prCodeMark').value;
 	var prno = document.getElementById('prNoMark').value;
@@ -722,12 +928,12 @@ function onPostgetMarkData(data) {
 			
 			if(jsonstring == "\"{}\""){
 				document.getElementById('markDetailNotFound').style.display='block'; 
-				clearAllAtrbutesV2();
+				clearAllAtrbutesMarks();
 			}else if(parsedData1pr['Failure'] !== undefined){
 				document.getElementById('markDetailNotFound').style.display='block';
 				//$("#markDetailNotFound").show();
 				//executeFunction = true;
-				clearAllAtrbutesV2();
+				clearAllAtrbutesMarks();
 			}else if(parsedData1pr['Success'] !== undefined){
 				
 				
@@ -779,6 +985,13 @@ function onPostgetMarkData(data) {
 			  for (var key in parsedData1pr) {
 				    if (parsedData1pr.hasOwnProperty(key)) {
 				        console.log(key + " -> " + parsedData1pr[key]);
+
+  						if(key == 'PaperList0'){
+					        //console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
+					        //console.log('PaperList1 paper param >> '+parsedData1pr.PaperList1["dp_paprnam"]);
+					        dict[parsedData1pr.PaperList0["dp_paperno"]] = parsedData1pr.PaperList0["dp_paprnam"];
+					        document.getElementById("marksentersegment").style.display = "block";
+				        }
 				        
 				        if(key == 'PaperList1'){
 					        //console.log('PaperList1 paper no >> '+parsedData1pr.PaperList1["dp_paperno"]);
@@ -902,26 +1115,55 @@ function saveMark() {
 	
 	console.log('save MARK clicked rajjj ');
 	
-	var prCodeExam = document.getElementById('prCodeExam').value;
-	var prNoExam = document.getElementById('prNoExam').value;
-	var diplomaCodeExam = document.getElementById('diplomaCodeExam').value;
-	var durationExam = document.getElementById('durationExam').value;
-	var noofPaperExam = document.getElementById('noofPaperExam').value;
+	var prCodeMark = document.getElementById('prCodeMark').value;
+	var prNoMark = document.getElementById('prNoMark').value;
 	
-	var semMonthExam = document.getElementById('semMonthExam').value;
-	var semYearExam = document.getElementById('semYearExam').value;
-	var enterDateExam = document.getElementById('enterDateExam').value;
-	var stuNameExam = document.getElementById('stuNameExam').value;
-	var examStateCode= document.getElementById('examStateCode').value;
-	var examCenterCode= document.getElementById('examCenterCode').value;
-	var examPapers= document.getElementById('examPapers').value;
+	//
+	var diplomaCodeMark = document.getElementById('diplomaCodeMark').value;
+	//var noofPaperMark = document.getElementById('durationMark').value;
+	//var noofPaperMark = document.getElementById('noofPaperMark').value;
 	
-	var examSemstr= document.getElementById('examSemstr').value;
-	var examNewnoPapers= document.getElementById('examNewnoPapers').value;
-	var examOldnoPapers= document.getElementById('examOldnoPapers').value;
-	var examTotalPaper= document.getElementById('examTotalPaper').value;
-	var examPassFlag= document.getElementById('examPassFlag').value;
+	var SemMonthMark = document.getElementById('SemMonthMark').value;
+	var SemYearMark = document.getElementById('SemYearMark').value;
 	
+	//var enterDateExam = document.getElementById('enterDateExam').value;
+	var stuNameMark = document.getElementById('stuNameMark').value;
+	
+	
+	
+	var row1paperMark= document.getElementById('row1paperMark').value;
+	var row1paper= document.getElementById('row1paper').value;
+	var row1papername= document.getElementById('row1papername').value;
+	
+	var row2paperMark= document.getElementById('row2paperMark').value;
+	var row2paper= document.getElementById('row2paper').value;
+	var row2papername= document.getElementById('row2papername').value;
+	
+	var row3paperMark= document.getElementById('row3paperMark').value;
+	var row3paper= document.getElementById('row3paper').value;
+	var row3papername= document.getElementById('row3papername').value;
+	
+	var row4paperMark= document.getElementById('row4paperMark').value;
+	var row4paper= document.getElementById('row4paper').value;
+	var row4papername= document.getElementById('row4papername').value;
+	
+	var row5paperMark= document.getElementById('row5paperMark').value;
+	var row5paper= document.getElementById('row5paper').value;
+	var row5papername= document.getElementById('row5papername').value;
+	
+	var row6paperMark= document.getElementById('row6paperMark').value;
+	var row6paper= document.getElementById('row6paper').value;
+	var row6papername= document.getElementById('row6papername').value;
+	
+	var row7paperMark= document.getElementById('row7paperMark').value;
+	var row7paper= document.getElementById('row7paper').value;
+	var row7papername= document.getElementById('row7papername').value;
+	
+	var row8paperMark= document.getElementById('row8paperMark').value;
+	var row8paper= document.getElementById('row8paper').value;
+	var row8papername= document.getElementById('row8papername').value;
+	
+
 
 	
 //	if (examStateCode == "" || prno == "") {
@@ -932,12 +1174,13 @@ function saveMark() {
 	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
 	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
 	//}else{
-		postAjax('rs',{"app":"AiimasPost","module":"AddExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPapers":examPapers,"examSemstr":examSemstr,"examNewnoPapers":examNewnoPapers,"examOldnoPapers":examOldnoPapers,"examTotalPaper":examTotalPaper,"examPassFlag":examPassFlag}, onPostgetExamData);
+	postAjax('rs',{"app":"AiimasPost","module":"SaveMark","action":"MarkDetail","prCodeMark":prCodeMark,"prNoMark":prNoMark,"diplomaCodeMark":diplomaCodeMark,"SemMonthMark":SemMonthMark,"SemYearMark":SemYearMark,"stuNameMark":stuNameMark,"row1paperMark":row1paperMark,"row1paper":row1paper,"row1papername":row1papername,"row2paperMark":row2paperMark,"row2paper":row2paper,"row2papername":row2papername,"row3paperMark":row3paperMark,"row3paper":row3paper,"row3papername":row3papername,"row4paperMark":row4paperMark,"row4paper":row4paper,"row4papername":row4papername,"row5paperMark":row5paperMark,"row5paper":row5paper,"row5papername":row5papername,"row6paperMark":row6paperMark,"row6paper":row6paper,"row6papername":row6papername,"row7paperMark":row7paperMark,"row7paper":row7paper,"row7papername":row7papername,"row8paperMark":row8paperMark,"row8paper":row8paper,"row8papername":row8papername}, onPostSaveMarkData);
 	//}
 }
 
-function onPostgetExamData(data) {
-	console.log('RESPONSE POST in   onPostgetExamData2  app .JS:' + data);
+function onPostSaveMarkData(data) {
+	
+	console.log('RESPONSE POST in   onPostSaveMarkData  app .JS:' + data);
 	var parsedData1;
 		
 	if (data != null) {
@@ -947,23 +1190,28 @@ function onPostgetExamData(data) {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
 			
-			 if (JSON.stringify(parsedData1) == '{}'){
-                 console.log('it is empty');
-             } else{
-            	 console.log('it is not empty');  }
-
-           
-					
+			console.log('save exam response '+JSON.stringify(parsedData1));	
+			
+			var stringformjsondata = JSON.stringify(parsedData1);
+			
+			if (stringformjsondata != null) {
+				//if(parsedData1.Success.trim().length>0){   
+				if(stringformjsondata.includes('Success')){ 
+					document.getElementById('saveMark').style.display='block';
+				}else if(stringformjsondata.includes('Failure')){
+					document.getElementById('saveMarkFail').style.display='block';
+				}
+			}
+			
 			//TODO SAKTHI  LOAD the exam application screen with this values
-			document.getElementById("stuNameExam").value =  parsedData1.Admin["ad_name"];
-			document.getElementById("diplomaCodeExam").value =  parsedData1.Admin["ad_dipcode"];
-			document.getElementById("durationExam").value =  parsedData1.Admin["ad_durtn"];
-			document.getElementById("noofPaperExam").value =  parsedData1.Admin["ad_nofpapr"];
+			
 
 
 		} catch (e) {
-				console.log("data error,Reason"+e.toString());
+				console.log("data onPostSAVEExamData  error, Reason"+e.toString());
 			}
+		
+		
 		
 
 		}else{
@@ -1284,26 +1532,28 @@ function clearAllAtrbutes() {
 
 function clearAllAtrbutesV1() {
 	
+	// for exam add
+	
 	  document.getElementById("prCodeExam").value =  "";
 	  document.getElementById("prNoExam").value =  "";
 	  document.getElementById("stuNameExam").value =  "";
 	  document.getElementById("diplomaCodeExam").value =  "";
 	  document.getElementById("durationExam").value =  "";
 	  document.getElementById("noofPaperExam").value =  "";
-	  document.getElementById("SemMonthMark").value =  "";
-	  document.getElementById("SemYearMark").value =  "";
-	  document.getElementById("stateMark").value =  "";
-	  document.getElementById("centerMark").value =  "";
-	  
-	  //document.getElementById("markPaperno").value =  "";
-	 // document.getElementById("markPapername").value =  "";
-	  document.getElementById("enterDateExam").value =  "";
+	  document.getElementById("semMonthExam").value =  "";
+	  document.getElementById("semYearExam").value =  "";
+	  document.getElementById("examStateCode").value =  "";
+	  document.getElementById("examCenterCode").value =  "";
+
+ document.getElementById("ackIniLetterDate").value =  "";
+ document.getElementById("ackHallTckDate").value =  "";
+ document.getElementById("ackExamdate1").value =  ""; 
+ document.getElementById("ackExamdate2").value =  "";
 	  
 	  if($("#cboxpaper").length){
 		  document.getElementById('displayPaper1').style.display='none'; 
 	  }
-	  
-	 
+
 	  
 	  $('#examStateCodeList option').remove();  
 	  $('#examCenterCodeList option').remove(); 
@@ -1345,38 +1595,109 @@ function clearAllAtrbutesV1() {
 		}
 }
 
-function clearAllAtrbutesV2() {
-	/*
-	document.getElementById("stuName1").value =  "";
-	document.getElementById("papers1").value = ""; 
-	document.getElementById("emailid1").value = ""; 
-	document.getElementById("state1").value = ""; 
-	document.getElementById("pincode1").value = ""; 
-	document.getElementById("diplomaCodeUad").value = ""; 
-	document.getElementById("mobNum1").value = ""; 
-	document.getElementById("address31").value = ""; 
-	document.getElementById("address21").value = ""; 
-	document.getElementById("address11").value = ""; 
-	document.getElementById("address41").value = ""; 
-	document.getElementById("semMonth1").value = ""; 
-	document.getElementById("semYear1").value = ""; 
-	document.getElementById("duration1").value = ""; 
-	document.getElementById("feepaidmode1").value = ""; 
-	document.getElementById("feeref1").value = ""; 
-	document.getElementById("paidamt1").value = ""; 
-	document.getElementById("totfee1").value = ""; 
-		document.getElementById("dueDate1").value = ""; 
-		document.getElementById("feepaiddate1").value = ""; */
-	document.getElementById("stuNameMark").value =   "";
+
+function clearAllAtrbutesExamUpdate() {
+	
+	// for exam update
+	
+	  document.getElementById("prCodeExam1").value =  "";
+	  document.getElementById("prNoExam1").value =  "";
+	  document.getElementById("stuNameExam1").value =  "";
+	  document.getElementById("diplomaCodeExam1").value =  "";
+	  document.getElementById("durationExam1").value =  "";
+	  document.getElementById("noofPaperExam1").value =  "";
+	  document.getElementById("semMonthExam1").value =  "";
+	  document.getElementById("semYearExam1").value =  "";
+	  document.getElementById("examStateCode1").value =  "";
+	  document.getElementById("examCenterCode1").value =  "";
+	  
+	  if($("#cboxpaper").length){
+		  document.getElementById('displayPaper12').style.display='none'; 
+	  }
+
+ document.getElementById("ackIniLetterDate1").value =  "";
+ document.getElementById("ackHallTckDate1").value =  "";
+ document.getElementById("ackExamdate11").value =  ""; 
+ document.getElementById("ackExamdate21").value =  "";
+
+	  
+	  $('#examStateCodeList1 option').remove();  
+	  $('#examCenterCodeList1 option').remove(); 
+	  //$('#examStateCodeList text').val('');
+	 // document.getElementById("examStateCode").innerHTML =  "";   
+	 // document.getElementById("examStateCodeList").innerHTML =  "";
+	  
+	  
+	 /* $('#examStateCode option').remove();
+	  $('#examStateCodeList option').remove();   
+	  $('#examCenterCodeList option').remove();  
+	  $('#examCenterCode text').remove();
+	  
+	  $('#examStateCode value').remove();
+	  $('#examStateCodeList value').remove();   
+	  $('#examCenterCodeList value').remove();  
+	  $('#examCenterCode value').remove();*/
+	  
+	  var elementStCode = document.querySelectorAll("input[id='examStateCodeList1']");
+	  if(typeof(elementStCode) != 'undefined' && elementStCode != null){
+		  console.log('drop down data list '+elementStCode.length);
+						
+	}
+	  var elementCb = document.querySelectorAll("input[id='cboxpaper1']");
+
+		 if(typeof(elementCb) != 'undefined' && elementCb != null){
+						 
+				 var elem=$("#slct2 input");
+				 $("#slct2").empty().html(elem);
+				 
+					
+				for(var i = 0,j=1; i < elementCb.length; i++){
+					elementCb[i].parentNode.removeChild(elementCb[i]);
+				}
+						   
+							
+		} else{
+			console.log('Element does not exist!');
+		}
+}
+
+
+function clearAllAtrbutesMarks() {
+	//	document.getElementById("prCodeMark").value =   "";
+	// document.getElementById("prNoMark").value =   "";
 	document.getElementById("diplomaCodeMark").value =   "";
-	document.getElementById("durationMark").value =   "";
-	document.getElementById("noofPaperMark").value =   "";
 	document.getElementById("SemMonthMark").value =   "";
 	document.getElementById("SemYearMark").value =   "";
+	document.getElementById("stuNameMark").value =   "";
+	
+	document.getElementById("durationMark").value =   "";
+	document.getElementById("noofPaperMark").value =   "";
 	document.getElementById("stateMark").value =   "";
-	document.getElementById("centerMark").value =  "";
-	document.getElementById("prCodeMark").value =  "";
-	document.getElementById("prNoMark").value =  "";
+	document.getElementById("centerMark").value =   "";
+	document.getElementById("row1paperMark").value =   "";
+	document.getElementById("row1paper").value =   "";
+	document.getElementById("row1papername").value =   "";
+	document.getElementById("row2paperMark").value =   "";
+	document.getElementById("row2paper").value =   "";
+	document.getElementById("row2papername").value =   "";
+	document.getElementById("row3paperMark").value =   "";
+	document.getElementById("row3paper").value =   "";
+	document.getElementById("row3papername").value =   "";
+	document.getElementById("row4paperMark").value =   "";
+	document.getElementById("row4paper").value =   "";
+	document.getElementById("row4papername").value =   "";
+	document.getElementById("row5paperMark").value =   "";
+	document.getElementById("row5paper").value =   "";
+	document.getElementById("row5papername").value =   "";
+	document.getElementById("row6paperMark").value =   "";
+	document.getElementById("row6paper").value =   "";
+	document.getElementById("row6papername").value =   "";
+	document.getElementById("row7paperMark").value =   "";
+	document.getElementById("row7paper").value =   "";
+	document.getElementById("row7papername").value =   "";
+	document.getElementById("row8paperMark").value =   "";
+	document.getElementById("row8paper").value =   "";
+	document.getElementById("row8papername").value =   "";
 	document.getElementById("marksentersegment").style.display = "none";
 	//$("marksentersegment").hide();
 	

@@ -73,10 +73,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </a>
 
     <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-	   <a href="#admApp" class="w3-bar-item w3-button"><b>Add</b> - Admission Application</a>
-	    <a href="#admApp1" class="w3-bar-item w3-button"><b>Modify</b> - Admission Application</a>
-      <a href="#examApp" class="w3-bar-item w3-button"><b>Add</b>- Examination Application</a>
-      <a href="#markUpdate" class="w3-bar-item w3-button"><b>Add</b>- Mark Update</a>
+	   <a href="#admApp" class="w3-bar-item w3-button">Admission Application<b>- ADD</b></a>
+	    <a href="#admApp1" class="w3-bar-item w3-button">Admission Applica <b>- UPDATE</b></a>
+      <a href="#examApp" class="w3-bar-item w3-button">Examination Application<b>- ADD</b> </a>
+      <a href="#examApp1" class="w3-bar-item w3-button">Exam Application<b>- UPDATE</b> </a>
+      <a href="#markUpdate" class="w3-bar-item w3-button">Mark Update<b>- ADD</b></a>
+      <a href="#markUpdate1" class="w3-bar-item w3-button">Mark Update<b>- UPDATE</b></a>
     </div>
 
 
@@ -235,9 +237,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
 		<select class="w3-select" name="option" id="duration">
     		<option value="" disabled selected>Choose your option</option>
-    		<option value="Six Months">Six Months</option>
-    		<option value="One Year - PG">One Year - PG</option>
-    		<option value="18 Months - PG">18 Months - PG</option>
+	    		<option value="SIX MONTHS">SIX MONTHS</option>
+		    		<option value="ONE YEAR">ONE YEAR</option>
+		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option>
    		 	<option value="One Year">One Year</option>
   		</select>
   	</div>
@@ -476,9 +478,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
 		<select class="w3-select" name="option" id="duration1">
     		<option value="" selected>Choose your option</option>
-    		<option value="Six Months">Six Months</option>
-    		<option value="One Year - PG">One Year - PG</option>
-    		<option value="18 Months - PG">18 Months - PG</option>
+	    		<option value="SIX MONTHS">SIX MONTHS</option>
+		    		<option value="ONE YEAR">ONE YEAR</option>
+		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option>
    		 	<option value="One Year">One Year</option>
   		</select>
   	</div>
@@ -608,16 +610,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	</div>
 
 
-<!-- Exam application update ------------------------------------------------------------------------------------------------------------------>
-
-
-<!--  EAPPL Table DB -->
-
+<!-- Exam application ADD  ------------------------------------------------------------------------------------------------------------------>
 
 
    <div class="w3-padding-64 w3-light-grey w3-card-4" id=examApp>
 		<center> <h2>ADD - Exam Application</h2>
-		<p>Adding the Exam detail of an Student</p>
+		<p>Add Exam detail of an Student</p>
 		</center>
 		
 		<div class="w3-panel w3-pale-green">
@@ -641,7 +639,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('addExamGetExamDataLoad').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
       <h2 class="w3-wide"></h2>
-      <p>EXAM DETAILS LOADED SUCCESSFULLY</p>
+      <p>STUDENTS DETAILS LOADED SUCCESSFULLY</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('addExamGetExamDataLoad').style.display='none'">OK</button>
     </div>
@@ -653,7 +651,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('addExamGetExamDataLoadFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
       <h2 class="w3-wide"></h2>
-      <p>EXAM DETAILS NOT FOUND</p>
+      <p>STUDENTS DETAILS NOT FOUND</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('addExamGetExamDataLoadFail').style.display='none'">OK</button>
     </div>
@@ -661,7 +659,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </div>		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="resultExam" onclick="getExamData1()">&nbsp;&nbsp;GET Exam Detail</button><br> <br>
+			<button class="w3-button w3-blue" id="resultExam" onclick="getExamData1()">&nbsp;&nbsp;GET Student Detail</button><br> <br>
 			<br>
 		  </div>
 		  
@@ -714,7 +712,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 
 		
-			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		<!--  onchange="getSelectedStatecode()" -->
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
 			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option" onchange="getSelectedStatecode()">
 	  		<datalist id="examStateCodeList" >
 	  		<option selected value="Choose your option"></option>	
@@ -793,8 +791,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p></p>
 <center><table id="tbsty" align="center" width="15%"  border="0" cellspacing="0" cellpadding="0"><tr><td>
 			<button class="w3-button w3-blue" id="resultSaveExamApp" onclick="saveExamApplication()"  style="display:none"  >&nbsp;&nbsp;Save</button> </td>
- 		<td>	<button class="w3-button w3-orange" id="resultUpdateExamApp" onclick="updateExamApplication()" style="display:none" >Update</button>  </td>
- 			<!--  during update add a flg for pass field  todo -->
 		<td>	<button class="w3-button w3-red" onclick="clearAllAtrbutesV1()" >Clear</button> </td></tr></table>
 </center>
 <p></p>
@@ -803,8 +799,199 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	  </div>
 	  </div>
 	  	</div>
+	  	
+	  	
+	  	
+<!-- Exam application UPDATE ------------------------------------------------------------------------------------------------------------------>
 
-<!-- MARK update --------------------------------------------------------------------------------------------------------------------------------->
+
+
+   <div class="w3-padding-64 w3-light-grey w3-card-4" id=examApp1>
+		<center> <h2>UPDATE - Exam Application</h2>
+		<p>Update the Exam detail of an Student</p>
+		</center>
+		
+		<div class="w3-panel w3-pale-green">
+		
+	  <div class="w3-container">
+	  
+		  
+		
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>P.R.Code:</b></label>
+			<input class="w3-input w3-border " type="text"  id="prCodeExam1" value='APR13'  >
+		  </div>
+				  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>P.R.No:</b></label>
+			<input class="w3-input w3-border " type="text"   id="prNoExam1"  value ='286' >
+		  </div>
+		  
+<div id="addExamGetExamDataLoad1" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('addExamGetExamDataLoad').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>EXAM DETAILS LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('addExamGetExamDataLoad1').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="addExamGetExamDataLoadFail1" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('addExamGetExamDataLoadFail1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>EXAM DETAILS NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('addExamGetExamDataLoadFail1').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>		  
+		   <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="resultExam1" onclick="getExamUpdateData1()">&nbsp;&nbsp;GET Student and Exam Detail</button><br> <br>
+			<br>
+		  </div>
+		  
+		<div class="w3-panel w3-border w3-border-red">
+  			
+		    
+		<label class="w3-text-brown"><b>Name:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="stuNameExam1" disabled  ><br>
+		
+		
+		
+		<label class="w3-text-brown"><b>Diploma:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeExam1" disabled ><br>
+		  
+ 
+   
+    	<div class="w3-half">
+			<label class="w3-text-brown"><b>Duration:</b></label>
+			<input class="w3-input w3-border " type="text" id="durationExam1" disabled ><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>No of paper:</b></label>
+			<input class="w3-input w3-border " type="text" id="noofPaperExam1" disabled ><br>
+		  </div>
+  		
+		
+		</div>
+		
+		<!--  Sakthi  ALL above fields to be Non editable 	 -->
+
+		
+		<div class="w3-third">
+			<label class="w3-text-brown"><b>Enter Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="semMonthExam1" >
+		  </div>
+		  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>Enter Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" id="semYearExam1"  >
+		  </div>
+				  
+
+
+ 		  <div class="w3-third"> 
+			<label class="w3-text-brown"><b>Exam Entered on:</b></label>
+ 			<input class="w3-input w3-border " type="date" id="enterDateExam1"><br>
+ 		  </div> 
+		<script> loadDate('enterDateExam');</script>
+		
+
+		
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode1" placeholder="Choose your option" onchange="getSelectedStatecode()">
+	  		<datalist id="examStateCodeList" >
+	  		<option selected value="Choose your option"></option>	
+	  		
+	  		<option value=""></option>	
+	  	
+			
+	  		<!--  SAKTHI get from DB data-->
+	  		
+	   
+	  		
+	  		</datalist>	
+	  
+		<BR>
+ 		  <BR>
+		 
+		
+ 		 <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
+		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="examCenterCode1" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode1()">
+  		<option selected value="Choose your option"></option>	
+  	
+  		
+  		</datalist>	
+  		
+ 		  <BR><BR>
+ 		  
+ 		 
+ 		    <div class="w3-panel w3-border-left w3-pale-red w3-border-red w3-border">
+    			<center><b><p>Ack Details.</p></b></center>
+    			
+    	 	<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Venue Initimation Letter:</b></label>
+			<input class="w3-input w3-border " type="date" id="ackIniLetterDate1"><br>
+ 		    </div> 
+ 		  
+  			<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Hall Ticket issue date:</b></label>
+			<input class="w3-input w3-border " type="date" id="ackHallTckDate1"><br>
+ 		    </div> 
+ 		    
+
+    			
+    	 	<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Exam Date 1:</b></label>
+			<input class="w3-input w3-border " type="date" id="ackExamdate11"><br>
+ 		    </div> 
+ 		  
+  			<div class="w3-half">
+ 		   <label class="w3-text-brown"><b>Exam Date 2:</b></label>
+			<input class="w3-input w3-border " type="date" id="ackExamdate21"><br>
+ 		    </div> 
+ 		 	
+ 		    
+  			</div> <!--  broder end -->
+  			
+  			
+  			<!--  SAKTHI - No of checkbox selected  = oldnofpapr -->
+  			
+  			<!--    BASED on the no of papers - this has to come dynamic to match the paper count  -->
+  			<div class="w3-container w3-card-4">
+  			<h3>Papers</h3>
+  			<div id="slct2"></div>
+			</div>
+  			
+  			<!--  Sakthi this hase to be changed based on selection -->
+  			<input type="hidden" name="Old no of Paper selected" id="oldnofpapr1"  value ="">
+  			<input type="hidden" name="paper selected string" id="ea_paprstr1"  value ="">
+ 		    
+ 		  
+
+<p></p>
+	<center><table id="tbsty" align="center" width="15%"  border="0" cellspacing="0" cellpadding="0"><tr><td>
+ 		<td>	<button class="w3-button w3-orange" id="resultUpdateExamApp1" onclick="updateExamApplication()" style="display:none" >Update</button>  </td>
+ 			<!--  during update add a flg for pass field  todo -->
+		<td>	<button class="w3-button w3-red" onclick="clearAllAtrbutesExamUpdate()" >Clear</button> </td></tr></table>
+</center>
+<p></p>
+
+		
+	  </div>
+	  </div>
+	  	</div>
+	  	
+
+<!-- MARK add --------------------------------------------------------------------------------------------------------------------------------->
 
 
 	
@@ -943,7 +1130,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<div class="w3-container " id="displayPaper1" style="display: none;">
 			
 			<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row1papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row1paperMark"><br>
 			  </div>
 			
 			   <div class="w3-quarter">
@@ -958,7 +1145,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<div class="w3-container " id="displayPaper2" style="display: none;">
 			
 						<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row2papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row2paperMark"><br>
 			  </div>
 			
 			<div class="w3-quarter">
@@ -973,7 +1160,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 						<div class="w3-container " id="displayPaper3" style="display: none;">
 						
 									<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row3papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row3paperMark"><br>
 			  </div>
 						
 			<div class="w3-quarter">
@@ -988,7 +1175,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 						<div class="w3-container " id="displayPaper4" style="display: none;">
 						
 									<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row4papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row4paperMark"><br>
 			  </div>
 						
 			<div class="w3-quarter">
@@ -1003,7 +1190,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 						<div class="w3-container " id="displayPaper5" style="display: none;">
 						
 									<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row5papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row5paperMark"><br>
 			  </div>
 						
 			<div class="w3-quarter">
@@ -1018,7 +1205,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 						<div class="w3-container " id="displayPaper6" style="display: none;">
 						
 				<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row6papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row6paperMark"><br>
 			  </div>
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row6paper"><br>
@@ -1033,7 +1220,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 						
 						
 			<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row7papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row7paperMark"><br>
 			  </div>						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row7paper"><br>
@@ -1048,7 +1235,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 						
 						
 			<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row8papertext"><br>
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row8paperMark"><br>
 			  </div>						
 			<div class="w3-quarter">
 			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row8paper"><br>
@@ -1070,7 +1257,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 			<button class="w3-button w3-blue" id="resultMark" onclick="SaveMark()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
-			<button class="w3-button w3-red" onclick="clearAllAtrbutesV2()" >Clear</button>
+			<button class="w3-button w3-red" onclick="clearAllAtrbutesMarks()" >Clear</button>
 			
 			<!--  Sakthi  clear button
 			 -->
@@ -1187,10 +1374,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
 				<select class="w3-select" name="option" id="ALduration">
 		    		<option value="" disabled selected>Choose your option</option>
-		    		<option value="Six Months">Six Months</option>
-		    		<option value="One Year - PG">One Year - PG</option>
-		    		<option value="18 Months - PG">18 Months - PG</option>
-		   		 	<option value="One Year">One Year</option>
+	    		<option value="SIX MONTHS">SIX MONTHS</option>
+		    		<option value="ONE YEAR">ONE YEAR</option>
+		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option>
 		  		</select><br><br>
   			</div>
   			
@@ -1440,10 +1626,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
 				<select class="w3-select" name="option" id="ACduration">
 		    		<option value="" disabled selected>Choose your option</option>
-		    		<option value="Six Months">Six Months</option>
-		    		<option value="One Year - PG">One Year - PG</option>
-		    		<option value="18 Months - PG">18 Months - PG</option>
-		   		 	<option value="One Year">One Year</option>
+	    			<option value="SIX MONTHS">SIX MONTHS</option>
+		    		<option value="ONE YEAR">ONE YEAR</option>
+		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option>
 		  		</select><br><br>
   			</div>
   			 			
@@ -1996,6 +2181,79 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Logout</button>
 
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="examUpdateApplication" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('examUpdateApplication').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Update Exam Application</h2>
+      <p>Successful !!!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('examUpdateApplication').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="examUpdateApplicationfail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('examUpdateApplicationfail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Update Exam Application</h2>
+      <p style="color:red">Failed !!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('examUpdateApplicationfail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="saveMark" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('saveMark').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Save Marks</h2>
+      <p>Successful !!!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMark').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="saveMarkFail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('saveMarkFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Save Marks</h2>
+      <p style="color:red">Failed !!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMarkFail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="examApplication" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('examApplication').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">ADD Exam Application</h2>
+      <p>Successful !!!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('examApplication').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="examApplicationfail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('examApplicationfail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">ADD Exam Application</h2>
+      <p style="color:red">Failed !!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('examApplicationfail').style.display='none'">OK</button>
     </div>
   </div>
 </div>
