@@ -186,9 +186,7 @@ public class ExamApplication extends BaseDao {
 				
 				
 				
-			//	Object examTotalPaper = data.get("examTotalPaper");
-			//	Object examPassFlag = data.get("examPassFlag");
-				
+		
 		
 			//rak
 				String newDipCode =  diplomaCodeExam.toString();
@@ -333,6 +331,7 @@ public class ExamApplication extends BaseDao {
 					Object semYearExam = data.get("semYearExam");
 					Object enterDateExam = data.get("enterDateExam");
 					Object stuNameExam = data.get("stuNameExam");
+					Object examPassFlag = data.get("examPassFlag");
 					
 					Object examStateCode = data.get("examStateCode");
 					Object examCenterCode = data.get("examCenterCode");
@@ -356,7 +355,7 @@ public class ExamApplication extends BaseDao {
 					
 					
 				//	Object examTotalPaper = data.get("examTotalPaper");
-				//	Object examPassFlag = data.get("examPassFlag");
+	
 					
 			
 				//rak
@@ -403,6 +402,9 @@ public class ExamApplication extends BaseDao {
 				System.out.println("RRRRRRRRRRRRRRRRRR UPDATE 2222 examOldnoPapers  -"+examOldnoPapers);
 				System.out.println("RRRRRRRRRRRRRRRRRR UPDATE 2222 examPapers  -"+examPapers.toString());
 				
+				System.out.println("RRRRRRRRRRRRRRRRRR UPDATE 2222 examPassFlag  -"+examPassFlag);
+				System.out.println("RRRRRRRRRRRRRRRRRR UPDATE 2222 examPassFlag  -"+examPassFlag.toString());
+				
 				System.out.println("RRRRRRRRRRRRRRRRRR UPDATE 2222 HAL ticket    -"+ackHallTckDate);
 				
 			
@@ -447,11 +449,11 @@ public class ExamApplication extends BaseDao {
 				
 				
 				
-//				if((examPassFlag != null && examPassFlag.toString().trim().length() > 0)) {
-//					//System.out.println(" INSIDE if  semYear"+semYear);
-//				}else {
-//					examPassFlag="0";
-//				}
+				if((examPassFlag != null && examPassFlag.toString().trim().length() > 0)) {
+					//System.out.println(" INSIDE if  semYear"+semYear);
+				}else {
+					examPassFlag="0";
+				}
 				
 				if((noofPaperExam != null && noofPaperExam.toString().trim().length() > 0)) {
 					//System.out.println(" INSIDE if  papers "+papers);
@@ -465,15 +467,15 @@ public class ExamApplication extends BaseDao {
 					semYearExam="0";
 				}
 				
-				// NOT INSERTED EA_PRNUM = CODE+NO		 AND END TIME
+				// NOT INSERTED EA_PRNUM = CODE+NO	 AND END TIME
 				//TOTAL 21 -2 = 19 ?
 							
 				
 				//SEM str -1- or 2 ?? wjere ??todo  AK_DIPCODE, 
 						
-				String insertExamSQL = "UPDATE public.EAPPL SET  EA_SESMON=?, EA_SESYR=?, EA_STCODE=?, EA_STNAME=?, EA_CECODE=?, EA_CENTRE1=?, EA_PAPRSTR=?, NEWNOFPAPR=?, EA_ENTDATE=? WHERE EA_PRCODE=? AND EA_PRNO=?;";
+				String insertExamSQL = "UPDATE public.EAPPL SET  EA_SESMON=?, EA_SESYR=?, EA_STCODE=?, EA_STNAME=?, EA_CECODE=?, EA_CENTRE1=?, EA_PAPRSTR=?, NEWNOFPAPR=?, EA_ENTDATE=?,EA_PASSFLG=? WHERE EA_PRCODE=? AND EA_PRNO=?;";
 				
-				executeUpdate(insertExamSQL, new Object[]{semMonthExam.toString(),Integer.parseInt(semYearExam.toString()),examStateCodeNew ,examStateNameNew, examCenterCodeNew, examCenterNameNew, examPapers.toString(), Integer.parseInt(examNewnoPapers.toString()),enterDateExamnew,prCodeExam.toString(),Integer.parseInt(prNoExam.toString())});
+				executeUpdate(insertExamSQL, new Object[]{semMonthExam.toString(),Integer.parseInt(semYearExam.toString()),examStateCodeNew ,examStateNameNew, examCenterCodeNew, examCenterNameNew, examPapers.toString(), Integer.parseInt(examNewnoPapers.toString()),enterDateExamnew, Integer.parseInt(examPassFlag.toString()), prCodeExam.toString(), Integer.parseInt(prNoExam.toString())});
 				
 				System.out.println(" INSIDE UPDATE EXAM SUCCESS");
 

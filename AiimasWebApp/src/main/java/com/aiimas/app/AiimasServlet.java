@@ -763,6 +763,7 @@ public class AiimasServlet extends HttpServlet {
 							String stuNameExam = request.getParameter("stuNameExam");
 							String examStateCode = request.getParameter("examStateCode");
 							String examCenterCode = request.getParameter("examCenterCode");
+							String examPassFlag = request.getParameter("examPassFlag");
 				
 							
 							String ackIniLetterDate = request.getParameter("ackIniLetterDate");
@@ -788,7 +789,7 @@ public class AiimasServlet extends HttpServlet {
 							input.put("stuNameExam", stuNameExam);
 							input.put("examStateCode", examStateCode);
 							input.put("examCenterCode", examCenterCode);
-							
+							input.put("examPassFlag", examPassFlag);
 							
 							input.put("ackIniLetterDate", ackIniLetterDate);
 							input.put("ackHallTckDate", ackHallTckDate);

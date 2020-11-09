@@ -769,6 +769,7 @@ function updateExamApplication() {
 	
 	var examStateCode= document.getElementById('examStateCode1').value;
 	var examCenterCode= document.getElementById('examCenterCode1').value;
+	var examPassFlag= document.getElementById('examPassFlag').value;
 
 
 	var ackIniLetterDate= document.getElementById('ackIniLetterDate1').value
@@ -796,7 +797,7 @@ function updateExamApplication() {
 	
 	var ea_paprstr= document.getElementById('ea_paprstr1').value;
 
-	
+	console.log('updateExamApplication  on EXAM clicked rajjj ea_paprstr  ???  Sakthi this vale no coming ?? '+ea_paprstr );
 	console.log('updateExamApplication  on EXAM clicked rajjj ackHallTckDate '+ackHallTckDate );
 	
 	//var examNewnoPapers= document.getElementById('noofPaperExam').value;  do in DAO
@@ -810,7 +811,7 @@ function updateExamApplication() {
 		if(isNaN(semYearExam) ){
 				alert("Please enter Exam Semester Year in number ");
 		}else{
-			postAjax('rs',{"app":"AiimasPost","module":"UpdateExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostUpdateExamData);
+			postAjax('rs',{"app":"AiimasPost","module":"UpdateExamApplication","action":"examDetail","prCodeExam":prCodeExam,"prNoExam":prNoExam,"diplomaCodeExam":diplomaCodeExam,"durationExam":durationExam,"noofPaperExam":noofPaperExam,"semMonthExam":semMonthExam,"semYearExam":semYearExam,"enterDateExam":enterDateExam,"stuNameExam":stuNameExam,"examStateCode":examStateCode,"examCenterCode":examCenterCode,"examPassFlag":examPassFlag,"ackIniLetterDate":ackIniLetterDate,"ackHallTckDate":ackHallTckDate,"ackExamdate1":ackExamdate1,"ackExamdate2":ackExamdate2,"oldnofpapr":oldnofpapr,"ea_paprstr":ea_paprstr}, onPostUpdateExamData);
 		}
 	}
 }

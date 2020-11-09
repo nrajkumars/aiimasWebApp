@@ -240,7 +240,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	    		<option value="SIX MONTHS">SIX MONTHS</option>
 		    		<option value="ONE YEAR">ONE YEAR</option>
 		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option>
-   		 	<option value="One Year">One Year</option>
   		</select>
   	</div>
    
@@ -932,6 +931,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		</datalist>	
   		
  		  <BR><BR>
+ 		  <div class="w3-half">
+ 			<label class="w3-text-brown"><b> Exam PASS Flag:</b>&nbsp;</label>
+				<select class="w3-select" name="option" id="examPassFlag">
+		    		<option value="" selected>Choose your option</option>
+	    			<option value="1">PASS</option>
+		    		<option value="0">FAIL</option>
+		  		</select><br><br>
+		  		 </div>
+  	
+  		
+  <div class="w3-half">
+  <br>  <br>
+  		 </div>	
+  	
+  		
+  		<BR><BR><BR>
  		  
  		 
  		    <div class="w3-panel w3-border-left w3-pale-red w3-border-red w3-border">
