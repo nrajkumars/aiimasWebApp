@@ -851,6 +851,8 @@ public class AiimasServlet extends HttpServlet {
 								String SemMonthMark = request.getParameter("SemMonthMark");
 								String SemYearMark = request.getParameter("SemYearMark");
 								String stuNameMark = request.getParameter("stuNameMark");
+								String noofPaperMark = request.getParameter("noofPaperMark");
+								
 								String row1paperMark= request.getParameter("row1paperMark");
 								String row1paper= request.getParameter("row1paper");
 								String row1papername= request.getParameter("row1papername");
@@ -881,6 +883,7 @@ public class AiimasServlet extends HttpServlet {
 								input.put("prCodeMark", prCodeMark);
 								input.put("prNoMark", prNoMark);
 								input.put("diplomaCodeMark", diplomaCodeMark);
+								input.put("noofPaperMark", noofPaperMark);
 								input.put("SemMonthMark", SemMonthMark);
 								input.put("SemYearMark", SemYearMark);
 								input.put("stuNameMark", stuNameMark);

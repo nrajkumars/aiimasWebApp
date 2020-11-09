@@ -105,13 +105,14 @@ public class MarkUpdate extends BaseDao {
 		}
 		
 		
-		//SAVE MARK
+		//SAVE MARK  only insert
 		
 				public void saveMarks(Map data) throws Exception  {
 					
 					Object prCodeMark = data.get("prCodeMark");
 					Object prNoMark = data.get("prNoMark");
 					Object diplomaCodeMark = data.get("diplomaCodeMark");
+					Object noofPaperMark = data.get("noofPaperMark");
 					Object SemMonthMark = data.get("SemMonthMark");
 					Object SemYearMark = data.get("SemYearMark");
 					Object stuNameMark = data.get("stuNameMark");
@@ -141,65 +142,124 @@ public class MarkUpdate extends BaseDao {
 					Object row8papername= data.get("row8papername");
 						
 					
-					System.out.println("RRRRRRRRRRRRRRRRRR -"+diplomaCodeMark);
+					System.out.println("RRRRRRRRRRRRRRRRRR mark uodate noofPaperMark -"+noofPaperMark);
 					
 					
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-					Date enterDateMark = new Date();
-					Date enterDateMarknew = null;
-					
-				
-					if((enterDateMark != null && enterDateMark.toString().trim().length() > 8)) {
-						enterDateMarknew = formatter.parse(enterDateMark.toString());
-					}
-					
-					System.out.println(" INSIDE if  SAVE MARK  enterDateMarknew"+enterDateMarknew);
-					
-					
-					if((row1paperMark != null && row1paperMark.toString().trim().length() > 0)) {
-						//System.out.println(" INSIDE if paidamt"+paidamt);
-					}else {
-						row1paperMark="";
-					}
-					
-					System.out.println(" INSIDE if  SAVE MARK  row1paperMark"+Integer.parseInt(row1paperMark.toString()));
-					
-					
-//					if((examOldnoPapers != null && examOldnoPapers.toString().trim().length() > 0)) {
-//						//System.out.println(" INSIDE if  papers "+papers);
-//					}else {
-//						examOldnoPapers="";
+//					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//					Date enterDateMark = new Date();
+//					Date enterDateMarknew = null;
+//					
+//				
+//					if((enterDateMark != null && enterDateMark.toString().trim().length() > 8)) {
+//						enterDateMarknew = formatter.parse(enterDateMark.toString());
 //					}
 //					
-//					if((examTotalPaper != null && examTotalPaper.toString().trim().length() > 0)) {
-//						//System.out.println(" INSIDE if  totfee"+totfee);
-//					}else {
-//						examTotalPaper="0";
-//					}
+//					System.out.println(" INSIDE if  SAVE MARK  enterDateMarknew"+enterDateMarknew);
 //					
-//					if((examPassFlag != null && examPassFlag.toString().trim().length() > 0)) {
-//						//System.out.println(" INSIDE if  semYear"+semYear);
+					
+//					if((row1paperMark != null && row1paperMark.toString().trim().length() > 0)) {
+//						//System.out.println(" INSIDE if paidamt"+paidamt);
 //					}else {
-//						examPassFlag="0";
-//					}
-//					
-//					if((noofPaperExam != null && noofPaperExam.toString().trim().length() > 0)) {
-//						//System.out.println(" INSIDE if  papers "+papers);
-//					}else {
-//						noofPaperExam="0";
-//					}
-//					
-//					if((semYearExam != null && semYearExam.toString().trim().length() > 0)) {
-//						//System.out.println(" INSIDE if  pincode "+pincode);
-//					}else {
-//						semYearExam="0";
+//						row1paperMark="";
 //					}
 					
+//					System.out.println(" INSIDE if  SAVE MARK  row1paperMark"+Integer.parseInt(row1paperMark.toString()));
+//					System.out.println(" INSIDE if  SAVE MARK  row1paper"+row1paper.toString().substring(5));
+//					System.out.println(" INSIDE if  SAVE MARK  row1papername"+row1papername.toString());
+//		
+					// diplomo caode unique pr code pr code paper no
+					
+					int n = Integer.parseInt(noofPaperMark.toString());
+					
+					System.out.println(" before for loop "+n);
+					
+					int paperNo= 0;
+					int paperMark= -1;
+					String paperName= "";
+					String insertAddMark = "";
+					
+					for (int i = 1; i <= n; i++) {
+					      if(i==1) {
+					    	  if((row1paper != null && row1paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row1paper.toString().substring(6));
+					    	  }
+					    	  if((row1paperMark != null && row1paperMark.toString().trim().length() > 0)) {
+					    		  System.out.println(" inside mark1"+row1paperMark.toString());
+					    		  paperMark = Integer.parseInt(row1paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row1papername.toString();
+					      }else if(i==2) {
+					    	  if((row2paper != null && row2paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row2paper.toString().substring(6));
+					    	  }
+					    	  if((row2paperMark != null && row2paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row2paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row2papername.toString();
+					    	  
+					      }else if(i==3) {
+					    	  if((row3paper != null && row3paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row3paper.toString().substring(6));
+					    	  }
+					    	  if((row3paperMark != null && row3paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row3paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row3papername.toString();
+					    	  
+					      }else if(i==4) {
+					    	  if((row4paper != null && row4paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row4paper.toString().substring(6));
+					    	  }
+					    	  if((row4paperMark != null && row4paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row4paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row4papername.toString();
+					    	  
+					      }else if(i==5) {
+					    	  if((row5paper != null && row5paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row5paper.toString().substring(6));
+					    	  }
+					    	  if((row5paperMark != null && row5paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row5paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row5papername.toString();
+					    	  
+					      }else if(i==6) {
+					    	  if((row6paper != null && row6paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row6paper.toString().substring(6));
+					    	  }
+					    	  if((row6paperMark != null && row6paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row6paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row6papername.toString();
+	  
+					      }else if(i==7) {
+					    	  if((row7paper != null && row7paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row7paper.toString().substring(6));
+					    	  }
+					    	  if((row7paperMark != null && row7paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row7paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row7papername.toString();
+					      		
+					      }else if(i==8) {
+					    	  if((row8paper != null && row8paper.toString().trim().length() > 0)) {
+					    		  paperNo =Integer.parseInt(row8paper.toString().substring(6));
+					    	  }
+					    	  if((row8paperMark != null && row8paperMark.toString().trim().length() > 0)) {
+					    		  paperMark = Integer.parseInt(row8paperMark.toString());
+					    	  }else {paperMark =-1;}
+					    	  paperName = row8papername.toString();
+					    	  
+					      }
+					      
+					     insertAddMark = "insert into public.APPEAR (AP_DIPCODE, AP_PRCODE, AP_PRNO, AP_SESMON, AP_SESYR, AP_NAME,AP_PAPER, AP_MARK, AP_PAPRNAM) values(?,?,?,?,?,?,?,?,?);";
+						 executeUpdate(insertAddMark, new Object[]{diplomaCodeMark.toString(),prCodeMark.toString(),Integer.parseInt(prNoMark.toString()),SemMonthMark.toString(),Integer.parseInt(SemYearMark.toString()),stuNameMark,paperNo,paperMark, paperName });
+						 System.out.println(" INSIDE insert MARK SUCCESS for  -"+n);
 							
-				//	String insertAddAdm = "insert into public.ADMN (AD_DIPCODE, AD_PRCODE, AD_PRNO, AD_SESMON, AD_SESYR, AD_NAME,AD_NOFPAPR, AD_FEEAMT, AD_DURTN, AD_PAIDAMT,AD_FEEDATE, AD_ENTDATE) values(?,?,?,?,?,?,?,?,?,?,?,?);";
-					//executeUpdate(insertAddAdm, new Object[]{newDipCode,prCode11.toString(),Integer.parseInt(prNo1.toString()),semMonth.toString(),Integer.parseInt(semYear.toString()),stuName.toString(),Integer.parseInt(papers.toString()),Integer.parseInt(totfee.toString()), duration.toString(), Integer.parseInt(paidamt.toString()),feeDuedate,enterDatef });
+					    }
 					
-					System.out.println(" INSIDE insert MARK SUCCESS");
+						System.out.println(" INSIDE insert  FINALLY MARK SUCCESS");
 					
 					
 				}

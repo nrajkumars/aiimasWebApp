@@ -1122,7 +1122,7 @@ function saveMark() {
 	//
 	var diplomaCodeMark = document.getElementById('diplomaCodeMark').value;
 	//var noofPaperMark = document.getElementById('durationMark').value;
-	//var noofPaperMark = document.getElementById('noofPaperMark').value;
+	var noofPaperMark = document.getElementById('noofPaperMark').value;
 	
 	var SemMonthMark = document.getElementById('SemMonthMark').value;
 	var SemYearMark = document.getElementById('SemYearMark').value;
@@ -1164,19 +1164,20 @@ function saveMark() {
 	var row8paper= document.getElementById('row8paper').value;
 	var row8papername= document.getElementById('row8papername').value;
 	
+console.log('save MARK clicked rajjj '+row1paperMark);
 
-
+	console.log('save MARK clicked rajjj '+isNaN(row1paperMark));
 	
 //	if (examStateCode == "" || prno == "") {
 //			alert("Please enter the values in P.R.Code and P.R.No")
 //	  }else{
 	
 	
-	//if(isNaN( isNaN(examNewnoPapers) || isNaN(examOldnoPapers) || isNaN(examTotalPaper) || isNaN(examPassFlag) ){
-	//		alert("Please enter only numbers for Exam No number of paper, Old number of paper,  Total paper,  and Exam Pass flag ");
-	//}else{
-	postAjax('rs',{"app":"AiimasPost","module":"SaveMark","action":"MarkDetail","prCodeMark":prCodeMark,"prNoMark":prNoMark,"diplomaCodeMark":diplomaCodeMark,"SemMonthMark":SemMonthMark,"SemYearMark":SemYearMark,"stuNameMark":stuNameMark,"row1paperMark":row1paperMark,"row1paper":row1paper,"row1papername":row1papername,"row2paperMark":row2paperMark,"row2paper":row2paper,"row2papername":row2papername,"row3paperMark":row3paperMark,"row3paper":row3paper,"row3papername":row3papername,"row4paperMark":row4paperMark,"row4paper":row4paper,"row4papername":row4papername,"row5paperMark":row5paperMark,"row5paper":row5paper,"row5papername":row5papername,"row6paperMark":row6paperMark,"row6paper":row6paper,"row6papername":row6papername,"row7paperMark":row7paperMark,"row7paper":row7paper,"row7papername":row7papername,"row8paperMark":row8paperMark,"row8paper":row8paper,"row8papername":row8papername}, onPostSaveMarkData);
-	//}
+	if( isNaN(row1paperMark) || isNaN(row2paperMark) || isNaN(row3paperMark) || isNaN(row4paperMark)|| isNaN(row5paperMark)|| isNaN(row6paperMark)|| isNaN(row7paperMark)|| isNaN(row8paperMark) ){
+			alert("Please enter only numbers for MARKS ");
+	}else{
+	postAjax('rs',{"app":"AiimasPost","module":"SaveMark","action":"MarkDetail","prCodeMark":prCodeMark,"prNoMark":prNoMark,"diplomaCodeMark":diplomaCodeMark,"SemMonthMark":SemMonthMark,"SemYearMark":SemYearMark,"stuNameMark":stuNameMark,"noofPaperMark":noofPaperMark,"row1paperMark":row1paperMark,"row1paper":row1paper,"row1papername":row1papername,"row2paperMark":row2paperMark,"row2paper":row2paper,"row2papername":row2papername,"row3paperMark":row3paperMark,"row3paper":row3paper,"row3papername":row3papername,"row4paperMark":row4paperMark,"row4paper":row4paper,"row4papername":row4papername,"row5paperMark":row5paperMark,"row5paper":row5paper,"row5papername":row5papername,"row6paperMark":row6paperMark,"row6paper":row6paper,"row6papername":row6papername,"row7paperMark":row7paperMark,"row7paper":row7paper,"row7papername":row7papername,"row8paperMark":row8paperMark,"row8paper":row8paper,"row8papername":row8papername}, onPostSaveMarkData);
+	}
 }
 
 function onPostSaveMarkData(data) {

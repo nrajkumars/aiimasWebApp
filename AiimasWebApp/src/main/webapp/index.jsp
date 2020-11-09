@@ -77,8 +77,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	    <a href="#admApp1" class="w3-bar-item w3-button">Admission Applica <b>- UPDATE</b></a>
       <a href="#examApp" class="w3-bar-item w3-button">Examination Application<b>- ADD</b> </a>
       <a href="#examApp1" class="w3-bar-item w3-button">Exam Application<b>- UPDATE</b> </a>
-      <a href="#markUpdate" class="w3-bar-item w3-button">Mark Update<b>- ADD</b></a>
-      <a href="#markUpdate1" class="w3-bar-item w3-button">Mark Update<b>- UPDATE</b></a>
+      <a href="#markUpdate" class="w3-bar-item w3-button">Marks Update</a>
+    
     </div>
 
 
@@ -943,7 +943,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		
   <div class="w3-half">
   <br>  <br>
-  		 </div>	
+   </div>	
   	
   		
   		<BR><BR><BR>
@@ -1015,8 +1015,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
    <div class="w3-padding-64 w3-light-grey w3-card-4" id=markUpdate>
-		<center> <h2>Mark Updataion</h2>
-		<p>Adding the Exam  Marks of an Student</p>
+		<center> <h2>Marks Update</h2>
+		<p>Update the Exam  Marks of an Student</p>
 		</center>
 
 <div id="markDetailFound" class="w3-modal">
@@ -1149,7 +1149,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			  </div>
 			
 			   <div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row1paper"><br>
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" value=1  id="row1paper"><br>
 			  </div>
 			  
 			   <div class="w3-half">
@@ -1253,7 +1253,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row8paperMark"><br>
 			  </div>						
 			<div class="w3-quarter">
-			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row8paper"><br>
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" value=8  id="row8paper"><br>
 			  </div>
 			  
 			 <div class="w3-half">
@@ -1270,7 +1270,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<center>
 		
-			<button class="w3-button w3-blue" id="resultMark" onclick="SaveMark()">&nbsp;&nbsp;Save</button>
+			<button class="w3-button w3-blue" id="resultMark" onclick="saveMark()">&nbsp;&nbsp;Save</button>
 <!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
 			<button class="w3-button w3-red" onclick="clearAllAtrbutesMarks()" >Clear</button>
 			
