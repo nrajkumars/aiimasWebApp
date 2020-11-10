@@ -1,9 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,java.math.BigDecimal,java.util.Map.Entry" %>
+<%@ page import="java.util.*,java.math.BigDecimal,java.util.Map.Entry,com.fasterxml.jackson.core.JsonProcessingException" %>
+<%@ page import="com.fasterxml.jackson.databind.ObjectMapper, java.util.HashMap,java.util.Map.Entry,com.fasterxml.jackson.core.JsonProcessingException" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-    
-
+ <%! String json="";%>
+ <%
+ Map<String, String> elements = new HashMap();
+  ObjectMapper objectMapper = new ObjectMapper();
+  elements = (TreeMap)application.getAttribute("stateCenterMap");
+        try {
+            json = objectMapper.writeValueAsString(elements);
+            //System.out.println(json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } 
+        %>
 <html>
 <title>AIIMAS App</title>  <!-- updated by sakthi -->
 
@@ -28,7 +39,9 @@
   <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
   <link href="lib/montserratcss" rel="stylesheet">
   <link href="lib/roboto.css" rel="stylesheet">
-
+<script>
+localStorage.setItem('globalstatecenterdata', '<%=json%>');
+</script>
 <style>
 <!-- for table -->
 table {
@@ -713,8 +726,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		
 			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option" onchange="getSelectedStatecode()">
-	  		<datalist id="examStateCodeList" >
+			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode" placeholder="Choose your option" 
+			onchange="getSelectedStatecode('examStateCode','examStateCodeList','examCenterCodeList')">
+	  		<datalist id="examStateCodeList" >                             
 	  		<option selected value="Choose your option"></option>	
 	  		
 	  		<option value=""></option>	
@@ -906,8 +920,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		
 			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="examStateCode1" placeholder="Choose your option" onchange="getSelectedStatecode()">
-	  		<datalist id="examStateCodeList" >
+			<input list="examStateCodeList_updt" class="w3-text-brwon" 
+			name="examStateCodeUpd" id="examStateCodeUpd" placeholder="Choose your option" 
+			onchange="getSelectedStatecode('examStateCodeUpd','examStateCodeList_updt','examCenterCodeList_updt')">
+	  		<datalist id="examStateCodeList_updt" >
 	  		<option selected value="Choose your option"></option>	
 	  		
 	  		<option value=""></option>	
@@ -915,7 +931,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			
 	  		<!--  SAKTHI get from DB data-->
 	  		
-	   
+	  
 	  		
 	  		</datalist>	
 	  
@@ -924,8 +940,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		 
 		
  		 <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="examCenterCode" id="examCenterCode1" placeholder="Choose your option">
-  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode1()">
+		<input list="examCenterCodeList_updt" class="w3-text-brwon"  name="examCenterCode_upd" id="examCenterCode_upd" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList_updt" onchange="getSelectedCentercode1()">
   		<option selected value="Choose your option"></option>	
   	
   		
@@ -1129,8 +1145,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			<div class="w3-half">
   			
   			<label class="w3-text-brown"><b>Marks Entered on:</b></label>
- 			<input class="w3-input w3-border " type="date" id="enterDateMarks"><br>
- 			
+ 			<input class="w3-input w3-border " type="date" id="enterDateMarks1"><br>
+ 			<script> loadDate('enterDateMarks1');</script>
  			<br><br>
 		  		 </div>
   	
@@ -1835,13 +1851,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			</div>
   			
   			
-  			
+  			<script>loadStateAndCenters('examStateCodeList')</script>
   			
   			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ALexamStateCode" placeholder="Choose your option">
-	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
+			<input list="examStateCodeList" class="w3-text-brwon" name="ALexamStateCode" id="ALexamStateCode" placeholder="Choose your option">
+	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode('ALexamStateCode','examStateCodeList','examCenterCodeList')">
 	  		<option selected value="Choose your option"></option>	
-	  		<option value="AP/ANDH"></option>	
+	  			
 	
 	  		<!--  SAKTHI get from DB data-->
 	  		
@@ -1855,9 +1871,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input list="examCenterCodeList" class="w3-text-brwon"  name="eALxamCenterCode" id="ALexamCenterCode" placeholder="Choose your option">
   		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
-  		<option value="HYD/HYDD"></option>	
-  		<option value="VI/VIJYA"></option>	
-  		<option value="VS/VISAK"></option>	
+  		
 		
   		<!--  SAKTHI get from DB data-->
   		

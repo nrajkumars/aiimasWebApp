@@ -228,12 +228,9 @@ function onPostgetExamUpdateData1(data) {
 				  } else {
 					  ubutton.style.display = "none";
 				  }
-				/*document.getElementById('resultSaveExamApp').style.display='block';
-				document.getElementById('resultUpdateExamApp').style.display='block';*/
 				
 				
-			}else {		//if(parsedData1['Failure'] !== undefined)
-				//$("#alertDetailNotFound").show();
+			}else {		
 				document.getElementById('addExamGetExamDataLoadFail1').style.display='block';
 				clearAllAtrbutesV1();
 			}
@@ -253,8 +250,8 @@ function onPostgetExamUpdateData1(data) {
 			if(parsedData1['Exam'] !== undefined){
 				document.getElementById("semMonthExam1").value =  parsedData1.Exam["ea_sesmon"];
 				document.getElementById("semYearExam1").value =  parsedData1.Exam["ea_sesyr"];
-				document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
-				document.getElementById("examCenterCode1").value =  parsedData1.Exam["ea_cecode"]; 
+				//document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
+				//document.getElementById("examCenterCode1").value =  parsedData1.Exam["ea_cecode"]; 
 				var paersrequired = parsedData1.Exam["ea_paprstr"];
 				
 				
@@ -305,15 +302,15 @@ function onPostgetExamUpdateData1(data) {
 			}
 			
 			var paperNumbers = document.getElementById("noofPaperExam1").value ;
-			var s2 = document.getElementById('slct2');
-			var elementCb = document.querySelectorAll("input[id='cboxpaper']");
+			var s2 = document.getElementById('slct2upt');
+			var elementCb = document.querySelectorAll("input[id='cboxpaperUpt']");
 			var mylabelforCbox = document.querySelectorAll("lbelnew");
 			
 			
 			 if(typeof(elementCb) != 'undefined' && elementCb != null){
 				 
-				 var elem=$("#slct2 input");
-				 $("#slct2").empty().html(elem);
+				 var elem=$("#slct2upt input");
+				 $("#slct2upt").empty().html(elem);
 				 
 			        
 			        for(var i = 0,j=1; i < elementCb.length; i++){
@@ -334,8 +331,8 @@ function onPostgetExamUpdateData1(data) {
 				 	//console.log('valinp... '+valinp);
 			        var checkbox = document.createElement("input");
 			        checkbox.type = "checkbox";
-			        checkbox.name = 'cboxpaper';
-			        checkbox.id = 'cboxpaper';
+			        checkbox.name = 'cboxpaperUpt';
+			        checkbox.id = 'cboxpaperUpt';
 			        checkbox.value = valinp;
 			        s2.appendChild(checkbox);
 
@@ -348,16 +345,19 @@ function onPostgetExamUpdateData1(data) {
 			        s2.appendChild(document.createElement("br"));   
 			}
 			
-			var Stselect = document.getElementById("examStateCodeList1"); 
-			  $('#examStateCodeList option').remove();  
-			  $('#examCenterCodeList option').remove(); 
+			var Stselect = document.getElementById("examStateCodeList_updt"); 
+			  $('#examStateCodeList_updt option').remove();  
+			  $('#examCenterCodeList_updt option').remove(); 
 				  var state = {};  var centre= {}; var state1course = [];
-				  for (var key in parsedData1) {
-					    if (parsedData1.hasOwnProperty(key)) {
+				
+				  statedata = JSON.parse(localStorage.getItem('globalstatecenterdata'));	 
+				  
+				  for (var key in statedata) {
+					    if (statedata.hasOwnProperty(key)) {
 					        //console.log(key + " -> " + parsedData1[key]);
 					        
 					        if(key.includes('State')){
-					        	var obj = parsedData1[key];
+					        	var obj = statedata[key];
 					        	var textval = '';
 					        	var textopt = '';
 					        	for (var key in obj) {
@@ -384,7 +384,7 @@ function onPostgetExamUpdateData1(data) {
 					        
 					        if(key.includes('Centre')){
 					        	
-					        	var obj = parsedData1[key];
+					        	var obj = statedata[key];
 					        	
 					        	var statecode1 = '';
 					        	var centrecode1 = '';
@@ -411,6 +411,7 @@ function onPostgetExamUpdateData1(data) {
 					        		        'centrename1': centrename1,
 					        		    }
 					        	 state1course.push(objstcentre);
+					        	 console.log(' = = = ============== = = = ================== = = = ========== '+JSON.stringify(state1course));
 					        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
 					        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
 					 			//console.log('retrievedObject: ', JSON.parse(retrievedObject));
@@ -455,9 +456,11 @@ function onPostgetExamData1(data) {
 						
 			try {
 			// Parse JSON
+				
+			statedata = JSON.parse(localStorage.getItem('globalstatecenterdata'));	
 			parsedData1 = JSON.parse(data);
 			
-			//console.log(' parseddata'+ JSON.stringify(parsedData1)   );
+			//console.log(' parseddata ============== '+ JSON.stringify(parsedData1)   );
 		
 			if(parsedData1['Admin'] !== undefined ){
 				//$("#alertDetailFound").show();     
@@ -467,17 +470,6 @@ function onPostgetExamData1(data) {
 				if (sbutton.style.display == "none") {
 					sbutton.style.display = "block";
 				  }  
-				
-				
-				
-//				var ubutton = document.getElementById('resultUpdateExamApp');
-//				if (ubutton.style.display === "none") {
-//					ubutton.style.display = "block";
-//				  } else {
-//					  ubutton.style.display = "none";
-//				  }
-				/*document.getElementById('resultSaveExamApp').style.display='block';
-				document.getElementById('resultUpdateExamApp').style.display='block';*/
 				
 				
 			}else {		//if(parsedData1['Failure'] !== undefined)
@@ -503,6 +495,9 @@ function onPostgetExamData1(data) {
 			var elementCb = document.querySelectorAll("input[id='cboxpaper']");
 			var mylabelforCbox = document.querySelectorAll("lbelnew");
 			
+			
+			document.getElementById("examStateCode").value = "";
+			document.getElementById("examCenterCode").value = "";
 			
 			 if(typeof(elementCb) != 'undefined' && elementCb != null){
 				 
@@ -546,12 +541,14 @@ function onPostgetExamData1(data) {
 			  $('#examStateCodeList option').remove();  
 			  $('#examCenterCodeList option').remove(); 
 				  var state = {};  var centre= {}; var state1course = [];
-				  for (var key in parsedData1) {
-					    if (parsedData1.hasOwnProperty(key)) {
+				 
+				  
+				  for (var key in statedata) {
+					    if (statedata.hasOwnProperty(key)) {
 					        //console.log(key + " -> " + parsedData1[key]);
 					        
 					        if(key.includes('State')){
-					        	var obj = parsedData1[key];
+					        	var obj = statedata[key];
 					        	var textval = '';
 					        	var textopt = '';
 					        	for (var key in obj) {
@@ -578,7 +575,7 @@ function onPostgetExamData1(data) {
 					        
 					        if(key.includes('Centre')){
 					        	
-					        	var obj = parsedData1[key];
+					        	var obj = statedata[key];
 					        	
 					        	var statecode1 = '';
 					        	var centrecode1 = '';
@@ -605,6 +602,7 @@ function onPostgetExamData1(data) {
 					        		        'centrename1': centrename1,
 					        		    }
 					        	 state1course.push(objstcentre);
+					        	 //console.log('=========================================  '+JSON.stringify(state1course));
 					        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
 					        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
 					 			//console.log('retrievedObject: ', JSON.parse(retrievedObject));
@@ -647,12 +645,15 @@ function AddValue(el){
 	    alert(option.text);
 	  }
 	}
-function getSelectedStatecode(){
+function getSelectedStatecode(inputIDState, datalistIDState, datalistIDCenter){  
 	
 	//alert('get selected code');
 	
-	var element_input = document.getElementById('examStateCode');
-    var element_datalist = document.getElementById('examStateCodeList');
+	//document.getElementById(inputIDState).value="";
+	//document.getElementById(datalistIDCenter).value="";
+	
+	var element_input = document.getElementById(inputIDState); /* id of input element - 'examStateCode'*/
+    var element_datalist = document.getElementById(datalistIDState); /* id of datalist element - 'examStateCodeList'*/
     var opSelected = element_datalist.querySelector(`[value="${element_input.value}"]`);
     
     var id = opSelected.getAttribute('value');
@@ -661,7 +662,7 @@ function getSelectedStatecode(){
     var n1 = id.length;
     var code = id.slice(n,n1);
     
-    var coursebystate = document.getElementById("examCenterCodeList"); 
+    var coursebystate = document.getElementById(datalistIDCenter); //"examCenterCodeList"
     
     coursebystate.textContent = '';
     
@@ -1035,6 +1036,8 @@ function onPostgetMarkData(data) {
 						document.getElementById("SemYearMark").value =  parsedData1pr.Exam["ea_sesyr"];
 						document.getElementById("stateMark").value =  parsedData1pr.Exam["ea_stname"];
 						document.getElementById("centerMark").value =  parsedData1pr.Exam["ea_centre1"];
+						
+						document.getElementById("centerMark").value = loadDate('enterDateMarks1');
 			        }
 			    }
 			}
@@ -1963,14 +1966,14 @@ function clearAllAtrbutesExamUpdate() {
 
 
 function clearAllAtrbutesMarks() {
-	//	document.getElementById("prCodeMark").value =   "";
+		//document.getElementById("prCodeMark").value =   "";
 	// document.getElementById("prNoMark").value =   "";
 	document.getElementById("diplomaCodeMark").value =   "";
 	document.getElementById("SemMonthMark").value =   "";
 	document.getElementById("SemYearMark").value =   "";
 	document.getElementById("stuNameMark").value =   "";
 	
-	document.getElementById("enterDateMarks").value =   "";
+	document.getElementById("enterDateMarks1").value =   "";
 	document.getElementById("durationMark").value =   "";
 	document.getElementById("noofPaperMark").value =   "";
 	document.getElementById("stateMark").value =   "";
@@ -2739,3 +2742,78 @@ $(function(){
         document.getElementById('diplomaCode').value=description;
     });
 });
+
+function loadStateAndCenters(fieldID){
+	var Stselect = document.getElementById(fieldID); 
+	  //$('#examStateCodeList_updt option').remove();  
+	//  $('#examCenterCodeList_updt option').remove(); 
+		  var state = {};  var centre= {}; var state1course = [];
+	statedata = JSON.parse(localStorage.getItem('globalstatecenterdata'));	 
+	  
+	  for (var key in statedata) {
+		    if (statedata.hasOwnProperty(key)) {
+		        //console.log(key + " -> " + parsedData1[key]);
+		        
+		        if(key.includes('State')){
+		        	var obj = statedata[key];
+		        	var textval = '';
+		        	var textopt = '';
+		        	for (var key in obj) {
+		        		  if (obj.hasOwnProperty(key)) {
+		        		    var val = obj[key];
+		        		    //console.log(val);
+		        		    //console.log('Label '+key);
+		        		    var el = document.createElement("option");
+		        		    
+		        		    if(key.includes('st_stname')){
+		        		    	textval = val;
+		        		    	
+		        		    }
+		        		    if(key.includes('st_stcode')){
+		        		    	textopt = val;
+		        		    }
+		        		    
+		        		  }
+		        		}
+				    el.text = textopt;
+				    el.value = textval+' /'+el.text;
+		        	Stselect.appendChild(el);
+		        }
+		        
+		        if(key.includes('Centre')){
+		        	
+		        	var obj = statedata[key];
+		        	
+		        	var statecode1 = '';
+		        	var centrecode1 = '';
+		        	var centrename1 = '';
+		        	for (var key in obj) {
+		        		  if (obj.hasOwnProperty(key)) {
+		        		    var val = obj[key];
+		        		    
+		        		    if(key.includes('ce_stcode')){
+		        		    		statecode1 = val;
+		        		    }
+		        		    if(key.includes('ce_cecode')){
+		        		    	centrecode1 = val;
+		        		    }
+		        		    if(key.includes('ce_cename')){
+		        		    	centrename1 = val;
+		        		    }
+		        		  }
+		        		}
+		        	
+		        	 var objstcentre = {
+		        		        'statecode1': statecode1,
+		        		        'centrecode1': centrecode1,
+		        		        'centrename1': centrename1,
+		        		    }
+		        	 state1course.push(objstcentre);
+		        	 console.log(' = = = ============== = = = ================== = = = ========== '+JSON.stringify(state1course));
+		        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
+		        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
+		 			//console.log('retrievedObject: ', JSON.parse(retrievedObject));
+		        }
+		    }
+	  }
+}
