@@ -983,8 +983,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			
   			<!--    BASED on the no of papers - this has to come dynamic to match the paper count  -->
   			<div class="w3-container w3-card-4">
-  			<h3>Papers</h3>
-  			<div id="slct2"></div>
+  			<h3>Papers!!</h3>
+  			<div id="slct2upt"></div>
 			</div>
   			
   			<!--  Sakthi this hase to be changed based on selection -->
@@ -1340,6 +1340,32 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   </div>
 </div>	
 
+	
+	<div id="updatemarkDetailFound" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('updatemarkDetailFound').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>MARK DETAILS LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('updatemarkDetailFound').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="updatemarkDetailNotFound" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('updatemarkDetailNotFound').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>DETAILS NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('updatemarkDetailNotFound').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+	
+	
 		
 		<div class="w3-panel w3-pale-green">
 		
@@ -1430,6 +1456,123 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  			<br><br>
 		  		 </div>
   	
+  		
+  		<div class="w3-container " id="updatePaper1" style="display: none;">
+			
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow1paperMark"><br>
+			  </div>
+			
+			   <div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" value=1  id="displayrow1paper"><br>
+			  </div>
+			  
+			   <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow1papername"><br>
+			  </div>
+		</div>
+			
+			<div class="w3-container " id="updatePaper2" style="display: none;">
+			
+						<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow2paperMark"><br>
+			  </div>
+			
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="displayrow2paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow2papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="updatePaper3" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow3paperMark"><br>
+			  </div>
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="displayrow3paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow3papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="updatePaper4" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow4paperMark"><br>
+			  </div>
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="displayrow4paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow4papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="updatePaper5" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow5paperMark"><br>
+			  </div>
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="displayrow5paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow5papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="updatePaper6" style="display: none;">
+						
+				<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow6paperMark"><br>
+			  </div>
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="displayrow6paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow6papername"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="updatePaper7" style="display: none;">
+						
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow7paperMark"><br>
+			  </div>						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="displayrow7paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow7papername"><br>
+			  </div>
+			</div>
+			
+		<div class="w3-container " id="updatePaper8" style="display: none;">
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="displayrow8paperMark"><br>
+			  </div>						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" value=8  id="displayrow8paper"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="displayrow8papername"><br>
+			  </div>
+			</div>
   		
 			  <div class="w3-half">
 			  <br>  <br>

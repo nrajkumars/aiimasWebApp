@@ -254,7 +254,34 @@ function onPostgetExamUpdateData1(data) {
 				document.getElementById("semMonthExam1").value =  parsedData1.Exam["ea_sesmon"];
 				document.getElementById("semYearExam1").value =  parsedData1.Exam["ea_sesyr"];
 				document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
-				document.getElementById("examCenterCode1").value =  parsedData1.Exam["ea_cecode"];
+				document.getElementById("examCenterCode1").value =  parsedData1.Exam["ea_cecode"]; 
+				var paersrequired = parsedData1.Exam["ea_paprstr"];
+				
+				
+				var s2 = document.getElementById('slct2upt');
+				 for (var i = 1; i <= 8; i++) {
+								//console.log('paper... '+i);
+								 	var nameinp = ' Paper '+i;
+								 	var valinp = i;
+								 	//console.log('nameinp... '+nameinp);
+								 	//console.log('valinp... '+valinp);
+							        var checkbox = document.createElement("input");
+							        checkbox.type = "checkbox";
+							        checkbox.name = 'cboxpaperUpt';
+							        checkbox.id = 'cboxpaperUpt';
+							        checkbox.value = valinp;
+							        if(paersrequired.includes(i))
+							        	checkbox.checked = true;
+							        s2.appendChild(checkbox);
+
+							        var label = document.createElement('label')
+							        label.htmlFor = nameinp;
+							        label.id = 'labelnew';
+							        label.appendChild(document.createTextNode(nameinp));
+
+							        s2.appendChild(label);
+							        s2.appendChild(document.createElement("br"));   
+							}
 			}
 			
 			
@@ -1280,12 +1307,102 @@ function getMarkUpdateData() {
 
 function onPostgetMarkUpdateData(data) {
 	console.log('RESPONSE POST in   onPostgetMarkData  app .JS:' + data);
-	var parsedData1;
+	var parsedData1pr;
 		
 	if (data != null) {
 		
 		// SKATHI to do
+		
+		try {
+			parsedData1pr = JSON.parse(data);
+		
+			if(parsedData1pr['Exam'] !== undefined ){
+				
+				document.getElementById("stuNameMark1").value =  parsedData1pr.Exam["ea_name"];
+				document.getElementById("diplomaCodeMark1").value =  parsedData1pr.Exam["ea_dipcode"];
+				document.getElementById("durationMark1").value =  parsedData1pr.Exam["ea_durtn"];
+				document.getElementById("noofPaperMark1").value =  parsedData1pr.Exam["ea_nofpapr"];
+				
+				document.getElementById("SemMonthMark1").value =  parsedData1pr.Exam["ea_sesmon"];
+				document.getElementById("SemYearMark1").value =  parsedData1pr.Exam["ea_sesyr"];
+				document.getElementById("stateMark1").value =  parsedData1pr.Exam["ea_stname"];
+				document.getElementById("centerMark1").value =  parsedData1pr.Exam["ea_centre1"];
+				
+				document.getElementById('updatemarkDetailFound').style.display='block';
+				
+				var count = Object.keys(parsedData1pr).length;
+				  console.log('parsedData1pr '+count);
+				  var dict = {};
+				  
+				  for (var key in parsedData1pr) {
+					    if (parsedData1pr.hasOwnProperty(key)) {
+					        console.log(key + " -> " + parsedData1pr[key]);
+
+					        
+					        if(key == 'MarkList1'){
+						        dict[parsedData1pr.MarkList1["ap_paper"]] = parsedData1pr.MarkList1["ap_paprnam"];
+						        document.getElementById('displayrow1paperMark').value= parsedData1pr.MarkList1["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList2'){
+						        dict[parsedData1pr.MarkList2["ap_paper"]] = parsedData1pr.MarkList2["ap_paprnam"];
+						        document.getElementById('displayrow2paperMark').value= parsedData1pr.MarkList2["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList3'){
+						        dict[parsedData1pr.MarkList3["ap_paper"]] = parsedData1pr.MarkList3["ap_paprnam"];
+						        document.getElementById('displayrow3paperMark').value= parsedData1pr.MarkList3["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList4'){
+						        dict[parsedData1pr.MarkList4["ap_paper"]] = parsedData1pr.MarkList4["ap_paprnam"];
+						        document.getElementById('displayrow4paperMark').value= parsedData1pr.MarkList4["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList5'){
+						        dict[parsedData1pr.MarkList5["ap_paper"]] = parsedData1pr.MarkList5["ap_paprnam"];
+						        document.getElementById('displayrow5paperMark').value= parsedData1pr.MarkList5["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList6'){
+						        dict[parsedData1pr.MarkList6["ap_paper"]] = parsedData1pr.MarkList6["ap_paprnam"];
+						        document.getElementById('displayrow6paperMark').value= parsedData1pr.MarkList6["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList7'){
+						        dict[parsedData1pr.MarkList7["ap_paper"]] = parsedData1pr.MarkList7["ap_paprnam"];
+						        document.getElementById('displayrow7paperMark').value= parsedData1pr.MarkList7["ap_mark"];
+					        }
+					        
+					        if(key == 'MarkList8'){
+						        dict[parsedData1pr.MarkList8["ap_paper"]] = parsedData1pr.MarkList8["ap_paprnam"];
+						        document.getElementById('displayrow8paperMark').value= parsedData1pr.MarkList8["ap_mark"];
+						        
+					        }
+					        
+					    }
+					}
+				
+				  var value = dict.key; var xyincrement = 1;
+				  for(var key in dict) {
+				     console.log('xyincrement '+xyincrement+'   dict === >> '+key + " : " + dict[key]);
+				     $("#updatePaper"+xyincrement).show();
+				     var temp1= "displayrow"+xyincrement+"paper";
+				     var temp2= "displayrow"+xyincrement+"papername";
+				     document.getElementById(temp1).value   = 'Paper '+key;
+				     document.getElementById(temp2).value   = dict[key];
+				     xyincrement++;
+				  }
+				
+			}else {		
+				document.getElementById('updatemarkDetailNotFound').style.display='block';
+				clearAllAtrbutesMarks1();
+			}
+		}catch (e) {
+			console.log("data onPostSAVEExamData  error, Reason"+e.toString());
 		}
+	}
+		
 }
 		
 
@@ -1924,7 +2041,19 @@ function clearAllAtrbutesMarks1() {
 	document.getElementById("row8paperMark1").value =   "";
 	document.getElementById("row8paper1").value =   "";
 	document.getElementById("row8papername1").value =   "";
-	document.getElementById("marksentersegment1").style.display = "none";
+	//document.getElementById("marksentersegment1").style.display = "none";  
+	document.getElementById("updatePaper1").style.display = "none";
+	document.getElementById("updatePaper2").style.display = "none";
+	document.getElementById("updatePaper3").style.display = "none";
+	document.getElementById("updatePaper4").style.display = "none";
+	document.getElementById("updatePaper5").style.display = "none";
+	document.getElementById("updatePaper6").style.display = "none";
+	document.getElementById("updatePaper7").style.display = "none";
+	document.getElementById("updatePaper8").style.display = "none";
+	
+	
+	document.getElementById("prCodeMark1").value =   "";
+	document.getElementById("prNoMark1").value =   "";
 	//$("marksentersegment").hide();
 	
 }
