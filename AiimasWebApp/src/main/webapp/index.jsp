@@ -900,7 +900,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<label class="w3-text-brown"><b>Exam Entered on:</b></label>
  			<input class="w3-input w3-border " type="date" id="enterDateExam1"><br>
  		  </div> 
-		<script> loadDate('enterDateExam');</script>
+		<script> loadDate('enterDateExam1');</script>
 		
 
 		

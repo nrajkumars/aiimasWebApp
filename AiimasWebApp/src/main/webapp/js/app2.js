@@ -208,7 +208,7 @@ function onPostgetExamUpdateData1(data) {
 			// Parse JSON
 			parsedData1 = JSON.parse(data);
 			
-			//console.log(' parseddata'+ JSON.stringify(parsedData1)   );
+			console.log(' parseddata===========>>'+ JSON.stringify(parsedData1)   );
 		
 			if(parsedData1['Admin'] !== undefined ){
 				//$("#alertDetailFound").show();     
@@ -248,6 +248,33 @@ function onPostgetExamUpdateData1(data) {
 				document.getElementById("diplomaCodeExam1").readOnly = true;
 				document.getElementById("durationExam1").readOnly = true;
 				document.getElementById("noofPaperExam1").readOnly = true;
+			}
+			
+			if(parsedData1['Exam'] !== undefined){
+				document.getElementById("semMonthExam1").value =  parsedData1.Exam["ea_sesmon"];
+				document.getElementById("semYearExam1").value =  parsedData1.Exam["ea_sesyr"];
+				document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
+				document.getElementById("examCenterCode1").value =  parsedData1.Exam["ea_cecode"];
+			}
+			
+			
+
+			
+			if(parsedData1['Ack'] !== undefined){
+				var LetterDate1 = returnFormatDate(parsedData1.Ack["ak_venudt"]);
+				document.getElementById("ackIniLetterDate1").value =  LetterDate1;
+				
+				var HallTckDate1 = returnFormatDate(parsedData1.Ack["ak_halldt"]);
+				document.getElementById("ackHallTckDate1").value =  HallTckDate1;
+				
+				var Examdate11 = returnFormatDate(parsedData1.Ack["ak_examdt1"]);
+				document.getElementById("ackExamdate11").value = Examdate11 ;
+				
+				var Examdate21 = returnFormatDate(parsedData1.Ack["ak_examdt2"]);
+				document.getElementById("ackExamdate21").value =Examdate21  ;
+				
+				
+				//document.getElementById("noofPaperExam1").readOnly = true;
 			}
 			
 			var paperNumbers = document.getElementById("noofPaperExam1").value ;
@@ -359,7 +386,7 @@ function onPostgetExamUpdateData1(data) {
 					        	 state1course.push(objstcentre);
 					        	 localStorage.setItem('stateCentreMapObject', JSON.stringify(state1course));
 					        	 var retrievedObject = localStorage.getItem('stateCentreMapObject');
-					 			console.log('retrievedObject: ', JSON.parse(retrievedObject));
+					 			//console.log('retrievedObject: ', JSON.parse(retrievedObject));
 					        }
 					    }
 				  }
@@ -367,7 +394,7 @@ function onPostgetExamUpdateData1(data) {
 			//TODO SAKTHI  LOAD the exam application screen with this values
 
 		} catch (e) {
-				console.log("data error, Reason"+e.toString());
+				console.log("data error, Reason ========= >> "+e.toString());
 			}
 		}else{
 		}
@@ -409,11 +436,10 @@ function onPostgetExamData1(data) {
 				//$("#alertDetailFound").show();     
 				document.getElementById('addExamGetExamDataLoad').style.display='block';
 				var sbutton = document.getElementById('resultSaveExamApp');
-				if (sbutton.style.display === "none") {
+				//alert(sbutton.style.display);
+				if (sbutton.style.display == "none") {
 					sbutton.style.display = "block";
-				  } else {
-					  sbutton.style.display = "none";
-				  }   
+				  }  
 				
 				
 				
@@ -565,6 +591,14 @@ function onPostgetExamData1(data) {
 				console.log("data error, Reason"+e.toString());
 			}
 		}else{
+			
+	
+			var sbutton = document.getElementById('resultSaveExamApp');
+			alert('else '+sbutton.style.display);
+			if (sbutton.style.display == "block") {
+				sbutton.style.display = "none";
+			  }  
+			
 		}
 
 }
