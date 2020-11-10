@@ -77,7 +77,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	    <a href="#admApp1" class="w3-bar-item w3-button">Admission Applica <b>- UPDATE</b></a>
       <a href="#examApp" class="w3-bar-item w3-button">Examination Application<b>- ADD</b> </a>
       <a href="#examApp1" class="w3-bar-item w3-button">Exam Application<b>- UPDATE</b> </a>
-      <a href="#markUpdate" class="w3-bar-item w3-button">Marks Update</a>
+      <a href="#markUpdate" class="w3-bar-item w3-button">Enter Marks</a>
+       <a href="#markUpdate1" class="w3-bar-item w3-button">Update Marks</a>
     
     </div>
 
@@ -1015,8 +1016,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
    <div class="w3-padding-64 w3-light-grey w3-card-4" id=markUpdate>
-		<center> <h2>Marks Update</h2>
-		<p>Update the Exam  Marks of an Student</p>
+		<center> <h2>Enter Marks</h2>
+		<p>Enter the Exam  Marks of an Student</p>
 		</center>
 
 <div id="markDetailFound" class="w3-modal">
@@ -1024,7 +1025,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('markDetailFound').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
       <h2 class="w3-wide"></h2>
-      <p>MARK DETAILS LOADED SUCCESSFULLY</p>
+      <p>PAPER DETAILS LOADED SUCCESSFULLY</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('markDetailFound').style.display='none'">OK</button>
     </div>
@@ -1066,7 +1067,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  
 		   <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="resultMark" onclick="getMarkData()">&nbsp;&nbsp;GET Mark Detail</button><br> <br>
+			<button class="w3-button w3-blue" id="resultMark" onclick="getMarkData()">&nbsp;&nbsp;GET Paper Detail</button><br> <br>
 			<br>
 		  </div>
 		  
@@ -1124,6 +1125,23 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  		    
  		    <div class="w3-container w3-card-4" id="marksentersegment">
   			<h3>Enter Marks:</h3>
+  			
+  			<div class="w3-half">
+  			
+  			<label class="w3-text-brown"><b>Marks Entered on:</b></label>
+ 			<input class="w3-input w3-border " type="date" id="enterDateMarks"><br>
+ 			
+ 			<br><br>
+		  		 </div>
+  	
+  		
+			  <div class="w3-half">
+			  <br>  <br>
+			   </div>	
+  	
+  		
+  		<BR><BR><BR>
+  			
 			<!--    <p>
 	  
 			  <div class="w3-quarter">
@@ -1285,7 +1303,285 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	  </div>
 	  	</div>
 	
+<!-- MARK UPDATE  --------------------------------------------------------------------------------------------------------------------------------->
 
+
+	
+	
+	<!--  APPEAR Table DB   update -->  
+
+
+   <div class="w3-padding-64 w3-light-grey w3-card-4" id=markUpdate1>
+		<center> <h2>Update Marks</h2>
+		<p>Update the Exam  Marks of an Student</p>
+		</center>
+
+<div id="markDetailFound1" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('markDetailFound1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>MARK DETAILS LOADED SUCCESSFULLY</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('markDetailFound1').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="markDetailNotFound1" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('markDetailNotFound1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>MARKS DETAILS NOT FOUND</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('markDetailNotFound1').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>	
+
+		
+		<div class="w3-panel w3-pale-green">
+		
+	  <div class="w3-container">
+	  <!-- 
+	  <div align="center" id='markDetailNotFound' style="display:none"><span style="color:red"><b>NO MARK DETAIL FOUND</b></span></div>
+	  <div align="center" id='markDetailFound' style="display:none"><span style="color:blue"><b>MARK DETAILS LOADED SUCCESSFULLY</b></span></div>
+	  -->
+		<p>   
+		
+		<div class="w3-third">
+			<label class="w3-text-red"><b>P.R.Code:</b></label>
+			<input class="w3-input w3-border " type="text"  id="prCodeMark1" value='APR13'  >
+		  </div>
+				  
+		  <div class="w3-third">
+			<label class="w3-text-red"><b>P.R.No:</b></label>
+			<input class="w3-input w3-border " type="text"   id="prNoMark1"  value ='7038' >
+		  </div>
+		  
+		  
+		   <div class="w3-third">
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="resultMark" onclick="getMarkUpdateData()">&nbsp;&nbsp;GET Marks Detail</button><br> <br>
+			<br>
+		  </div>
+		  
+				<div class="w3-panel w3-border w3-border-red">
+  			
+		    
+		<label class="w3-text-brown"><b>Name:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="stuNameMark1" disabled><br>
+		
+		
+		
+		<label class="w3-text-brown"><b>Diploma Code:</b></label>
+		<input class="w3-input w3-border" name="last" type="text" id="diplomaCodeMark1" disabled><br>
+		  
+  		<div class="w3-half">
+			<label class="w3-text-brown"><b>Duration:</b></label>
+			<input class="w3-input w3-border " type="text" id="durationMark1" disabled><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>No of paper:</b></label>
+			<input class="w3-input w3-border " type="text" id="noofPaperMark1" disabled><br>
+		  </div>
+		  
+		  <div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="SemMonthMark1" disabled><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
+			<input class="w3-input w3-border " type="text" id="SemYearMark1" disabled><br>
+		  </div>
+  		
+   
+    	<div class="w3-half">
+			<label class="w3-text-brown"><b>State Name:</b></label>
+			<input class="w3-input w3-border " type="text" id="stateMark1" disabled><br>
+		  </div>
+		  
+		  	<div class="w3-half">
+			<label class="w3-text-brown"><b>Center Name:</b></label>
+			<input class="w3-input w3-border " type="text" id="centerMark1" disabled><br>
+		  </div>
+  		
+		
+		</div>
+		
+		<!--  Sakthi  ALL above fields to be Non editable 	 -->
+				  
+
+ 		 
+ 		    <!--   based on the DB data this has to come dynamically  only MARKS to be updated by the user-->
+ 		    
+ 		    
+ 		    <div class="w3-container w3-card-4" id="marksentersegment1">
+  			<h3>Enter Marks:</h3>
+  			
+  			<div class="w3-half">
+  			
+  			<label class="w3-text-brown"><b>Marks Entered on:</b></label>
+ 			<input class="w3-input w3-border " type="date" id="enterDateMarks1"><br>
+ 			
+ 			<br><br>
+		  		 </div>
+  	
+  		
+			  <div class="w3-half">
+			  <br>  <br>
+			   </div>	
+  	
+  		
+  		<BR><BR><BR>
+  			
+			
+			
+			<div class="w3-container " id="displayPaper11" style="display: none;">
+			
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row1paperMark1"><br>
+			  </div>
+			
+			   <div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" value=1  id="row1paper1"><br>
+			  </div>
+			  
+			   <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row1papername1"><br>
+			  </div>
+		</div>
+			
+			<div class="w3-container " id="displayPaper21" style="display: none;">
+			
+						<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row2paperMark1"><br>
+			  </div>
+			
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row2paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row2papername1"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper31" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row3paperMark1"><br>
+			  </div>
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row3paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row3papername1"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper41" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row4paperMark1"><br>
+			  </div>
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row4paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row4papername1"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper51" style="display: none;">
+						
+									<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row5paperMark1"><br>
+			  </div>
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row5paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row5papername1"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper61" style="display: none;">
+						
+				<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row6paperMark1"><br>
+			  </div>
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row6paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row6papername1"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper71" style="display: none;">
+						
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row7paperMark1"><br>
+			  </div>						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" id="row7paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row7papername1"><br>
+			  </div>
+			</div>
+			
+						<div class="w3-container " id="displayPaper81" style="display: none;">
+						
+						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"   placeholder ="" id="row8paperMark1"><br>
+			  </div>						
+			<div class="w3-quarter">
+			  <input class="w3-input w3-border" type="text"  disabled placeholder ="" value=8  id="row8paper1"><br>
+			  </div>
+			  
+			 <div class="w3-half">
+			  <input class="w3-input w3-border" type="text"  disabled Placeholder=""  id="row8papername1"><br>
+			  </div>
+			</div>
+			
+			</div>
+			
+		
+ 		    
+		
+		<br><br>
+		
+		<center>
+		
+			<button class="w3-button w3-orange" id="resultMark1" onclick="updateMark1()">&nbsp;&nbsp;Update</button>
+<!-- 		<button class="w3-button w3-orange onclick="" >Update</button> -->
+			<button class="w3-button w3-red" onclick="clearAllAtrbutesMarks1()" >Clear</button>
+			
+			
+			 
+			 
+		</center>
+
+		</p>
+	  </div>
+	  </div>
+	  	</div>
+	
 
 
 <!-- PRINT / VIEW ---------------------------------------------------------------------------------------------------------------------------------->
@@ -2245,6 +2541,30 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <p style="color:red">Failed !!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMarkFail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="saveMark1" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('saveMark1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Update Marks</h2>
+      <p>Successful !!!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMark1').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="saveMarkFail1" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('saveMarkFail1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Update Marks</h2>
+      <p style="color:red">Failed !!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMarkFail1').style.display='none'">OK</button>
     </div>
   </div>
 </div>

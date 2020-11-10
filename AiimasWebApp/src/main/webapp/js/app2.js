@@ -891,7 +891,7 @@ function onPostUpdateExamData(data) {
 
 }
 
-// MARKS deails
+// MARKS  PAPER  deails
 
 function getMarkData() {
 	
@@ -1161,6 +1161,9 @@ function saveMark() {
 	var SemMonthMark = document.getElementById('SemMonthMark').value;
 	var SemYearMark = document.getElementById('SemYearMark').value;
 	
+	var enterDateMarks = document.getElementById('enterDateMarks').value;
+	
+	
 	//var enterDateExam = document.getElementById('enterDateExam').value;
 	var stuNameMark = document.getElementById('stuNameMark').value;
 	
@@ -1210,7 +1213,7 @@ console.log('save MARK clicked rajjj '+row1paperMark);
 	if( isNaN(row1paperMark) || isNaN(row2paperMark) || isNaN(row3paperMark) || isNaN(row4paperMark)|| isNaN(row5paperMark)|| isNaN(row6paperMark)|| isNaN(row7paperMark)|| isNaN(row8paperMark) ){
 			alert("Please enter only numbers for MARKS ");
 	}else{
-	postAjax('rs',{"app":"AiimasPost","module":"SaveMark","action":"MarkDetail","prCodeMark":prCodeMark,"prNoMark":prNoMark,"diplomaCodeMark":diplomaCodeMark,"SemMonthMark":SemMonthMark,"SemYearMark":SemYearMark,"stuNameMark":stuNameMark,"noofPaperMark":noofPaperMark,"row1paperMark":row1paperMark,"row1paper":row1paper,"row1papername":row1papername,"row2paperMark":row2paperMark,"row2paper":row2paper,"row2papername":row2papername,"row3paperMark":row3paperMark,"row3paper":row3paper,"row3papername":row3papername,"row4paperMark":row4paperMark,"row4paper":row4paper,"row4papername":row4papername,"row5paperMark":row5paperMark,"row5paper":row5paper,"row5papername":row5papername,"row6paperMark":row6paperMark,"row6paper":row6paper,"row6papername":row6papername,"row7paperMark":row7paperMark,"row7paper":row7paper,"row7papername":row7papername,"row8paperMark":row8paperMark,"row8paper":row8paper,"row8papername":row8papername}, onPostSaveMarkData);
+	postAjax('rs',{"app":"AiimasPost","module":"SaveMark","action":"MarkDetail","prCodeMark":prCodeMark,"prNoMark":prNoMark,"diplomaCodeMark":diplomaCodeMark,"SemMonthMark":SemMonthMark,"SemYearMark":SemYearMark,"stuNameMark":stuNameMark,"enterDateMarks":enterDateMarks,"noofPaperMark":noofPaperMark,"row1paperMark":row1paperMark,"row1paper":row1paper,"row1papername":row1papername,"row2paperMark":row2paperMark,"row2paper":row2paper,"row2papername":row2papername,"row3paperMark":row3paperMark,"row3paper":row3paper,"row3papername":row3papername,"row4paperMark":row4paperMark,"row4paper":row4paper,"row4papername":row4papername,"row5paperMark":row5paperMark,"row5paper":row5paper,"row5papername":row5papername,"row6paperMark":row6paperMark,"row6paper":row6paper,"row6papername":row6papername,"row7paperMark":row7paperMark,"row7paper":row7paper,"row7papername":row7papername,"row8paperMark":row8paperMark,"row8paper":row8paper,"row8papername":row8papername}, onPostSaveMarkData);
 	}
 }
 
@@ -1231,7 +1234,7 @@ function onPostSaveMarkData(data) {
 			var stringformjsondata = JSON.stringify(parsedData1);
 			
 			if (stringformjsondata != null) {
-				//if(parsedData1.Success.trim().length>0){   
+			
 				if(stringformjsondata.includes('Success')){ 
 					document.getElementById('saveMark').style.display='block';
 				}else if(stringformjsondata.includes('Failure')){
@@ -1245,6 +1248,150 @@ function onPostSaveMarkData(data) {
 
 		} catch (e) {
 				console.log("data onPostSAVEExamData  error, Reason"+e.toString());
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
+// get Marks update 
+function getMarkUpdateData() {
+	
+	console.log('getMark UPDATE Data  on MArk clicked rajjj ');
+	
+	clearAllAtrbutesMarks();
+	
+	var prcode1 = document.getElementById('prCodeMark1').value;
+	var prno1 = document.getElementById('prNoMark1').value;
+	
+	if (prcode1 == "" || prno1 == "") {
+			alert("Please enter the values in P.R.Code and P.R.No")
+	  }else{
+	
+		postAjax('rs',{"app":"AiimasPost","module":"MarkUpdateApplication","action":"markDetail","prNo1":prno1,"prCode1":prcode1}, onPostgetMarkUpdateData);
+	}
+}
+
+function onPostgetMarkUpdateData(data) {
+	console.log('RESPONSE POST in   onPostgetMarkData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+		
+		// SKATHI to do
+		}
+}
+		
+
+// UPDATE MARKS
+function updateMark1() {
+	
+	console.log('UPDATE MARK1clicked rajjj ');
+	
+	var prCodeMark1 = document.getElementById('prCodeMark1').value;
+	var prNoMark1 = document.getElementById('prNoMark1').value;
+	
+	//
+	var diplomaCodeMark1 = document.getElementById('diplomaCodeMark1').value;
+	//var noofPaperMark = document.getElementById('durationMark').value;
+	var noofPaperMark1 = document.getElementById('noofPaperMark1').value;
+	
+	var SemMonthMark1 = document.getElementById('SemMonthMark1').value;
+	var SemYearMark1 = document.getElementById('SemYearMark1').value;
+	
+	var enterDateMarks1 = document.getElementById('enterDateMarks1').value;
+	
+	
+	//var enterDateExam = document.getElementById('enterDateExam').value;
+	var stuNameMark1 = document.getElementById('stuNameMark1').value;
+	
+	
+	
+	var row1paperMark1= document.getElementById('row1paperMark1').value;
+	var row1paper1= document.getElementById('row1paper1').value;
+	var row1papername1= document.getElementById('row1papername1').value;
+	
+	var row2paperMark1= document.getElementById('row2paperMark1').value;
+	var row2paper1= document.getElementById('row2paper1').value;
+	var row2papername1= document.getElementById('row2papername1').value;
+	
+	var row3paperMark1= document.getElementById('row3paperMark1').value;
+	var row3paper1= document.getElementById('row3paper1').value;
+	var row3papername1= document.getElementById('row3papername1').value;
+	
+	var row4paperMark1= document.getElementById('row4paperMark1').value;
+	var row4paper1= document.getElementById('row4paper1').value;
+	var row4papername1= document.getElementById('row4papername1').value;
+	
+	var row5paperMark1= document.getElementById('row5paperMark1').value;
+	var row5paper1= document.getElementById('row5paper1').value;
+	var row5papername1= document.getElementById('row5papername1').value;
+	
+	var row6paperMark1= document.getElementById('row6paperMark1').value;
+	var row6paper1= document.getElementById('row6paper1').value;
+	var row6papername1= document.getElementById('row6papername1').value;
+	
+	var row7paperMark1= document.getElementById('row7paperMark1').value;
+	var row7paper1= document.getElementById('row7paper1').value;
+	var row7papername1= document.getElementById('row7papername1').value;
+	
+	var row8paperMark1= document.getElementById('row8paperMark1').value;
+	var row8paper1= document.getElementById('row8paper1').value;
+	var row8papername1= document.getElementById('row8papername1').value;
+	
+console.log('save MARK clicked rajjj '+row1paperMark1);
+
+	console.log('save MARK clicked rajjj '+isNaN(row1paperMark1));
+	
+
+	
+	
+	if( isNaN(row1paperMark1) || isNaN(row2paperMark1) || isNaN(row3paperMark1) || isNaN(row4paperMark1)|| isNaN(row5paperMark1)|| isNaN(row6paperMark1)|| isNaN(row7paperMark1)|| isNaN(row8paperMark1) ){
+			alert("Please enter only numbers for MARKS ");
+	}else{
+	postAjax('rs',{"app":"AiimasPost","module":"UpdateMark","action":"MarkDetail1","prCodeMark1":prCodeMark1,"prNoMark1":prNoMark1,"diplomaCodeMark1":diplomaCodeMark1,"SemMonthMark1":SemMonthMark1,"SemYearMark1":SemYearMark1,"stuNameMark1":stuNameMark1,"enterDateMarks1":enterDateMarks1,"noofPaperMark1":noofPaperMark1,"row1paperMark1":row1paperMark1,"row1paper1":row1paper1,"row1papername1":row1papername1,"row2paperMark1":row2paperMark1,"row2paper1":row2paper1,"row2papername1":row2papername1,"row3paperMark1":row3paperMark1,"row3paper1":row3paper1,"row3papername1":row3papername1,"row4paperMark1":row4paperMark1,"row4paper1":row4paper1,"row4papername1":row4papername1,"row5paperMark1":row5paperMark1,"row5paper1":row5paper1,"row5papername1":row5papername1,"row6paperMark1":row6paperMark1,"row6paper1":row6paper1,"row6papername1":row6papername1,"row7paperMark1":row7paperMark1,"row7paper1":row7paper1,"row7papername1":row7papername1,"row8paperMark1":row8paperMark1,"row8paper1":row8paper1,"row8papername1":row8papername1}, onPostUpdateMarkData);
+	}
+}
+
+//todo here
+
+function onPostUpdateMarkData(data) {
+	
+	console.log('RESPONSE POST in   onPostSaveMarkData  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+			console.log('save exam response '+JSON.stringify(parsedData1));	
+			
+			var stringformjsondata = JSON.stringify(parsedData1);
+			
+			if (stringformjsondata != null) {
+			
+				if(stringformjsondata.includes('Success')){ 
+					document.getElementById('saveMark1').style.display='block';
+				}else if(stringformjsondata.includes('Failure')){
+					document.getElementById('saveMarkFail1').style.display='block';
+				}
+			}
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+			
+
+
+		} catch (e) {
+				console.log("data onPost update ExamData  error, Reason"+e.toString());
 			}
 		
 		
@@ -1706,6 +1853,7 @@ function clearAllAtrbutesMarks() {
 	document.getElementById("SemYearMark").value =   "";
 	document.getElementById("stuNameMark").value =   "";
 	
+	document.getElementById("enterDateMarks").value =   "";
 	document.getElementById("durationMark").value =   "";
 	document.getElementById("noofPaperMark").value =   "";
 	document.getElementById("stateMark").value =   "";
@@ -1735,6 +1883,48 @@ function clearAllAtrbutesMarks() {
 	document.getElementById("row8paper").value =   "";
 	document.getElementById("row8papername").value =   "";
 	document.getElementById("marksentersegment").style.display = "none";
+	//$("marksentersegment").hide();
+	
+}
+// update screen
+function clearAllAtrbutesMarks1() {
+	//	document.getElementById("prCodeMark1").value =   "";
+	// document.getElementById("prNoMark1").value =   "";
+	document.getElementById("diplomaCodeMark1").value =   "";
+	document.getElementById("SemMonthMark1").value =   "";
+	document.getElementById("SemYearMark1").value =   "";
+	document.getElementById("stuNameMark1").value =   "";
+	
+	document.getElementById("enterDateMarks1").value =   "";
+	document.getElementById("durationMark1").value =   "";
+	document.getElementById("noofPaperMark1").value =   "";
+	document.getElementById("stateMark1").value =   "";
+	document.getElementById("centerMark1").value =   "";
+	document.getElementById("row1paperMark1").value =   "";
+	document.getElementById("row1paper1").value =   "";
+	document.getElementById("row1papername1").value =   "";
+	document.getElementById("row2paperMark1").value =   "";
+	document.getElementById("row2paper1").value =   "";
+	document.getElementById("row2papername1").value =   "";
+	document.getElementById("row3paperMark1").value =   "";
+	document.getElementById("row3paper1").value =   "";
+	document.getElementById("row3papername1").value =   "";
+	document.getElementById("row4paperMark1").value =   "";
+	document.getElementById("row4paper1").value =   "";
+	document.getElementById("row4papername1").value =   "";
+	document.getElementById("row5paperMark1").value =   "";
+	document.getElementById("row5paper1").value =   "";
+	document.getElementById("row5papername1").value =   "";
+	document.getElementById("row6paperMark1").value =   "";
+	document.getElementById("row6paper1").value =   "";
+	document.getElementById("row6papername1").value =   "";
+	document.getElementById("row7paperMark1").value =   "";
+	document.getElementById("row7paper1").value =   "";
+	document.getElementById("row7papername1").value =   "";
+	document.getElementById("row8paperMark1").value =   "";
+	document.getElementById("row8paper1").value =   "";
+	document.getElementById("row8papername1").value =   "";
+	document.getElementById("marksentersegment1").style.display = "none";
 	//$("marksentersegment").hide();
 	
 }

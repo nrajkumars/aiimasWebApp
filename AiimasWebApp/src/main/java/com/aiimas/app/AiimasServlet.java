@@ -814,7 +814,32 @@ public class AiimasServlet extends HttpServlet {
 							
 								
 							
-							}else if (module != null && module.equals("MarkApplication")) {
+							}else if (module != null && module.equals("MarkUpdateApplication")) {
+
+								// GET MARK Details
+									
+									System.out.println(" start --  MARK  UPDATE application  Admission ");
+									
+									String prn = request.getParameter("prNo1");
+									String prc = request.getParameter("prCode1");
+									
+												
+									MarkUpdate markUpdate = new MarkUpdate();
+									Map input = new HashMap();
+									input.put("prNum", prn);
+									input.put("prCode", prc);
+
+									
+									Map marksDetails = markUpdate.getMarkUpdateDetails(input);
+									System.out.println(" RESPONSE Mark   UPDATE  Application GOT in MAP -- "+marksDetails);
+									
+									writeResponse(marksDetails, resp);
+									
+									
+									System.out.println(" RESPONSE GOT in MAP --  MARKs applicatoin success");
+									
+								
+								}else if (module != null && module.equals("MarkApplication")) {
 
 						// GET MARK Details
 							
@@ -851,6 +876,7 @@ public class AiimasServlet extends HttpServlet {
 								String SemMonthMark = request.getParameter("SemMonthMark");
 								String SemYearMark = request.getParameter("SemYearMark");
 								String stuNameMark = request.getParameter("stuNameMark");
+								String enterDateMarks = request.getParameter("enterDateMarks");
 								String noofPaperMark = request.getParameter("noofPaperMark");
 								
 								String row1paperMark= request.getParameter("row1paperMark");
@@ -887,6 +913,7 @@ public class AiimasServlet extends HttpServlet {
 								input.put("SemMonthMark", SemMonthMark);
 								input.put("SemYearMark", SemYearMark);
 								input.put("stuNameMark", stuNameMark);
+								input.put("enterDateMarks",enterDateMarks);
 								input.put("row1paperMark", row1paperMark);
 								input.put("row1paper", row1paper);
 								input.put("row1papername", row1papername);
@@ -924,7 +951,94 @@ public class AiimasServlet extends HttpServlet {
 
 								System.out.println(" RESPONSE GOT in MAP --  SAVE Marks success");
 								
-							}else if (module != null && module.equals("Maintenance")) {				
+							}else if (module != null && module.equals("UpdateMark")) {
+
+								// Update  Mark Details
+									
+									System.out.println(" start --  update  Mark      ");
+									
+									String prCodeMark = request.getParameter("prCodeMark1");
+									String prNoMark = request.getParameter("prNoMark1");
+									String diplomaCodeMark = request.getParameter("diplomaCodeMark1");
+									String SemMonthMark = request.getParameter("SemMonthMark1");
+									String SemYearMark = request.getParameter("SemYearMark1");
+									String stuNameMark = request.getParameter("stuNameMark1");
+									String enterDateMarks = request.getParameter("enterDateMarks1");
+									String noofPaperMark = request.getParameter("noofPaperMark1");
+									
+									String row1paperMark= request.getParameter("row1paperMark1");
+									String row1paper= request.getParameter("row1paper1");
+									String row1papername= request.getParameter("row1papername1");
+									String row2paperMark= request.getParameter("row2paperMark1");
+									String row2paper= request.getParameter("row2paper1");
+									String row2papername= request.getParameter("row2papername1");
+									String row3paperMark= request.getParameter("row3paperMark1");
+									String row3paper= request.getParameter("row3paper1");
+									String row3papername= request.getParameter("row3papername1");
+									String row4paperMark= request.getParameter("row4paperMark1");
+									String row4paper= request.getParameter("row4paper1");
+									String row4papername= request.getParameter("row4papername1");
+									String row5paperMark= request.getParameter("row5paperMark1");
+									String row5paper= request.getParameter("row5paper1");
+									String row5papername= request.getParameter("row5papername1");
+									String row6paperMark= request.getParameter("row6paperMark1");
+									String row6paper= request.getParameter("row6paper1");
+									String row6papername= request.getParameter("row6papername1");
+									String row7paperMark= request.getParameter("row7paperMark1");
+									String row7paper= request.getParameter("row7paper1");
+									String row7papername= request.getParameter("row7papername1");
+									String row8paperMark= request.getParameter("row8paperMark1");
+									String row8paper= request.getParameter("row8paper1");
+									String row8papername= request.getParameter("row8papername1");
+												
+									MarkUpdate markUpdate = new MarkUpdate();
+									Map input = new HashMap();
+									input.put("prCodeMark", prCodeMark);
+									input.put("prNoMark", prNoMark);
+									input.put("diplomaCodeMark", diplomaCodeMark);
+									input.put("noofPaperMark", noofPaperMark);
+									input.put("SemMonthMark", SemMonthMark);
+									input.put("SemYearMark", SemYearMark);
+									input.put("stuNameMark", stuNameMark);
+									input.put("enterDateMarks",enterDateMarks);
+									input.put("row1paperMark", row1paperMark);
+									input.put("row1paper", row1paper);
+									input.put("row1papername", row1papername);
+									input.put("row2paperMark", row2paperMark);
+									input.put("row2paper", row2paper);
+									input.put("row2papername", row2papername);
+									input.put("row3paperMark", row3paperMark);
+									input.put("row3paper", row3paper);
+									input.put("row3papername", row3papername);
+									input.put("row4paperMark", row4paperMark);
+									input.put("row4paper", row4paper);
+									input.put("row4papername", row4papername);
+									input.put("row5paperMark", row5paperMark);
+									input.put("row5paper", row5paper);
+									input.put("row5papername", row5papername);
+									input.put("row6paperMark", row6paperMark);
+									input.put("row6paper", row6paper);
+									input.put("row6papername", row6papername);
+									input.put("row7paperMark", row7paperMark);
+									input.put("row7paper", row7paper);
+									input.put("row7papername", row7papername);
+									input.put("row8paperMark", row8paperMark);
+									input.put("row8paper", row8paper);
+									input.put("row8papername", row8papername);
+
+									
+									 markUpdate.updateMarks(input);
+								
+									System.out.println(" RESPONSE examUPDATEDetails sucesses -- ");
+									
+									Map response1 = new HashMap();
+									response1.put("Success", "update Marks is Done successfully");
+									
+									writeResponse(response1, resp);
+
+									System.out.println(" RESPONSE GOT in MAP --  update Marks success");
+									
+								}else if (module != null && module.equals("Maintenance")) {				
 					//	 Maintenance
 					
 					if(action != null && action.equals("searchInsitute")) {
