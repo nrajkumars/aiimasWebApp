@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.naming.InitialContext;
 import javax.servlet.ServletConfig;
@@ -56,6 +57,7 @@ public class AiimasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	static List diplmaDetails = new ArrayList();
+	Map<String, Object> stateCenterMap = new TreeMap<String, Object>();
 
 	
 	public void init() throws ServletException { 
@@ -71,11 +73,22 @@ public class AiimasServlet extends HttpServlet {
 
 			diplmaDetails = masterTable.getListMasterTable();
 			
+			stateCenterMap = masterTable.getStateCenterMasterTable();
+			
 			System.out.println(" RESPONSE GOT Master table in MAP -- "+diplmaDetails);
 			
 		    if(diplmaDetails!=null){
 		    		getServletContext().setAttribute( "diplomaCodeDetails", diplmaDetails );
 		    }
+		    
+		    System.out.println(" RESPONSE insdie ------***********---------init  loaded diploma code");
+		    
+		    if(stateCenterMap!=null){
+	    		getServletContext().setAttribute( "stateCenterMap", stateCenterMap );
+	    		 System.out.println(" RESPONSE insdie ------***********---------init  loaded STATE and CENTER "+stateCenterMap.toString());
+		    }
+		    
+		   
 					
 			} catch (Exception e) {
 				
@@ -383,8 +396,8 @@ public class AiimasServlet extends HttpServlet {
 				String adpprNo = request.getParameter("adpprNo");
 				
 					
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
+				System.out.println(" AIIMAS SERVLET  printReport  rrrr--  PRINT REPORTS  all reports here  " +adprCode);	
+				System.out.println(" AIIMAS SERVLET  printReport rrrr--  PRINT REPORTS  all reports here  " +adpprNo);	
 				
 				Map input = new HashMap();
 				input.put("action", action);
