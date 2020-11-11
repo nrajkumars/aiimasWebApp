@@ -1140,8 +1140,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   			<div class="w3-half">
   			
   			<label class="w3-text-brown"><b>Marks Entered on:</b></label>
- 			<input class="w3-input w3-border " type="date" id="enterDateMarks1"><br>
- 			<script> loadDate('enterDateMarks1');</script>
+ 			<input class="w3-input w3-border " type="date" id="enterDateMarks"><br>
+ 			<script> loadDate('enterDateMarks');</script>
  			<br><br>
 		  		 </div>
   	

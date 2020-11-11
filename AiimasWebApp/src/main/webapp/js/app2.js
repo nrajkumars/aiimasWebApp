@@ -1446,6 +1446,17 @@ function updateMark1() {
 	var row2paper1= document.getElementById('row2paper1').value;
 	var row2papername1= document.getElementById('row2papername1').value;
 	
+	
+	console.log('UPDATE MARK1clickedrow1paperMark1 rajjj ' +row1paperMark1);
+	console.log('UPDATE MARK1clicked rajjj row1paper1 '+row1paper1);
+	console.log('UPDATE MARK1clicked rajjjrow1paper1 '+row1paper1);
+	
+	
+	console.log('UPDATE MARK1clicked rajjjrow2paperMark1 '+row2paperMark1);
+	console.log('UPDATE MARK1clicked rajjjrow1paper1 '+row1paper1);
+	console.log('UPDATE MARK1clicked rajjj row1paper1'+row1paper1);
+	
+	
 	var row3paperMark1= document.getElementById('row3paperMark1').value;
 	var row3paper1= document.getElementById('row3paper1').value;
 	var row3papername1= document.getElementById('row3papername1').value;

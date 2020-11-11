@@ -672,6 +672,8 @@ import com.itextpdf.text.Image;
 	        	
 	        	Object action = input.get("action");
 	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
+	        	System.out.println(" RESPONSE  CALLING PDF generration  -------input---------  in prindPDF LETTER = "+input.toString());
+	        	System.out.println(" RESPONSE  CALLING PDF generration  -------data--------  in prindPDF LETTER = "+data.toString());
 	            Document document = new Document();
 	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
@@ -681,17 +683,17 @@ import com.itextpdf.text.Image;
 	            
 	            // for each Report this has to be changed
 	            if (action != null && action.equals("admInit")) {
-	            	addAdmInitimationContent(document, input);
+	            	addAdmInitimationContent(document, input,data);
 	            }else if(action != null && action.equals("ackLetter")) {
-	            	addAcknowledgeContent(document, input);
+	            	addAcknowledgeContent(document, input, data);
 	            }else if(action != null && action.equals("ansSheet")) {
-	            	addAnswerSheetAcknowledge(document, input);
+	            	addAnswerSheetAcknowledge(document, input,data);
 	            }else if(action != null && action.equals("hallTck")) {
-	            	addHallTicketContent(document, input);
+	            	addHallTicketContent(document, input,data);
 	            }else if(action != null && action.equals("mrkSheet")) {
-	            	addMarkSheetContent(document, input);
+	            	addMarkSheetContent(document, input,data);
 	            }else if(action != null && action.equals("diplomaCerti")) {
-	            	addDiplomaCertiContent(document, input);
+	            	addDiplomaCertiContent(document, input,data);
 	            }
 	           	           
 	           // addTitlePage(document); // refer for sample
@@ -750,16 +752,73 @@ import com.itextpdf.text.Image;
 	    
 	    /// KEEP adding method for each report
 	    
-	    private static void addAdmInitimationContent(Document document, Map input)
+	    private static void addAdmInitimationContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
     	
-	    	// get the required data
-	    	PrintView printView = new PrintView();
-	    	Map verifyedValues = printView.getAdmInitimationetails(input);
+  
 			
-			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
+			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent input  GOT in MAP -- "+input.toString());
+			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent data  GOT in MAP -- "+data.toString());
+		//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
+			
+			
+			//
+			
+			String prCode = new String("");
+	        String prNo = new String("");
+	        String name = new String("");
+	        String dipcode = new String("");
+	        String dipName = new String("");  // ?
+	        String semExamMonth = new String(""); //?
+	        String semExamYear = new String(""); //?
+	        String examFee = new String("");
+	        String duedate = new String("");
+	        String totFee = new String("");
+	        String paidAmt = new String("");
+	        String balAmt = new String(""); //?
+	        String phone = new String("");
+	        String email = new String("");
+	        String state = new String("");
+	        String pincode = new String("");
+	        String address1 = new String("");
+	        String address2 = new String("");
+	        String address3 = new String("");
+	        String address4 = new String("");
+	        String mobile = new String("");
+	        
+	        ObjectMapper oMapper = new ObjectMapper();
+	        Iterator<String> iter1 = data.keySet().iterator();
+	        while (iter1.hasNext()) {
+				String key = iter1.next();
+				System.out.println(" RAJKUMAR  1" +key);
+				if(key.contains("Admin")) {
+					//System.out.println(key);
+				Object val = data.get(key);
+				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+					System.out.println(" RAJKUMAR  2");
+				// dp_paperno
+				 
+				 Object ad_nameoobj = map1.get("ad_name");
+				    if(ad_nameoobj!=null) {
+				    	name = ad_nameoobj.toString();
+				    }
+	
+				 
+				 Object sa_prcodeoobj = map1.get("sa_prcode");
+				    if(sa_prcodeoobj!=null) {
+				    	prCode = sa_prcodeoobj.toString();
+				    }
+				    
+				 Object sa_prnooobj = map1.get("sa_prno");
+				    if(sa_prnooobj!=null) {
+				    	prNo = sa_prnooobj.toString();
+				    }
+				    
+				}
+			}
+		
 	    		   
-	    	
+	    	// datea
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
 	        addEmptyLine(preface, 1);
@@ -769,8 +828,13 @@ import com.itextpdf.text.Image;
 	        addEmptyLine(preface, 1);
 	   
 	        preface.add(new Paragraph(
-	                " TODO letter here,",smallBold));
-	        addEmptyLine(preface, 3);
+	                " Date:",smallBold));
+	        preface.add(new Paragraph(
+	                " Regn.No: ",smallBold));
+	        preface.add(new Paragraph(
+	                " Dear  ",smallBold));
+	      
+	        // addEmptyLine(preface, 1);
 	       // preface.add(new Paragraph(
 	       //         "This document describes something which is very important ",
 	       //         smallBold));
@@ -784,15 +848,11 @@ import com.itextpdf.text.Image;
 	   
 	    
 	    
-	    private static void addAcknowledgeContent(Document document, Map input)
+	    private static void addAcknowledgeContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception{
 	    	
-	    	// get the required data
-	    	PrintView printView = new PrintView();
-	    	Map verifyedValues = printView.getAcknowledgeContent(input);
-	    	
-			
-			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent  GOT in MAP -- "+verifyedValues);
+			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent input  GOT in MAP -- "+input.toString());
+			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent data  GOT in MAP -- "+data.toString());
 	    	
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
@@ -818,13 +878,12 @@ import com.itextpdf.text.Image;
 	    
 	    //addAnswerSheetAcknowledge(document, input);
 	    
-	    private static void addAnswerSheetAcknowledge(Document document, Map input)
+	    private static void addAnswerSheetAcknowledge(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
 	    	
-	    	PrintView printView = new PrintView();
-	    	Map verifyedValues = printView.getAnswerSheetAcknowledge(input);
-			
-			System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge  GOT in MAP -- "+verifyedValues);
+	    	System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge input  GOT in MAP -- "+input.toString());
+			System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge data  GOT in MAP -- "+data.toString());
+	    	
 	    	
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
@@ -849,13 +908,13 @@ import com.itextpdf.text.Image;
 
     	//addHallTicketContent(document, input);  todo
 	    
-	    private static void addHallTicketContent(Document document, Map input)
+	    private static void addHallTicketContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
 	    	
-	    	PrintView printView = new PrintView();
-	    	Map verifyedValues = printView.getHallTicketContent(input);
+	    
 			
-			System.out.println(" RESPONSE  LETTER in addHallTicketContent  GOT in MAP -- "+verifyedValues);
+	    	System.out.println(" RESPONSE  LETTER in addHallTicketContent input  GOT in MAP -- "+input.toString());
+				System.out.println(" RESPONSE  LETTER in addHallTicketContent data  GOT in MAP -- "+data.toString());
 	    	
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
@@ -880,13 +939,13 @@ import com.itextpdf.text.Image;
 
     	//addMarkSheetContent(document, input);   TODO
 	    
-	    private static void addMarkSheetContent(Document document, Map input)
+	    private static void addMarkSheetContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
 	    	
-	    	PrintView printView = new PrintView();
-	    	Map verifyedValues = printView.getMarkSheetContent(input);
 			
-			System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent  GOT in MAP -- "+verifyedValues);
+	    	System.out.println(" RESPONSE  LETTER in addMarkSheetContent input  GOT in MAP -- "+input.toString());
+				System.out.println(" RESPONSE  LETTER in addMarkSheetContent data  GOT in MAP -- "+data.toString());
+	    	
 	    	
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
@@ -911,13 +970,11 @@ import com.itextpdf.text.Image;
 	    
 //addDiplomaCertiContent(document, input);   TODO
 	    
-	    private static void addDiplomaCertiContent(Document document, Map input)
+	    private static void addDiplomaCertiContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
 	    	
-	    	PrintView printView = new PrintView();
-	    	Map verifyedValues = printView.getMarkSheetContent(input);
-			
-			System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent  GOT in MAP -- "+verifyedValues);
+	    	System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent input  GOT in MAP -- "+input.toString());
+			System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent data  GOT in MAP -- "+data.toString());
 	    	
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line

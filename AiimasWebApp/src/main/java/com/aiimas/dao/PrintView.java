@@ -261,7 +261,7 @@ public class PrintView extends BaseDao {
 		String address = new String("Address");
 		
 		
-		System.out.println(" INSIDE PRINT VIEW  getAdmInitimationetails--  going to run the SQL = "+prNum+","+prCode );
+		System.out.println(" INSIDE PRINT VIEW  getDiplomaCertiContent --  going to run the SQL = "+prNum+","+prCode );
 		
 		if (prNum != null && prNum.toString().trim().length() > 0) {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
