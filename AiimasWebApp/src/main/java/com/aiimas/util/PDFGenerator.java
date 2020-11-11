@@ -3,7 +3,9 @@ package com.aiimas.util;
 
 
 	import java.io.FileOutputStream;
-	import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -64,6 +66,10 @@ import com.itextpdf.text.Image;
 	            document.open();
 	            addMetaData(document);
 	         //   addLOGOPage(document); // add the header image
+	            
+	            
+				
+			
 	            
 	            
 	            // for each Report this has to be changed
@@ -680,6 +686,8 @@ import com.itextpdf.text.Image;
 	            addMetaData(document);
 	            addLOGOPage(document); // add the header image
 	            
+	        
+	            
 	            
 	            // for each Report this has to be changed
 	            if (action != null && action.equals("admInit")) {
@@ -762,17 +770,22 @@ import com.itextpdf.text.Image;
 		//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
 			
 			
-			//
+			//kevin
+			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
+			   LocalDateTime now = LocalDateTime.now();  
+			   String currentDate= dtf.format(now);
 			
 			String prCode = new String("");
 	        String prNo = new String("");
 	        String name = new String("");
+	        String duration = new String("");
 	        String dipcode = new String("");
 	        String dipName = new String("");  // ?
 	        String semExamMonth = new String(""); //?
 	        String semExamYear = new String(""); //?
-	        String examFee = new String("");
-	        String duedate = new String("");
+	        String examFee = new String("700");
+	        String dueDate = new String(""); // admn date
 	        String totFee = new String("");
 	        String paidAmt = new String("");
 	        String balAmt = new String(""); //?
@@ -792,9 +805,10 @@ import com.itextpdf.text.Image;
 				String key = iter1.next();
 				System.out.println(" RAJKUMAR  1" +key);
 				if(key.contains("Admin")) {
+					
 					//System.out.println(key);
-				Object val = data.get(key);
-				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+					Object val = data.get(key);
+					Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
 					System.out.println(" RAJKUMAR  2");
 				// dp_paperno
 				 
@@ -804,21 +818,99 @@ import com.itextpdf.text.Image;
 				    }
 	
 				 
-				 Object sa_prcodeoobj = map1.get("sa_prcode");
+				 Object sa_prcodeoobj = map1.get("ad_prcode");
 				    if(sa_prcodeoobj!=null) {
 				    	prCode = sa_prcodeoobj.toString();
 				    }
 				    
-				 Object sa_prnooobj = map1.get("sa_prno");
+				 Object sa_prnooobj = map1.get("ad_prno");
 				    if(sa_prnooobj!=null) {
 				    	prNo = sa_prnooobj.toString();
 				    }
 				    
-				}
-			}
+				    Object ad_prnoobj = map1.get("ad_feedate");
+				    if(ad_prnoobj!=null) {
+				    	dueDate = ad_prnoobj.toString();
+				    }
+				    
+				    Object ad_durtn = map1.get("ad_durtn");
+				    if(ad_durtn!=null) {
+				    	duration = ad_durtn.toString();
+				    }
+				    Object ad_dipcode = map1.get("ad_dipcode");
+				    if(ad_dipcode!=null) {
+				    	dipcode = ad_dipcode.toString();
+				    }
+				    
+				    //EXAM or ADMN todo ???
+				    Object ad_sesmon = map1.get("ad_sesmon");
+				    if(ad_sesmon!=null) {
+				    	semExamMonth = ad_sesmon.toString();
+				    }
+				    Object ad_sesyr = map1.get("ad_sesyr");
+				    if(ad_sesyr!=null) {
+				    	semExamYear = ad_sesyr.toString();
+				    }
+				    Object ad_paidamt = map1.get("ad_paidamt");
+				    if(ad_paidamt!=null) {
+				    	paidAmt = ad_paidamt.toString();
+				    }
+				    Object ad_feeamt = map1.get("ad_feeamt");
+				    if(ad_feeamt!=null) {
+				    	totFee = ad_feeamt.toString();
+				    }
+				    				    
+				}else if(key.contains("Address")) {
+					
+					//System.out.println(key);
+					Object val = data.get(key);
+					Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+					System.out.println(" RAJKUMAR  Address 2");
+				 
+					Object sa_phone = map1.get("sa_phone");
+				    	if(sa_phone!=null) {
+				    	phone = sa_phone.toString();
+				    }
+	
+				 
+				    Object sa_email = map1.get("sa_email");
+				    if(sa_email!=null) {
+				    	email = sa_email.toString();
+				    }
+				    Object sa_state = map1.get("sa_state");
+				    if(sa_state!=null) {
+				    	state = sa_state.toString();
+				    }
+				    Object sa_pincode = map1.get("sa_pincode");
+				    if(sa_pincode!=null) {
+				    	pincode = sa_pincode.toString();
+				    }
+				    Object sa_add3 = map1.get("sa_add3");
+				    if(sa_add3!=null) {
+				    	address3 = sa_add3.toString();
+				    }
+				    Object sa_add2 = map1.get("sa_add2");
+				    if(sa_add2!=null) {
+				    	address2 = sa_add2.toString();
+				    }
+				    Object sa_mobile = map1.get("sa_mobile");
+				    if(sa_mobile!=null) {
+				    	mobile = sa_mobile.toString();
+				    }
+				    Object sa_add1 = map1.get("sa_add1");
+				    if(sa_add1!=null) {
+				    	address1 = sa_add1.toString();
+				    }
+				    Object sa_add4 = map1.get("sa_add4");
+				    if(sa_add4!=null) {
+				    	address4 = sa_add4.toString();
+				    }
+				}// end of address key if
+				  
+			} // end of date iter
 		
 	    		   
-	    	// datea
+	    	// datea 
 	        Paragraph preface = new Paragraph();
 	        // We add one empty line
 	        addEmptyLine(preface, 1);
@@ -828,18 +920,72 @@ import com.itextpdf.text.Image;
 	        addEmptyLine(preface, 1);
 	   
 	        preface.add(new Paragraph(
-	                " Date:",smallBold));
+	                " Date:"+currentDate,smallBold));
 	        preface.add(new Paragraph(
-	                " Regn.No: ",smallBold));
+	                " Regn.No: "+prCode+"\\"+prNo,smallBold));
+	        addEmptyLine(preface, 1);
 	        preface.add(new Paragraph(
-	                " Dear  ",smallBold));
-	      
-	        // addEmptyLine(preface, 1);
+	                " Dear  "+name,smallBold));
+	        preface.add(new Paragraph(
+	                " We are pleased to inform you that you are found eligible for admission in our institute for "+duration+" Diploma course in   ",smallBold));
+	        preface.add(new Paragraph(
+	                " "+dipcode+" "+dipName,smallBold));
+	        preface.add(new Paragraph(
+	                " Your Registration number is : "+prCode+" \\ "+prNo,smallBold));
+	        preface.add(new Paragraph(
+	                " You are advised to quote this number in all your future correspondence with the Institute. ",smallBold));
+	        
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " The course will commence from  "+semExamMonth+" "+semExamYear,smallBold));
+	        addEmptyLine(preface, 1);
+	   
+	        preface.add(new Paragraph(
+	                " The Study Materials, Examination Application and Identification certification is sent herewith. Your are advised to fill up the Examination application and affix a passport size photograph in the Identification Certification and return them along with the prescribed examination fee of Rs " +examFee+" in favour of  ALL INDIA INSTITUTE OF MANAGEMENT STUDIES (payble at Chennai ) on or before "+dueDate+" to our office  ",smallBold));
+	        preface.add(new Paragraph(
+	                " Assuring you our individual attention  ",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " Sincerely yours,  ",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " ASSISTANT DIRECTOR (Administration)  ",smallBold));
+	        preface.add(new Paragraph(
+	                " Total Fees Rs:"+totFee,smallBold));
+	        preface.add(new Paragraph(
+	                " Received now Rs: "+paidAmt,smallBold));
+	        preface.add(new Paragraph(
+	                " Bal.Due  Rs: ",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " "+name,smallBold));
+	        preface.add(new Paragraph(
+	                " P.R.No: "+prCode+"\\"+prNo,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address1,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address2,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address3,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address4,smallBold));
+	        preface.add(new Paragraph(
+	                " "+state,smallBold));
+	        preface.add(new Paragraph(
+	                " "+pincode,smallBold));
+	        preface.add(new Paragraph(
+	                " "+mobile,smallBold));
+	        preface.add(new Paragraph(
+	                " "+phone,smallBold));
+	        preface.add(new Paragraph(
+	                " "+email,smallBold));
+	        
+	        //addEmptyLine(preface, 1);
 	       // preface.add(new Paragraph(
 	       //         "This document describes something which is very important ",
 	       //         smallBold));
-
-	        addEmptyLine(preface, 8);
+ 
+	        //addEmptyLine(preface, 8);
 
 	        document.add(preface);
 	        
