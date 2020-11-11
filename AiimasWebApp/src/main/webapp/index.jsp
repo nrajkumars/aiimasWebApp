@@ -1466,7 +1466,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  			
  			<br><br>
 		  		 </div>
-  	
+  	<script> loadDate('enterDateMarks1');</script>
   		
   		<div class="w3-container " id="updatePaper1" style="display: none;">
 			

@@ -255,7 +255,14 @@ function onPostgetExamUpdateData1(data) {
 				document.getElementById("semYearExam1").value =  parsedData1.Exam["ea_sesyr"];
 				//document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
 				//document.getElementById("examCenterCode1").value =  parsedData1.Exam["ea_cecode"]; 
+				var stcodeVal = parsedData1.Exam["ea_stcode"];
+				var stnameVal = parsedData1.Exam["ea_stname"];
+				
+				var cecodeVal = parsedData1.Exam["ea_cecode"];
+				var centre1Val = parsedData1.Exam["ea_centre1"];
+				// "Exam":{"ea_stcode":"TN","ea_stname":"TAMIL NADU","ea_paprstr":"1, 2, 3, 4, 5,6","ea_cecode":"MAD","ea_centre1":"MADURAI"}}
 				var paersrequired = parsedData1.Exam["ea_paprstr"];
+				//alert('paersrequired '+paersrequired);
 				
 				
 				var s2 = document.getElementById('slct2upt');
@@ -270,9 +277,15 @@ function onPostgetExamUpdateData1(data) {
 							        checkbox.name = 'cboxpaperUpt';
 							        checkbox.id = 'cboxpaperUpt';
 							        checkbox.value = valinp;
-							        if(paersrequired.includes(i))
-							        	checkbox.checked = true;
+							        
+							        //alert('myalert '+paersrequired.includes(i));
+							        
+							        
+							        	//checkbox.checked = true;
 							        s2.appendChild(checkbox);
+							        
+							        
+							       
 
 							        var label = document.createElement('label')
 							        label.htmlFor = nameinp;
@@ -282,6 +295,8 @@ function onPostgetExamUpdateData1(data) {
 							        s2.appendChild(label);
 							        s2.appendChild(document.createElement("br"));   
 							}
+				 
+				 $(":checkbox[name='cboxpaperUpt'][value=2]").attr('checked', true);
 			}
 			
 			
@@ -420,6 +435,31 @@ function onPostgetExamUpdateData1(data) {
 					 			//console.log('retrievedObject: ', JSON.parse(retrievedObject));
 					        }
 					    }
+				  }//for loop ends after loading state
+				  
+				  /*
+				   * var stcodeVal = parsedData1.Exam["ea_stcode"];
+				var stnameVal = parsedData1.Exam["ea_stname"];
+				
+				var cecodeVal = parsedData1.Exam["ea_cecode"];
+				var centre1Val = parsedData1.Exam["ea_centre1"];*/
+				   
+				  
+				  let inputElement = document.getElementById('examStateCodeUpd');
+				  if (!inputElement.value) {
+				    inputElement.value = stnameVal;
+				  }
+				  let inputElement1 = document.getElementById('examCenterCode_upd');
+				  if (!inputElement1.value) {
+				    inputElement1.value = centre1Val;
+				  }
+				  var overall = document.querySelector('input[id="cboxpaperUpt"]');
+				  for (var i = 1; i <= paperNumbers; i++) {
+					  if(paersrequired.includes(i)){
+						  $(":checkbox[name='cboxpaperUpt'][value='"+i+"']").attr('checked', true);
+				        	//overall[i].checked = true;
+				        	//alert('i am in '+i)
+				        }
 				  }
 			        
 			//TODO SAKTHI  LOAD the exam application screen with this values
@@ -1326,6 +1366,8 @@ function onPostgetMarkUpdateData(data) {
 		
 			if(parsedData1pr['Exam'] !== undefined ){
 				
+				 loadDate('enterDateMarks1');
+				
 				document.getElementById("stuNameMark1").value =  parsedData1pr.Exam["ea_name"];
 				document.getElementById("diplomaCodeMark1").value =  parsedData1pr.Exam["ea_dipcode"];
 				document.getElementById("durationMark1").value =  parsedData1pr.Exam["ea_durtn"];
@@ -1436,53 +1478,62 @@ function updateMark1() {
 	//var enterDateExam = document.getElementById('enterDateExam').value;
 	var stuNameMark1 = document.getElementById('stuNameMark1').value;
 	
+	/*
+    if(key == 'MarkList1'){
+        dict[parsedData1pr.MarkList1["ap_paper"]] = parsedData1pr.MarkList1["ap_paprnam"];
+        document.getElementById('displayrow1paperMark').value= parsedData1pr.MarkList1["ap_mark"];
+    }
 	
 	
-	var row1paperMark1= document.getElementById('row1paperMark1').value;
-	var row1paper1= document.getElementById('row1paper1').value;
-	var row1papername1= document.getElementById('row1papername1').value;
 	
-	var row2paperMark1= document.getElementById('row2paperMark1').value;
-	var row2paper1= document.getElementById('row2paper1').value;
-	var row2papername1= document.getElementById('row2papername1').value;
+	var row1paperMark1= document.getElementById('row1paperMark1').value;   //displayrow1paperMark
+	var row1paper1= document.getElementById('row1paper1').value;           //displayrow1paper
+	var row1papername1= document.getElementById('row1papername1').value;   //displayrow1papername   */
 	
+	var row1paperMark1= document.getElementById('displayrow1paperMark').value;   //displayrow1paperMark
+	var row1paper1= document.getElementById('displayrow1paper').value;           //displayrow1paper
+	var row1papername1= document.getElementById('displayrow1papername').value;   //displayrow1papername
 	
-	console.log('UPDATE MARK1clickedrow1paperMark1 rajjj ' +row1paperMark1);
-	console.log('UPDATE MARK1clicked rajjj row1paper1 '+row1paper1);
-	console.log('UPDATE MARK1clicked rajjjrow1paper1 '+row1paper1);
-	
-	
-	console.log('UPDATE MARK1clicked rajjjrow2paperMark1 '+row2paperMark1);
-	console.log('UPDATE MARK1clicked rajjjrow1paper1 '+row1paper1);
-	console.log('UPDATE MARK1clicked rajjj row1paper1'+row1paper1);
+	var row2paperMark1= document.getElementById('displayrow2paperMark').value;
+	var row2paper1= document.getElementById('displayrow2paper').value;
+	var row2papername1= document.getElementById('displayrow2papername').value;
 	
 	
-	var row3paperMark1= document.getElementById('row3paperMark1').value;
-	var row3paper1= document.getElementById('row3paper1').value;
-	var row3papername1= document.getElementById('row3papername1').value;
+	console.log('UPDATE MARK1clickedrow1paperMark1 mark1  ' +row1paperMark1);
+	console.log('UPDATE MARK1clicked rajjj paper count '+row1paper1);
+	console.log('UPDATE MARK1clicked rajjj papername1 '+row1papername1);
 	
-	var row4paperMark1= document.getElementById('row4paperMark1').value;
-	var row4paper1= document.getElementById('row4paper1').value;
-	var row4papername1= document.getElementById('row4papername1').value;
+	console.log('========================================================== ');
+	console.log('UPDATE MARK1clicked rajjj row2paperMark1 '+row2paperMark1);
+	console.log('UPDATE MARK1clicked rajjj row2paper1 '+row2paper1);
+	console.log('UPDATE MARK1clicked rajjj row2paper1'+row2papername1);
+	console.log('========================================================== ');
 	
-	var row5paperMark1= document.getElementById('row5paperMark1').value;
-	var row5paper1= document.getElementById('row5paper1').value;
-	var row5papername1= document.getElementById('row5papername1').value;
+	var row3paperMark1= document.getElementById('displayrow3paperMark').value;
+	var row3paper1= document.getElementById('displayrow3paper').value;
+	var row3papername1= document.getElementById('displayrow3papername').value;
 	
-	var row6paperMark1= document.getElementById('row6paperMark1').value;
-	var row6paper1= document.getElementById('row6paper1').value;
-	var row6papername1= document.getElementById('row6papername1').value;
+	var row4paperMark1= document.getElementById('displayrow4paperMark').value;
+	var row4paper1= document.getElementById('displayrow4paper').value;
+	var row4papername1= document.getElementById('displayrow4papername').value;
 	
-	var row7paperMark1= document.getElementById('row7paperMark1').value;
-	var row7paper1= document.getElementById('row7paper1').value;
-	var row7papername1= document.getElementById('row7papername1').value;
+	var row5paperMark1= document.getElementById('displayrow5paperMark').value;
+	var row5paper1= document.getElementById('displayrow5paper').value;
+	var row5papername1= document.getElementById('displayrow5papername').value;
 	
-	var row8paperMark1= document.getElementById('row8paperMark1').value;
-	var row8paper1= document.getElementById('row8paper1').value;
-	var row8papername1= document.getElementById('row8papername1').value;
+	var row6paperMark1= document.getElementById('displayrow6paperMark').value;
+	var row6paper1= document.getElementById('displayrow6paper').value;
+	var row6papername1= document.getElementById('displayrow6papername').value;
 	
-console.log('save MARK clicked rajjj '+row1paperMark1);
-
+	var row7paperMark1= document.getElementById('displayrow7paperMark').value;
+	var row7paper1= document.getElementById('displayrow7paper').value;
+	var row7papername1= document.getElementById('displayrow7papername').value;
+	
+	var row8paperMark1= document.getElementById('displayrow8paperMark').value;
+	var row8paper1= document.getElementById('displayrow8paper').value;
+	var row8papername1= document.getElementById('displayrow8papername').value;
+	
+	console.log('save MARK clicked rajjj '+row1paperMark1);
 	console.log('save MARK clicked rajjj '+isNaN(row1paperMark1));
 	
 
@@ -1800,7 +1851,7 @@ function loadDate(getField){
 	// Set the date
 	field.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + 
 	    '-' + date.getDate().toString().padStart(2, 0);
-	
+	//alert(field.value);
 	}
 
 
