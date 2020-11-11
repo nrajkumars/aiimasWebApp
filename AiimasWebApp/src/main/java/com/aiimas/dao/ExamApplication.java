@@ -97,7 +97,7 @@ public class ExamApplication extends BaseDao {
 							System.out.println(" READ insert ADM SUCCESS");
 							
 							// Read from Exam table
-							String getExamDataSql = "select EA_SESMON, EA_SESYR, EA_STCODE, EA_CECODE, EA_PAPRSTR, NEWNOFPAPR, EA_ENTDATE from public.EAPPL where EA_PRCODE = ? and EA_PRNO = ?";
+							String getExamDataSql = "select EA_SESMON, EA_SESYR, EA_STCODE, EA_STCODE, EA_STNAME, EA_CECODE, EA_CENTRE1, EA_PAPRSTR, NEWNOFPAPR, EA_ENTDATE from public.EAPPL where EA_PRCODE = ? and EA_PRNO = ?";
 							List data2 = executeFetchSql(getExamDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 						
 							if (data2 != null && data2.size() > 0) {
