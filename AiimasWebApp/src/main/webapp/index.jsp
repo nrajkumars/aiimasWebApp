@@ -918,21 +918,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<script> loadDate('enterDateExam1');</script>
 		
 
-		
+		    <!-- stateCodeWorking -->
 			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
+			
 			<input list="examStateCodeList_updt" class="w3-text-brwon" 
 			name="examStateCodeUpd" id="examStateCodeUpd" placeholder="Choose your option" 
 			onchange="getSelectedStatecode('examStateCodeUpd','examStateCodeList_updt','examCenterCodeList_updt')">
+	  		
 	  		<datalist id="examStateCodeList_updt" >
-	  		<option selected value="Choose your option"></option>	
-	  		
-	  		<option value=""></option>	
-	  	
-			
-	  		<!--  SAKTHI get from DB data-->
-	  		
-	  
-	  		
+		  		<option selected value="Choose your option"></option>	
+		  		<option value=""></option>	
 	  		</datalist>	
 	  
 		<BR>
@@ -1850,26 +1845,34 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  		</select><br><br>
   			</div>
   			
+  			<!--
+  			getSelectedStatecode('applicantID','applicantList','applicantCenterCode') 
+  			applicantID >> input id name 
+  			applicantList >> input list name and datalist id  >> PASS THE SAME IN loadStateCenter
+  			applicantCenterCode >> next selectbox list name and datalist id name
+  			 -->
   			
-  			<script>loadStateAndCenters('examStateCodeList')</script>
   			
-  			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
-			<input list="examStateCodeList" class="w3-text-brwon" name="ALexamStateCode" id="ALexamStateCode" placeholder="Choose your option">
-	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode('ALexamStateCode','examStateCodeList','examCenterCodeList')">
-	  		<option selected value="Choose your option"></option>	
-	  			
-	
-	  		<!--  SAKTHI get from DB data-->
+  			
+  			  <!-- stateCodeWorking -->
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
+			
+			<input list="examStateCodeList_updt1" class="w3-text-brwon" 
+			name="examStateCodeUpd1" id="examStateCodeUpd1" placeholder="Choose your option" 
+			onchange="getSelectedStatecode('examStateCodeUpd1','examStateCodeList_updt1','examCenterCodeList_updt1')">
 	  		
+	  		<datalist id="examStateCodeList_updt1" >
+		  		<option selected value="Choose your option"></option>	
+		  		<option value=""></option>	
 	  		</datalist>	
 	  
 		<BR>
  		  <BR>
-		 
-		
- 		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="eALxamCenterCode" id="ALexamCenterCode" placeholder="Choose your option">
-  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
+ 		  <script>loadStateAndCenters('examStateCodeList_updt1');</script>
+ 		  
+ 		<label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
+		<input list="examCenterCodeList_updt1" class="w3-text-brwon"  name="eALxamCenterCode" id="ALexamCenterCode" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList_updt1" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
   		
 		
@@ -2024,28 +2027,29 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			
   			
   			
-  			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="QAexamStateCode" placeholder="Choose your option">
-	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
-	  		<option selected value="Choose your option"></option>	
-	  		<option value="AP/ANdr"></option>	
-	
-	  		<!--  SAKTHI get from DB data-->
+<!-- stateCodeWorking -->
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
+			
+			<input list="examStateCodeList_updt2" class="w3-text-brwon" 
+			name="examStateCodeUpd2" id="examStateCodeUpd2" placeholder="Choose your option" 
+			onchange="getSelectedStatecode('examStateCodeUpd2','examStateCodeList_updt2','examCenterCodeList_updt2')">
 	  		
+	  		<datalist id="examStateCodeList_updt2" >
+		  		<option selected value="Choose your option"></option>	
+		  		<option value=""></option>	
 	  		</datalist>	
 	  
 		<BR>
  		  <BR>
+ 		  <script>loadStateAndCenters('examStateCodeList_updt2');</script>
 		 
 		
  		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="QAexamCenterCode" id="QAexamCenterCode" placeholder="Choose your option">
-  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
+		<input list="examCenterCodeList_updt2" class="w3-text-brwon"  name="QAexamCenterCode" id="QAexamCenterCode" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList_updt2" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
   		
-  		<option value="HYD/HYDD"></option>	
-  		<option value="VI/VIJYA"></option>	
-  		<option value="VS/VISAK"></option>
+  		<option value=""></option>	
 		
   		<!--  SAKTHI get from DB data-->
   		
@@ -2129,28 +2133,29 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		<input type="hidden" name="diplomaCodeName" >
   			
   			
-  			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>		
-			<input list="examStateCodeList" class="w3-text-brwon" name="examStateCode" id="ACexamStateCode" placeholder="Choose your option">
-	  		<datalist id="examStateCodeList" onchange="getSelectedStatecode()">
-	  		<option selected value="Choose your option"></option>	
-	  		<option value="AP/ANDHRA"></option>	
-	
-	  		<!--  SAKTHI get from DB data-->
+<!-- stateCodeWorking chart-->
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
+			
+			<input list="examStateCodeList_updt3" class="w3-text-brwon" 
+			name="examStateCodeUpd3" id="examStateCodeUpd3" placeholder="Choose your option" 
+			onchange="getSelectedStatecode('examStateCodeUpd3','examStateCodeList_updt3','examCenterCodeList_updt3')">
 	  		
+	  		<datalist id="examStateCodeList_updt3" >
+		  		<option selected value="Choose your option"></option>	
+		  		<option value=""></option>	
 	  		</datalist>	
 	  
 		<BR>
  		  <BR>
+ 		  <script>loadStateAndCenters('examStateCodeList_updt3');</script>
 		 
 		
  		  <label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
-		<input list="examCenterCodeList" class="w3-text-brwon"  name="ACexamCenterCode" id="ACexamCenterCode" placeholder="Choose your option">
-  		<datalist id="examCenterCodeList" onchange="getSelectedCentercode()">
+		<input list="examCenterCodeList_updt3" class="w3-text-brwon"  name="ACexamCenterCode" id="ACexamCenterCode" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList_updt3" onchange="getSelectedCentercode()">
   		<option selected value="Choose your option"></option>	
   		
-  		<option value="HYD/HYDD"></option>	
-  		<option value="VI/VIJYA"></option>	
-  		<option value="VS/VISAK"></option>	
+  		<option value=""></option>	
 		
   		<!--  SAKTHI get from DB data-->
   		

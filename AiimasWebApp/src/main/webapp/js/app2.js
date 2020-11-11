@@ -213,6 +213,7 @@ function onPostgetExamUpdateData1(data) {
 			if(parsedData1['Admin'] !== undefined ){
 				//$("#alertDetailFound").show();     
 				document.getElementById('addExamGetExamDataLoad1').style.display='block';
+				document.getElementById('slct2upt').style.display='block';
 				var sbutton = document.getElementById('resultSaveExamApp');
 				if (sbutton.style.display === "none") {
 					sbutton.style.display = "block";
@@ -245,6 +246,8 @@ function onPostgetExamUpdateData1(data) {
 				document.getElementById("diplomaCodeExam1").readOnly = true;
 				document.getElementById("durationExam1").readOnly = true;
 				document.getElementById("noofPaperExam1").readOnly = true;
+				
+				
 			}
 			
 			if(parsedData1['Exam'] !== undefined){
@@ -829,8 +832,9 @@ function updateExamApplication() {
 	var semYearExam = document.getElementById('semYearExam1').value;
 	var enterDateExam = document.getElementById('enterDateExam1').value;
 	
-	var examStateCode= document.getElementById('examStateCode1').value;
-	var examCenterCode= document.getElementById('examCenterCode1').value;
+	//var examStateCode= document.getElementById('examStateCode1').value; //examStateCodeUpd
+	var examStateCode= document.getElementById('examStateCodeUpd').value;
+	var examCenterCode= document.getElementById('examCenterCode_upd').value;
 	var examPassFlag= document.getElementById('examPassFlag').value;
 
 
@@ -841,16 +845,17 @@ function updateExamApplication() {
 	
 	var oldnofpapr= document.getElementById('oldnofpapr1').value=noofPaperExam;
 	
-	var items=document.getElementsByName('cboxpaper1');
+	//var items=document.getElementsByName('cboxpaper1');    
+	var items=document.getElementsByName('cboxpaperUpt');
 	var selectedItems="";
 	for(var i=0; i<items.length; i++){
-		console.log('  '+i+'    '+items[i].checked)
+		//console.log('  '+i+'    '+items[i].checked)
 		if( items[i].checked==true)
 			selectedItems+=items[i].value+", ";
 	}
-	console.log('cboxpaper1  '+selectedItems);
+	//console.log('cboxpaperUpt  '+selectedItems);
 	selectedItems = selectedItems.replace(/,\s*$/, "");    
-	console.log('selectedItems .... '+selectedItems);
+	//console.log('selectedItems .... '+selectedItems);
 	document.getElementById('ea_paprstr1').value = selectedItems;
 	
 	
@@ -1911,11 +1916,11 @@ function clearAllAtrbutesExamUpdate() {
 	  document.getElementById("noofPaperExam1").value =  "";
 	  document.getElementById("semMonthExam1").value =  "";
 	  document.getElementById("semYearExam1").value =  "";
-	  document.getElementById("examStateCode1").value =  "";
-	  document.getElementById("examCenterCode1").value =  "";
+	  document.getElementById("examStateCodeUpd").value =  "";
+	  document.getElementById("examCenterCode_upd").value =  "";
 	  
-	  if($("#cboxpaper").length){
-		  document.getElementById('displayPaper12').style.display='none'; 
+	  if($("#cboxpaperUpt").length){
+		  document.getElementById('slct2upt').style.display='none'; 
 	  }
 
  document.getElementById("ackIniLetterDate1").value =  "";
@@ -1924,22 +1929,8 @@ function clearAllAtrbutesExamUpdate() {
  document.getElementById("ackExamdate21").value =  "";
 
 	  
-	  $('#examStateCodeList1 option').remove();  
-	  $('#examCenterCodeList1 option').remove(); 
-	  //$('#examStateCodeList text').val('');
-	 // document.getElementById("examStateCode").innerHTML =  "";   
-	 // document.getElementById("examStateCodeList").innerHTML =  "";
-	  
-	  
-	 /* $('#examStateCode option').remove();
-	  $('#examStateCodeList option').remove();   
-	  $('#examCenterCodeList option').remove();  
-	  $('#examCenterCode text').remove();
-	  
-	  $('#examStateCode value').remove();
-	  $('#examStateCodeList value').remove();   
-	  $('#examCenterCodeList value').remove();  
-	  $('#examCenterCode value').remove();*/
+	  $('#examStateCodeList_updt option').remove();  
+	  $('#examCenterCodeList_updt option').remove(); 
 	  
 	  var elementStCode = document.querySelectorAll("input[id='examStateCodeList1']");
 	  if(typeof(elementStCode) != 'undefined' && elementStCode != null){
@@ -2744,7 +2735,9 @@ $(function(){
 });
 
 function loadStateAndCenters(fieldID){
-	var Stselect = document.getElementById(fieldID); 
+	//alert('i am in');
+	Stselect = document.getElementById(fieldID); 
+	console.log(key + " -> ============= " + Stselect);
 	  //$('#examStateCodeList_updt option').remove();  
 	//  $('#examCenterCodeList_updt option').remove(); 
 		  var state = {};  var centre= {}; var state1course = [];
@@ -2752,7 +2745,7 @@ function loadStateAndCenters(fieldID){
 	  
 	  for (var key in statedata) {
 		    if (statedata.hasOwnProperty(key)) {
-		        //console.log(key + " -> " + parsedData1[key]);
+		        
 		        
 		        if(key.includes('State')){
 		        	var obj = statedata[key];
@@ -2777,6 +2770,8 @@ function loadStateAndCenters(fieldID){
 		        		}
 				    el.text = textopt;
 				    el.value = textval+' /'+el.text;
+				   // console.log('eeee '+el.text);
+				   // console.log('eeee '+el.value);
 		        	Stselect.appendChild(el);
 		        }
 		        
