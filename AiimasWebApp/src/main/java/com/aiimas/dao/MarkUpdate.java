@@ -420,7 +420,7 @@ public class MarkUpdate extends BaseDao {
 					for (int i = 1; i <= n; i++) {
 					      if(i==1) {
 					    	  if((row1paper != null && row1paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row1paper.toString());
+					    		  paperNo =Integer.parseInt(row1paper.toString().substring(6));
 					    	  }
 					    	  if((row1paperMark != null && row1paperMark.toString().trim().length() > 0)) {
 					    		 // System.out.println(" inside mark1"+row1paperMark.toString());
@@ -429,7 +429,7 @@ public class MarkUpdate extends BaseDao {
 					    	  paperName = row1papername.toString();
 					      }else if(i==2) {
 					    	  if((row2paper != null && row2paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row2paper.toString());
+					    		  paperNo =Integer.parseInt(row2paper.toString().substring(6));
 					    	  }
 					    	  if((row2paperMark != null && row2paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row2paperMark.toString());
@@ -438,7 +438,7 @@ public class MarkUpdate extends BaseDao {
 					    	  
 					      }else if(i==3) {
 					    	  if((row3paper != null && row3paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row3paper.toString());
+					    		  paperNo =Integer.parseInt(row3paper.toString().substring(6));
 					    	  }
 					    	  if((row3paperMark != null && row3paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row3paperMark.toString());
@@ -447,7 +447,7 @@ public class MarkUpdate extends BaseDao {
 					    	  
 					      }else if(i==4) {
 					    	  if((row4paper != null && row4paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row4paper.toString());
+					    		  paperNo =Integer.parseInt(row4paper.toString().substring(6));
 					    	  }
 					    	  if((row4paperMark != null && row4paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row4paperMark.toString());
@@ -456,7 +456,7 @@ public class MarkUpdate extends BaseDao {
 					    	  
 					      }else if(i==5) {
 					    	  if((row5paper != null && row5paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row5paper.toString());
+					    		  paperNo =Integer.parseInt(row5paper.toString().substring(6));
 					    	  }
 					    	  if((row5paperMark != null && row5paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row5paperMark.toString());
@@ -465,7 +465,7 @@ public class MarkUpdate extends BaseDao {
 					    	  
 					      }else if(i==6) {
 					    	  if((row6paper != null && row6paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row6paper.toString());
+					    		  paperNo =Integer.parseInt(row6paper.toString().substring(6));
 					    	  }
 					    	  if((row6paperMark != null && row6paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row6paperMark.toString());
@@ -474,7 +474,7 @@ public class MarkUpdate extends BaseDao {
 	  
 					      }else if(i==7) {
 					    	  if((row7paper != null && row7paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row7paper.toString());
+					    		  paperNo =Integer.parseInt(row7paper.toString().substring(6));
 					    	  }
 					    	  if((row7paperMark != null && row7paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row7paperMark.toString());
@@ -483,7 +483,7 @@ public class MarkUpdate extends BaseDao {
 					      		
 					      }else if(i==8) {
 					    	  if((row8paper != null && row8paper.toString().trim().length() > 0)) {
-					    		  paperNo =Integer.parseInt(row8paper.toString());
+					    		  paperNo =Integer.parseInt(row8paper.toString().substring(6));
 					    	  }
 					    	  if((row8paperMark != null && row8paperMark.toString().trim().length() > 0)) {
 					    		  paperMark = Integer.parseInt(row8paperMark.toString());
