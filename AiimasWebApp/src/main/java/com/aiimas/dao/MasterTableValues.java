@@ -16,6 +16,30 @@ public class MasterTableValues extends BaseDao {
 	
 	
 	
+//	public List getValueFromDB(String sql) throws Exception  {
+//		
+//			//String getVerifyDataSql = "select DIPNAME from public.DIPMAST WHERE DIPCODE = ";
+//			List<Map> data = executeFetchSql(sql);
+//			return data;
+//	}
+	
+	
+	public List getDiplomName(String dipCode) throws Exception  {
+	
+		String getSql = "select DIPNAME from public.DIPMAST WHERE DIPCODE = ? ";
+		List<Map> data = executeFetchSql(getSql,new String[]{dipCode});
+		return data;
+}
+	
+	
+	public List getExamSemDetails(String prCode, String prNo) throws Exception  {
+		
+		String getSql = "select EA_SESMON, EA_SESYR  from public.EAPPL where EA_PRCODE = ? and EA_PRNO = ?";
+		List<Map> data = executeFetchSql(getSql,new Object[]{prCode, Integer.parseInt(prNo)});
+		return data;
+}
+	
+	
 	public List<Map> getListMasterTable() throws Exception  {
 		
 		

@@ -5,11 +5,14 @@ package com.aiimas.util;
 	import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
+import com.aiimas.dao.MasterTableValues;
 import com.aiimas.dao.PrintView;
 import com.aiimas.dao.Verification;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -799,6 +802,10 @@ import com.itextpdf.text.Image;
 	        String address4 = new String("");
 	        String mobile = new String("");
 	        
+	        int paintAmtint = 0;
+	        int totFeeint =0;
+	        int balAmtint= 0;
+	        
 	        ObjectMapper oMapper = new ObjectMapper();
 	        Iterator<String> iter1 = data.keySet().iterator();
 	        while (iter1.hasNext()) {
@@ -854,10 +861,14 @@ import com.itextpdf.text.Image;
 				    Object ad_paidamt = map1.get("ad_paidamt");
 				    if(ad_paidamt!=null) {
 				    	paidAmt = ad_paidamt.toString();
+				    	paintAmtint = Integer.parseInt(paidAmt);
 				    }
 				    Object ad_feeamt = map1.get("ad_feeamt");
 				    if(ad_feeamt!=null) {
 				    	totFee = ad_feeamt.toString();
+				    	totFeeint = Integer.parseInt(totFee);
+				    	balAmtint = totFeeint -paintAmtint;
+				    	System.out.println(" bal amnt "+balAmtint);
 				    }
 				    				    
 				}else if(key.contains("Address")) {
@@ -909,10 +920,39 @@ import com.itextpdf.text.Image;
 				  
 			} // end of date iter
 		
-	    		   
-	    	// datea 
+	        
+	   // GET the DIPMO NAME
+	    	
+	        MasterTableValues mastable = new MasterTableValues();
+	        java.util.List dipdatil = mastable.getDiplomName(dipcode);
+	        if(dipdatil !=null && dipdatil.size()>0) {
+	        	 Map map1 = (Map)dipdatil.get(0);	
+	        	 Object dipname = map1.get("dipname");
+			    	if(dipname!=null) {
+			    	dipName = dipname.toString();
+			    }
+	        }
+	        
+	        
+// GET the EXAM SES Month and YEAR    semExamMonth , semExamYear  from exam table public.EAPPL
+	    	
+	        java.util.List examdatil = mastable.getExamSemDetails(prCode, prNo);
+	        if(examdatil !=null && examdatil.size()>0) {
+	        	 Map map1 = (Map)examdatil.get(0);	
+	        	 Object ea_sesmon = map1.get("ea_sesmon");
+			    	if(ea_sesmon!=null) {
+			    		semExamMonth = ea_sesmon.toString();
+			    }
+		    	 Object ea_sesyr = map1.get("ea_sesyr");
+			    	if(ea_sesyr!=null) {
+			    		semExamYear = ea_sesyr.toString();
+			    }
+	        }
+	        
+	        
+	        
 	        Paragraph preface = new Paragraph();
-	        // We add one empty line
+	        
 	        addEmptyLine(preface, 1);
 	        // Lets write a big header
 	        preface.add(new Paragraph("Admission Intimation", catFont));
@@ -927,17 +967,19 @@ import com.itextpdf.text.Image;
 	        preface.add(new Paragraph(
 	                " Dear  "+name,smallBold));
 	        preface.add(new Paragraph(
-	                " We are pleased to inform you that you are found eligible for admission in our institute for "+duration+" Diploma course in   ",smallBold));
+	                "           We are pleased to inform you that you are found eligible for admission in our institute for "+duration+" Diploma course in   ",smallBold));
 	        preface.add(new Paragraph(
-	                " "+dipcode+" "+dipName,smallBold));
+	                "                                "+dipcode+" - "+dipName,smallBold));
+	        addEmptyLine(preface, 1);
 	        preface.add(new Paragraph(
-	                " Your Registration number is : "+prCode+" \\ "+prNo,smallBold));
+	                "           Your Registration number is : "+prCode+" \\ "+prNo,smallBold));
+	        addEmptyLine(preface, 1);
 	        preface.add(new Paragraph(
-	                " You are advised to quote this number in all your future correspondence with the Institute. ",smallBold));
+	                "            You are advised to quote this number in all your future correspondence with the Institute. ",smallBold));
 	        
 	        addEmptyLine(preface, 1);
 	        preface.add(new Paragraph(
-	                " The course will commence from  "+semExamMonth+" "+semExamYear,smallBold));
+	                "           The course will commence from  "+semExamMonth+" "+semExamYear,smallBold));
 	        addEmptyLine(preface, 1);
 	   
 	        preface.add(new Paragraph(
@@ -955,7 +997,7 @@ import com.itextpdf.text.Image;
 	        preface.add(new Paragraph(
 	                " Received now Rs: "+paidAmt,smallBold));
 	        preface.add(new Paragraph(
-	                " Bal.Due  Rs: ",smallBold));
+	                " Bal.Due  Rs: "+balAmtint,smallBold));
 	        addEmptyLine(preface, 1);
 	        preface.add(new Paragraph(
 	                " "+name,smallBold));
@@ -980,13 +1022,7 @@ import com.itextpdf.text.Image;
 	        preface.add(new Paragraph(
 	                " "+email,smallBold));
 	        
-	        //addEmptyLine(preface, 1);
-	       // preface.add(new Paragraph(
-	       //         "This document describes something which is very important ",
-	       //         smallBold));
- 
-	        //addEmptyLine(preface, 8);
-
+	   
 	        document.add(preface);
 	        
 	    }
