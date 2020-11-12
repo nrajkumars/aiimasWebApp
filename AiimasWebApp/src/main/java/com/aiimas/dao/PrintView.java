@@ -85,23 +85,23 @@ public class PrintView extends BaseDao {
 		
 	
 		Map finaldata = new HashMap();
-		String admin = new String("Admin");
+	//	String admin = new String("Admin");
 		String address = new String("Address");
-		String fee = new String("Fee");
+		String ack = new String("Ack");
 		
-		System.out.println(" INSIDE PRINT VIEW  getAdmInitimationetails--  going to run the SQL = "+prNum+","+prCode );
+		System.out.println(" INSIDE PRINT VIEW  getAcknowledgeContent--  going to run the SQL = "+prNum+","+prCode );
 		
 		if (prNum != null && prNum.toString().trim().length() > 0) {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
-				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
-				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-			
-				if (data1 != null && data1.size() > 0) {
-					//return (Map) data1.get(0);
-					finaldata.put(admin, data1.get(0));
-				}
+//				// Read from ADMIN table
+//				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
+//				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+//			
+//				if (data1 != null && data1.size() > 0) {
+//					//return (Map) data1.get(0);
+//					finaldata.put(admin, data1.get(0));
+//				}
 				
 				// Read form ADDRESS table
 				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
@@ -112,13 +112,13 @@ public class PrintView extends BaseDao {
 					finaldata.put(address, data2.get(0));
 				}
 				
-				//// Read form Fee table  TODO HANGE to exam table
-				String getFeeDataSql = "select * from public.fees where fe_prcode = ? and fe_prno = ?";
+				//// Read form  to ACK table
+				String getFeeDataSql = "select ak_sesmon, ak_sesyr, ak_venudt, ak_examdt1, ak_examdt2, ak_halldt from public.ACKBOX1 where AK_PRCODE = ? and AK_PRNO = ?";
 				List data3 = executeFetchSql(getFeeDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data3 != null && data3.size() > 0) {
 					//return (Map) data3.get(0);
-					finaldata.put(fee, data3.get(0));
+					finaldata.put(ack, data3.get(0));
 				}
 				
 				return finaldata;

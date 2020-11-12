@@ -409,7 +409,7 @@ public class AiimasServlet extends HttpServlet {
 				// click on marksheet to get the test report
 				
 				
-				//BASED on  Action , change the query
+				//BASED on  Action , change the query  KEVIN
 				
 				PrintView printView = new PrintView();
 				Map pdfData = new HashMap();

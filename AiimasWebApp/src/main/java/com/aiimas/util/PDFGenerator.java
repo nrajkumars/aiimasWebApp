@@ -3,12 +3,14 @@ package com.aiimas.util;
 
 
 	import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -1036,23 +1038,269 @@ import com.itextpdf.text.Image;
 			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent input  GOT in MAP -- "+input.toString());
 			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent data  GOT in MAP -- "+data.toString());
 	    	
+	       			
+			//kevin
+			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
+			   LocalDateTime now = LocalDateTime.now();  
+			   String currentDate= dtf.format(now);
+			   
+			   
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+			
+					
+			
+			String prCode = new String("");
+	        String prNo = new String("");
+	        String name = new String("");
+	        String dipcode = new String("");
+	        String dipName = new String("");  // ?
+	        
+	        String semExamMonth = new String(""); //?
+	        String semExamYear = new String(""); //?
+	       
+	        
+	        String intiDate = new String("");
+	        String exam1Date = new String("");
+	        String exam2Date = new String("");
+	        String hallDate = new String("");
+	        
+	        String papersString = new String ("");
+	       //ack
+	        
+	        String phone = new String("");
+	        String email = new String("");
+	        String state = new String("");
+	        String pincode = new String("");
+	        String address1 = new String("");
+	        String address2 = new String("");
+	        String address3 = new String("");
+	        String address4 = new String("");
+	        String mobile = new String("");
+	        
+	 
+	        
+	        ObjectMapper oMapper = new ObjectMapper();
+	        Iterator<String> iter1 = data.keySet().iterator();
+	        while (iter1.hasNext()) {
+				String key = iter1.next();
+				System.out.println(" RAJKUMAR  1" +key);
+				if(key.contains("Address")) {
+					
+					//System.out.println(key);
+					Object val = data.get(key);
+					Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+					System.out.println(" RAJKUMAR  Address 2");
+				 
+					Object sa_phone = map1.get("sa_phone");
+				    	if(sa_phone!=null) {
+				    	phone = sa_phone.toString();
+				    }
+				    	
+			    	Object sa_name = map1.get("sa_name");
+			    	if(sa_name!=null) {
+			    	name = sa_name.toString();
+			    	}
+				    	
+				    	
+				    	Object sa_dipcode = map1.get("sa_dipcode");
+				    	if(sa_dipcode!=null) {
+				    		dipcode = sa_dipcode.toString();
+				    }
+				    	
+			    	 Object sa_prcodeoobj = map1.get("sa_prcode");
+					    if(sa_prcodeoobj!=null) {
+					    	prCode = sa_prcodeoobj.toString();
+					    }
+					    
+					 Object sa_prnooobj = map1.get("sa_prno");
+					    if(sa_prnooobj!=null) {
+					    	prNo = sa_prnooobj.toString();
+					    }
+	
+				 
+				    Object sa_email = map1.get("sa_email");
+				    if(sa_email!=null) {
+				    	email = sa_email.toString();
+				    }
+				    Object sa_state = map1.get("sa_state");
+				    if(sa_state!=null) {
+				    	state = sa_state.toString();
+				    }
+				    Object sa_pincode = map1.get("sa_pincode");
+				    if(sa_pincode!=null) {
+				    	pincode = sa_pincode.toString();
+				    }
+				    Object sa_add3 = map1.get("sa_add3");
+				    if(sa_add3!=null) {
+				    	address3 = sa_add3.toString();
+				    }
+				    Object sa_add2 = map1.get("sa_add2");
+				    if(sa_add2!=null) {
+				    	address2 = sa_add2.toString();
+				    }
+				    Object sa_mobile = map1.get("sa_mobile");
+				    if(sa_mobile!=null) {
+				    	mobile = sa_mobile.toString();
+				    }
+				    Object sa_add1 = map1.get("sa_add1");
+				    if(sa_add1!=null) {
+				    	address1 = sa_add1.toString();
+				    }
+				    Object sa_add4 = map1.get("sa_add4");
+				    if(sa_add4!=null) {
+				    	address4 = sa_add4.toString();
+				    }
+				}else if(key.contains("Ack")) {
+					Object val = data.get(key);
+					Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+					System.out.println(" RAJKUMAR  ACK 2");
+				 
+					Object ak_sesmon = map1.get("ak_sesmon");
+				    	if(ak_sesmon!=null) {
+				    		semExamMonth = ak_sesmon.toString();
+				    }
+	
+				 
+				    Object ak_sesyr = map1.get("ak_sesyr");
+				    if(ak_sesyr!=null) {
+				    	semExamYear = ak_sesyr.toString();
+				    }
+				    Object ak_venudt = map1.get("ak_venudt");
+				    if(ak_venudt!=null) {
+				    	//intiDate = ak_venudt.toString();
+				    	if((ak_venudt != null && ak_venudt.toString().trim().length() > 8)) {
+				    		intiDate = formatter.format(ak_venudt);
+						}
+				    }
+				    Object ak_examdt1 = map1.get("ak_examdt1");
+				    if(ak_examdt1!=null) {
+				    	//exam1Date= ak_examdt1.toString();
+				    	if((ak_examdt1 != null && ak_examdt1.toString().trim().length() > 8)) {
+				    		exam1Date = formatter.format(ak_examdt1);
+						}
+				    }
+				    Object ak_examdt2 = map1.get("ak_examdt2");
+				    if(ak_examdt2!=null) {
+				    	//exam2Date = ak_examdt2.toString();
+				    	if((ak_examdt2 != null && ak_examdt2.toString().trim().length() > 8)) {
+				    		exam2Date = formatter.format(ak_examdt2);
+						}
+				    }
+				    Object ak_halldt = map1.get("ak_halldt");
+				    if(ak_halldt!=null) {
+				    	//hallDate = ak_halldt.toString();
+				    	if((ak_halldt != null && ak_halldt.toString().trim().length() > 8)) {
+				    		hallDate = formatter.format(ak_halldt);
+						}
+				    }
+				}
+				  
+			} // end of date iter
+		
+	        
+	   // GET the DIPMO NAME
+	    	
+	        MasterTableValues mastable = new MasterTableValues();
+	        java.util.List dipdatil = mastable.getDiplomName(dipcode);
+	        if(dipdatil !=null && dipdatil.size()>0) {
+	        	 Map map1 = (Map)dipdatil.get(0);	
+	        	 Object dipname = map1.get("dipname");
+			    	if(dipname!=null) {
+			    	dipName = dipname.toString();
+			    }
+	        }
+	        
+	        
+// GET the EXAM SES Month and YEAR    semExamMonth , semExamYear  from exam table public.EAPPL,  ea_paprstr ea_dipcode
+	    	
+	        java.util.List paperdatil = mastable.getExamPaperDetails(prCode, prNo, dipcode);
+	        if(paperdatil !=null && paperdatil.size()>0) {
+	        	 Map map1 = (Map)paperdatil.get(0);	
+	        	
+		    	 Object ea_paprstr = map1.get("ea_paprstr");
+			    	if(ea_paprstr!=null) {
+			    		papersString = ea_paprstr.toString();
+			    }
+	        }
+	        
+	        
+	        
 	        Paragraph preface = new Paragraph();
-	        // We add one empty line
+	        
 	        addEmptyLine(preface, 1);
 	        // Lets write a big header
 	        preface.add(new Paragraph("Acknowledgement /Intimation Letter", catFont));
 
 	        addEmptyLine(preface, 1);
-	 	   
+	   
 	        preface.add(new Paragraph(
-	                " TODO letter here",smallBold));
-	        addEmptyLine(preface, 3);
-	       // preface.add(new Paragraph(
-	       //         "This document describes something which is very important ",
-	       //         smallBold));
-
-	        addEmptyLine(preface, 8);
-
+	                " DIPLOMA : "+dipcode+" - "+dipName,smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " Date:"+currentDate,smallBold));
+	        preface.add(new Paragraph(
+	                " P.R. No: "+prCode+"\\"+prNo,smallBold));
+	        
+	        
+	        preface.add(new Paragraph(
+	                "NAME: "+name,smallBold));
+	        preface.add(new Paragraph(
+	                " P.R.No: "+prCode+"\\"+prNo,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address1,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address2,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address3,smallBold));
+	        preface.add(new Paragraph(
+	                " "+address4,smallBold));
+	        preface.add(new Paragraph(
+	                " "+state,smallBold));
+	        preface.add(new Paragraph(
+	                " "+pincode,smallBold));
+	        preface.add(new Paragraph(
+	                " "+mobile,smallBold));
+	        preface.add(new Paragraph(
+	                " "+phone,smallBold));
+	        preface.add(new Paragraph(
+	                " "+email,smallBold));
+	        
+	        
+	        
+	        
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " Dear  "+name,smallBold));
+	        preface.add(new Paragraph(
+	                "           We hereby acknowledge the receipt of your duly filled examination application along with D.D. towards the examination fees ",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                "   		  We have permitted you to appear for the following papers "+ papersString+" for "+semExamMonth+"  "+semExamYear+ ".",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                "           The Venue intimation , identification certification and timetable will be sent to you on or before  "+intiDate+ ".",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                "            You are advised to quote this number in all your future correspondence with the Institute. ",smallBold));
+	        
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                "           Examination will be held on"+exam1Date+" & "+exam2Date+" . If you do not receive your hall ticket on or before "+hallDate+", kindly  write to us immediately for taking further action . we wish you all success in the examination",smallBold));
+	        addEmptyLine(preface, 1);
+	   
+	       
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " Sincerely yours,  ",smallBold));
+	        addEmptyLine(preface, 1);
+	        preface.add(new Paragraph(
+	                " CONTROLLER OF EXAMINATIONS",smallBold));
+	        
+	        addEmptyLine(preface, 1);
+	       
+	        
+	   
 	        document.add(preface);
 	         
 	    }

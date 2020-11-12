@@ -23,6 +23,13 @@ public class MasterTableValues extends BaseDao {
 //			return data;
 //	}
 	
+	public List getExamPaperDetails(String prCode, String prNo, String dipCode) throws Exception  {
+		
+		String getSql = "select ea_paprstr from public.EAPPL where EA_PRCODE = ? and EA_PRNO = ? and ea_dipcode=?";
+		List<Map> data = executeFetchSql(getSql,new Object[]{prCode, Integer.parseInt(prNo), dipCode });
+		return data;
+}
+	
 	
 	public List getDiplomName(String dipCode) throws Exception  {
 	
