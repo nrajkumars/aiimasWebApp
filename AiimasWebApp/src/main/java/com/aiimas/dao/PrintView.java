@@ -121,6 +121,7 @@ public class PrintView extends BaseDao {
 					finaldata.put(ack, data3.get(0));
 				}
 				
+				
 				return finaldata;
 			}
 		}
@@ -175,7 +176,7 @@ public class PrintView extends BaseDao {
 		
 	
 		Map finaldata = new HashMap();
-		String admin = new String("Admin");
+		String exam = new String("Exam");
 		String address = new String("Address");
 		
 		
@@ -183,15 +184,6 @@ public class PrintView extends BaseDao {
 		
 		if (prNum != null && prNum.toString().trim().length() > 0) {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
-				
-				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
-				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-			
-				if (data1 != null && data1.size() > 0) {
-					//return (Map) data1.get(0);
-					finaldata.put(admin, data1.get(0));
-				}
 				
 				// Read form ADDRESS table
 				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
@@ -201,6 +193,23 @@ public class PrintView extends BaseDao {
 					//return (Map) data2.get(0);
 					finaldata.put(address, data2.get(0));
 				}
+				
+				// Read from exam table
+				String getAdminDataSql = "select ea_sesmon, ea_sesyr,ea_cecode,ea_centre1, ea_durtn, ea_paprstr from public.eappl where ea_prcode = ? and ea_prno = ?";
+				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+			
+				if (data1 != null && data1.size() > 0) {
+					//return (Map) data1.get(0);
+			//		finaldata.put(exam, data1.get(0));
+					
+					for (int ii = 0; ii <= data1.size()-1; ii++) {
+						String ex = new String("Exam"+(ii+1));
+						finaldata.put(ex, data1.get(ii));
+						
+					}
+				}
+				
+				
 				
 						
 				return finaldata;
@@ -215,9 +224,11 @@ public class PrintView extends BaseDao {
 		Object prCode =  input.get("adprCode");
 		
 	
-		Map finaldata = new HashMap();
+		//Map finaldata = new HashMap();
+		
+		Map<String, Object> finaldata = new TreeMap<String, Object>();
 		String admin = new String("Admin");
-		String address = new String("Address");
+		String marks = new String("Marks");
 		
 		
 		System.out.println(" INSIDE PRINT VIEW  getAdmInitimationetails--  going to run the SQL = "+prNum+","+prCode );
@@ -226,7 +237,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select ad_name,ad_prcode,ad_prno,ad_dipcode from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {
@@ -234,13 +245,19 @@ public class PrintView extends BaseDao {
 					finaldata.put(admin, data1.get(0));
 				}
 				
+				
 				// Read form ADDRESS table
-				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
-				List data2 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+				String getAddressDataSql = "select ap_paper,ap_mark, ap_paprnam from public.appear where ap_prcode = ? and ap_prno = ?";
+				List data5 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
-				if (data2 != null && data2.size() > 0) {
+				
+				if (data5 != null && data5.size() > 0) {
 					//return (Map) data2.get(0);
-					finaldata.put(address, data2.get(0));
+					for (int ii = 0; ii <= data5.size()-1; ii++) {
+						String papers = new String("MarkList"+(ii+1));
+						finaldata.put(papers, data5.get(ii));
+						
+					}
 				}
 				
 						
@@ -267,7 +284,7 @@ public class PrintView extends BaseDao {
 			if((prCode != null && prCode.toString().trim().length() > 0)) {
 				
 				// Read from ADMIN table
-				String getAdminDataSql = "select * from public.admn where ad_prcode = ? and ad_prno = ?";
+				String getAdminDataSql = "select ad_name,ad_prcode,ad_prno,ad_durtn,ad_dipcode from public.admn where ad_prcode = ? and ad_prno = ?";
 				List data1 = executeFetchSql(getAdminDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
 			
 				if (data1 != null && data1.size() > 0) {
@@ -275,14 +292,14 @@ public class PrintView extends BaseDao {
 					finaldata.put(admin, data1.get(0));
 				}
 				
-				// Read form ADDRESS table
-				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
-				List data2 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-			
-				if (data2 != null && data2.size() > 0) {
-					//return (Map) data2.get(0);
-					finaldata.put(address, data2.get(0));
-				}
+//				// Read form ADDRESS table
+//				String getAddressDataSql = "select * from public.staddr where sa_prcode = ? and sa_prno = ?";
+//				List data2 = executeFetchSql(getAddressDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+//			
+//				if (data2 != null && data2.size() > 0) {
+//					//return (Map) data2.get(0);
+//					finaldata.put(address, data2.get(0));
+//				}
 				
 						
 				return finaldata;
