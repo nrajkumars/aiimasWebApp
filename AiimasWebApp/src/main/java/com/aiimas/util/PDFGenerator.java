@@ -1892,15 +1892,17 @@ import com.itextpdf.text.Section;
 		        if(examDates !=null && examDates.size()>0) {
 		        	 Map map1 = (Map)examDates.get(0);	
 		        	 Object ak_examdt1 = map1.get("ak_examdt1");
-				    	if(ak_examdt1!=null) {
-				    	exam1date = ak_examdt1.toString();
-				    }
+		        	 if((ak_examdt1 != null && ak_examdt1.toString().trim().length() > 8)) {
+				    		exam1date = formatter.format(ak_examdt1);
+						}
+		        	 
 				    	Object ak_examdt2 = map1.get("ak_examdt2");
-				    	if(ak_examdt2!=null) {
-				    	exam2date = ak_examdt2.toString();
-				    }
+				    	if((ak_examdt2 != null && ak_examdt2.toString().trim().length() > 8)) {
+				    		exam2date = formatter.format(ak_examdt2);
+						}
+				    
 		        }
-		        
+		     // System.out.println("EXAMMMMMMMMMMMMMMMM -"+exam2date);  
 		        
 	// GET CENTER details  centerCode ex_center ex_add1, ex_add2, to add6
 		    	
@@ -2043,7 +2045,7 @@ import com.itextpdf.text.Section;
 			       
 			            PdfPTable table = new PdfPTable(5);
 				        
-				        table.setTotalWidth(new float[]{ 72,25, 200,80,80 });
+				        table.setTotalWidth(new float[]{ 60,25, 250,60,60 });
 				        table.setLockedWidth(true);
 				        
 				        PdfPCell c1 = new PdfPCell(new Phrase("Date",smallBold));
@@ -2077,87 +2079,104 @@ import com.itextpdf.text.Section;
 				        String paperName = new String("");
 				        String fromTime = new String("");
 				        String toTime = new String("");
+				        String sessiondata = new String("");
+				        
+				        String examdate = new String("");
 				        
 				        
 				        // GET the PAPERs for Diploma
-				    	
-					        MasterTableValues mastable22 = new MasterTableValues();
-					        java.util.List dipPapers = mastable22.getDipPapers(dipcode,duration);
-//					        if(dipdatil !=null && dipPapers.size()>0) {
-//					        	 Map map1 = (Map)dipPapers.get(0);	
-//					        	 Object dp_paperno = map1.get("dp_paperno");
-//							    	if(dp_paperno!=null) {
-//							    	//paperNo = dp_paperno.toString();
-//							    }
-//						    	 Object dp_paprnam = map1.get("dp_paprnam");
-//							    	if(dp_paprnam!=null) {
-//							    	//paperName = dp_paprnam.toString();
-//							    }
-//						    	 Object dp_session = map1.get("dp_session");
-//							    	if(dp_session!=null) {
-//							    	//session = dp_session.toString();
-//							    }
-//					        }   
-				     
 				        
-				        while (iter2.hasNext()) {
-							String key = iter2.next();
-							Object val = dipPapers.get(0);
-							 Map<String, Object> map1 = oMapper1.convertValue(val, Map.class);
-						
-						     //1
-//						    Object dipCodeobj = map1.get("ea_dipcode");
-//						    if(dipCodeobj!=null) {
-//						    	exam1date = dipCodeobj.toString();
-//						    }
-						    r1 = new PdfPCell(new Phrase(exam1date,smallfont));
-						    table.addCell(r1);
-						     
-						  
-						    //2
-						    Object ea_nameobj = map1.get("dp_paperno");
-						    if(ea_nameobj!=null) {
-						    	paperNo = ea_nameobj.toString();
-						    }
-						    r1 = new PdfPCell(new Phrase(paperNo,smallfont));
-						    table.addCell(r1);
-						    
-						    
-						  //3
-						    Object ea_stnameobj = map1.get("dp_paprnam");
-						    if(ea_stnameobj!=null) {
-						    	paperName = ea_stnameobj.toString();
-						    }
-						    r1 = new PdfPCell(new Phrase(paperName,smallfont));
-						    table.addCell(r1);
-						    
-						    //4
-						    Object ea_durtnobj = map1.get("dp_session");
-						    if(ea_durtnobj!=null) {
-						    	fromTime = ea_durtnobj.toString();
-						    }
-						    r1 = new PdfPCell(new Phrase(fromTime,smallfont));
-						    table.addCell(r1);
-						    
-						  //5
-						   
-						    r1 = new PdfPCell(new Phrase("toTime",smallfont));
-						    table.addCell(r1);
-						  
-
-						}
+				        
+// GET the DIPMO paper for timetble
+				    	
+				        MasterTableValues mastable1 = new MasterTableValues();
+				        java.util.List dipdatil1 = mastable.getDipPapers(dipcode,duration);
+				        
+				      //  System.out.println("paper name-       ------------------"+dipdatil1.toString()); 
+				        
+				        if(dipdatil1 !=null &&  dipdatil1.size() >0) {
+				        	
+				        	 for (int i = 0; i < dipdatil1.size(); i++) {
+				        		 Map map1 = (Map)dipdatil1.get(i);	
+				        		 
+				        		 
+				        		 Object dp_session = map1.get("dp_session");
+							    	if(dp_session!=null) {
+							    		sessiondata = dp_session.toString();
+							    }
+							    	
+							    	//System.out.println("sessiondata   "+sessiondata);
+							    	
+							    if(sessiondata!=null && sessiondata.equals("D1AM")) {
+							    	fromTime = "10:00AM";
+							    	toTime = "12:00PM";
+							    	examdate =exam1date;
+							    	
+							    }else if(sessiondata!=null && sessiondata.equals("D1PM")) {
+							    	fromTime = "02:00PM";
+							    	toTime = "04:00PM";
+							    	examdate =exam1date;
+							    	
+							    }else if(sessiondata!=null && sessiondata.equals("D2AM")) {
+							    	fromTime = "10:00AM";
+							    	toTime = "12:00PM";
+							    	examdate =exam2date;
+							    	
+							    	
+							    }else if(sessiondata!=null && sessiondata.equals("D2PM")) {
+							    	fromTime = "02:00PM";
+									toTime = "04:00PM";
+									examdate =exam2date;
+							    
+							    }
+				        		 
+				        		 
+				        		 
+				        		 r1 = new PdfPCell(new Phrase(examdate,smallfont));
+								    table.addCell(r1);
+				        		 
+				        		// System.out.println("paper name-   map1 "+map1.toString());
+					        	 Object ap_paper = map1.get("dp_paperno");
+							    	if(ap_paper!=null) {
+							    		paperNo = ap_paper.toString();
+							    	}
+							    	r1 = new PdfPCell(new Phrase(paperNo,smallfont));
+							    	 r1.setHorizontalAlignment(Element.ALIGN_CENTER);
+									table.addCell(r1);
+							    	
+							    Object ap_paprnam = map1.get("dp_paprnam");
+							    	if(ap_paprnam!=null) {
+							    		paperName = ap_paprnam.toString();
+							    	}
+							    	r1 = new PdfPCell(new Phrase(paperName,smallfont));
+							    	
+									table.addCell(r1);
+							    	
+							   
+							    
+							    //4
+							    
+							    r1 = new PdfPCell(new Phrase(fromTime,smallfont));
+							    r1.setHorizontalAlignment(Element.ALIGN_CENTER);
+								table.addCell(r1);
+								    
+								  //5
+								   
+								    r1 = new PdfPCell(new Phrase(toTime,smallfont));
+								    r1.setHorizontalAlignment(Element.ALIGN_CENTER);
+								    table.addCell(r1);
+						            
+						          //System.out.println("paper name- "+paperName);  
+						        }
+				        }
+				        
+				        
+				        //jjjjjj
 				        
 				        preface.add(table);
 				        
-				        
-//		        
+		
 		        addEmptyLine(preface, 1);
-		        
-		        addEmptyLine(preface, 1);
-		        
-//		        preface.add(new Paragraph(
-//		                " DIPLOMA : "+dipcode+" - "+dipName,smallBold));
-//		        
 		        
 		        preface.add(new Paragraph( "NAME: "+name,smallBold));
 		        preface.add( new Paragraph(" P.R.No: "+prCode+"\\"+prNo,smallBold));

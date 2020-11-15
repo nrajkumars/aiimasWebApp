@@ -2018,6 +2018,12 @@ function clearAllAtrbutesExamUpdate() {
 }
 
 
+function clearStudentPrint() {
+	document.getElementById("adprCode").value =   "";
+	document.getElementById("adpprNo").value =   "";
+	}
+
+
 function clearAllAtrbutesMarks() {
 		//document.getElementById("prCodeMark").value =   "";
 	// document.getElementById("prNoMark").value =   "";
@@ -2607,49 +2613,37 @@ function onPostAttendChart(data) {
 
 function printAdmInit(reportType) {
 	
-	console.log('printAdmInit clicked rajjj '+reportType);
+	console.log('printAdmInit clicked KEVIN '+reportType);
 	
-		var adprCode = document.getElementById('adprCode').value;
-		var adpprNo = document.getElementById('adpprNo').value;
-		
+	var adprCode = document.getElementById('adprCode').value;
+	var adpprNo = document.getElementById('adpprNo').value;
 	
-	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
-
+	
+	 if (adprCode == "" || adpprNo == "" ) {
+				alert("Please enter the values in P.R.Code and P.R.No")
+	  }else if(isNaN(adpprNo)){
+			alert("Please enter only numbers for PR No ")
+			
+	}else {
+	
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+	}
 }
+
 function onPostSearchAdmIniti(data) {
 
-	console.log('pdf length :' + data.length);
-	
-	var file = new Blob([data], {type: 'application/pdf'});
-    var fileURL = URL.createObjectURL(file);
-    window.open(fileURL);
-//    
-//	// If you want to use the image in your DOM:
-//	  var blob = new Blob([data], {type: "application/pdf"});
-//	const url = window.URL.createObjectURL(blob);
-//    const a = document.createElement('a');
-//    a.style.display = 'none';
-//    a.href = url;
-//    // the filename you want
-//    a.download = 'qpaper.pdf';
-//    document.body.appendChild(a);
-//    a.click();
-//    window.URL.revokeObjectURL(url);
-    /*
-	parsedData = JSON.parse(data);
-	
-	if(parsedData["Filename"]!=null){   
+	console.log('pdf  11 :' + data.length);
+
+		// if failure - call printViewStudentReportFail
 		
-		var e = document.getElementById('viewhref');
-	    if(e.style.display == 'block')
-	       e.style.display = 'none';
-	    else
-	       e.style.display = 'block';
 		
-			var filePath = parsedData["File name "];
-			document.getElementById('intimationpdf').value = filePath;
-	}
-	*/
+					var file = new Blob([data], {type: 'application/pdf'});
+   					 var fileURL = URL.createObjectURL(file);
+   					 window.open(fileURL);
+			
+			
+	
+
 }
 
 function openIntimationPDF() {

@@ -1761,7 +1761,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-red" id="adresult" onclick="cleartodo()">&nbsp;&nbsp;Clear</button><br> <br>
+			<button class="w3-button w3-red" id="adresult" onclick="clearStudentPrint()">&nbsp;&nbsp;Clear</button><br> <br>
 		  </div>
 		  
 		   <div class="w3-third">
@@ -2801,6 +2801,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <p style="color:red">Failed !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('update_admissionFail').style.display='none'">OK</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="printViewStudentReportFail" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('printViewStudentReportFail').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Generation of Report</h2>
+      <p style="color:red">Failed !!!</p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('printViewStudentReportFail').style.display='none'">OK</button>
     </div>
   </div>
 </div>

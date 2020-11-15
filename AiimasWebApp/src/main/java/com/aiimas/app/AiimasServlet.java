@@ -432,19 +432,29 @@ public class AiimasServlet extends HttpServlet {
 						
 				// GENERATING the PDF
 				
+	            System.out.println("DONE GENERATE  ********************** the DATA  --"+pdfData.toString());
+	            
+	            if(pdfData!=null && pdfData.size()>0) {
+	            	
+	            	PDFGenerator pdfGenerator = new PDFGenerator();
+					String gfile = pdfGenerator.PrintPDF(input, pdfData );
+					
+					System.out.println("DONE GENERATE the PDF file and saved "+gfile);
+					
+					Map retrunMap = new HashMap();
+					
+					retrunMap.put("Filename", gfile);
+					
+					writeResponse(retrunMap, resp);
+	            	
+	            }else {
+					String responsestatus = new String("Failure");
+					Map responseerror = new HashMap();
+					responseerror.put(responsestatus, "failed - Report not found for the Input");
+					writeResponse(responseerror, resp);
+	            }
+	            
 				
-				 
-				PDFGenerator pdfGenerator = new PDFGenerator();
-				String gfile = pdfGenerator.PrintPDF(input, pdfData );
-				
-				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
-				
-							
-				Map retrunMap = new HashMap();
-				
-				retrunMap.put("Filename", gfile);
-				
-				writeResponse(retrunMap, resp);
 			}else if (module != null && module.equals("getCurrentPRno")) {
 				
 				String prCode11 = request.getParameter("prCode11");
