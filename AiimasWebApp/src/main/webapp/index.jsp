@@ -2557,7 +2557,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<input class="w3-input w3-border"  id="dcDiplomaName" type="text"><br>
 		
 		<label class="w3-text-brown" ><b>Number of Papers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-		<input type="text"  maxlength="2" id="noPaper" size="2"><br><br>
+		<input type="text"  maxlength="2" id="noPaper1" size="2"><br><br>
 		
 		<p><center>
 		<button class="w3-button w3-blue" onclick="updateDiplomas()" >Update</button>
@@ -2711,7 +2711,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('saveMark1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">Update Marks</h2>
+      <h2 class="w3-wide">Update </h2>
       <p>Successful !!!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMark1').style.display='none'">OK</button>
@@ -2723,7 +2723,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
       <i onclick="document.getElementById('saveMarkFail1').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">Update Marks</h2>
+      <h2 class="w3-wide">Update </h2>
       <p style="color:red">Failed !!</p>
      
 	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('saveMarkFail1').style.display='none'">OK</button>

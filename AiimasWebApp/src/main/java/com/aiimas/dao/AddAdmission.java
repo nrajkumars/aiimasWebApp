@@ -246,7 +246,16 @@ public class AddAdmission extends BaseDao {
 		String deletefee = "DELETE from public.FEES where FE_PRCODE =? and FE_PRNO= ?";
 		executeUpdate(deletefee, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString())});
 		
+		String deleteACK = "DELETE from public.ackbox1 where AK_PRCODE =? and AK_PRNO= ?";
+		executeUpdate(deleteACK, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString())});
 		
+		String deleteAP = "DELETE from public.appear where AP_PRCODE =? and AP_PRNO= ?";
+		executeUpdate(deleteAP, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString())});
+		
+		String deleteMK = "DELETE from public.eappl where EA_PRCODE =? and EA_PRNO= ?";
+		executeUpdate(deleteMK, new Object[]{prCode11.toString(),Integer.parseInt(prNo1.toString())});
+		
+			
 		//public.EAPPL (EA_DIPCODE, EA_PRCODE, EA_PRNO
 		
 		//public.ACKBOX1 (AK_DIPCODE, AK_PRCODE, AK_PRNO,

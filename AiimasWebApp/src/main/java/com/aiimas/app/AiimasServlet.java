@@ -650,6 +650,68 @@ public class AiimasServlet extends HttpServlet {
 					System.out.println(" RESPONSE GOT in MAP --  UPDATE  Admission success");
 					
 				
+				} if(module != null && module.equals("updateDiplomas")) {
+					
+					String diplomaName = request.getParameter("diplomaName");
+					String dcDiplomaName = request.getParameter("dcDiplomaName");
+					String noPaper = request.getParameter("noPaper1");
+					String diplomaCode1 = request.getParameter("diplomaCode1");
+					
+					
+								
+					AddAdmission addAdmission = new AddAdmission();
+					Map input = new HashMap();
+					input.put("diplomaName", diplomaName);
+					input.put("dcDiplomaName", dcDiplomaName);
+					input.put("noPaper", noPaper);
+					input.put("diplomaCode1", diplomaCode1);
+					
+					System.out.println(" **** calling UPDATE -------------UPDATE-----------  Diploma ");
+					Maintenance maintenance = new Maintenance();
+					
+					maintenance.saveDiplomaDetail(input);
+//					if(action != null && action.equals("Update")) {
+//						
+//						System.out.println(" **** calling UPDATE --------Update----------------  Diploma ");
+//					}else if(action != null && action.equals("Insert")) {
+//						maintenance.insertDiplomaData(input);
+//						System.out.println(" **** calling UPDATE ----------Insert--------------  Diploma ");
+//					}
+					
+					System.out.println(" RESPONSE GOT in MAP --  UPDATE Diploma successsss");
+					
+					Map response1 = new HashMap();
+					response1.put("Success", " UPDATE Diploma is Done successfully");
+					
+					writeResponse(response1, resp);
+					//end of UPDATE admission
+				}if(module != null && module.equals("updateInstitue")) {
+					
+					String instituteName = request.getParameter("instituteName");
+					String instituteAddress = request.getParameter("instituteAddress");
+					String institutePhNumbers = request.getParameter("institutePhNumbers");
+					String insituteCode = request.getParameter("insituteCode");
+					
+					
+								
+					AddAdmission addAdmission = new AddAdmission();
+					Map input = new HashMap();
+					input.put("instituteName", instituteName);
+					input.put("instituteAddress", instituteAddress);
+					input.put("institutePhNumbers", institutePhNumbers);
+					input.put("insituteCode", insituteCode);
+					
+					System.out.println(" **** calling UPDATE  Institue");
+					Maintenance maintenance = new Maintenance();
+					maintenance.updateInstitue(input);
+					
+					System.out.println(" RESPONSE GOT in MAP --  UPDATE Institue successsss");
+					
+					Map response1 = new HashMap();
+					response1.put("Success", " UPDATE Institue is Done successfully");
+					
+					writeResponse(response1, resp);
+					//end of UPDATE admission
 				}else if (module != null && module.equals("ExamApplication")) {
 
 					// GET EXAM Details

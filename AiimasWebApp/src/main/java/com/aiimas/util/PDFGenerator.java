@@ -254,10 +254,12 @@ import com.itextpdf.text.Section;
 	            throws DocumentException, Exception {
 	    	
 	    	
-//	    	Object ALsemMonthName =  input.get("ALsemMonthName");
-//			Object ALsemYearName =  input.get("ALsemYearName");
-//			Object ALexamCenterCode =  input.get("ALexamCenterCode");
-//	    	
+	    	Object ACsemMonthName =  input.get("ACsemMonthName");
+			Object ACsemYearName =  input.get("ACsemYearName");
+			Object ACduration =  input.get("ACduration");
+			Object ACdiplomaCode =  input.get("ACdiplomaCode");
+			Object ACexamCenterCode =  input.get("ACexamCenterCode");
+    	
 	 			
 			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in DATA MAP -- "+data);
 			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in INPUT MAP -- "+input);
@@ -273,10 +275,34 @@ import com.itextpdf.text.Section;
 	   
 	        //addEmptyLine(preface, 1);
 	        //TODo
-	        String sesMonth = new String ("FEB");
-			String sesYear = new String("2006");
-			//String durationString = new String("SIX MONTHS");
-			String durationString = new String("ONE YEAR-PG");
+//	        String sesMonth = new String ("FEB");
+//			String sesYear = new String("2006");
+//			//String durationString = new String("SIX MONTHS");
+//			String durationString = new String("ONE YEAR-PG");
+			
+
+			String durationString = new String("");
+			String sesMonth = new String ("");
+			String sesYear = new String("");
+			String center = new String("");
+			String dipCode = new String ("");
+;
+			
+			if((ACsemMonthName != null )) {
+				sesMonth= ACsemMonthName.toString();
+			}
+			if((ACsemYearName != null )) {
+				sesYear= ACsemYearName.toString();
+			}
+			if((ACduration != null )) {
+				durationString= ACduration.toString();
+			}
+			if((ACexamCenterCode != null )) {
+				center= ACexamCenterCode.toString();
+			}
+			if((ACdiplomaCode != null )) {
+				dipCode= ACdiplomaCode.toString();
+			}
 		
 	    
 	        preface.add(new Paragraph("ATTENDANCE CHART - "+sesMonth+" "+sesYear , catFont));
@@ -285,11 +311,11 @@ import com.itextpdf.text.Section;
 	        
 	  	        
 	        preface.add(new Paragraph(
-	                " COURSE: ", smallBold));
+	                " COURSE: "+dipCode, smallBold));
 	        preface.add(new Paragraph(
-	                " CENTRE: ", smallBold));
+	                " CENTRE: "+center, smallBold));
 	        preface.add(new Paragraph(
-	                " DURATION: ", smallBold));
+	                " DURATION: "+durationString, smallBold));
 	       // addEmptyLine(preface, 1);
 	        
 	        preface.add(new Paragraph(

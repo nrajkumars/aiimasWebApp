@@ -16,10 +16,13 @@ public class Maintenance extends BaseDao {
 	
 		String insertEmployer = "insert into public.dipmast (dipcode, dipname, nofpapr, dcDiplomaName) values (?,?,?,?)";
 		executeUpdate(insertEmployer, new String[]{diplomaCode1.toString(), diplomaName.toString(), noPaper.toString(), dcDiplomaName.toString() });
+		System.out.println(" *******************  insertDiplomaData ");
 		
 	}
 	
 public void saveDiplomaDetail(Map data) throws Exception {
+	
+	System.out.println(" *******************  saveDiplomaDetail ");
 		
 		Object diplomaCode1 =  data.get("diplomaCode1");
 		Object diplomaName =  data.get("diplomaName");
@@ -29,7 +32,23 @@ public void saveDiplomaDetail(Map data) throws Exception {
 		String updateEmployer = "update public.dipmast set dipname=?,nofpapr=?,dcDiplomaName=? where dipcode=?";
 		executeUpdate(updateEmployer, new String[]{diplomaName.toString(),noPaper.toString(),dcDiplomaName.toString(), diplomaCode1.toString()});
 		
+		System.out.println(" *******************  saveDiplomaDetail ");
+		
 	}
+
+public void updateInstitue(Map data) throws Exception {
+	
+	Object instituteName =  data.get("instituteName");
+	Object instituteAddress =  data.get("instituteAddress");
+	Object institutePhNumbers =  data.get("institutePhNumbers");
+	Object insituteCode =  data.get("insituteCode");
+	
+	System.out.println("updateInstitue --"+data.toString());
+	
+	String updateEmployer = "update public.company set coyname=?,coyadd1=?,coyadd2=? where coycode=?";
+	executeUpdate(updateEmployer, new String[]{instituteName.toString(),instituteAddress.toString(),institutePhNumbers.toString(), insituteCode.toString()});
+	
+}
 	
 	
 	public Map getDiplomaDetails(Map input) throws Exception  {

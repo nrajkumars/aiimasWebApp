@@ -1454,6 +1454,144 @@ function onPostgetMarkUpdateData(data) {
 	}
 		
 }
+
+//Doing now
+function updateDiplomas() {
+	
+	console.log('UPDATE updateDiplomas rajjj ');
+	
+	var diplomaName = document.getElementById('diplomaName').value;
+	var dcDiplomaName = document.getElementById('dcDiplomaName').value;
+	var noPaper = document.getElementById('noPaper1').value;
+	var diplomaCode1 = document.getElementById('diplomaCode1').value;
+	
+	
+	console.log('UPDATE updateDiplomas rajjj '+diplomaCode1);
+	
+	if (diplomaCode1 == "" || dcDiplomaName == "" ||noPaper == ""  ) {
+			alert("Please enter a Diploma Code, Name and the No of paper");
+	  }else{
+		
+			postAjax('rs',{"app":"AiimasPost","module":"updateDiplomas","action":"Update","diplomaCode1":diplomaCode1,"dcDiplomaName":dcDiplomaName,"noPaper1":noPaper1,"diplomaName":diplomaName}, onPostUpdateDiploma);
+		
+	}
+}
+
+//todo here  
+
+function onPostUpdateDiploma(data) {
+	
+	console.log('RESPONSE POST in   onPostUpdateDiploma  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+			console.log('save exam response '+JSON.stringify(parsedData1));	
+			
+			var stringformjsondata = JSON.stringify(parsedData1);
+			
+			if (stringformjsondata != null) {
+			
+				if(stringformjsondata.includes('Success')){ 
+					document.getElementById('saveMark1').style.display='block';
+				}else if(stringformjsondata.includes('Failure')){
+					document.getElementById('saveMarkFail1').style.display='block';
+				}
+			}
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+			
+
+
+		} catch (e) {
+				console.log("data onPost update onPostUpdateInstitue  error, Reason"+e.toString());
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
+
+
+
+// UPDATE update Institue
+function updateInstitue() {
+	
+	console.log('UPDATE updateInstitue rajjj ');
+	
+	var insituteCode = document.getElementById('insituteCode').value;
+	var instituteName = document.getElementById('instituteName').value;
+	var instituteAddress = document.getElementById('instituteAddress').value;
+	var institutePhNumbers = document.getElementById('institutePhNumbers').value;
+	
+	
+	console.log('UPDATE updateInstitue rajjj '+insituteCode);
+	
+	if (insituteCode == "" ) {
+			alert("Please select a Institute")
+	  }else{
+			postAjax('rs',{"app":"AiimasPost","module":"updateInstitue","action":"updateInstitue","insituteCode":insituteCode,"instituteName":instituteName,"instituteAddress":instituteAddress,"institutePhNumbers":institutePhNumbers}, onPostUpdateInstitue);
+	}
+}
+
+//todo here
+
+function onPostUpdateInstitue(data) {
+	
+	console.log('RESPONSE POST in   onPostUpdateInstitue  app .JS:' + data);
+	var parsedData1;
+		
+	if (data != null) {
+						
+					
+			try {
+			// Parse JSON
+			parsedData1 = JSON.parse(data);
+			
+			console.log('save exam response '+JSON.stringify(parsedData1));	
+			
+			var stringformjsondata = JSON.stringify(parsedData1);
+			
+			if (stringformjsondata != null) {
+			
+				if(stringformjsondata.includes('Success')){ 
+					document.getElementById('saveMark1').style.display='block';
+				}else if(stringformjsondata.includes('Failure')){
+					document.getElementById('saveMarkFail1').style.display='block';
+				}
+			}
+			
+			//TODO SAKTHI  LOAD the exam application screen with this values
+			
+
+
+		} catch (e) {
+				console.log("data onPost update onPostUpdateInstitue  error, Reason"+e.toString());
+			}
+		
+		
+		
+
+		}else{
+		//alert('else');
+		//document.getElementById('resultTable1').style.display = "hide";
+		}
+
+}
+
+
+///
 		
 
 // UPDATE MARKS
@@ -2663,7 +2801,15 @@ function searchDiplomas() {
 	
 		var diplomaCode1 = document.getElementById('diplomaCode1').value.toUpperCase();
 		
-		postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchDiploma","diplomaCode1":diplomaCode1,}, onPostSearchDiplomas);
+		
+		if (diplomaCode1 == ""){
+			
+				alert("Please enter a  Diploma code");
+			
+		}else {
+		
+			postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchDiploma","diplomaCode1":diplomaCode1,}, onPostSearchDiplomas);
+		}
 
 }
 function onPostSearchDiplomas(data) {
@@ -2682,8 +2828,10 @@ function onPostSearchDiplomas(data) {
 			}
 			
 			if(parsedData["nofpapr"]!=null){
-				document.getElementById("noPaper").value =  parsedData["nofpapr"];
+				document.getElementById("noPaper1").value =  parsedData["nofpapr"];
 			}
+	}else{
+		alert("NO Diploma found for this code");
 	}
 }
 
@@ -2728,9 +2876,8 @@ function clearBtn(){
 function clearDiplomaUpdation(){
 	document.getElementById('diplomaName').value = "";
 	document.getElementById('dcDiplomaName').value = "";
-	document.getElementById("noPaper").value = "";
+	document.getElementById("noPaper1").value = "";
 	document.getElementById('diplomaCode1').value = "";
-	
 	
 }
 

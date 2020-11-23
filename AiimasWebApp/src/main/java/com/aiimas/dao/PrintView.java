@@ -380,11 +380,52 @@ public class PrintView extends BaseDao {
 		
 		// get hard code for now
 		
-		String dipCode = new String ("FM");
-		String duration = new String("SIX MONTHS");
-		String sesMonth = new String ("FEB");
-		String sesYear = new String("2006");
-		String center = new String("BHI");
+//		String dipCode = new String ("FM");
+//		String duration = new String("SIX MONTHS");
+//		String sesMonth = new String ("FEB");
+//		String sesYear = new String("2006");
+//		String center = new String("BHI");
+		
+		String dipCode = new String ("");
+		String duration = new String("");
+		String sesMonth = new String ("");
+		String sesYear = new String("");
+		String center = new String("");
+		
+		if((ACsemMonthName != null )) {
+			sesMonth= ACsemMonthName.toString();
+		}
+		if((ACsemYearName != null )) {
+			sesYear= ACsemYearName.toString();
+		}
+		if((ACduration != null )) {
+			duration= ACduration.toString();
+		}
+		if((ACdiplomaCode != null )) {
+			dipCode= ACdiplomaCode.toString();
+			if(dipCode.contains("/")) {
+				int subcount = dipCode.indexOf("/");
+				dipCode = dipCode.substring(0, subcount-1);
+			}
+		}
+		if((ACexamCenterCode != null )) {
+			center= ACexamCenterCode.toString();
+			if(center.contains("/")) {
+				int subcount = center.indexOf("/");
+				center= center.substring(subcount+1);
+				center= center.trim();
+			}
+		}
+		
+		
+		
+		
+		
+		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+dipCode);
+		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+duration );
+		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+sesMonth );
+		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+sesYear);
+		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+center );
 		
 		
 		System.out.println(" INSIDE PRINT VIEW  getAttendanceChart--  going to run the SQL = "+input.toString() );
