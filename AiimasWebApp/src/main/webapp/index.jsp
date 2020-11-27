@@ -1810,6 +1810,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	 </div>
 	 
 	 
+	<div id="printexampdf" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('printexampdf').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide"></h2>
+      <p>NO DATA FOUND </p>
+     
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('printexampdf').style.display='none'">OK</button>
+    </div>
+  </div>
+</div> 
+	 
+	 
+	 
 	 
 	 <!--  Attendance LIST   ??? -->
 	 
