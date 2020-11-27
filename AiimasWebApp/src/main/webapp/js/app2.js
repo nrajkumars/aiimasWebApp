@@ -251,6 +251,14 @@ function onPostgetExamUpdateData1(data) {
 			}
 			
 			if(parsedData1['Exam'] !== undefined){
+				//alert('hi')
+				//exam pass flag  ea_passflg":0
+				var examPassFlagvar = parsedData1.Exam["ea_passflg"];
+				//alert(examPassFlagvar);
+				//$('select[name="examPassFlag"]').val('0').change();
+				//$( <selector> ).find('option[value="<required-value>"]').attr('selected','selected')
+				//$('select[name="examPassFlag"]').val('0').change();
+				$('#examPassFlag').val(examPassFlagvar);
 				document.getElementById("semMonthExam1").value =  parsedData1.Exam["ea_sesmon"];
 				document.getElementById("semYearExam1").value =  parsedData1.Exam["ea_sesyr"];
 				//document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
@@ -2768,16 +2776,86 @@ function printAdmInit(reportType) {
 	}
 }
 
+function myparseData(data) {
+    if (!data) return {};
+    if (typeof data === 'object') return data;
+    if (typeof data === 'string') return JSON.parse(data);
+
+    return {};
+}
+
 function onPostSearchAdmIniti(data) {
 
-	console.log('pdf  11 :' + data.length);
+	if (data != null) {
+		
+		parsedData1 = myparseData(data);
+		
+		//console.log(' parseddata'+ JSON.stringify(data)   );
+			try {
+			// Parse JSON
+			console.log(' parsedData1'+parsedData1);
+			console.log(' parsedData1[Failure] '+parsedData1['Failure']);
+			
+			var file = new Blob([data], {type: 'application/pdf'});
+			var fileURL = URL.createObjectURL(file);
+			
+			//var url = $("#fileURL").val(); 
+			var url = fileURL; 
+            if (url != "") { 
+                $.ajax({ 
+                    url: url, 
+                    type: 'HEAD', 
+                    error: function()  
+                    { 
+                        //$("#output").text("File doesn't exists"); 
+                        document.getElementById('printexampdf').style.display='block';
+                        
+                    }, 
+                    success: function()  
+                    { 
+                        //$("#output").text('File exists'); 
+                    	 window.open(fileURL);
+                        
+                    } 
+                }); 
+            }
+			
+			
+			/*
+			if(parsedData1['Failure'] !== undefined){
+				 document.getElementById('printexampdf').style.display='block';
+			}
 
-		// if failure - call printViewStudentReportFail
+			if( typeof data == 'object'){
+				var file = new Blob([data], {type: 'application/pdf'});
+				 var fileURL = URL.createObjectURL(file);
+				 console.log('fileURL  '+fileURL);
+				 console.log('fileURL.length '+fileURL.length);
+				 if(fileURL.length>1){
+					 window.open(fileURL);
+				 }else{
+					
+				 }
+				 
+			}else
+				 console.log('else part '+data);
+			*/
+			
+			}catch (e) {
+				console.log("data error, Reason"+e.toString());
+			}
+			
+	
+	
+	
+	
+
+	}
+	
 		
 		
-					var file = new Blob([data], {type: 'application/pdf'});
-   					 var fileURL = URL.createObjectURL(file);
-   					 window.open(fileURL);
+		
+					
 			
 			
 	
