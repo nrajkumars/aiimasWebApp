@@ -2759,6 +2759,8 @@ function onPostAttendChart(data) {
 
 function printAdmInit(reportType) {
 	
+
+	
 	console.log('printAdmInit clicked KEVIN '+reportType);
 	
 	var adprCode = document.getElementById('adprCode').value;
@@ -2771,26 +2773,69 @@ function printAdmInit(reportType) {
 			alert("Please enter only numbers for PR No ")
 			
 	}else {
+		
+		postAjax('rs',{"app":"AiimasPost","module":"pre_printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPreCheck);
+		//getResult = onPreCheck(data) ;
+		//console.log('getResult >>>>>> '+getResult);
+		//getResult = function onPreCheck(data) {
+		//	console.log(' getResult stringify :- '+ JSON.stringify(data)   );
+		//}
 	
-		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+		//postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+	}
+}
+
+function onPreCheck(data) {
+	console.log(' getResult stringify :- '+ JSON.stringify(data)   );
+	if (data != null) {
+		
+		parsedData = JSON.parse(data);
+		if(parsedData['Success'] == void(0) || typeof parsedData['Success'] == 'undefined'){
+		    console.log('success is undefined');		    
+		    document.getElementById('printexampdf').style.display='block';		    
+		}else{
+			console.log('Success :: '+parsedData['Success']);
+			var adprCode = document.getElementById('adprCode').value;
+			var adpprNo = document.getElementById('adpprNo').value;
+			var reportTypeVal = parsedData['Success'];
+			postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportTypeVal,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+		}
+		
 	}
 }
 
 function myparseData(data) {
     if (!data) return {};
-    if (typeof data === 'object') return data;
-    if (typeof data === 'string') return JSON.parse(data);
+    if (typeof data === 'object'){
+    	console.log('type is object');
+    	return data;
+    }
+    if (typeof data === 'string'){
+    	console.log('type is String');
+    	return JSON.parse(data);
+    }
 
     return {};
 }
 
-function onPostSearchAdmIniti(data) {
+function UrlExists(url, cb) {
+    jQuery.ajax({
+        url: url,
+        dataType: 'text',
+        type: 'GET',
+        complete: function (xhr) {
+            if (typeof cb === 'function')
+                cb.apply(this, [xhr.status]);
+        }
+    });
+}
 
+
+function onPostSearchAdmIniti(data) {
+    console.clear();
 	if (data != null) {
-		
 		parsedData1 = myparseData(data);
-		
-		//console.log(' parseddata'+ JSON.stringify(data)   );
+		console.log("parserd data"+parsedData1.Failure);
 			try {
 			// Parse JSON
 			console.log(' parsedData1'+parsedData1);
@@ -2798,68 +2843,16 @@ function onPostSearchAdmIniti(data) {
 			
 			var file = new Blob([data], {type: 'application/pdf'});
 			var fileURL = URL.createObjectURL(file);
-			
+			console.log(' fileURL '+fileURL);
 			//var url = $("#fileURL").val(); 
 			var url = fileURL; 
-            if (url != "") { 
-                $.ajax({ 
-                    url: url, 
-                    type: 'HEAD', 
-                    error: function()  
-                    { 
-                        //$("#output").text("File doesn't exists"); 
-                        document.getElementById('printexampdf').style.display='block';
-                        
-                    },    
-                    success: function()  
-                    { 
-                        //$("#output").text('File exists'); 
+			console.log('file URL '+url);
+		
                     	 window.open(fileURL);
-                        
-                    } 
-                }); 
-            }
-			
-			
-			/*
-			if(parsedData1['Failure'] !== undefined){
-				 document.getElementById('printexampdf').style.display='block';
-			}
-
-			if( typeof data == 'object'){
-				var file = new Blob([data], {type: 'application/pdf'});
-				 var fileURL = URL.createObjectURL(file);
-				 console.log('fileURL  '+fileURL);
-				 console.log('fileURL.length '+fileURL.length);
-				 if(fileURL.length>1){
-					 window.open(fileURL);
-				 }else{
-					
-				 }
-				 
-			}else
-				 console.log('else part '+data);
-			*/
-			
 			}catch (e) {
-				console.log("data error, Reason"+e.toString());
+				console.log("data error, Reason "+e.toString());
 			}
-			
-	
-	
-	
-	
-
 	}
-	
-		
-		
-		
-					
-			
-			
-	
-
 }
 
 function openIntimationPDF() {
@@ -2929,6 +2922,7 @@ function postAjax(url, data, callback) {
 	    xhr.send(params);
 	    return xhr;
 }
+
 function postAjaxReturnBinary(url, data, callback) {
     var params = typeof data == 'string' ? data : Object.keys(data).map(
             function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
