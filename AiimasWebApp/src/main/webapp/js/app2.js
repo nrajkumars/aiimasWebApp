@@ -1,3 +1,32 @@
+function logoutaiimas() {
+	
+	console.log('logoutaiimas');
+	
+	postAjax('rs',{"app":"AiimasPost","module":"logoutaiimas","action":"logoutaiimas"}, onPostlogout);
+	
+}
+
+function onPostlogout(data) {
+	
+	
+	
+	if (data != null) {
+
+		try{
+			parsedData = JSON.parse(data);
+			
+			if(parsedData["max"]!=null){
+					console.log('RESPONSE POST  onPostGetPRNo in app .JS:' + parsedData["max"]);
+			
+				document.getElementById("prNo1").value =  parsedData["max"] +1;
+			}
+			} catch (e) {
+				console.log("data error, Reason"+e.toString());
+			}
+	}
+}
+
+
 function searchByPrCodePrNo() {
 	
 	console.log('searchByPrCodePrNo  on VERIFICATION clicked rajjj ');
@@ -223,13 +252,7 @@ function onPostgetExamUpdateData1(data) {
 				
 				
 				
-				var ubutton = document.getElementById('resultUpdateExamApp1');
-				if (ubutton.style.display === "none") {
-					ubutton.style.display = "block";
-				  } else {
-					  ubutton.style.display = "none";
-				  }
-				
+							
 				
 			}else {		
 				document.getElementById('addExamGetExamDataLoadFail1').style.display='block';
@@ -251,14 +274,6 @@ function onPostgetExamUpdateData1(data) {
 			}
 			
 			if(parsedData1['Exam'] !== undefined){
-				//alert('hi')
-				//exam pass flag  ea_passflg":0
-				var examPassFlagvar = parsedData1.Exam["ea_passflg"];
-				//alert(examPassFlagvar);
-				//$('select[name="examPassFlag"]').val('0').change();
-				//$( <selector> ).find('option[value="<required-value>"]').attr('selected','selected')
-				//$('select[name="examPassFlag"]').val('0').change();
-				$('#examPassFlag').val(examPassFlagvar);
 				document.getElementById("semMonthExam1").value =  parsedData1.Exam["ea_sesmon"];
 				document.getElementById("semYearExam1").value =  parsedData1.Exam["ea_sesyr"];
 				//document.getElementById("examStateCode1").value =  parsedData1.Exam["ea_stcode"];
@@ -1166,10 +1181,8 @@ function onPostgetMarkData(data) {
 			var tbodyRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 			// Insert a row at the end of table
 			var newRow = tbodyRef.insertRow();
-
 			// Insert a cell at the end of the row
 			var newCell = newRow.insertCell();
-
 			// Append a text node to the cell
 			var newText = document.createTextNode('new row');
 			newCell.appendChild(newText);*/
@@ -1204,8 +1217,6 @@ function onPostgetMarkData(data) {
 			}
 			paperNoPaperName.paperList.push(paperList);
 			console.log(paperNoPaperName);
-
-
 			console.log(JSON.stringify(paperNoPaperName));			
 			console.log('---------'+parsedData1pr);*/
 			//Now you can sort by any field at will...
@@ -1966,15 +1977,10 @@ function selectItem(selector, label) {
 		
 		
 		
-
 		}else{
 		//alert('else');
 		//document.getElementById('resultTable1').style.display = "hide";
 		}
-
-
-
-
 }*/
 function loadDate(getField){
 	
@@ -2759,8 +2765,6 @@ function onPostAttendChart(data) {
 
 function printAdmInit(reportType) {
 	
-
-	
 	console.log('printAdmInit clicked KEVIN '+reportType);
 	
 	var adprCode = document.getElementById('adprCode').value;
@@ -2773,86 +2777,25 @@ function printAdmInit(reportType) {
 			alert("Please enter only numbers for PR No ")
 			
 	}else {
-		
-		postAjax('rs',{"app":"AiimasPost","module":"pre_printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPreCheck);
-		//getResult = onPreCheck(data) ;
-		//console.log('getResult >>>>>> '+getResult);
-		//getResult = function onPreCheck(data) {
-		//	console.log(' getResult stringify :- '+ JSON.stringify(data)   );
-		//}
 	
-		//postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportType,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
 	}
 }
-
-function onPreCheck(data) {
-	console.log(' getResult stringify :- '+ JSON.stringify(data)   );
-	if (data != null) {
-		
-		parsedData = JSON.parse(data);
-		if(parsedData['Success'] == void(0) || typeof parsedData['Success'] == 'undefined'){
-		    console.log('success is undefined');		    
-		    document.getElementById('printexampdf').style.display='block';		    
-		}else{
-			console.log('Success :: '+parsedData['Success']);
-			var adprCode = document.getElementById('adprCode').value;
-			var adpprNo = document.getElementById('adpprNo').value;
-			var reportTypeVal = parsedData['Success'];
-			postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport","action":reportTypeVal,"adprCode":adprCode,"adpprNo":adpprNo,}, onPostSearchAdmIniti);
-		}
-		
-	}
-}
-
-function myparseData(data) {
-    if (!data) return {};
-    if (typeof data === 'object'){
-    	console.log('type is object');
-    	return data;
-    }
-    if (typeof data === 'string'){
-    	console.log('type is String');
-    	return JSON.parse(data);
-    }
-
-    return {};
-}
-
-function UrlExists(url, cb) {
-    jQuery.ajax({
-        url: url,
-        dataType: 'text',
-        type: 'GET',
-        complete: function (xhr) {
-            if (typeof cb === 'function')
-                cb.apply(this, [xhr.status]);
-        }
-    });
-}
-
 
 function onPostSearchAdmIniti(data) {
-    console.clear();
-	if (data != null) {
-		parsedData1 = myparseData(data);
-		console.log("parserd data"+parsedData1.Failure);
-			try {
-			// Parse JSON
-			console.log(' parsedData1'+parsedData1);
-			console.log(' parsedData1[Failure] '+parsedData1['Failure']);
-			
-			var file = new Blob([data], {type: 'application/pdf'});
-			var fileURL = URL.createObjectURL(file);
-			console.log(' fileURL '+fileURL);
-			//var url = $("#fileURL").val(); 
-			var url = fileURL; 
-			console.log('file URL '+url);
+
+	console.log('pdf  11 :' + data.length);
+
+		// if failure - call printViewStudentReportFail
 		
-                    	 window.open(fileURL);
-			}catch (e) {
-				console.log("data error, Reason "+e.toString());
-			}
-	}
+		
+					var file = new Blob([data], {type: 'application/pdf'});
+   					 var fileURL = URL.createObjectURL(file);
+   					 window.open(fileURL);
+			
+			
+	
+
 }
 
 function openIntimationPDF() {
@@ -2922,7 +2865,6 @@ function postAjax(url, data, callback) {
 	    xhr.send(params);
 	    return xhr;
 }
-
 function postAjaxReturnBinary(url, data, callback) {
     var params = typeof data == 'string' ? data : Object.keys(data).map(
             function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }

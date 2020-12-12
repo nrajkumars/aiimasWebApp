@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.aiimas.dao.AddAdmission;
@@ -213,6 +214,29 @@ public class AiimasServlet extends HttpServlet {
 				
 				writeResponse(verifyedFullValues, resp);
 				
+				
+			}else if (module != null && module.equals("logoutaiimas")) {
+				System.out.println("Inside module Verification  by name : " + action);
+				
+				 	resp.setContentType("text/html");  
+		            PrintWriter out=resp.getWriter();  
+		              
+		            request.getRequestDispatcher("link.html").include(request, resp);  
+		              
+		            HttpSession session=request.getSession();  
+		            session.invalidate();  
+		              
+		            out.print("You are successfully logged out!");  
+		              
+		            out.close();  
+
+			
+				
+			//	Map verifyedbyName = verification.getVerficationByName(input);
+				
+			//	System.out.println(" RESPONSE   verification by NAME GOT in MAP -- "+verifyedbyName);
+				
+			//	writeResponse(verifyedbyName, resp);
 				
 			}else if (module != null && module.equals("verifyByName")) {
 				System.out.println("Inside module Verification  by name : " + action);

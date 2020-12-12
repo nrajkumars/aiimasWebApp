@@ -72,11 +72,7 @@ import com.itextpdf.text.Section;
 	            document.open();
 	            addMetaData(document);
 	         //   addLOGOPage(document); // add the header image
-	            
-	            
-				
-			
-	            
+	            	            	            
 	            
 	            // for each Report this has to be changed
 	            if(action != null && action.equals("QPaperList")) {  // Question paper list 
@@ -139,11 +135,41 @@ import com.itextpdf.text.Section;
         preface.add(new Paragraph("QUESTION PAPER LIST", catFont));
 
 	        //addEmptyLine(preface, 1);
+        
+                   
+    	
+		Object QAsemMonthName =  input.get("QAsemMonthName");
+		Object QAsemYearName =  input.get("QAsemYearName");
+		Object QAexamCenterCode =  input.get("QAexamCenterCode");
+	//	Object ALexamCenterCode =  input.get("ALexamCenterCode"); session
+		
+		 String sesMonth = new String ("");
+     	 String sesYear = new String("");
+     	String center = new String("");
+		
+		if((QAexamCenterCode != null )) {
+			center= QAexamCenterCode.toString();
+//			if(center.contains("/")) {
+//				int subcount = center.indexOf("/");
+//				center= center.substring(subcount+1);
+//				center= center.trim();
+//			}
+		}
+		
+      
+     	 
+        if (QAsemMonthName!=null) {
+        	sesMonth = QAsemMonthName.toString();
+        }
+        
+        if(QAsemYearName!=null) {
+        	 sesYear = QAsemYearName.toString();;
+         }  
+        
+        
+        ///
 	        
-	  	        
-	        //TODo
-	        String sesMonth = new String ("AUG");
-			String sesYear = new String("2020");
+
 	        
 	        preface.add(new Paragraph(
 	                " Question paper pick list for the "+sesMonth+" "+sesYear+" Examination.", smallBold));
@@ -151,9 +177,8 @@ import com.itextpdf.text.Section;
 	        addEmptyLine(preface, 1);
 	 
 	        preface.add(new Paragraph(
-	                " CENTRE: ", smallBold));
-	        preface.add(new Paragraph(
-	                " SESSION: ", smallBold));
+	                " CENTRE: "+center, smallBold));
+	     //   preface.add(new Paragraph( " SESSION: ", smallBold));
 	       // addEmptyLine(preface, 1);
 	        
 	

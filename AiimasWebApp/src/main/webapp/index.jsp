@@ -127,7 +127,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a href="#addressUpdate" class="w3-bar-item w3-button">Institute Update</a>
     </div>
 
-
+<!-- 	<a href="#addressUpdate" class="w3-bar-item w3-button"><b>Exit</b></a> -->
 	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'"><b>Exit</b></a> 
 
   </div>
@@ -281,7 +281,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <script> loadDate('enterDate');</script>
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCode11"  value ='APR13'>
+			<input class="w3-input w3-border " type="text"  id="prCode11"  >
 		  </div>
 				  
 		  <div class="w3-third">
@@ -441,12 +441,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCode111" value='APR13'  >
+			<input class="w3-input w3-border " type="text"  id="prCode111"  >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text"   id="prNo11"  value ='286' >
+			<input class="w3-input w3-border " type="text"   id="prNo11"  >
 		  </div>
 		  
 		  
@@ -639,12 +639,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCodeExam" value='APR13'  >
+			<input class="w3-input w3-border " type="text"  id="prCodeExam"  >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text"   id="prNoExam"  value ='286' >
+			<input class="w3-input w3-border " type="text"   id="prNoExam"   >
 		  </div>
 		  
 <div id="addExamGetExamDataLoad" class="w3-modal">
@@ -833,12 +833,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCodeExam1" value='APR13'  >
+			<input class="w3-input w3-border " type="text"  id="prCodeExam1"  >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text"   id="prNoExam1"  value ='286' >
+			<input class="w3-input w3-border " type="text"   id="prNoExam1"  >
 		  </div>
 		  
 <div id="addExamGetExamDataLoad1" class="w3-modal">
@@ -1006,7 +1006,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 <p></p>
 	<center><table id="tbsty" align="center" width="15%"  border="0" cellspacing="0" cellpadding="0"><tr><td>
- 		<td>	<button class="w3-button w3-orange" id="resultUpdateExamApp1" onclick="updateExamApplication()" style="display:none" >Update</button>  </td>
+ 		<td>	<button class="w3-button w3-orange" id="resultUpdateExamApp1" onclick="updateExamApplication()" >Update</button>  </td>
  			<!--  during update add a flg for pass field  todo -->
 		<td>	<button class="w3-button w3-red" onclick="clearAllAtrbutesExamUpdate()" >Clear</button> </td></tr></table>
 </center>
@@ -1067,12 +1067,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCodeMark" value='APR13'  >
+			<input class="w3-input w3-border " type="text"  id="prCodeMark"  >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text"   id="prNoMark"  value ='286' >
+			<input class="w3-input w3-border " type="text"   id="prNoMark"  >
 		  </div>
 		  
 		  
@@ -1389,12 +1389,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		<div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text"  id="prCodeMark1" value='APR13'  >
+			<input class="w3-input w3-border " type="text"  id="prCodeMark1"  >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text"   id="prNoMark1"  value ='7038' >
+			<input class="w3-input w3-border " type="text"   id="prNoMark1"   >
 		  </div>
 		  
 		  
@@ -1751,12 +1751,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="adprCode" value='APR13' >
+			<input class="w3-input w3-border " type="text" id="adprCode"  >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" id="adpprNo"  value ='7038' >
+			<input class="w3-input w3-border " type="text" id="adpprNo"  >
 		  </div>
 
 		  <div class="w3-third">
@@ -1960,7 +1960,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		 <div class="w3-third">
 			
 			<label class="w3-text-brown"><b>Diploma Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="qdiplomaCode" value="BM" >
+			<input class="w3-input w3-border " type="text" id="qdiplomaCode" >
 		
 		  
 		  </div>
@@ -2345,12 +2345,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<p>
 		 <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="prCode"  placeholder="APR13">
+			<input class="w3-input w3-border " type="text" id="prCode" >
 		  </div>
 				  
 		  <div class="w3-third">
 			<label class="w3-text-red"><b>P.R.No:</b></label>
-			<input class="w3-input w3-border " type="text" id="prNo"  placeholder="286">
+			<input class="w3-input w3-border " type="text" id="prNo" >
 		  </div>
 
 		  <div class="w3-third">
@@ -2475,10 +2475,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<td >Exam End Date</td>
 				<td id="ea_entdate"></td> 
 			</tr>
-			<tr>
-				<td >Exam Pass Flag</td>
-				<td id="ea_passflg"></td> 
-			</tr>
+		
 			
 			
 			<tr>
@@ -2542,7 +2539,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			
 		
 			<label class="w3-text-brown"><b>Diploma Code:</b></label>
-			<input class="w3-input w3-border " type="text" id="diplomaCode1"  placeholder="BM" >
+			<input class="w3-input w3-border " type="text" id="diplomaCode1" >
 		
 		  
 		  </div>
