@@ -61,7 +61,7 @@ import com.itextpdf.text.Section;
 	    
 	    // for print pdf using itextPDF
 	    public String PrintLetterPDF(Map input, Map data) {
-	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
+	    	String genPDFfile ="./FirstPdf.pdf";
 	        try {
 	        	
 	        	
@@ -72,17 +72,20 @@ import com.itextpdf.text.Section;
 	            document.open();
 	            addMetaData(document);
 	         //   addLOGOPage(document); // add the header image
+	        //    System.out.println(" RESPONSE  CALLING PDF generration --  size ="+data.size());
 	            	            	            
-	            
-	            // for each Report this has to be changed
-	            if(action != null && action.equals("QPaperList")) {  // Question paper list 
-	            	addQuestionPaperList(document, input,data);
-	            }else if(action != null && action.equals("applicantList")) { // RAJKUMAR  applicant List
-	            	addApplicantList(document, input, data);
-	            }else if(action != null && action.equals("AttendChart")) {  // attendance Chart
-	            	addAttendanceChart(document, input, data);
+	            if( data !=null && data.size() > 0 ) {
+		            // for each Report this has to be changed
+		            if(action != null && action.equals("QPaperList")) {  // Question paper list 
+		            	addQuestionPaperList(document, input,data);
+		            }else if(action != null && action.equals("applicantList")) { // RAJKUMAR  applicant List
+		            	addApplicantList(document, input, data);
+		            }else if(action != null && action.equals("AttendChart")) {  // attendance Chart
+		            	addAttendanceChart(document, input, data);
+		            }
+	            }else {
+	                     nodataReport(document, input, data);
 	            }
-	           	           
 	          //  addTitlePage(document); // refer for sample
 	          //  addContent(document); // refer for sample
 	            
@@ -108,7 +111,32 @@ import com.itextpdf.text.Section;
 //		}
 	    
 	    
+	    //Question paper list
+	    private static void nodataReport(Document document, Map input,  Map data)
+	            throws DocumentException, Exception {
+	    	
+	    	//PrintView printView = new PrintView();
+	    	//Map verifyedValues = printView.getMarkSheetContent(input);
+			
+			System.out.println(" RESPONSE  LETTER in Question PaperList   GOT in DATA MAP -- "+data);
+			System.out.println(" RESPONSE  LETTER in Question PaperList list  GOT in INPUT MAP -- "+input);
+			
+			
+			//rajkumar todo read map
+
+			
+	        Paragraph preface = new Paragraph();
+	   
+	        //addEmptyLine(preface, 1);
 	    
+	        preface.add(new Paragraph("NO DATA FOUND", catFont));
+
+	        //addEmptyLine(preface, 1);
+        
+       	        document.add(preface);
+	 
+	         
+	    } 
 	    
 	    
 	    
@@ -729,14 +757,16 @@ import com.itextpdf.text.Section;
 	    
 	    // for print pdf using itextPDF
 	    public String PrintPDF(Map input, Map data) {
-	    	String genPDFfile ="c:/temp/FirstPdf.pdf";
+	    	String genPDFfile ="./FirstPdf.pdf";
+	    	
+	    //	FileOutputStream fs = new FileOutputStream(genPDFfile));
+	    
+	    //System.out.println(" current direct --------------------"+System.getdirecotyr)
+	    	
 	        try {
 	        	
-	        	
 	        	Object action = input.get("action");
-	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
-	        	System.out.println(" RESPONSE  CALLING PDF generration  -------input---------  in prindPDF LETTER = "+input.toString());
-	        	System.out.println(" RESPONSE  CALLING PDF generration  -------data--------  in prindPDF LETTER = "+data.toString());
+	        	
 	            Document document = new Document();
 	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
@@ -744,21 +774,25 @@ import com.itextpdf.text.Section;
 	            addLOGOPage(document); // add the header image
 	            
 	        
-	            
-	            
-	            // for each Report this has to be changed
-	            if (action != null && action.equals("admInit")) {
-	            	addAdmInitimationContent(document, input,data);
-	            }else if(action != null && action.equals("ackLetter")) {
-	            	addAcknowledgeContent(document, input, data);
-	            }else if(action != null && action.equals("ansSheet")) {
-	            	addAnswerSheetAcknowledge(document, input,data);
-	            }else if(action != null && action.equals("hallTck")) {
-	            	addHallTicketContent(document, input,data);
-	            }else if(action != null && action.equals("mrkSheet")) {
-	            	addMarkSheetContent(document, input,data);
-	            }else if(action != null && action.equals("diplomaCerti")) {
-	            	addDiplomaCertiContent(document, input,data);
+	            if( data !=null && data.size() > 0 ) {
+		       
+		            // for each Report this has to be changed
+		            if (action != null && action.equals("admInit")) {
+		            	addAdmInitimationContent(document, input,data);
+		            }else if(action != null && action.equals("ackLetter")) {
+		            	addAcknowledgeContent(document, input, data);
+		            }else if(action != null && action.equals("ansSheet")) {
+		            	addAnswerSheetAcknowledge(document, input,data);
+		            }else if(action != null && action.equals("hallTck")) {
+		            	addHallTicketContent(document, input,data);
+		            }else if(action != null && action.equals("mrkSheet")) {
+		            	addMarkSheetContent(document, input,data);
+		            }else if(action != null && action.equals("diplomaCerti")) {
+		            	addDiplomaCertiContent(document, input,data);
+		            }
+		            
+	            }else {
+                    nodataReport(document, input, data);
 	            }
 	           	           
 	           // addTitlePage(document); // refer for sample
@@ -797,7 +831,7 @@ import com.itextpdf.text.Section;
 //	    	// document.close();
 //	         System.out.println("Image Scaled"); 
 	        
-	        Image img = Image.getInstance("c:/temp/HEADER1.jpg");
+	        Image img = Image.getInstance("https://aiimasimg.s3.ap-south-1.amazonaws.com/HEADER1.jpg");
 	        img.scaleToFit(400,400);
 	        img.setAlignment(Image.ALIGN_CENTER);
 	       // img.setFixedPosition(100,250)

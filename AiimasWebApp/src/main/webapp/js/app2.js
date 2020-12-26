@@ -1,10 +1,11 @@
-function logoutaiimas() {
+function logoutNew() {
 	
-	console.log('logoutaiimas');
+	console.log('logoutaiimas...>><< ....');
 	
-	postAjax('rs',{"app":"AiimasPost","module":"logoutaiimas","action":"logoutaiimas"}, onPostlogout);
+	postAjax('rs',{"app":"AiimasPost","module":"mklogoutaiimas","action":"logout","var1":"var1","var2":"var2"}, onPostlogout);
 	
 }
+
 
 function onPostlogout(data) {
 	
@@ -12,18 +13,18 @@ function onPostlogout(data) {
 	
 	if (data != null) {
 
-		try{
+	
 			parsedData = JSON.parse(data);
+			$("#newsletterLogout").hide(); 
+			$("#newsletterLogoutSuccess").show();
+			console.log("LOGGED OUT "+parsedData.loggedoutsuccess);
+				
 			
-			if(parsedData["max"]!=null){
-					console.log('RESPONSE POST  onPostGetPRNo in app .JS:' + parsedData["max"]);
-			
-				document.getElementById("prNo1").value =  parsedData["max"] +1;
-			}
-			} catch (e) {
-				console.log("data error, Reason"+e.toString());
-			}
 	}
+}
+
+function redirectLogoutPage() {
+	  location.replace("logout.jsp")
 }
 
 
@@ -120,6 +121,19 @@ function onPostsearchByPrCodePrNo(data) {
 					document.getElementById("sa_email").innerHTML = parsedData.Address["sa_email"];
 				}
 			
+			
+			
+				if(parsedData.Exam["ea_stname"]!=null){
+					document.getElementById("ea_stname").innerHTML = parsedData.Exam["ea_stname"];
+				}
+				if(parsedData.Exam["ea_centre1"]!=null){
+					document.getElementById("ea_centre1").innerHTML = parsedData.Exam["ea_centre1"];
+				}
+				
+				if(parsedData.Exam["ea_passflg"]!=null){
+					document.getElementById("ea_passflg").innerHTML = parsedData.Exam["ea_passflg"];
+				}
+				
 			
 			} catch (e) {
 				console.log("data error,Reason"+e.toString());

@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.naming.InitialContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -165,6 +166,7 @@ public class AiimasServlet extends HttpServlet {
 		String app = request.getParameter("app");
 		String module = request.getParameter("module");
 		String action = request.getParameter("action");
+		//String action = request.getParameter("logoutaiimas");
 	
 		
 		System.out.println("inside aiimas servier do post-"+app + "," + module +"," + action);	
@@ -172,15 +174,31 @@ public class AiimasServlet extends HttpServlet {
 		//--------------- Action = Logout -------------- //
 		
 		if ("logout".equals(action)) {
+			if ("mklogoutaiimas".equals(module)) {
 			try {
-				request.getSession(true).invalidate();
-				resp.sendRedirect("index.html");
+				HttpSession session=request.getSession();  
+	            session.invalidate();  
+			//request.getSession(true).invalidate();
+			//resp.sendRedirect("index.html");
+	            System.out.println("SESSION INVALIDATED -");	
+	            //resp.sendRedirect(request.getContextPath() + "/logout.jsp");
 
-				return;
+
+	            request.setAttribute("Error", "Session has ended.  Please login.");
+	            //RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
+	            //rd.forward(request, resp);
+	            //System.out.println("POST forward ");		
+			//return;
+
+	            Map response1 = new HashMap();
+				response1.put("loggedoutsuccess", "Logged out successfully");
+
+				writeResponse(response1, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return;
 			}
+		}
 		}
 		
 		Object response="success";
@@ -455,10 +473,7 @@ public class AiimasServlet extends HttpServlet {
 				
 						
 				// GENERATING the PDF
-				
-	            System.out.println("DONE GENERATE  ********************** the DATA  --"+pdfData.toString());
-	            
-	            if(pdfData!=null && pdfData.size()>0) {
+			
 	            	
 	            	PDFGenerator pdfGenerator = new PDFGenerator();
 					String gfile = pdfGenerator.PrintPDF(input, pdfData );
@@ -471,12 +486,7 @@ public class AiimasServlet extends HttpServlet {
 					
 					writeResponse(retrunMap, resp);
 	            	
-	            }else {
-					String responsestatus = new String("Failure");
-					Map responseerror = new HashMap();
-					responseerror.put(responsestatus, "failed - Report not found for the Input");
-					writeResponse(responseerror, resp);
-	            }
+	            
 	            
 				
 			}else if (module != null && module.equals("getCurrentPRno")) {

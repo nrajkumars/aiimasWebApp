@@ -65,18 +65,18 @@ public class Verification extends BaseDao {
 					finaldata.put(exam, data4.get(0));
 				}
 				
-				// Read form Marks table
-				String getMarksDataSql = "select * from public.appear where ap_prcode = ? and ap_prno = ?";
-				List data5 = executeFetchSql(getMarksDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
-			
-				if (data5 != null && data5.size() > 0) {
-					//return (Map) data2.get(0);
-					for (int ii = 0; ii <= data5.size()-1; ii++) {
-						String marks = new String("Marks"+ii);
-						finaldata.put(marks, data5.get(ii));
-						
-					}
-				}
+//				// Read form Marks table
+//				String getMarksDataSql = "select * from public.appear where ap_prcode = ? and ap_prno = ?";
+//				List data5 = executeFetchSql(getMarksDataSql, new Object[]{prCode.toString(),Integer.parseInt(prNum.toString()) });
+//			
+//				if (data5 != null && data5.size() > 0) {
+//					//return (Map) data2.get(0);
+//					for (int ii = 0; ii <= data5.size()-1; ii++) {
+//						String marks = new String("Marks"+ii);
+//						finaldata.put(marks, data5.get(ii));
+//						
+//					}
+//				}
 				
 				return finaldata;
 			}

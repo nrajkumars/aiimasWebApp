@@ -323,31 +323,31 @@ public class PrintView extends BaseDao {
 //		String sesYear = new String("2006");
 //		String center = new String("BHI");
 		
-//		String sesMonth = new String ("");
-//    	 String sesYear = new String("");
-//    	String center = new String("");
-//    	
-//		if((QAexamCenterCode != null )) {
-//			center= QAexamCenterCode.toString();
-//			if(center.contains("/")) {
-//				int subcount = center.indexOf("/");
-//				center= center.substring(subcount+1);
-//				center= center.trim();
-//			}
-//		}
-//		      
-//     	 
-//        if (QAsemMonthName!=null) {
-//        	sesMonth = QAsemMonthName.toString();
-//        }
-//        
-//        if(QAsemYearName!=null) {
-//        	 sesYear = QAsemYearName.toString();;
-//         } 
+		String sesMonth = new String ("");
+    	 String sesYear = new String("");
+    	String center = new String("");
+    	
+		if((QAexamCenterCode != null )) {
+			center= QAexamCenterCode.toString();
+			if(center.contains("/")) {
+				int subcount = center.indexOf("/");
+				center= center.substring(subcount+1);
+				center= center.trim();
+			}
+		}
+		      
+     	 
+        if (QAsemMonthName!=null) {
+        	sesMonth = QAsemMonthName.toString();
+        }
         
-		String sesMonth = new String ("FEB");
-		String sesYear = new String("20016");
-		String center = new String("BHI");
+        if(QAsemYearName!=null) {
+        	 sesYear = QAsemYearName.toString();;
+         } 
+        
+//		String sesMonth = new String ("FEB");
+//		String sesYear = new String("2006");
+//		String center = new String("BHI");
 		
 		
 		System.out.println(" INSIDE PRINT VIEW  getQuestionPaperList1 --  going to run the SQL = "+input.toString() );

@@ -128,7 +128,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </div>
 
 <!-- 	<a href="#addressUpdate" class="w3-bar-item w3-button"><b>Exit</b></a> -->
-	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'"><b>Exit</b></a> 
+	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletterLogout').style.display='block'"><b>Exit</b></a> 
 
   </div>
   
@@ -2192,25 +2192,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	 
 
  
- <!-- PRINT  Mark Sheet -------------->
- 
- <div class="w3-padding-64 w3-light-grey w3-card-4" id=markSheet>
-		<center> <h2>View and Print Mark sheet </h2></center>
-	  <form class="w3-container" action="/action_page.php">
-		<p><center>
-		<button class="w3-button w3-green">Print</button>
-		</center></p>
-	  </form>
-	</div>
 
-	 <div class="w3-padding-64 w3-light-grey w3-card-4" id=mailAddress>
-		<center> <h2>View & Print Mailing Address</h2></center>
-	  <form class="w3-container" action="/action_page.php">
-		<p><center>
-		<button class="w3-button w3-green">Print</button>
-		</center></p>
-	  </form>
-	</div>
+ 
+
 
 
 <!-- VERIFICATION ----------------------------------------------------------------------------------------------------------------------------------->
@@ -2305,19 +2289,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</tr>
 		</thead>
 		<tbody>
+			
 			<tr>
-				<td>from DB name 1</td>
-				<td>from DB PR code 1</td>
-				<td>from DB PR no 1</td>
-				<td>from DB diplom 1</td>
-				
-
-			</tr>
-			<tr>
-				<td>from DB name ..n</td>
-				<td>from DB PR code ..n</td>
-				<td>from DB PR no ..n</td>
-				<td>from DB diplom ..n</td>
+				<td id="searchprName"></td>
+				<td id="searchprCode"></td>
+				<td id="searchprNo"></td>
+				<td id="searchDipName"></td>
 			</tr>
 				
 			
@@ -2461,53 +2438,15 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			</tr>
 			<tr>
 				<td >Exam Center</td>
-				<td id="ea_center1"></td> 
+				<td id="ea_centre1"></td> 
 			</tr>
-			<tr>
-				<td >Exam Papers</td>
-				<td id="ea_paprstr"></td> 
-			</tr>
+			
 			<tr>
 				<td >Exam Pass Flag</td>
 				<td id="ea_passflg"></td> 
 			</tr>
-			<tr>
-				<td >Exam End Date</td>
-				<td id="ea_entdate"></td> 
-			</tr>
+			
 		
-			
-			
-			<tr>
-				<td >Marks Paper No</td>
-				<td id="ap_paper"></td> 
-			</tr>
-			<tr>
-				<td >Marks Paper Name   TODO mulitple ?</td>
-				<td id="ap_paprname"></td> 
-			</tr>
-			<tr>
-				<td >Marks </td>
-				<td id="ap_mark"></td> 
-			</tr>
-			<tr>
-				<td >Exam Date</td>
-				<td id=""></td> 
-			</tr>
-			
-			<tr>
-				<td >Intimation Date</td>
-				<td id="ap_mrkdate"></td> 
-			</tr>
-			
-			<tr>
-				<td >Hallticket Date</td>
-				<td id="ap_mrkdate"></td> 
-			</tr>
-			
-			
-			
-			
 			
 		</tbody>
 		
@@ -2655,16 +2594,42 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <!-- End page content --------------------------------------------------------------------------------------------------------------------------->
  <!-- End page content --------------------------------------------------------------------------------------------------------------------------->
 <!-- Newsletter Modal -->
-<div id="newsletter" class="w3-modal">
+<div id="newsletterLogout" class="w3-modal">
   <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
     <div class="w3-container w3-white w3-center">
-      <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <i onclick="document.getElementById('newsletterLogout').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
       <h2 class="w3-wide">Do you want Logout</h2>
       <p>Please press "OK" to logout, else Cancel</p>
      
-      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Logout</button>
+      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="logoutNew()">Logout</button>
 
-	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Cancel</button>
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="document.getElementById('newsletterLogout').style.display='none'">Cancel</button>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+<div id="newsletterLogoutSuccess" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('newsletterLogout').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Logged out successfully</h2>
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="redirectLogoutPage()">ok</button>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+<div id="newsletterLogoutSuccess" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('newsletterLogout').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Logged out successfully</h2>
+	 <button type="button" class="w3-button w3-padding-large w3-blue w3-margin-bottom" onclick="redirectLogoutPage()">ok</button>
     </div>
   </div>
 </div>
