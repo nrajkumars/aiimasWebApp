@@ -28,6 +28,189 @@ function redirectLogoutPage() {
 }
 
 
+function findPRCdNo() {
+	
+	console.log('searchByPrcdno  on  clicked rajjj ');
+	
+	var prcdnoNamesearch = document.getElementById('prcdnoNamesearch').value;
+	var prcdnoDipCodeName = document.getElementById('diplomaCode4').value;
+	var prcdnosemMonthName = document.getElementById('prcdnosemMonthName').value;
+	var prcdnosemYearName = document.getElementById('prcdnosemYearName').value;
+	
+	
+	if (prcdnoNamesearch == "") {
+			alert("Please enter the values in Name")
+	  }else{
+	
+	postAjax('rs',{"app":"AiimasPost","module":"findPRverify","action":"findPR","prcdnoNamesearch":prcdnoNamesearch,"prcdnoDipCodeName":prcdnoDipCodeName,"prcdnosemMonthName":prcdnosemMonthName,"prcdnosemYearName":prcdnosemYearName}, onPostFindPRcode);
+	}
+}
+
+
+function clearByPrcdno1() {
+		
+	document.getElementById('prcdnoNamesearch').value = "";
+	document.getElementById('diplomaCode4').value = "";
+	document.getElementById('prcdnosemMonthName').value = "";
+	document.getElementById('prcdnosemYearName').value = "";
+	document.getElementById("findPRresultTable").style.display="none";
+	
+	
+	document.getElementById('searchprCode1').value = "";
+	document.getElementById('searchprNo1').value = "";
+	document.getElementById('searchprName1').value = "";
+	document.getElementById('searchDipName1').value = "";
+	
+	document.getElementById('searchprCode2').value = "";
+	document.getElementById('searchprNo2').value = "";
+	document.getElementById('searchprName2').value = "";
+	document.getElementById('searchDipName2').value = "";
+	
+	document.getElementById('searchprCode3').value = "";
+	document.getElementById('searchprNo3').value = "";
+	document.getElementById('searchprName3').value = "";
+	document.getElementById('searchDipName3').value = "";
+	
+	document.getElementById('searchprCode4').value = "";
+	document.getElementById('searchprNo4').value = "";
+	document.getElementById('searchprName4').value = "";
+	document.getElementById('searchDipName4').value = "";
+
+	}
+	
+	function clearByPrcdno2() {
+		
+	document.getElementById("findPRresultTable").style.display="none";
+
+	}
+	
+
+
+function onPostFindPRcode(data) {
+	console.log('RESPONSE POST in onPostFindPRcode .JS:' + data);
+	var parsedData;
+	
+
+		
+	if (data != null) {
+			document.getElementById('findPRresultTable').style.display = "block";
+		
+			try {
+			// Parse JSON
+			parsedData = JSON.parse(data);
+			console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr0==:' + parsedData.prvalue0);
+			console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr1==:' + parsedData.prvalue1);
+			console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr2==:' + parsedData.prvalue2);
+			
+				if(parsedData.countPr["count"]!=null){
+					document.getElementById("countPR").innerHTML = parsedData.countPr["count"];
+				}
+		
+				if(parsedData.prvalue0["ad_prcode"]!=null){
+					document.getElementById("searchprCode").innerHTML = parsedData.prvalue0["ad_prcode"];
+				}
+				
+				if(parsedData.prvalue0["ad_prno"]!=null){
+					document.getElementById("searchprNo").innerHTML = parsedData.prvalue0["ad_prno"];
+				}
+			
+				if(parsedData.prvalue0["ad_name"]!=null){
+					document.getElementById("searchprName").innerHTML = parsedData.prvalue0["ad_name"];
+				}
+
+				if(parsedData.prvalue0["ad_dipcode"]!=null){
+					document.getElementById("searchDipName").innerHTML = parsedData.prvalue0["ad_dipcode"];
+				}
+
+
+				if(parsedData.prvalue1["ad_prcode"]!=null){
+					document.getElementById("searchprCode1").innerHTML = parsedData.prvalue1["ad_prcode"];
+				}else{
+					document.getElementById("searchprCode1").innerHTML = " ";
+				}
+				if(parsedData.prvalue1["ad_prno"]!=null){
+					document.getElementById("searchprNo1").innerHTML = parsedData.prvalue1["ad_prno"];
+				}
+			
+				if(parsedData.prvalue1["ad_name"]!=null){
+					document.getElementById("searchprName1").innerHTML = parsedData.prvalue1["ad_name"];
+				}
+
+				if(parsedData.prvalue1["ad_dipcode"]!=null){
+					document.getElementById("searchDipName1").innerHTML = parsedData.prvalue1["ad_dipcode"];
+				}
+
+
+if(parsedData.prvalue2["ad_prcode"]!=null){
+					document.getElementById("searchprCode2").innerHTML = parsedData.prvalue2["ad_prcode"];
+				}
+				if(parsedData.prvalue2["ad_prno"]!=null){
+					document.getElementById("searchprNo2").innerHTML = parsedData.prvalue2["ad_prno"];
+				}
+			
+				if(parsedData.prvalue2["ad_name"]!=null){
+					document.getElementById("searchprName2").innerHTML = parsedData.prvalue2["ad_name"];
+				}
+
+				if(parsedData.prvalue2["ad_dipcode"]!=null){
+					document.getElementById("searchDipName2").innerHTML = parsedData.prvalue2["ad_dipcode"];
+				}
+
+
+if(parsedData.prvalue3["ad_prcode"]!=null){
+					document.getElementById("searchprCode3").innerHTML = parsedData.prvalue3["ad_prcode"];
+				}
+				if(parsedData.prvalue3["ad_prno"]!=null){
+					document.getElementById("searchprNo3").innerHTML = parsedData.prvalue3["ad_prno"];
+				}
+			
+				if(parsedData.prvalue3["ad_name"]!=null){
+					document.getElementById("searchprName3").innerHTML = parsedData.prvalue3["ad_name"];
+				}
+
+				if(parsedData.prvalue3["ad_dipcode"]!=null){
+					document.getElementById("searchDipName3").innerHTML = parsedData.prvalue3["ad_dipcode"];
+					
+				}
+if(parsedData.prvalue4["ad_prcode"]!=null){
+					document.getElementById("searchprCode4").innerHTML = parsedData.prvalue4["ad_prcode"];
+				}
+				if(parsedData.prvalue4["ad_prno"]!=null){
+					document.getElementById("searchprNo4").innerHTML = parsedData.prvalue4["ad_prno"];
+				}
+			
+				if(parsedData.prvalue4["ad_name"]!=null){
+					document.getElementById("searchprName4").innerHTML = parsedData.prvalue4["ad_name"];
+				}
+
+				if(parsedData.prvalue4["ad_dipcode"]!=null){
+					document.getElementById("searchDipName4").innerHTML = parsedData.prvalue4["ad_dipcode"];
+				}else{
+					console.log("inside ELSEEEEEEEEE");
+					document.getElementById("searchDipName4").innerHTML = "";
+				}
+
+
+		
+				
+				
+				
+			
+			} catch (e) {
+				console.log("data error,Reason"+e.toString());
+			}
+		
+		
+
+		}else{
+			alert('else');
+			document.getElementById('findPRresultTable').style.display = "hide";
+		}
+
+}
+
+
+
 function searchByPrCodePrNo() {
 	
 	console.log('searchByPrCodePrNo  on VERIFICATION clicked rajjj ');
@@ -88,7 +271,7 @@ function onPostsearchByPrCodePrNo(data) {
 				}
 							
 				if(parsedData.Fee["fe_date"]!=null){
-					document.getElementById("fe_date").innerHTML = parsedData.Address["fe_date"];
+					document.getElementById("fe_date").innerHTML = parsedData.Fee["fe_date"];
 				}		
 				if(parsedData.Address["sa_add1"]!=null){
 					document.getElementById("sa_add1").innerHTML = parsedData.Address["sa_add1"];
@@ -187,41 +370,7 @@ function onPostGetPRNo(data) {
 	}
 }
 
-// SEARCH by NAME for Verification
 
-function searchByName() {
-	
-	console.log('searchByName  on VERIFICATION clicked rajjj ');
-	
-	var studentName = document.getElementById('studentName').value;
-	//var prno = document.getElementById('prNo').value;
-	
-	
-	if (studentName == "" ) {
-			alert("Please enter the values in P.R.Code and P.R.No")
-	  }else{
-	
-	postAjax('rs',{"app":"AiimasPost","module":"verifyByName","action":"byName","studentName":studentName}, onPostsearchByName);
-	}
-}
-
-
-
-function onPostsearchByName(data) {
-	console.log('RESPONSE POST in app .JS:' + data);
-	var parsedData;
-		
-	if (data != null) {
-			// TODO Sakthi
-		
-			try {
-			// Parse JSON
-			parsedData = JSON.parse(data);
-			} catch (e) {
-				console.log("data error, Reason"+e.toString());
-			}
-	}
-}
 
 // GET STUDNET and EXAM details for update exam
 // get EXam details
@@ -2231,6 +2380,9 @@ function clearAllAtrbutesMarks() {
 	//$("marksentersegment").hide();
 	
 }
+
+
+
 // update screen
 function clearAllAtrbutesMarks1() {
 	//	document.getElementById("prCodeMark1").value =   "";
@@ -2285,6 +2437,8 @@ function clearAllAtrbutesMarks1() {
 	//$("marksentersegment").hide();
 	
 }
+
+
 
 function clearaddAdmission() {
 	

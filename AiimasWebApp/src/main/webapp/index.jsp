@@ -2210,13 +2210,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	
 	<BR>
 	
-	<label class="w3-text-red"><b>Name:</b></label>
-		<input class="w3-input w3-border " name="last" type="text" id="stuNamesearch" ><br>
+	<label class="w3-text-red"><b>Name:</b> For Approximate match enter %NAME%</label>
+		<input class="w3-input w3-border " name="last" type="text" id="prcdnoNamesearch" ><br>
 	
 		
 		<label class="w3-text-red"><b> Diploma:</b>&nbsp;</label>
 		
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode3" placeholder="Choose your option">
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode4" placeholder="Choose your option">
   		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
 		
@@ -2239,17 +2239,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     	//itemSelect(document.getElementById('diplomaCode'));
     	</script>
   		<br><br>
-  		<input type="hidden" name="diplomaCodeName" >
+  		<input type="hidden" name="prcdnoDipCodeName" >
   		
 				
 		<div class="w3-third">
 			<label class="w3-text-brown"><b>Semester Month:</b></label>
-			<input class="w3-input w3-border " type="text" id="semMonthName" >
+			<input class="w3-input w3-border " type="text" id="prcdnosemMonthName" >
 		  </div>
 		  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>Semester Year:</b></label>
-			<input class="w3-input w3-border " type="year" id="semYearName"  >
+			<input class="w3-input w3-border " type="year" id="prcdnosemYearName"  >
 		  </div>
 				  
  		<div class="w3-third">
@@ -2264,7 +2264,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<Center>
 				 
  			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="nameResultName" onclick="searchByNamefind()">Search</button><br> <br>
+			<button class="w3-button w3-blue" id="nameResultName" onclick="findPRCdNo()">Search</button><br> 
+			   <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-blue" id="nameResultName" onclick="clearByPrcdno1()">Clear</button><br> <br>
 	 </Center>
 
 <br>
@@ -2273,28 +2275,78 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		
 		
-		<div class="table-responsive" id="resultTableName1" align ="center">
+	
 	  
+	 <div class="table-responsive" id="findPRresultTable" style="display: none;" align ="center">
 	 
-	 
-	 
+		
+	 <table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
+		<thead>
+			<tr>
+				
+				<th >The Total PR code matched is : </th>
+				<th id="countPR"></th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				
+				
+			</tr>
+				
+			
+		</tbody>
+		
+		</table>
+	 <BR>
 	 <!-- table base -->
 		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
 		<thead>
 			<tr>
-				<th >Name</th>
+				
 				<th >PR Code</th>
 				<th >PR No</th>
+				<th >Name</th>
 				<th >Diploma Name</th>
 			</tr>
 		</thead>
 		<tbody>
 			
 			<tr>
-				<td id="searchprName"></td>
+				
 				<td id="searchprCode"></td>
 				<td id="searchprNo"></td>
+				<td id="searchprName"></td>
 				<td id="searchDipName"></td>
+			</tr>
+			<tr>
+				
+				<td id="searchprCode1"></td>
+				<td id="searchprNo1"></td>
+				<td id="searchprName1"></td>
+				<td id="searchDipName1"></td>
+			</tr>
+			<tr>
+				
+				<td id="searchprCode2"></td>
+				<td id="searchprNo2"></td>
+				<td id="searchprName2"></td>
+				<td id="searchDipName2"></td>
+			</tr>
+			<tr>
+				
+				<td id="searchprCode3"></td>
+				<td id="searchprNo3"></td>
+				<td id="searchprName3"></td>
+				<td id="searchDipName3"></td>
+			</tr>
+			<tr>
+				
+				<td id="searchprCode4"></td>
+				<td id="searchprNo4"></td>
+				<td id="searchprName4"></td>
+				<td id="searchDipName4"></td>
 			</tr>
 				
 			
@@ -2302,8 +2354,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		
 		</table>
 		  
-		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-blue" id="nameResultName" onclick="clearBtn()">Clear</button><br> <br>
+		 
+			
+			
 		
 	 </div>
 		  
@@ -2333,6 +2386,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		  <div class="w3-third">
 		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
 			<button class="w3-button w3-blue" id="result" onclick="searchByPrCodePrNo()">&nbsp;&nbsp;Search</button><br> <br>
+			
+			
 		  </div>
 		 
 

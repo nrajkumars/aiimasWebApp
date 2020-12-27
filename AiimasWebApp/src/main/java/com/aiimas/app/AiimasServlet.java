@@ -233,6 +233,34 @@ public class AiimasServlet extends HttpServlet {
 				writeResponse(verifyedFullValues, resp);
 				
 				
+			}else if (module != null && module.equals("findPRverify")) {
+		
+				System.out.println("Inside module findPRverify : " + action);
+			
+												
+				String prcdnoNamesearch = request.getParameter("prcdnoNamesearch");
+				String prcdnoDipCodeName = request.getParameter("prcdnoDipCodeName");
+				String prcdnosemMonthName = request.getParameter("prcdnosemMonthName");
+				String prcdnosemYearName = request.getParameter("prcdnosemYearName");
+				
+							
+				Verification verification = new Verification();
+				Map input = new HashMap();
+				input.put("prcdnoNamesearch", prcdnoNamesearch);
+				input.put("prcdnoDipCodeName", prcdnoDipCodeName);
+				input.put("prcdnosemMonthName", prcdnosemMonthName);
+				input.put("prcdnosemYearName", prcdnosemYearName);
+
+				//String[] username = (String[])data.get("username");
+				//input.put("username", username[0]);
+				
+				
+				Map verifyedFindPR = verification.getVerficationByName(input);
+				System.out.println(" RESPONSE  getVerficationFindPR GOT in MAP   ***************** -- "+verifyedFindPR);
+				
+				writeResponse(verifyedFindPR, resp);
+				
+				
 			}else if (module != null && module.equals("logoutaiimas")) {
 				System.out.println("Inside module Verification  by name : " + action);
 				
@@ -256,26 +284,6 @@ public class AiimasServlet extends HttpServlet {
 				
 			//	writeResponse(verifyedbyName, resp);
 				
-			}else if (module != null && module.equals("verifyByName")) {
-				System.out.println("Inside module Verification  by name : " + action);
-				
-				
-				String studentName = request.getParameter("studentName");
-			//	String prc = request.getParameter("prCode");
-				
-							
-				Verification verification = new Verification();
-				Map input = new HashMap();
-				input.put("studentName", studentName);
-			//	input.put("prCode", prc);
-
-			
-				
-				Map verifyedbyName = verification.getVerficationByName(input);
-				
-				System.out.println(" RESPONSE   verification by NAME GOT in MAP -- "+verifyedbyName);
-				
-				writeResponse(verifyedbyName, resp);
 			}else if (module != null && module.equals("printViewQuestion")) {
 				
 				if(action != null && action.equals("searchQ")) {
