@@ -2402,7 +2402,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	 
 	 
 	 <!-- table base -->
-		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
+		<table class="table-bordered text-sm-left table-striped" 
+		style="border: 2px solid #ddd !important;" id="table1s2">
 		<thead>
 			<tr>
 				<th >Name</th>
@@ -2411,93 +2412,93 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		</thead>
 		<tbody>
 			<tr>
-				<td>Student Name</td>
+				<th>Student Name</th>
 				<td id="sa_name"></td>
 
 			</tr>
 			<tr>
-				<td>Diploma Duration</td>
+				<th>Diploma Duration</th>
 				<td id="ad_durtn"></td> 
 			</tr>
 			<tr>
- 				<td>Diploma Code</td> 
+ 				<th>Diploma Code</th> 
 				<td id="ad_dipcode"></td> 
 			</tr>
 			
 			
 			<tr>
-				<td >Admission Semester Month</td>
+				<th >Admission Semester Month</th>
 				<td id="ad_sesmon"></td> 
 			</tr>
 			<tr>
-				<td >Admission Semester Year</td>
+				<th >Admission Semester Year</th>
 				<td id="ad_sesyr"></td> 
 			</tr>
 			<tr>
-				<td >Number of papers</td>
+				<th >Number of papers</th>
 				<td id="ad_nofpapr"></td> 
 			</tr>
 			<tr>
-				<td >Fee Amount</td>
+				<th >Fee Amount</th>
 				<td id="ad_feeamt"></td> 
 			</tr>
 			<tr>
-				<td >Fee Paid Amount</td>
+				<th >Fee Paid Amount</th>
 				<td id="fe_amount"></td> 
 			</tr>
 			<tr>
-				<td >Fee paid Date</td>
+				<th >Fee paid Date</th>
 				<td id="fe_date"></td> 
 			</tr>
 			<tr>
-				<td >Address1</td>
+				<th >Address1</th>
 				<td id="sa_add1"></td> 
 			</tr>
 			<tr>
-				<td >Address2</td>
+				<th >Address2</th>
 				<td id="sa_add2"></td> 
 			</tr>
 			<tr>
-				<td >Address3</td>
+				<th >Address3</th>
 				<td id="sa_add3"></td> 
 			</tr>
 				<tr>
-				<td >Address4</td>
+				<th >Address4</th>
 				<td id="sa_add4"></td> 
 			</tr>
 			
 			<tr>
-				<td >State</td>
+				<th >State</th>
 				<td id="sa_state"></td> 
 			</tr>
 			<tr>
-				<td >Pincode</td>
+				<th >Pincode</th>
 				<td id="sa_pincode"></td> 
 			</tr>
 			<tr>
-				<td >Phone</td>
+				<th >Phone</th>
 				<td id="sa_phone"></td> 
 			</tr>
 			<tr>
-				<td >Mobile</td>
+				<th >Mobile</th>
 				<td id="sa_mobile"></td> 
 			</tr>
 			<tr>
-				<td >Email</td>
+				<th >Email</th>
 				<td id="sa_email"></td> 
 			</tr>
 			
 			<tr>
-				<td >Exam State</td>
+				<th >Exam State</th>
 				<td id="ea_stname"></td> 
 			</tr>
 			<tr>
-				<td >Exam Center</td>
+				<th >Exam Center</th>
 				<td id="ea_centre1"></td> 
 			</tr>
 			
 			<tr>
-				<td >Exam Pass Flag</td>
+				<th >Exam Pass Flag</th>
 				<td id="ea_passflg"></td> 
 			</tr>
 			
