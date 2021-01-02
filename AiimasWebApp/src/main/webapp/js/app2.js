@@ -230,7 +230,7 @@ function searchByPrCodePrNo() {
 
 
 function onPostsearchByPrCodePrNo(data) {
-	console.log('RESPONSE POST in app .JS:' + data);
+	console.log('student history-RESPONSE POST in app .JS:' + data);
 	var parsedData;
 		
 	if (data != null) {
@@ -239,17 +239,29 @@ function onPostsearchByPrCodePrNo(data) {
 			try {
 			// Parse JSON
 			parsedData = JSON.parse(data);
-			
+			/*
+			 * "ad_ref":"4564"
+	"ad_entdate":null
+								"ad_name":"B.RAJKUMAR"
+	"ad_feedate":-62111856600000
+								"ad_durtn":"ONE YEAR"
+	"ad_prcode":"HRD13"
+								"ad_dipcode":"HRD"
+	"ad_prno":7059
+								"ad_sesmon":"MAY"
+								"ad_nofpapr":4
+	"ad_paidamt":0
+								"ad_feeamt":1750
+	"ad_enttime":null
+								"ad_sesyr":2001
+			 */
 		
 				if(parsedData.Admin["ad_name"]!=null){
 					document.getElementById("sa_name").innerHTML = parsedData.Admin["ad_name"];
 				}
-		
-				
 				if(parsedData.Admin["ad_durtn"]!=null){
 					document.getElementById("ad_durtn").innerHTML = parsedData.Admin["ad_durtn"];
 				}
-		
 				if(parsedData.Admin["ad_dipcode"]!=null){
 					document.getElementById("ad_dipcode").innerHTML = parsedData.Admin["ad_dipcode"];
 				}
@@ -266,16 +278,31 @@ function onPostsearchByPrCodePrNo(data) {
 				if(parsedData.Admin["ad_feeamt"]!=null){
 					document.getElementById("ad_feeamt").innerHTML = parsedData.Admin["ad_feeamt"];
 				}
+				
+				/*
+  * "							fe_date":-62104080600000
+	"fe_mode":"C"
+	"fe_prcode":"HRD13"
+	"fe_sesmon":"MAY"
+	"fe_prno":7059
+	"fe_sesyr":2001
+	"fe_name":"B.RAJKUMAR"
+	"fe_ref":null
+	"							fe_amount":1750
+				 */
 				if(parsedData.Fee["fe_amount"]!=null){
 					document.getElementById("fe_amount").innerHTML = parsedData.Fee["fe_amount"];
 				}
 							
 				if(parsedData.Fee["fe_date"]!=null){
 					document.getElementById("fe_date").innerHTML = parsedData.Fee["fe_date"];
-				}		
+				}	
+				/*
 				if(parsedData.Address["sa_add1"]!=null){
 					document.getElementById("sa_add1").innerHTML = parsedData.Address["sa_add1"];
 				}
+				
+				
 				if(parsedData.Address["sa_add2"]!=null){
 					document.getElementById("sa_add2").innerHTML = parsedData.Address["sa_add2"];
 				}	
@@ -288,6 +315,7 @@ function onPostsearchByPrCodePrNo(data) {
 				if(parsedData.Address["sa_add5"]!=null){
 					document.getElementById("sa_add5").innerHTML = parsedData.Address["sa_add5"];
 				}	
+				console.log("parsedData.Address :: "+parsedData.Address["sa_state"]);
 				if(parsedData.Address["sa_state"]!=null){
 					document.getElementById("sa_state").innerHTML = parsedData.Address["sa_state"];
 				}
@@ -302,9 +330,31 @@ function onPostsearchByPrCodePrNo(data) {
 				}
 				if(parsedData.Address["sa_email"]!=null){
 					document.getElementById("sa_email").innerHTML = parsedData.Address["sa_email"];
-				}
+				}*/
 			
-			
+			/*
+     ea_stcode":"TN"
+	"ea_totappr":null
+	"ea_sesyr":2001
+	"oldnofpapr":4
+	"ea_entdate":null
+	"ea_prcode":"HRD13"
+	"ea_name":"E.RAJKUMAR"
+	"ea_sesmon":"AUG"
+	"ea_prno":7059
+	"ea_paprstr":"I	 II	 III	 IV"
+	"									ea_passflg":0
+	"									ea_centre1":"CHENNAI"
+	"ea_prnum":null
+	"ea_enttime":null
+	"ea_nofpapr":6
+	"ea_semstr":null
+	"ea_dipcode":"HRD"
+	"									ea_stname":"TAMIL NADU"
+	"newnofpapr":6
+	"ea_cecode":"CHE"
+	"ea_durtn":"ONE YEAR
+			 */
 			
 				if(parsedData.Exam["ea_stname"]!=null){
 					document.getElementById("ea_stname").innerHTML = parsedData.Exam["ea_stname"];
@@ -3054,6 +3104,38 @@ function clearBtn(){
 	document.getElementById('prCode').value = "";
 	document.getElementById('prNo').value = "";
 	document.getElementById("resultTable").style.display="none";
+	
+	 var fields = document.querySelectorAll("#table1s2 td");
+
+	    fields.forEach(cell => {
+	      cell.innerHTML = "";
+	    });
+	
+	/*
+		document.getElementById("sa_name").innerHTML = "";	
+		document.getElementById("ad_name").innerHTML = "";
+		document.getElementById("ad_durtn").innerHTML = "";
+		document.getElementById("ad_dipcode").innerHTML = "";
+		document.getElementById("ad_sesmon").innerHTML = "";
+		document.getElementById("ad_sesyr").innerHTML = "";
+		document.getElementById("ad_nofpapr").innerHTML = "";
+		document.getElementById("ad_feeamt").innerHTML = "";
+		document.getElementById("fe_amount").innerHTML = "";
+		document.getElementById("fe_date").innerHTML = "";
+		document.getElementById("sa_add1").innerHTML = "";
+		document.getElementById("sa_add2").innerHTML = "";
+		document.getElementById("sa_add3").innerHTML = "";
+		document.getElementById("sa_add4").innerHTML = "";
+		document.getElementById("sa_add5").innerHTML = "";
+		document.getElementById("sa_state").innerHTML = "";
+		document.getElementById("sa_pincode").innerHTML ="";
+		document.getElementById("sa_phone").innerHTML = "";
+		document.getElementById("sa_mobile").innerHTML = "";
+		document.getElementById("sa_email").innerHTML = "";
+		document.getElementById("ea_stname").innerHTML = "";
+		document.getElementById("ea_centre1").innerHTML = "";
+		document.getElementById("ea_passflg").innerHTML = "";
+	*/
 }
 function clearDiplomaUpdation(){
 	document.getElementById('diplomaName').value = "";
