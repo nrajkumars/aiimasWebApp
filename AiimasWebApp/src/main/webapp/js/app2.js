@@ -233,140 +233,193 @@ function onPostsearchByPrCodePrNo(data) {
 	console.log('student history-RESPONSE POST in app .JS:' + data);
 	var parsedData;
 		
+	/*document.getElementById("sa_name").innerHTML = "";
+	document.getElementById("ad_durtn").innerHTML = "";
+	document.getElementById("ad_dipcode").innerHTML = "";
+	document.getElementById("ad_sesmon").innerHTML = "";
+	document.getElementById("ad_sesyr").innerHTML = "";
+	document.getElementById("ad_nofpapr").innerHTML = "";
+	document.getElementById("ad_feeamt").innerHTML = "";
+	document.getElementById("fe_amount").innerHTML = "";
+	document.getElementById("fe_date").innerHTML = "";
+	document.getElementById("sa_add1").innerHTML = "";
+	document.getElementById("sa_add2").innerHTML = "";
+	document.getElementById("sa_add3").innerHTML = "";
+	document.getElementById("sa_add4").innerHTML = "";
+	document.getElementById("sa_add5").innerHTML = "";
+	document.getElementById("sa_state").innerHTML = "";
+	document.getElementById("sa_pincode").innerHTML = "";
+	document.getElementById("sa_phone").innerHTML = "";
+	document.getElementById("sa_mobile").innerHTML = "";
+	document.getElementById("sa_email").innerHTML = "";
+	document.getElementById("ea_stname").innerHTML = "";
+	document.getElementById("ea_centre1").innerHTML = "";
+	document.getElementById("ea_passflg").innerHTML = "";*/
+	
 	if (data != null) {
 			document.getElementById('resultTable').style.display = "block";
 		
 			try {
 			// Parse JSON
 			parsedData = JSON.parse(data);
-			/*
-			 * "ad_ref":"4564"
-	"ad_entdate":null
-								"ad_name":"B.RAJKUMAR"
-	"ad_feedate":-62111856600000
-								"ad_durtn":"ONE YEAR"
-	"ad_prcode":"HRD13"
-								"ad_dipcode":"HRD"
-	"ad_prno":7059
-								"ad_sesmon":"MAY"
-								"ad_nofpapr":4
-	"ad_paidamt":0
-								"ad_feeamt":1750
-	"ad_enttime":null
-								"ad_sesyr":2001
-			 */
-		
+			
+			if(parsedData['Admin'] !== undefined ){
 				if(parsedData.Admin["ad_name"]!=null){
-					document.getElementById("sa_name").innerHTML = parsedData.Admin["ad_name"];
+					//document.getElementById("sa_name").innerHTML = parsedData.Admin["ad_name"];
+					$('#ad_name').html(parsedData.Admin["ad_name"]);
+				}else{
+					$('#ad_name').html('');
 				}
 				if(parsedData.Admin["ad_durtn"]!=null){
-					document.getElementById("ad_durtn").innerHTML = parsedData.Admin["ad_durtn"];
+					$('#ad_durtn').html(parsedData.Admin["ad_durtn"]);
+				}else{
+					$('#ad_durtn').html('');
 				}
 				if(parsedData.Admin["ad_dipcode"]!=null){
-					document.getElementById("ad_dipcode").innerHTML = parsedData.Admin["ad_dipcode"];
+					$('#ad_dipcode').html(parsedData.Admin["ad_dipcode"]);
+				}else{
+					$('#ad_dipcode').html('');
 				}
 				if(parsedData.Admin["ad_sesmon"]!=null){
-					document.getElementById("ad_sesmon").innerHTML = parsedData.Admin["ad_sesmon"];
+					$('#ad_sesmon').html(parsedData.Admin["ad_sesmon"]);
+				}else{
+					$('#ad_sesmon').html('');
 				}
 		
 				if(parsedData.Admin["ad_sesyr"]!=null){
-					document.getElementById("ad_sesyr").innerHTML = parsedData.Admin["ad_sesyr"];
+					$('#ad_sesyr').html(parsedData.Admin["ad_sesyr"]);
+				}else{
+					$('#ad_sesyr').html('');
 				}
 				if(parsedData.Admin["ad_nofpapr"]!=null){
-					document.getElementById("ad_nofpapr").innerHTML = parsedData.Admin["ad_nofpapr"];
+					$('#ad_nofpapr').html(parsedData.Admin["ad_nofpapr"]);
+				}else{
+					$('#ad_nofpapr').html('');
 				}
 				if(parsedData.Admin["ad_feeamt"]!=null){
-					document.getElementById("ad_feeamt").innerHTML = parsedData.Admin["ad_feeamt"];
+					$('#ad_feeamt').html(parsedData.Admin["ad_feeamt"]);
+				}else{
+					$('#ad_feeamt').html('');
 				}
+			}else{
+				$('#ad_name').html(parsedData.Admin["ad_name"]);
+				$('#ad_durtn').html(parsedData.Admin["ad_durtn"]);
+				$('#ad_dipcode').html(parsedData.Admin["ad_dipcode"]);
+				$('#ad_sesmon').html(parsedData.Admin["ad_sesmon"]);
+				$('#ad_sesyr').html(parsedData.Admin["ad_sesyr"]);
+				$('#ad_nofpapr').html(parsedData.Admin["ad_nofpapr"]);
+				$('#ad_feeamt').html(parsedData.Admin["ad_feeamt"]);
+				$('#ad_feeamt').html('');
+			}
+
+				if(parsedData['Fee'] !== undefined ){
+					if(parsedData.Fee["fe_amount"]!=null){
+						$('#fe_amount').html(parsedData.Fee["fe_amount"]);
+					}else{
+						$('#fe_amount').html('');
+					}
+								
+					if(parsedData.Fee["fe_date"]!=null){
+						$('#fe_date').html(parsedData.Fee["fe_date"]);
+					}else{
+						$('#fe_date').html('');
+					}
+			}else{
+				$('#fe_amount').html('');
+				$('#fe_date').html('');
+			}
 				
-				/*
-  * "							fe_date":-62104080600000
-	"fe_mode":"C"
-	"fe_prcode":"HRD13"
-	"fe_sesmon":"MAY"
-	"fe_prno":7059
-	"fe_sesyr":2001
-	"fe_name":"B.RAJKUMAR"
-	"fe_ref":null
-	"							fe_amount":1750
-				 */
-				if(parsedData.Fee["fe_amount"]!=null){
-					document.getElementById("fe_amount").innerHTML = parsedData.Fee["fe_amount"];
-				}
-							
-				if(parsedData.Fee["fe_date"]!=null){
-					document.getElementById("fe_date").innerHTML = parsedData.Fee["fe_date"];
-				}	
-				/*
+				
+			if(parsedData['Address'] !== undefined ){
 				if(parsedData.Address["sa_add1"]!=null){
-					document.getElementById("sa_add1").innerHTML = parsedData.Address["sa_add1"];
+					$('#sa_add1').html(parsedData.Address["sa_add1"]);
+				}else{
+					$('#sa_add1').html('');
 				}
 				
 				
 				if(parsedData.Address["sa_add2"]!=null){
-					document.getElementById("sa_add2").innerHTML = parsedData.Address["sa_add2"];
+					$('#sa_add2').html(parsedData.Address["sa_add2"]);
+				}else{
+					$('#sa_add2').html('');
 				}	
 				if(parsedData.Address["sa_add3"]!=null){
-					document.getElementById("sa_add3").innerHTML = parsedData.Address["sa_add3"];
+					$('#sa_add3').html(parsedData.Address["sa_add3"]);
+				}else{
+					$('#sa_add3').html('');
 				}
 				if(parsedData.Address["sa_add4"]!=null){
-					document.getElementById("sa_add4").innerHTML = parsedData.Address["sa_add4"];
+					$('#sa_add4').html(parsedData.Address["sa_add4"]);
+				}else{
+					$('#sa_add4').html('');
 				}
 				if(parsedData.Address["sa_add5"]!=null){
-					document.getElementById("sa_add5").innerHTML = parsedData.Address["sa_add5"];
+					$('#sa_add5').html(parsedData.Address["sa_add5"]);
+				}else{
+					$('#sa_add5').html('');
 				}	
 				console.log("parsedData.Address :: "+parsedData.Address["sa_state"]);
 				if(parsedData.Address["sa_state"]!=null){
-					document.getElementById("sa_state").innerHTML = parsedData.Address["sa_state"];
+					$('#sa_state').html(parsedData.Address["sa_state"]);
+				}else{
+					$('#sa_state').html('');
 				}
 				if(parsedData.Address["sa_pincode"]!=null){
-					document.getElementById("sa_pincode").innerHTML = parsedData.Address["sa_pincode"];
+					$('#sa_pincode').html(parsedData.Address["sa_pincode"]);
+				}else{
+					$('#sa_pincode').html('');
 				}
 				if(parsedData.Address["sa_phone"]!=null){
-					document.getElementById("sa_phone").innerHTML = parsedData.Address["sa_phone"];
+					$('#sa_phone').html(parsedData.Address["sa_phone"]);
+				}else{
+					$('#sa_phone').html('');
 				}
 				if(parsedData.Address["sa_mobile"]!=null){
-					document.getElementById("sa_mobile").innerHTML = parsedData.Address["sa_mobile"];
+					$('#sa_mobile').html(parsedData.Address["sa_mobile"]);
+				}else{
+					$('#sa_mobile').html('');
 				}
 				if(parsedData.Address["sa_email"]!=null){
-					document.getElementById("sa_email").innerHTML = parsedData.Address["sa_email"];
-				}*/
+					$('#sa_email').html(parsedData.Address["sa_email"]);
+				}else{
+					$('#sa_email').html('');
+				}
+			}else{
+				$('#sa_add1').html('');
+				$('#sa_add2').html('');
+				$('#sa_add3').html('');
+				$('#sa_add4').html('');
+				$('#sa_add5').html('');
+				$('#sa_state').html('');
+				$('#sa_pincode').html('');
+				$('#sa_phone').html('');
+				$('#sa_mobile').html('');
+				$('#sa_email').html('');
+			}
 			
-			/*
-     ea_stcode":"TN"
-	"ea_totappr":null
-	"ea_sesyr":2001
-	"oldnofpapr":4
-	"ea_entdate":null
-	"ea_prcode":"HRD13"
-	"ea_name":"E.RAJKUMAR"
-	"ea_sesmon":"AUG"
-	"ea_prno":7059
-	"ea_paprstr":"I	 II	 III	 IV"
-	"									ea_passflg":0
-	"									ea_centre1":"CHENNAI"
-	"ea_prnum":null
-	"ea_enttime":null
-	"ea_nofpapr":6
-	"ea_semstr":null
-	"ea_dipcode":"HRD"
-	"									ea_stname":"TAMIL NADU"
-	"newnofpapr":6
-	"ea_cecode":"CHE"
-	"ea_durtn":"ONE YEAR
-			 */
 			
+			if(parsedData['Exam'] !== undefined ){
 				if(parsedData.Exam["ea_stname"]!=null){
-					document.getElementById("ea_stname").innerHTML = parsedData.Exam["ea_stname"];
+					$('#ea_stname').html(parsedData.Exam["ea_stname"]);
+				}else{
+					$('#ea_stname').html('');
 				}
 				if(parsedData.Exam["ea_centre1"]!=null){
-					document.getElementById("ea_centre1").innerHTML = parsedData.Exam["ea_centre1"];
+					$('#ea_centre1').html(parsedData.Exam["ea_centre1"]);
+				}else{
+					$('#ea_centre1').html('');
 				}
 				
 				if(parsedData.Exam["ea_passflg"]!=null){
-					document.getElementById("ea_passflg").innerHTML = parsedData.Exam["ea_passflg"];
+					$('#ea_passflg').html(parsedData.Exam["ea_passflg"]);
+				}else{
+					$('#ea_passflg').html('');
 				}
-				
+			}else{
+				$('#ea_stname').html('');
+				$('#ea_centre1').html('');
+				$('#ea_passflg').html('');
+			}
 			
 			} catch (e) {
 				console.log("data error,Reason"+e.toString());

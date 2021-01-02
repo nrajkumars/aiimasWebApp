@@ -2413,7 +2413,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<tbody>
 			<tr>
 				<th>Student Name</th>
-				<td id="sa_name"></td>
+				<td id="ad_name"></td>
 
 			</tr>
 			<tr>
