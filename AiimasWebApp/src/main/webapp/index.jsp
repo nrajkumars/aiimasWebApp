@@ -2288,20 +2288,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<th id="countPR"></th>
 			</tr>
 		</thead>
-		<tbody>
-			
-			<tr>
-				
-				
-			</tr>
-				
-			
-		</tbody>
+		
 		
 		</table>
 	 <BR>
 	 <!-- table base -->
-		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" >
+		<table class="table-bordered text-sm-left table-striped" style="border: 2px solid #ddd !important;" id="myspectab">
 		<thead>
 			<tr>
 				
@@ -2311,45 +2303,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				<th >Diploma Name</th>
 			</tr>
 		</thead>
-		<tbody>
-			
-			<tr>
-				
-				<td id="searchprCode"></td>
-				<td id="searchprNo"></td>
-				<td id="searchprName"></td>
-				<td id="searchDipName"></td>
-			</tr>
-			<tr>
-				
-				<td id="searchprCode1"></td>
-				<td id="searchprNo1"></td>
-				<td id="searchprName1"></td>
-				<td id="searchDipName1"></td>
-			</tr>
-			<tr>
-				
-				<td id="searchprCode2"></td>
-				<td id="searchprNo2"></td>
-				<td id="searchprName2"></td>
-				<td id="searchDipName2"></td>
-			</tr>
-			<tr>
-				
-				<td id="searchprCode3"></td>
-				<td id="searchprNo3"></td>
-				<td id="searchprName3"></td>
-				<td id="searchDipName3"></td>
-			</tr>
-			<tr>
-				
-				<td id="searchprCode4"></td>
-				<td id="searchprNo4"></td>
-				<td id="searchprName4"></td>
-				<td id="searchDipName4"></td>
-			</tr>
-				
-			
+		<tbody id="findprtbody">
 		</tbody>
 		
 		</table>

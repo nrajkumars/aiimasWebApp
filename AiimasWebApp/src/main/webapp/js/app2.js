@@ -98,99 +98,93 @@ function onPostFindPRcode(data) {
 			try {
 			// Parse JSON
 			parsedData = JSON.parse(data);
-			console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr0==:' + parsedData.prvalue0);
-			console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr1==:' + parsedData.prvalue1);
-			console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr2==:' + parsedData.prvalue2);
+			//console.log('RESPONSE POST in onPostFindPRcode parsedData.countPr0==:' + parsedData.prvalue0);
+			console.log('Total Output... '+JSON.stringify(parsedData));
+			console.log('parsedData.count... '+parsedData.countPr["count"]);  
 			
+			var keysArray = Object.keys(parsedData)
+			console.log('Object.keys.... '+keysArray[1]);
+			
+			//console.log('Object.keys....>>>>.. '+parsedData.keysArray[1]["ad_prcode"]);
+			//$.each(parsedData , function(index,value))
+			//$('#findprtbody').empty();
+			//$('#findprtbody tbody td').text('');
+			//$("#findprtbody tbody tr td").html("&nbsp;");
+			//$("#myspectab tbody" ).text("");
+			//$("#myspectab tbody" ).empty();
+			
+			$("#myspectab tbody" ).empty();
+			$("#myspectab tbody" ).text("");
+			$("#myspectab tbody tr td").html("&nbsp;");
+			
+			var findByPrSequence = 0;
+			tableBody = $("#findprtbody"); 
+			for(var i in parsedData){
+				console.log(" = = = = = = = = = = = = = =  = = = = = = = = = =  = = = = = =  = = = = = = "+findByPrSequence);
+				if(findByPrSequence == 0){
+					findByPrSequence = "";
+					console.log("IIIIIIIII value "+i);
+					
+					
+					markup = "<tr><td id=\"searchprCode\"></td><td id=\"searchprNo\"></td><td id=\"searchprName\"></td><td id=\"searchDipName\"></td><tr>";
+					
+		            tableBody.append(markup);
+				}else{
+					console.log("IIIII else = = = = = = = value "+i);
+					var srchPrCode = "searchprCode"+findByPrSequence;
+					var srchPrNo = "searchprNo"+findByPrSequence;
+					var srchPrName = "searchprName"+findByPrSequence;
+					var srchPrDipName = "searchDipName"+findByPrSequence;
+					
+					markup = "<tr><td id=\""+srchPrCode+"\"></td><td id=\""+srchPrNo+"\"></td>" +
+							"<td id=\""+srchPrName+"\"></td><td id=\""+srchPrDipName+"\"></td><tr>";
+					
+		            tableBody.append(markup);
+				}
+				
+				
+				if(i != 'countPr'){
+					console.log("IIIII Populating  = = = = = = = value "+i);
+					if(parsedData[i]["ad_prcode"]!=null){
+						document.getElementById("searchprCode"+findByPrSequence).innerHTML = parsedData[i]["ad_prcode"];
+						console.log(">>>>>>>>>>>>>>>>> "+parsedData[i]["ad_prcode"]);
+					}else{
+						//$('#searchprCode'+findByPrSequence).html('');
+					}
+					
+					if(parsedData[i]["ad_prno"]!=null){
+						document.getElementById("searchprNo"+findByPrSequence).innerHTML = parsedData[i]["ad_prno"];
+						console.log(">>>>>>>>>>>>>>>>> "+parsedData[i]["ad_prno"]);
+					}else{
+						//$('#searchprNo'+findByPrSequence).html('');
+					}
+					
+					if(parsedData[i]["ad_name"]!=null){
+						document.getElementById("searchprName"+findByPrSequence).innerHTML = parsedData[i]["ad_name"];
+						console.log(">>>>>>>>>>>>>>>>> ad_name "+parsedData[i]["ad_name"]);
+					}else{
+						//$('#searchprName'+findByPrSequence).html('');
+					}
+					
+					if(parsedData[i]["ad_dipcode"]!=null){
+						document.getElementById("searchDipName"+findByPrSequence).innerHTML = parsedData[i]["ad_dipcode"];
+						console.log(">>>>>>>>>>>>>>>>> ad_dipcode "+parsedData[i]["ad_dipcode"]);
+					}else{
+						//$('#searchDipName'+findByPrSequence).html('');
+					}
+					
+					
+				}
+				findByPrSequence++;
+			}
+			
+				var prcount = parsedData.countPr["count"];
+				
 				if(parsedData.countPr["count"]!=null){
 					document.getElementById("countPR").innerHTML = parsedData.countPr["count"];
 				}
 		
-				if(parsedData.prvalue0["ad_prcode"]!=null){
-					document.getElementById("searchprCode").innerHTML = parsedData.prvalue0["ad_prcode"];
-				}
 				
-				if(parsedData.prvalue0["ad_prno"]!=null){
-					document.getElementById("searchprNo").innerHTML = parsedData.prvalue0["ad_prno"];
-				}
-			
-				if(parsedData.prvalue0["ad_name"]!=null){
-					document.getElementById("searchprName").innerHTML = parsedData.prvalue0["ad_name"];
-				}
-
-				if(parsedData.prvalue0["ad_dipcode"]!=null){
-					document.getElementById("searchDipName").innerHTML = parsedData.prvalue0["ad_dipcode"];
-				}
-
-
-				if(parsedData.prvalue1["ad_prcode"]!=null){
-					document.getElementById("searchprCode1").innerHTML = parsedData.prvalue1["ad_prcode"];
-				}else{
-					document.getElementById("searchprCode1").innerHTML = " ";
-				}
-				if(parsedData.prvalue1["ad_prno"]!=null){
-					document.getElementById("searchprNo1").innerHTML = parsedData.prvalue1["ad_prno"];
-				}
-			
-				if(parsedData.prvalue1["ad_name"]!=null){
-					document.getElementById("searchprName1").innerHTML = parsedData.prvalue1["ad_name"];
-				}
-
-				if(parsedData.prvalue1["ad_dipcode"]!=null){
-					document.getElementById("searchDipName1").innerHTML = parsedData.prvalue1["ad_dipcode"];
-				}
-
-
-if(parsedData.prvalue2["ad_prcode"]!=null){
-					document.getElementById("searchprCode2").innerHTML = parsedData.prvalue2["ad_prcode"];
-				}
-				if(parsedData.prvalue2["ad_prno"]!=null){
-					document.getElementById("searchprNo2").innerHTML = parsedData.prvalue2["ad_prno"];
-				}
-			
-				if(parsedData.prvalue2["ad_name"]!=null){
-					document.getElementById("searchprName2").innerHTML = parsedData.prvalue2["ad_name"];
-				}
-
-				if(parsedData.prvalue2["ad_dipcode"]!=null){
-					document.getElementById("searchDipName2").innerHTML = parsedData.prvalue2["ad_dipcode"];
-				}
-
-
-if(parsedData.prvalue3["ad_prcode"]!=null){
-					document.getElementById("searchprCode3").innerHTML = parsedData.prvalue3["ad_prcode"];
-				}
-				if(parsedData.prvalue3["ad_prno"]!=null){
-					document.getElementById("searchprNo3").innerHTML = parsedData.prvalue3["ad_prno"];
-				}
-			
-				if(parsedData.prvalue3["ad_name"]!=null){
-					document.getElementById("searchprName3").innerHTML = parsedData.prvalue3["ad_name"];
-				}
-
-				if(parsedData.prvalue3["ad_dipcode"]!=null){
-					document.getElementById("searchDipName3").innerHTML = parsedData.prvalue3["ad_dipcode"];
-					
-				}
-if(parsedData.prvalue4["ad_prcode"]!=null){
-					document.getElementById("searchprCode4").innerHTML = parsedData.prvalue4["ad_prcode"];
-				}
-				if(parsedData.prvalue4["ad_prno"]!=null){
-					document.getElementById("searchprNo4").innerHTML = parsedData.prvalue4["ad_prno"];
-				}
-			
-				if(parsedData.prvalue4["ad_name"]!=null){
-					document.getElementById("searchprName4").innerHTML = parsedData.prvalue4["ad_name"];
-				}
-
-				if(parsedData.prvalue4["ad_dipcode"]!=null){
-					document.getElementById("searchDipName4").innerHTML = parsedData.prvalue4["ad_dipcode"];
-				}else{
-					console.log("inside ELSEEEEEEEEE");
-					document.getElementById("searchDipName4").innerHTML = "";
-				}
-
-
 		
 				
 				
