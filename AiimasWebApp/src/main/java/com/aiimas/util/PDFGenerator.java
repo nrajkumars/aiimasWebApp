@@ -66,13 +66,13 @@ import com.itextpdf.text.Section;
 	        	
 	        	
 	        	Object action = input.get("action");
-	        	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
+	        //	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
 	            Document document = new Document();
 	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
 	            addMetaData(document);
 	         //   addLOGOPage(document); // add the header image
-	        //    System.out.println(" RESPONSE  CALLING PDF generration --  size ="+data.size());
+	        //    System.out.println(" RESPONSE  CALLING PDF generration  other heeeeeeeere--  size ="+data.size());
 	            	            	            
 	            if( data !=null && data.size() > 0 ) {
 		            // for each Report this has to be changed
@@ -96,7 +96,747 @@ import com.itextpdf.text.Section;
 	            return null;
 	        }
 	    }
+	    
+	 // for print pdf using itextPDF
+	    public String PrintStudAddressPDF(Map input, Map data) {
+	    	String genPDFfile ="./FirstPdf.pdf";
+	        try {
+	        	
+	        	
+	        	Object action = input.get("action");
+	      //  	System.out.println(" RESPONSE  CALLING PDF generration  ----------------  in prindPDF LETTER = "+action.toString());
+	            Document document = new Document();
+	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
+	            document.open();
+	            addMetaData(document);
+	         //   addLOGOPage(document); // add the header image
+	     //       System.out.println(" RESPONSE  CALLING PDF generration  HEEEEEEEEEEEEEEEERE --  size ="+data.size());
+	            	            	            
+	            if( data !=null && data.size() > 0 ) {
+			            // for each Report this has to be changed
+			            if(action != null && action.equals("printStudentAddress")) {  // Question paper list 
+			            	addStudentAddressList(document, input,data);
+			            }else if(action != null && action.equals("StuAddressbyCentre")) { // RAJKUMAR  applicant List
+			            	addStudentAddressbyCenterList(document, input, data);
+			            }
+	            	
+	            }else {
+	            	
+	                     nodataReport(document, input, data);
+	            }
+	          //  addTitlePage(document); // refer for sample
+	          //  addContent(document); // refer for sample
+	            
+	            document.close();
+	            return genPDFfile;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+	    
+	    
+	    
+	    // addStudentAddressbyCenterList
+	    private static void addStudentAddressbyCenterList(Document document, Map input,  Map data)
+	            throws DocumentException, Exception {
+	    	
+	    	//PrintView printView = new PrintView();
+	    	//Map verifyedValues = printView.getMarkSheetContent(input);
+			
+		//	System.out.println(" RESPONSE  LETTER in addStudentAddressbyCenterList   GOT in DATA MAP -- "+data);
+		//	System.out.println(" RESPONSE  LETTER in addStudentAddressbyCenterList GOT in INPUT MAP -- "+input);
+			
+			
+			//rajkumar todo read map
 
+		//	ObjectMapper oMapper = new ObjectMapper();
+		//	Iterator<String> iter = data.keySet().iterator();
+	  
+	        Paragraph preface = new Paragraph();
+	   
+	        //addEmptyLine(preface, 1);
+	    
+       
+
+	        //addEmptyLine(preface, 1);
+        
+                   
+    	
+		Object semMonth1 =  input.get("ALsemMonthName1");
+		Object semYear1 =  input.get("ALsemYearName1");
+		Object semCenter1 =  input.get("ALexamCenterCode1");
+	//	Object ALexamCenterCode =  input.get("ALexamCenterCode"); session
+		
+		 String semMonth = new String ("");
+     	 String semYear= new String("");
+     	 String center = new String("");
+		
+//		if((semCenter1 != null )) {
+//			center= semCenter1.toString();
+//			if(center.contains("/")) {
+//				int subcount = center.indexOf("/");
+//				center= center.substring(subcount+1);
+//				center= center.trim();
+//			}
+//		}
+		
+    
+      
+     	 
+        if (semMonth1!=null) {
+        	semMonth = semMonth1.toString();
+        }
+        
+        if (semYear1!=null) {
+        	semYear = semYear1.toString();
+        }
+        
+        if (semCenter1!=null) {
+        	center = semCenter1.toString();
+        }
+        
+        
+        int addCount = 0;
+        
+		if (data != null) {
+		   addCount= data.size();
+		}
+                 
+        preface.add(new Paragraph("STUDENT ADDRESS  for CENTER: "+center+", EXAM Month -Year: "+semMonth+" - "+semYear, catFont));
+        preface.add(new Paragraph("Total ADDRESS  Count is: "+addCount, smallBold));
+        
+//        preface.add(new Paragraph("CENTRE: "+center, smallBold));
+//        preface.add(new Paragraph("EXAM MONTH: "+semMonth, smallBold));
+//        preface.add(new Paragraph("EXAM YEAR: "+semYear, smallBold));
+	        
+        addEmptyLine(preface, 1);
+	        
+
+	    	//System.out.println(" RESPONSE  LETTER in  data  GOT in MAP -- "+data.toString());
+			//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
+				
+				
+				//kevin
+				
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
+				   LocalDateTime now = LocalDateTime.now();  
+				   String currentDate= dtf.format(now);
+				
+				
+		        String phone = new String("");
+		        String name = new String("");
+		        String email = new String("");
+		        String state = new String("");
+		        String pincode = new String("");
+		        String address1 = new String("");
+		        String address2 = new String("");
+		        String address3 = new String("");
+		        String address4 = new String("");
+		        String mobile = new String("");
+		        String prCode = new String("");
+		        String prNo = new String("");
+		        int count = 0;
+		        
+		   		        
+		        ObjectMapper oMapper = new ObjectMapper();
+		        Iterator<String> iter1 = data.keySet().iterator();
+		        while (iter1.hasNext()) {
+					String key = iter1.next();
+					//System.out.println(" RAJKUMAR  1" +key);
+					if(key.contains("Address")) {
+						
+						count = count++;
+						
+						phone = "";
+				        name = "";
+				        email = "";
+				        state = "";
+				        pincode = "";
+				        address1 = "";
+				        address2 = "";
+				        address3 = "";
+				        address4 = "";
+				        mobile = "";
+				        prCode = "";
+				        prNo = "";
+
+						//System.out.println(key);
+						Object val = data.get(key);
+						Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+						//System.out.println(" RAJKUMAR  Address 2");
+					 
+						Object sa_phone = map1.get("sa_phone");
+					    	if(sa_phone!=null) {
+					    	phone = sa_phone.toString();
+					    }
+					    	Object sa_name = map1.get("sa_name");
+					    	if(sa_name!=null) {
+					    	name = sa_name.toString();
+					    }
+					 
+					    Object sa_email = map1.get("sa_email");
+					    if(sa_email!=null) {
+					    	email = sa_email.toString();
+					    }
+					    Object sa_prno = map1.get("sa_prno");
+					    if(sa_prno!=null) {
+					    	prNo = sa_prno.toString();
+					    }
+					    Object sa_prcode = map1.get("sa_prcode");
+					    if(sa_prcode!=null) {
+					    	prCode = sa_prcode.toString();
+					    }
+					    Object sa_state = map1.get("sa_state");
+					    if(sa_state!=null) {
+					    	state = sa_state.toString();
+					    }
+					    Object sa_pincode = map1.get("sa_pincode");
+					    if(sa_pincode!=null) {
+					    	pincode = sa_pincode.toString();
+					    }
+					    Object sa_add3 = map1.get("sa_add3");
+					    if(sa_add3!=null) {
+					    	address3 = sa_add3.toString();
+					    }
+					    Object sa_add2 = map1.get("sa_add2");
+					    if(sa_add2!=null) {
+					    	address2 = sa_add2.toString();
+					    }
+					    Object sa_mobile = map1.get("sa_mobile");
+					    if(sa_mobile!=null) {
+					    	mobile = sa_mobile.toString();
+					    }
+					    Object sa_add1 = map1.get("sa_add1");
+					    if(sa_add1!=null) {
+					    	address1 = sa_add1.toString();
+					    }
+					    Object sa_add4 = map1.get("sa_add4");
+					    if(sa_add4!=null) {
+					    	address4 = sa_add4.toString();
+					    }
+					    
+					    preface.add(new Paragraph(
+				                "-------------------------------------------------------------------------------",catFont));
+					    preface.add(new Paragraph(
+				                ""+name,catFont));
+				        preface.add(new Paragraph(
+				                " P.R.No: "+prCode+"\\"+prNo,catFont));
+				        if (address1 != null && address1.length() > 0) {
+				        	preface.add(new Paragraph(" "+address1,catFont));
+				        }
+				        if (address2 != null && address2.length() > 0) {
+				        	preface.add(new Paragraph(" "+address2,catFont));
+				        }
+				        if (address3 != null && address3.length() > 0) {
+				        	preface.add(new Paragraph(" "+address3,catFont));
+				        }
+				        if (address4 != null && address4.length() > 0) {
+				        	preface.add(new Paragraph(" "+address4,catFont));
+				        }
+				        if (state != null && state.length() > 0) {
+				        	preface.add(new Paragraph(" "+state,catFont));
+				        }
+				        if (pincode != null && pincode.length() > 0) {
+				        	preface.add(new Paragraph(" "+pincode,catFont));
+				        }
+				        if (mobile != null && mobile.length() > 0) {
+				        	preface.add(new Paragraph(" "+mobile,catFont));
+				        }
+				        if (phone != null && phone.length() > 0) {
+				        	preface.add(new Paragraph(" "+phone,catFont));
+				        }
+				        if (email != null && email.length() > 0) {
+				        	preface.add(new Paragraph(" "+email,catFont));
+				        }
+				 
+					    
+					}// end of address key if
+					  
+				} // end of date iter
+	        
+	        
+	   
+	        document.add(preface);
+	 
+	         
+	    }
+	    
+	    
+	  //studnet address list
+	    private static void addStudentAddressList(Document document, Map input,  Map data)
+	            throws DocumentException, Exception {
+	    	
+	    	//PrintView printView = new PrintView();
+	    	//Map verifyedValues = printView.getMarkSheetContent(input);
+			
+			//System.out.println(" RESPONSE  LETTER in Question PaperList   GOT in DATA MAP -- "+data);
+			//System.out.println(" RESPONSE  LETTER in Question PaperList list  GOT in INPUT MAP -- "+input);
+			
+			
+			//rajkumar todo read map
+
+		//	ObjectMapper oMapper = new ObjectMapper();
+		//	Iterator<String> iter = data.keySet().iterator();
+	  
+	        Paragraph preface = new Paragraph();
+	   
+	        //addEmptyLine(preface, 1);
+	    
+       // preface.add(new Paragraph("STUDENT ADDRESS ", catFont));
+
+	        //addEmptyLine(preface, 1);
+        
+                   
+    	
+		Object StuAdrPRCode1 =  input.get("StuAdrPRCode1");
+		Object StuAdrPRNo1 =  input.get("StuAdrPRNo1");
+		Object StuAdrCopy1 =  input.get("StuAdrCopy1");
+	//	Object ALexamCenterCode =  input.get("ALexamCenterCode"); session
+		
+		 String StuAdrPRCode = new String ("");
+     	 String StuAdrPRNo= new String("");
+     	String StuAdrCopy = new String("");
+		
+//		if((QAexamCenterCode != null )) {
+//			center= QAexamCenterCode.toString();
+//			if(center.contains("/")) {
+//				int subcount = center.indexOf("/");
+//				center= center.substring(subcount+1);
+//				center= center.trim();
+//			}
+//		}
+		
+     	String copies = new String("");
+     	String prCode = new String("");
+     	String prNo = new String("");
+      
+     	 
+        if (StuAdrCopy1!=null) {
+        	copies = StuAdrCopy1.toString();
+        }
+        
+        if (StuAdrPRNo1!=null) {
+        	prNo = StuAdrPRNo1.toString();
+        }
+        
+        if(StuAdrPRCode1!=null) {
+        	prCode = StuAdrPRCode1.toString();
+         }  
+        
+          
+	        
+	        
+	        /////KKK
+	        
+       // System.out.println(" RESPONSE  LETTER in addAdmInitimationContent copies --------------- "+copies);
+	    //	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent data  GOT in MAP -- "+data.toString());
+			//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
+				
+				
+				//kevin
+				
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
+				   LocalDateTime now = LocalDateTime.now();  
+				   String currentDate= dtf.format(now);
+				
+				
+		        String phone = new String("");
+		        String name = new String("");
+		        String email = new String("");
+		        String state = new String("");
+		        String pincode = new String("");
+		        String address1 = new String("");
+		        String address2 = new String("");
+		        String address3 = new String("");
+		        String address4 = new String("");
+		        String mobile = new String("");
+		        
+		   		        
+		        ObjectMapper oMapper = new ObjectMapper();
+		        Iterator<String> iter1 = data.keySet().iterator();
+		        while (iter1.hasNext()) {
+					String key = iter1.next();
+				//	System.out.println(" RAJKUMAR  1" +key);
+					if(key.contains("Address")) {
+						
+						//System.out.println(key);
+						Object val = data.get(key);
+						Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+						//System.out.println(" RAJKUMAR  Address CHENKCINg   "+map1.toString());
+					 
+						Object sa_phone = map1.get("sa_phone");
+					    	if(sa_phone!=null) {
+					    	phone = sa_phone.toString();
+					    }
+					    	Object sa_name = map1.get("sa_name");
+					    	if(sa_name!=null) {
+					    	name = sa_name.toString();
+					    }
+					 
+					    Object sa_email = map1.get("sa_email");
+					    if(sa_email!=null) {
+					    	email = sa_email.toString();
+					    }
+					    Object sa_state = map1.get("sa_state");
+					    if(sa_state!=null) {
+					    	state = sa_state.toString();
+					    }
+					    Object sa_pincode = map1.get("sa_pincode");
+					    if(sa_pincode!=null) {
+					    	pincode = sa_pincode.toString();
+					    }
+					    Object sa_add3 = map1.get("sa_add3");
+					    if(sa_add3!=null) {
+					    	address3 = sa_add3.toString();
+					    }
+					    Object sa_add2 = map1.get("sa_add2");
+					    if(sa_add2!=null) {
+					    	address2 = sa_add2.toString();
+					    }
+					    Object sa_mobile = map1.get("sa_mobile");
+					    if(sa_mobile!=null) {
+					    	mobile = sa_mobile.toString();
+					    }
+					    Object sa_add1 = map1.get("sa_add1");
+					    if(sa_add1!=null) {
+					    	address1 = sa_add1.toString();
+					    }
+					    Object sa_add4 = map1.get("sa_add4");
+					    if(sa_add4!=null) {
+					    	address4 = sa_add4.toString();
+					    }
+					}// end of address key if
+					  
+				} // end of date iter
+	        
+	        //KKKKKKK
+		        
+		  
+		        preface.add(new Paragraph(" "+name,catFont));
+		        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+		        
+		        if (address1 != null && address1.length() > 0) {
+		        	preface.add(new Paragraph(" "+address1,catFont));
+		        }
+		        if (address2 != null && address2.length() > 0) {
+		        	preface.add(new Paragraph(" "+address2,catFont));
+		        }
+		        if (address3 != null && address3.length() > 0) {
+		        	preface.add(new Paragraph(" "+address3,catFont));
+		        }
+		        if (address4 != null && address4.length() > 0) {
+		        	preface.add(new Paragraph(" "+address4,catFont));
+		        }
+		        if (state != null && state.length() > 0) {
+		        	preface.add(new Paragraph(" "+state,catFont));
+		        }
+		        if (pincode != null && pincode.length() > 0) {
+		        	preface.add(new Paragraph(" "+pincode,catFont));
+		        }
+		        if (mobile != null && mobile.length() > 0) {
+		        	preface.add(new Paragraph(" "+mobile,catFont));
+		        }
+		        if (phone != null && phone.length() > 0) {
+		        	preface.add(new Paragraph(" "+phone,catFont));
+		        }
+		        if (email != null && email.length() > 0) {
+		        	preface.add(new Paragraph(" "+email,catFont));
+		        }
+		        preface.add(new Paragraph(" -----------------------------------------",catFont));
+		       		   
+		        
+		        if(copies!=null && copies.equals("Two")) {
+		        	
+		        	addEmptyLine(preface, 1);
+		          
+			        preface.add(new Paragraph(" "+name,catFont));
+			        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+			        
+			        if (address1 != null && address1.length() > 0) {
+			        	preface.add(new Paragraph(" "+address1,catFont));
+			        }
+			        if (address2 != null && address2.length() > 0) {
+			        	preface.add(new Paragraph(" "+address2,catFont));
+			        }
+			        if (address3 != null && address3.length() > 0) {
+			        	preface.add(new Paragraph(" "+address3,catFont));
+			        }
+			        if (address4 != null && address4.length() > 0) {
+			        	preface.add(new Paragraph(" "+address4,catFont));
+			        }
+			        if (state != null && state.length() > 0) {
+			        	preface.add(new Paragraph(" "+state,catFont));
+			        }
+			        if (pincode != null && pincode.length() > 0) {
+			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        }
+			        if (mobile != null && mobile.length() > 0) {
+			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        }
+			        if (phone != null && phone.length() > 0) {
+			        	preface.add(new Paragraph(" "+phone,catFont));
+			        }
+			        if (email != null && email.length() > 0) {
+			        	preface.add(new Paragraph(" "+email,catFont));
+			        }
+			        preface.add(new Paragraph(" -----------------------------------------",catFont));
+			 
+			
+		        	
+		        }else  if(copies!=null && copies.equals("Three")) {
+		        	
+		        	addEmptyLine(preface, 1);
+		    	
+			        preface.add(new Paragraph(" "+name,catFont));
+			        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+			        
+			        if (address1 != null && address1.length() > 0) {
+			        	preface.add(new Paragraph(" "+address1,catFont));
+			        }
+			        if (address2 != null && address2.length() > 0) {
+			        	preface.add(new Paragraph(" "+address2,catFont));
+			        }
+			        if (address3 != null && address3.length() > 0) {
+			        	preface.add(new Paragraph(" "+address3,catFont));
+			        }
+			        if (address4 != null && address4.length() > 0) {
+			        	preface.add(new Paragraph(" "+address4,catFont));
+			        }
+			        if (state != null && state.length() > 0) {
+			        	preface.add(new Paragraph(" "+state,catFont));
+			        }
+			        if (pincode != null && pincode.length() > 0) {
+			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        }
+			        if (mobile != null && mobile.length() > 0) {
+			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        }
+			        if (phone != null && phone.length() > 0) {
+			        	preface.add(new Paragraph(" "+phone,catFont));
+			        }
+			        if (email != null && email.length() > 0) {
+			        	preface.add(new Paragraph(" "+email,catFont));
+			        }
+			        preface.add(new Paragraph(" -----------------------------------------",catFont));
+			 
+			        addEmptyLine(preface, 1);
+			
+			        preface.add(new Paragraph(" "+name,catFont));
+			        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+			        
+			        if (address1 != null && address1.length() > 0) {
+			        	preface.add(new Paragraph(" "+address1,catFont));
+			        }
+			        if (address2 != null && address2.length() > 0) {
+			        	preface.add(new Paragraph(" "+address2,catFont));
+			        }
+			        if (address3 != null && address3.length() > 0) {
+			        	preface.add(new Paragraph(" "+address3,catFont));
+			        }
+			        if (address4 != null && address4.length() > 0) {
+			        	preface.add(new Paragraph(" "+address4,catFont));
+			        }
+			        if (state != null && state.length() > 0) {
+			        	preface.add(new Paragraph(" "+state,catFont));
+			        }
+			        if (pincode != null && pincode.length() > 0) {
+			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        }
+			        if (mobile != null && mobile.length() > 0) {
+			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        }
+			        if (phone != null && phone.length() > 0) {
+			        	preface.add(new Paragraph(" "+phone,catFont));
+			        }
+			        if (email != null && email.length() > 0) {
+			        	preface.add(new Paragraph(" "+email,catFont));
+			        }
+			        preface.add(new Paragraph(" -----------------------------------------",catFont));
+			 
+			       			 
+		        
+		        } if(copies!=null && copies.equals("Four")) {
+		          			        
+			        
+			        preface.add(new Paragraph(" "+name,catFont));
+			        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+			        
+			        if (address1 != null && address1.length() > 0) {
+			        	preface.add(new Paragraph(" "+address1,catFont));
+			        }
+			        if (address2 != null && address2.length() > 0) {
+			        	preface.add(new Paragraph(" "+address2,catFont));
+			        }
+			        if (address3 != null && address3.length() > 0) {
+			        	preface.add(new Paragraph(" "+address3,catFont));
+			        }
+			        if (address4 != null && address4.length() > 0) {
+			        	preface.add(new Paragraph(" "+address4,catFont));
+			        }
+			        if (state != null && state.length() > 0) {
+			        	preface.add(new Paragraph(" "+state,catFont));
+			        }
+			        if (pincode != null && pincode.length() > 0) {
+			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        }
+			        if (mobile != null && mobile.length() > 0) {
+			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        }
+			        if (phone != null && phone.length() > 0) {
+			        	preface.add(new Paragraph(" "+phone,catFont));
+			        }
+			        if (email != null && email.length() > 0) {
+			        	preface.add(new Paragraph(" "+email,catFont));
+			        }
+			        preface.add(new Paragraph(" -----------------------------------------",catFont));
+			 
+			        
+			        
+			        addEmptyLine(preface, 1);
+			        
+			        preface.add(new Paragraph(" "+name,catFont));
+			        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+			        
+			        if (address1 != null && address1.length() > 0) {
+			        	preface.add(new Paragraph(" "+address1,catFont));
+			        }
+			        if (address2 != null && address2.length() > 0) {
+			        	preface.add(new Paragraph(" "+address2,catFont));
+			        }
+			        if (address3 != null && address3.length() > 0) {
+			        	preface.add(new Paragraph(" "+address3,catFont));
+			        }
+			        if (address4 != null && address4.length() > 0) {
+			        	preface.add(new Paragraph(" "+address4,catFont));
+			        }
+			        if (state != null && state.length() > 0) {
+			        	preface.add(new Paragraph(" "+state,catFont));
+			        }
+			        if (pincode != null && pincode.length() > 0) {
+			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        }
+			        if (mobile != null && mobile.length() > 0) {
+			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        }
+			        if (phone != null && phone.length() > 0) {
+			        	preface.add(new Paragraph(" "+phone,catFont));
+			        }
+			        if (email != null && email.length() > 0) {
+			        	preface.add(new Paragraph(" "+email,catFont));
+			        }
+			        preface.add(new Paragraph(" -----------------------------------------",catFont));
+			 
+			       
+			   		        
+			        addEmptyLine(preface, 1);
+			        preface.add(new Paragraph(" "+name,catFont));
+			        preface.add(new Paragraph(" P.R.No: "+prCode+"\\"+prNo,catFont));
+			        
+			        if (address1 != null && address1.length() > 0) {
+			        	preface.add(new Paragraph(" "+address1,catFont));
+			        }
+			        if (address2 != null && address2.length() > 0) {
+			        	preface.add(new Paragraph(" "+address2,catFont));
+			        }
+			        if (address3 != null && address3.length() > 0) {
+			        	preface.add(new Paragraph(" "+address3,catFont));
+			        }
+			        if (address4 != null && address4.length() > 0) {
+			        	preface.add(new Paragraph(" "+address4,catFont));
+			        }
+			        if (state != null && state.length() > 0) {
+			        	preface.add(new Paragraph(" "+state,catFont));
+			        }
+			        if (pincode != null && pincode.length() > 0) {
+			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        }
+			        if (mobile != null && mobile.length() > 0) {
+			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        }
+			        if (phone != null && phone.length() > 0) {
+			        	preface.add(new Paragraph(" "+phone,catFont));
+			        }
+			        if (email != null && email.length() > 0) {
+			        	preface.add(new Paragraph(" "+email,catFont));
+			        }
+			        preface.add(new Paragraph(" -----------------------------------------",catFont));
+			 
+			      
+		        
+		        }
+		        
+	              
+		        
+		        
+//		        PdfPTable table = new PdfPTable(2);
+//		        
+//		        table.setTotalWidth(new float[]{ 150, 150 });
+//		        table.setLockedWidth(true);
+//		        
+//		        PdfPCell c1 = new PdfPCell(new Phrase("SNo",smallBold));
+//		    
+//		        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		        table.addCell(c1);
+//
+//		        c1 = new PdfPCell(new Phrase("Question Paper Name", smallBold));
+//		        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		        table.addCell(c1);
+//
+//		        c1 = new PdfPCell(new Phrase("Paper Count",smallBold));
+//		        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		        table.addCell(c1);
+//		        
+//		       
+//		        
+//		        table.setHeaderRows(1);
+//		         PdfPCell r1 = new PdfPCell(new Phrase("1.0",smallfont));
+//		        int sno = 0;
+//		        String strNo = new String("");
+//		        String qPaperName = new String("");
+//		        String paperCount = new String("");
+	        
+	        
+//	        while (iter.hasNext()) {
+//				String key = iter.next();
+//				Object val = data.get(key);
+//				 Map<String, Object> map1 = oMapper1.convertValue(val, Map.class);
+//			
+//				 
+//				 sno = sno+1;
+//				 strNo = String.valueOf(sno);
+//				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
+//			     table.addCell(r1);
+//			     
+//			     
+//			     
+//			    Object dipCodeobj = map1.get("ea_dipcode");
+//			    if(dipCodeobj!=null) {
+//			    	qPaperName = dipCodeobj.toString();
+//			    }
+//			    r1 = new PdfPCell(new Phrase(qPaperName,smallfont));
+//			    table.addCell(r1);
+//			     
+//			  
+//			    //3
+//			    Object ea_nameobj = map1.get("count");
+//			    if(ea_nameobj!=null) {
+//			    	paperCount = ea_nameobj.toString();
+//			    }
+//			    r1 = new PdfPCell(new Phrase(paperCount,smallfont));
+//			    table.addCell(r1);
+//			    
+//
+//			}
+//	        
+//	        preface.add(table);
+	        
+	   
+	        document.add(preface);
+	 
+	         
+	    }
+	    
 //RAJKUMAR
 //	public Map saveAccountDetails(Map data) {
 //		Iterator iter = data.keySet().iterator();
@@ -118,8 +858,6 @@ import com.itextpdf.text.Section;
 	    	//PrintView printView = new PrintView();
 	    	//Map verifyedValues = printView.getMarkSheetContent(input);
 			
-			System.out.println(" RESPONSE  LETTER in Question PaperList   GOT in DATA MAP -- "+data);
-			System.out.println(" RESPONSE  LETTER in Question PaperList list  GOT in INPUT MAP -- "+input);
 			
 			
 			//rajkumar todo read map
@@ -147,8 +885,8 @@ import com.itextpdf.text.Section;
 	    	//PrintView printView = new PrintView();
 	    	//Map verifyedValues = printView.getMarkSheetContent(input);
 			
-			System.out.println(" RESPONSE  LETTER in Question PaperList   GOT in DATA MAP -- "+data);
-			System.out.println(" RESPONSE  LETTER in Question PaperList list  GOT in INPUT MAP -- "+input);
+		//	System.out.println(" RESPONSE  LETTER in Question PaperList   GOT in DATA MAP -- "+data);
+		//	System.out.println(" RESPONSE  LETTER in Question PaperList list  GOT in INPUT MAP -- "+input);
 			
 			
 			//rajkumar todo read map
@@ -314,8 +1052,8 @@ import com.itextpdf.text.Section;
 			Object ACexamCenterCode =  input.get("ACexamCenterCode");
     	
 	 			
-			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in DATA MAP -- "+data);
-			System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in INPUT MAP -- "+input);
+		//	System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in DATA MAP -- "+data);
+		//	System.out.println(" RESPONSE  LETTER in  AttendanceChart   GOT in INPUT MAP -- "+input);
 			
 			
 			//rajkumar todo read map
@@ -593,8 +1331,8 @@ import com.itextpdf.text.Section;
 	            throws DocumentException, Exception {
 	
 			
-			System.out.println(" RESPONSE  LETTER in Applicant list  GOT in DATA MAP -- "+data);
-			System.out.println(" RESPONSE  LETTER in Applicant list  GOT in INPUT MAP -- "+input);
+		//	System.out.println(" RESPONSE  LETTER in Applicant list  GOT in DATA MAP -- "+data);
+		//	System.out.println(" RESPONSE  LETTER in Applicant list  GOT in INPUT MAP -- "+input);
 			
 			
 			
@@ -771,7 +1509,7 @@ import com.itextpdf.text.Section;
 	            PdfWriter.getInstance(document, new FileOutputStream(genPDFfile));
 	            document.open();
 	            addMetaData(document);
-	            addLOGOPage(document); // add the header image
+	           // addLOGOPage(document); // add the header image
 	            
 	        
 	            if( data !=null && data.size() > 0 ) {
@@ -857,8 +1595,8 @@ import com.itextpdf.text.Section;
     	
   
 			
-			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent input  GOT in MAP -- "+input.toString());
-			System.out.println(" RESPONSE  LETTER in addAdmInitimationContent data  GOT in MAP -- "+data.toString());
+		//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent input  GOT in MAP -- "+input.toString());
+		//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent data  GOT in MAP -- "+data.toString());
 		//	System.out.println(" RESPONSE  LETTER in addAdmInitimationContent  GOT in MAP -- "+verifyedValues);
 			
 			
@@ -1145,8 +1883,8 @@ import com.itextpdf.text.Section;
 	    private static void addAcknowledgeContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception{
 	    	
-			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent input  GOT in MAP -- "+input.toString());
-			System.out.println(" RESPONSE  LETTER in addAcknowledgeContent data  GOT in MAP -- "+data.toString());
+		//	System.out.println(" RESPONSE  LETTER in addAcknowledgeContent input  GOT in MAP -- "+input.toString());
+		//	System.out.println(" RESPONSE  LETTER in addAcknowledgeContent data  GOT in MAP -- "+data.toString());
 	    	
 	       			
 			//kevin
@@ -1472,8 +2210,8 @@ import com.itextpdf.text.Section;
 	    private static void addAnswerSheetAcknowledge(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
 	    	
-	    	System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge input  GOT in MAP -- "+input.toString());
-			System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge data  GOT in MAP -- "+data.toString());
+	   // 	System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge input  GOT in MAP -- "+input.toString());
+		//	System.out.println(" RESPONSE  LETTER in addAnswerSheetAcknowledge data  GOT in MAP -- "+data.toString());
 	    	
 //kevin
 			
@@ -1790,8 +2528,8 @@ import com.itextpdf.text.Section;
 	            throws DocumentException, Exception {
 	    	
 			
-	    	System.out.println(" RESPONSE  LETTER in addHallTicketContent input  GOT in MAP -- "+input.toString());
-				System.out.println(" RESPONSE  LETTER in addHallTicketContent data  GOT in MAP -- "+data.toString());
+	    //	System.out.println(" RESPONSE  LETTER in addHallTicketContent input  GOT in MAP -- "+input.toString());
+		//		System.out.println(" RESPONSE  LETTER in addHallTicketContent data  GOT in MAP -- "+data.toString());
 	    	
 				//kevin
 				
@@ -2287,8 +3025,8 @@ import com.itextpdf.text.Section;
 	            throws DocumentException, Exception {
 	    	
 			
-	    	System.out.println(" RESPONSE  LETTER in addMarkSheetContent input  GOT in MAP -- "+input.toString());
-				System.out.println(" RESPONSE  LETTER in addMarkSheetContent data  GOT in MAP -- "+data.toString());
+	    //	System.out.println(" RESPONSE  LETTER in addMarkSheetContent input  GOT in MAP -- "+input.toString());
+		//		System.out.println(" RESPONSE  LETTER in addMarkSheetContent data  GOT in MAP -- "+data.toString());
 	    	
 				   
 				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
@@ -2552,8 +3290,8 @@ import com.itextpdf.text.Section;
 	    private static void addDiplomaCertiContent(Document document, Map input, Map data)
 	            throws DocumentException, Exception {
 	    	
-	    	System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent input  GOT in MAP -- "+input.toString());
-			System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent data  GOT in MAP -- "+data.toString());
+	   // 	System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent input  GOT in MAP -- "+input.toString());
+		//	System.out.println(" RESPONSE  LETTER in addDiplomaCertiContent data  GOT in MAP -- "+data.toString());
 	    	
 		
 					

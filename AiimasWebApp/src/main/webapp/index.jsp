@@ -57,7 +57,6 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-
 table#tbsty,
 table#tbsty td
 {
@@ -103,6 +102,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 	  <a href="#ack1" class="w3-bar-item w3-button">Student Letters</a>
 	  <a href="#applicantsList" class="w3-bar-item w3-button">Applicants List</a>
+	   <a href="#studentAddress" class="w3-bar-item w3-button">Student Address</a>
+	    <a href="#studentAddExCenter" class="w3-bar-item w3-button">Student Address - for Centre</a>
       <a href="#diplomaQuestions" class="w3-bar-item w3-button">Question Papers - for Diploma</a>
        <a href="#pickupQuestions" class="w3-bar-item w3-button">Question Papers - Pickup list</a>
        <a href="#attendanceChart" class="w3-bar-item w3-button">Attendance Chart</a>
@@ -1771,21 +1772,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 				  
 		  <div class="w3-third">
 			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-green" id="adresult1" onclick="printAdmInit('ackLetter')">&nbsp;&nbsp;Admission Acknowledgement Letter</button><br> <br>
+			<button class="w3-button w3-green" id="adresult1" onclick="printAdmInit('ackLetter')">&nbsp;&nbsp;Admission Acknowledge Letter</button><br> <br>
 		  </div>
 
-		  <div class="w3-third">
-		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-green" id="adresult2" onclick="printAdmInit('ansSheet')">&nbsp;&nbsp; Answer Sheet Acknowledgement Letter</button><br> <br>
+		   <div class="w3-third">
+			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult4" onclick="printAdmInit('mrkSheet')">&nbsp;&nbsp;Student Mark Sheet</button><br> <br>
 		  </div>
 		    <div class="w3-third">
 			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
 			<button class="w3-button w3-green" id="adresult3" onclick="printAdmInit('hallTck')">&nbsp;&nbsp;Examination Hall Ticket</button><br> <br>
 		  </div>
 				  
+		
 		  <div class="w3-third">
-			<label class="w3-text-brown"><b>&nbsp;</b></label><br>
-			<button class="w3-button w3-green" id="adresult4" onclick="printAdmInit('mrkSheet')">&nbsp;&nbsp;Student Mark Sheet</button><br> <br>
+		    <label class="w3-text-brown"><b>&nbsp;</b></label><br>
+			<button class="w3-button w3-green" id="adresult2" onclick="printAdmInit('ansSheet')">&nbsp;&nbsp; Answer Sheet Acknowledge </button><br> <br>
 		  </div>
 
 		  <div class="w3-third">
@@ -1823,9 +1825,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </div> 
 	 
 	 
-	 
-	 
-	 <!--  Attendance LIST   ??? -->
+	 	 <!--  Attendance LIST   ??? -->
 	 
 	 <!--  Serach by exam sem mon and year and the duration
 	 	per diploma name  get the name , prcode prno, and  for all diplomas 
@@ -1850,14 +1850,15 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 			<input class="w3-input w3-border " type="year" id="ALsemYearName"  >
 		  </div>
 			<div class="w3-third">
-				<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label>
-				<select class="w3-select" name="option" id="ALduration">
-		    		<option value="" disabled selected>Choose your option</option>
-	    		<option value="SIX MONTHS">SIX MONTHS</option>
-		    		<option value="ONE YEAR">ONE YEAR</option>
-		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option>
-		  		</select><br><br>
-  			</div>
+			<br><br><br>
+<!-- 				<label class="w3-text-brown"><b> Duration:</b>&nbsp;</label> -->
+<!-- 				<select class="w3-select" name="option" id="ALduration"> -->
+<!-- 		    		<option value="" disabled selected>Choose your option</option> -->
+<!-- 	    		<option value="SIX MONTHS">SIX MONTHS</option> -->
+<!-- 		    		<option value="ONE YEAR">ONE YEAR</option> -->
+<!-- 		   		 	<option value="ONE YEAR-PG">ONE YEAR-PG</option> -->
+<!-- 		  		</select><br><br> -->
+   			</div> 
   			
   			<!--
   			getSelectedStatecode('applicantID','applicantList','applicantCenterCode') 
@@ -1906,6 +1907,125 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		 </Center>
 
 <br>
+</div>
+</div>
+	 
+	 <!--  Student Address  -->
+	 
+	
+
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=studentAddress>
+		<center> <h2>Student Address Print: </h2></center><br><br>
+		
+		<div class="w3-panel w3-pale-green">
+	  <div class="w3-container" >
+	
+	<BR>
+	
+				
+		 <div class="w3-third">
+			<label class="w3-text-brown"><b>P.R.Code:</b></label>
+			<input class="w3-input w3-border " type="text" id="StuAdrPRCode1"  >
+		  </div>
+				  
+		  <div class="w3-third">
+			<label class="w3-text-brown"><b>P.R.No:</b></label>
+			<input class="w3-input w3-border " type="text" id="StuAdrPRNo1"  >
+		  </div>
+		  
+			<div class="w3-third">
+				<label class="w3-text-brown"><b> Copies per page:</b>&nbsp;</label>
+				<select class="w3-select" name="option" id="StuAdrCopy1">
+		    		<option value="" disabled selected>Choose your option</option>
+	    		<option value="One">One</option>
+		    		<option value="Two">Two</option>
+		   		 	<option value="Three">Three</option>
+		   		 	 <option value="Four">Four</option>
+		  		</select><br><br>
+  			</div>
+  			
+
+		  </div>
+		
+		<BR>
+   		
+	
+		<Center>				 
+			<button class="w3-button w3-green" id="studentAddrPdf" onclick="printStudentAddress()">&nbsp;&nbsp;Print Student Address</button><br> <br>
+		 </Center>
+
+<br>
+</div>
+</div>
+
+	 	 <!--  Student Address by CENTER   ??? -->
+	 
+
+
+	<div class="w3-padding-64 w3-light-grey w3-card-4" id=studentAddExCenter>
+		<center> <h2>Student Address by Exam Centre List: </h2></center><br><br>
+		<div class="w3-panel w3-pale-green">
+		
+		<div class="w3-panel 3-pale-green">
+	  <div class="w3-container" >
+	
+	<BR>
+	
+				
+		<div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
+			<input class="w3-input w3-border " type="text" id="ALsemMonthName1" >
+		  </div>
+		  
+		  <div class="w3-half">
+			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
+			<input class="w3-input w3-border " type="year" id="ALsemYearName1"  ><br>
+		  </div>
+			<br><br>
+  			
+  		
+  			
+  			
+  			
+  			  <!-- stateCodeWorking -->
+			<label class="w3-text-brown"><b> Exam State:</b>&nbsp;</label>	<!--  onchange="getSelectedStatecode()" -->
+			
+			<input list="examStateCodeList_updt1" class="w3-text-brwon" 
+			name="examStateCodeUpd1" id="examStateCodeUpd1" placeholder="Choose your option" 
+			onchange="getSelectedStatecode('examStateCodeUpd1','examStateCodeList_updt1','examCenterCodeList_updt1')">
+	  		
+	  		<datalist id="examStateCodeList_updt1" >
+		  		<option selected value="Choose your option"></option>	
+		  		<option value=""></option>	
+	  		</datalist>	
+	  
+		<BR>
+ 		  <BR>
+ 		  <script>loadStateAndCenters('examStateCodeList_updt1');</script>
+ 		  
+ 		<label class="w3-text-brown"><b> Exam Center:</b>&nbsp;</label>		
+		<input list="examCenterCodeList_updt1" class="w3-text-brwon"  name="eALxamCenterCode" id="ALexamCenterCode1" placeholder="Choose your option">
+  		<datalist id="examCenterCodeList_updt1" onchange="getSelectedCentercode()">
+  		<option selected value="Choose your option"></option>	
+  		
+		
+  		<!--  SAKTHI get from DB data-->
+  		
+  		</datalist>	
+  		
+ 		  <BR><BR>
+ 	 
+		  </div>
+		
+		<BR>
+   		
+	
+		<Center>				 
+			<button class="w3-button w3-green" id="stuAddressbyCenterListPdf" onclick="printStuAddressbyCentre()">&nbsp;&nbsp;Get Student Address List</button><br> <br>
+		 </Center>
+
+<br>
+</div>
 </div>
 </div>
 	 
@@ -2012,6 +2132,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    <br>
  </div>
 </div>
+
+
+
 
 <!--  Print Questions Pickup list  -->
 
@@ -2901,8 +3024,6 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
-
-
 populateState();
 </script>
 

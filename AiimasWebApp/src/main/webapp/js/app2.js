@@ -2960,12 +2960,59 @@ function printApplicantList() {
 		var ALsemMonthName = document.getElementById('ALsemMonthName').value;
 		var ALsemYearName = document.getElementById('ALsemYearName').value;
 		var ALexamCenterCode = document.getElementById('ALexamCenterCode').value;
+		
 	
 		
 	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_ApplicantList","action":"applicantList","ALsemMonthName":ALsemMonthName,"ALsemYearName":ALsemYearName,"ALexamCenterCode":ALexamCenterCode}, onPostprintApplicantList);
 
 }
 function onPostprintApplicantList(data) {
+
+	console.log('pdf length :' + data.length);
+	
+	var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+}
+
+// Student Address copies
+
+function printStudentAddress() {
+	
+	console.log('printStudentAddress clicked rajjj ');
+	
+		var StuAdrPRCode1 = document.getElementById('StuAdrPRCode1').value;
+		var StuAdrPRNo1 = document.getElementById('StuAdrPRNo1').value;
+		var StuAdrCopy1 = document.getElementById('StuAdrCopy1').value;
+	
+		
+	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_StudentAddress","action":"printStudentAddress","StuAdrPRCode1":StuAdrPRCode1,"StuAdrPRNo1":StuAdrPRNo1,"StuAdrCopy1":StuAdrCopy1}, onPostprintStudentAddress);
+
+}
+function onPostprintStudentAddress(data) {
+
+	console.log('pdf length :' + data.length);
+	
+	var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+}
+
+//Student Address for Center
+
+function printStuAddressbyCentre() {
+	
+	console.log('printApplicantList clicked rajjj ');
+	
+		var ALsemMonthName1 = document.getElementById('ALsemMonthName1').value;
+		var ALsemYearName1 = document.getElementById('ALsemYearName1').value;
+		var ALexamCenterCode1 = document.getElementById('ALexamCenterCode1').value;
+	
+		
+	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_StuAddressbyCentre","action":"StuAddressbyCentre","ALsemMonthName1":ALsemMonthName1,"ALsemYearName1":ALsemYearName1,"ALexamCenterCode1":ALexamCenterCode1}, onPostprintStuAddressbyCentre);
+
+}
+function onPostprintStuAddressbyCentre(data) {
 
 	console.log('pdf length :' + data.length);
 	

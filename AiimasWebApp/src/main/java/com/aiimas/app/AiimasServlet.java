@@ -401,18 +401,17 @@ public class AiimasServlet extends HttpServlet {
 				
 				System.out.println(" AIIMAS SERVLET  --  APPLICANT LIST LETTER here  ");
 				
-				String adprCode = request.getParameter("adprCode");
-				String adpprNo = request.getParameter("adpprNo");
+				String ALsemMonthName = request.getParameter("ALsemMonthName");
+				String ALsemYearName = request.getParameter("ALsemYearName");
+				String ALexamCenterCode = request.getParameter("ALexamCenterCode");
 				
-					
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adprCode);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +adpprNo);	
 				
 				Map input = new HashMap();
 				input.put("action", action);
-				input.put("adprCode", adprCode);
-				input.put("adpprNo", adpprNo);
-
+				input.put("ALsemMonthName", ALsemMonthName);
+				input.put("ALsemYearName", ALsemYearName);
+				input.put("ALexamCenterCode", ALexamCenterCode);
+				
 				//RAJKUMAR to merge start
 				
 			
@@ -427,6 +426,86 @@ public class AiimasServlet extends HttpServlet {
 				 
 				PDFGenerator pdfGenerator = new PDFGenerator();
 				String gfile = pdfGenerator.PrintLetterPDF(input, applicListData);
+				
+				System.out.println("DONE GENERATE APPLICANT LIST the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+							
+				Map retrunMap = new HashMap();
+				
+				retrunMap.put("Filename", gfile);
+				
+				writeResponse(retrunMap, resp);
+			}else if(module != null && module.equals("printReport_StudentAddress")) {
+				
+				System.out.println(" AIIMAS SERVLET  --  printReport_StudentAddress  ");
+				
+				String StuAdrPRCode1 = request.getParameter("StuAdrPRCode1");
+				String StuAdrPRNo1 = request.getParameter("StuAdrPRNo1");
+				String StuAdrCopy1 = request.getParameter("StuAdrCopy1");
+				
+					
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +StuAdrPRNo1);	
+				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +StuAdrCopy1);	
+				
+				Map input = new HashMap();
+				input.put("action", action);
+				input.put("StuAdrPRCode1", StuAdrPRCode1);
+				input.put("StuAdrPRNo1", StuAdrPRNo1);
+				input.put("StuAdrCopy1", StuAdrCopy1);
+
+				//RAJKUMAR to merge start
+				
+			
+				
+				PrintView printView = new PrintView();
+				Map applicListData = printView.getStudentAddress(input);
+				
+							
+				// GENERATING the PDF
+				
+				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file " +applicListData);
+				 
+				PDFGenerator pdfGenerator = new PDFGenerator();
+				String gfile = pdfGenerator.PrintStudAddressPDF(input, applicListData);
+				
+				//System.out.println("DONE GENERATE APPLICANT LIST the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+							
+				Map retrunMap = new HashMap();
+				
+				retrunMap.put("Filename", gfile);
+				
+				writeResponse(retrunMap, resp);
+			}else if(module != null && module.equals("printReport_StuAddressbyCentre")) {
+				
+				System.out.println(" AIIMAS SERVLET  --  printReport_StuAddressbyCentre ");
+				
+				String ALsemMonthName1 = request.getParameter("ALsemMonthName1");
+				String ALsemYearName1 = request.getParameter("ALsemYearName1");
+				String ALexamCenterCode1 = request.getParameter("ALexamCenterCode1");
+			
+				
+				
+				Map input = new HashMap();
+				input.put("action", action);
+				input.put("ALsemMonthName1", ALsemMonthName1);
+				input.put("ALsemYearName1", ALsemYearName1);
+				input.put("ALexamCenterCode1", ALexamCenterCode1);
+
+				//RAJKUMAR to merge start
+				
+			
+				
+				PrintView printView = new PrintView();
+				Map applicListData = printView.getStudentAddressByCentre(input);
+				
+							
+				// GENERATING the PDF
+				
+				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file " +applicListData);
+				 
+				PDFGenerator pdfGenerator = new PDFGenerator();
+				String gfile = pdfGenerator.PrintStudAddressPDF(input, applicListData);
 				
 				System.out.println("DONE GENERATE APPLICANT LIST the PDF file and saved in c:/temp/FirstPdf.pdf");
 				
