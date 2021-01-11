@@ -338,16 +338,16 @@ import com.itextpdf.text.Section;
 				        	preface.add(new Paragraph(" "+state,catFont));
 				        }
 				        if (pincode != null && pincode.length() > 0) {
-				        	preface.add(new Paragraph(" "+pincode,catFont));
+				        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 				        }
 				        if (mobile != null && mobile.length() > 0) {
-				        	preface.add(new Paragraph(" "+mobile,catFont));
+				        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 				        }
 				        if (phone != null && phone.length() > 0) {
-				        	preface.add(new Paragraph(" "+phone,catFont));
+				        	preface.add(new Paragraph("Phone: "+phone,catFont));
 				        }
 				        if (email != null && email.length() > 0) {
-				        	preface.add(new Paragraph(" "+email,catFont));
+				        	preface.add(new Paragraph("Email: "+email,catFont));
 				        }
 				 
 					    
@@ -532,16 +532,16 @@ import com.itextpdf.text.Section;
 		        	preface.add(new Paragraph(" "+state,catFont));
 		        }
 		        if (pincode != null && pincode.length() > 0) {
-		        	preface.add(new Paragraph(" "+pincode,catFont));
+		        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 		        }
 		        if (mobile != null && mobile.length() > 0) {
-		        	preface.add(new Paragraph(" "+mobile,catFont));
+		        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 		        }
 		        if (phone != null && phone.length() > 0) {
-		        	preface.add(new Paragraph(" "+phone,catFont));
+		        	preface.add(new Paragraph("Phone: "+phone,catFont));
 		        }
 		        if (email != null && email.length() > 0) {
-		        	preface.add(new Paragraph(" "+email,catFont));
+		        	preface.add(new Paragraph("Email: "+email,catFont));
 		        }
 		        preface.add(new Paragraph(" -----------------------------------------",catFont));
 		       		   
@@ -569,16 +569,16 @@ import com.itextpdf.text.Section;
 			        	preface.add(new Paragraph(" "+state,catFont));
 			        }
 			        if (pincode != null && pincode.length() > 0) {
-			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 			        }
 			        if (mobile != null && mobile.length() > 0) {
-			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 			        }
 			        if (phone != null && phone.length() > 0) {
-			        	preface.add(new Paragraph(" "+phone,catFont));
+			        	preface.add(new Paragraph("Phone: "+phone,catFont));
 			        }
 			        if (email != null && email.length() > 0) {
-			        	preface.add(new Paragraph(" "+email,catFont));
+			        	preface.add(new Paragraph("Email: "+email,catFont));
 			        }
 			        preface.add(new Paragraph(" -----------------------------------------",catFont));
 			 
@@ -607,16 +607,16 @@ import com.itextpdf.text.Section;
 			        	preface.add(new Paragraph(" "+state,catFont));
 			        }
 			        if (pincode != null && pincode.length() > 0) {
-			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 			        }
 			        if (mobile != null && mobile.length() > 0) {
-			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 			        }
 			        if (phone != null && phone.length() > 0) {
-			        	preface.add(new Paragraph(" "+phone,catFont));
+			        	preface.add(new Paragraph("Phone: "+phone,catFont));
 			        }
 			        if (email != null && email.length() > 0) {
-			        	preface.add(new Paragraph(" "+email,catFont));
+			        	preface.add(new Paragraph("Email: "+email,catFont));
 			        }
 			        preface.add(new Paragraph(" -----------------------------------------",catFont));
 			 
@@ -641,16 +641,16 @@ import com.itextpdf.text.Section;
 			        	preface.add(new Paragraph(" "+state,catFont));
 			        }
 			        if (pincode != null && pincode.length() > 0) {
-			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 			        }
 			        if (mobile != null && mobile.length() > 0) {
-			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 			        }
 			        if (phone != null && phone.length() > 0) {
-			        	preface.add(new Paragraph(" "+phone,catFont));
+			        	preface.add(new Paragraph("Phone: "+phone,catFont));
 			        }
 			        if (email != null && email.length() > 0) {
-			        	preface.add(new Paragraph(" "+email,catFont));
+			        	preface.add(new Paragraph("Email: "+email,catFont));
 			        }
 			        preface.add(new Paragraph(" -----------------------------------------",catFont));
 			 
@@ -678,16 +678,16 @@ import com.itextpdf.text.Section;
 			        	preface.add(new Paragraph(" "+state,catFont));
 			        }
 			        if (pincode != null && pincode.length() > 0) {
-			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 			        }
 			        if (mobile != null && mobile.length() > 0) {
-			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 			        }
 			        if (phone != null && phone.length() > 0) {
-			        	preface.add(new Paragraph(" "+phone,catFont));
+			        	preface.add(new Paragraph("Phone: "+phone,catFont));
 			        }
 			        if (email != null && email.length() > 0) {
-			        	preface.add(new Paragraph(" "+email,catFont));
+			        	preface.add(new Paragraph("Email: "+email,catFont));
 			        }
 			        preface.add(new Paragraph(" -----------------------------------------",catFont));
 			 
@@ -714,16 +714,16 @@ import com.itextpdf.text.Section;
 			        	preface.add(new Paragraph(" "+state,catFont));
 			        }
 			        if (pincode != null && pincode.length() > 0) {
-			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 			        }
 			        if (mobile != null && mobile.length() > 0) {
-			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 			        }
 			        if (phone != null && phone.length() > 0) {
-			        	preface.add(new Paragraph(" "+phone,catFont));
+			        	preface.add(new Paragraph("Phone: "+phone,catFont));
 			        }
 			        if (email != null && email.length() > 0) {
-			        	preface.add(new Paragraph(" "+email,catFont));
+			        	preface.add(new Paragraph("Email: "+email,catFont));
 			        }
 			        preface.add(new Paragraph(" -----------------------------------------",catFont));
 			 
@@ -749,16 +749,16 @@ import com.itextpdf.text.Section;
 			        	preface.add(new Paragraph(" "+state,catFont));
 			        }
 			        if (pincode != null && pincode.length() > 0) {
-			        	preface.add(new Paragraph(" "+pincode,catFont));
+			        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
 			        }
 			        if (mobile != null && mobile.length() > 0) {
-			        	preface.add(new Paragraph(" "+mobile,catFont));
+			        	preface.add(new Paragraph("Mob: "+mobile,catFont));
 			        }
 			        if (phone != null && phone.length() > 0) {
-			        	preface.add(new Paragraph(" "+phone,catFont));
+			        	preface.add(new Paragraph("Phone: "+phone,catFont));
 			        }
 			        if (email != null && email.length() > 0) {
-			        	preface.add(new Paragraph(" "+email,catFont));
+			        	preface.add(new Paragraph("Email: "+email,catFont));
 			        }
 			        preface.add(new Paragraph(" -----------------------------------------",catFont));
 			 
@@ -907,11 +907,15 @@ import com.itextpdf.text.Section;
 		Object QAsemMonthName =  input.get("QAsemMonthName");
 		Object QAsemYearName =  input.get("QAsemYearName");
 		Object QAexamCenterCode =  input.get("QAexamCenterCode");
+		
+		Object sessionvalue =  input.get("sessionvalue");
+		
 	//	Object ALexamCenterCode =  input.get("ALexamCenterCode"); session
 		
 		 String sesMonth = new String ("");
      	 String sesYear = new String("");
      	String center = new String("");
+     	String session = new String("");
 		
 		if((QAexamCenterCode != null )) {
 			center= QAexamCenterCode.toString();
@@ -929,8 +933,12 @@ import com.itextpdf.text.Section;
         }
         
         if(QAsemYearName!=null) {
-        	 sesYear = QAsemYearName.toString();;
+        	 sesYear = QAsemYearName.toString();
          }  
+        
+        if(sessionvalue!=null) {
+        	session = sessionvalue.toString();
+        }  
         
         
         ///
@@ -944,8 +952,8 @@ import com.itextpdf.text.Section;
 	 
 	        preface.add(new Paragraph(
 	                " CENTRE: "+center, smallBold));
-	     //   preface.add(new Paragraph( " SESSION: ", smallBold));
-	       // addEmptyLine(preface, 1);
+	        preface.add(new Paragraph( " SESSION: "+session, smallBold));
+	        addEmptyLine(preface, 1);
 	        
 	
 
@@ -994,37 +1002,85 @@ import com.itextpdf.text.Section;
 	        String paperCount = new String("");
 	        
 	        
-	        while (iter.hasNext()) {
-				String key = iter.next();
-				Object val = data.get(key);
-				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
-			
-				 
-				 sno = sno+1;
+	   //  //   System.out.println(data.get(key)
+	    //    System.out.println(" Going to  WOOOOOOOO  try1");
+	        
+	        Iterator entries = data.entrySet().iterator();
+	        while (entries.hasNext()) {
+	          //  System.out.println(" Going to  WOOOOOOOO  try2");
+	            @SuppressWarnings("rawtypes")
+				Map.Entry entry = (Map.Entry) entries.next();
+	            String key = (String)entry.getKey();
+	            Integer value = (Integer)entry.getValue();
+	        //    System.out.println("Key = " + key + ", Value = " + value);
+	            
+	            
+	            sno = sno+1;
 				 strNo = String.valueOf(sno);
 				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
 			     table.addCell(r1);
-			     
-			     
-			     
-			    Object dipCodeobj = map1.get("ea_dipcode");
-			    if(dipCodeobj!=null) {
-			    	qPaperName = dipCodeobj.toString();
-			    }
-			    r1 = new PdfPCell(new Phrase(qPaperName,smallfont));
-			    table.addCell(r1);
-			     
-			  
-			    //3
-			    Object ea_nameobj = map1.get("count");
-			    if(ea_nameobj!=null) {
-			    	paperCount = ea_nameobj.toString();
-			    }
-			    r1 = new PdfPCell(new Phrase(paperCount,smallfont));
-			    table.addCell(r1);
-			    
-
-			}
+	            
+	            
+			     r1 = new PdfPCell(new Phrase(key,smallfont));
+				    table.addCell(r1);
+				    
+				    r1 = new PdfPCell(new Phrase(""+value,smallfont));
+				    table.addCell(r1);
+	        }
+	  
+	        
+//	     // using for-each loop for iteration over Map.entrySet() 
+//	        for (Map.Entry<Object,Object> entry : data.entrySet()) { 
+//	            System.out.println("Key = " + entry.getKey() + 
+//	                             ", Value = " + entry.getValue()); 
+//	            
+//	            sno = sno+1;
+//				 strNo = String.valueOf(sno);
+//				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
+//			     table.addCell(r1);
+//	            
+//	            
+//			     r1 = new PdfPCell(new Phrase(entry.getKey(),smallfont));
+//				    table.addCell(r1);
+//				    
+//				    r1 = new PdfPCell(new Phrase(entry.getValue(),smallfont));
+//				    table.addCell(r1);
+//			     
+//	        }
+//	        
+	        
+	        
+//	        while (iter.hasNext()) {
+//				String key = iter.next();
+//				Object val = data.get(key);
+//				 Map<String, Object> map1 = oMapper.convertValue(val, Map.class);
+//			
+//				 
+//				 sno = sno+1;
+//				 strNo = String.valueOf(sno);
+//				 r1 = new PdfPCell(new Phrase(strNo,smallfont));
+//			     table.addCell(r1);
+//			     
+//			     
+//			     
+//			    Object dipCodeobj = map1.get("DP_PAPRNAM");
+//			    if(dipCodeobj!=null) {
+//			    	qPaperName = dipCodeobj.toString();
+//			    }
+//			    r1 = new PdfPCell(new Phrase(qPaperName,smallfont));
+//			    table.addCell(r1);
+//			     
+//			  
+//			    //3
+//			    Object ea_nameobj = map1.get("DP_SESSION");
+//			    if(ea_nameobj!=null) {
+//			    	paperCount = ea_nameobj.toString();
+//			    }
+//			    r1 = new PdfPCell(new Phrase(paperCount,smallfont));
+//			    table.addCell(r1);
+//			    
+//
+//			}
 	        
 	        preface.add(table);
 	        
@@ -1853,25 +1909,36 @@ import com.itextpdf.text.Section;
 	                " "+name,smallBold));
 	        preface.add(new Paragraph(
 	                " P.R.No: "+prCode+"\\"+prNo,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address1,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address2,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address3,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address4,smallBold));
-	        preface.add(new Paragraph(
-	                " "+state,smallBold));
-	        preface.add(new Paragraph(
-	                " "+pincode,smallBold));
-	        preface.add(new Paragraph(
-	                " "+mobile,smallBold));
-	        preface.add(new Paragraph(
-	                " "+phone,smallBold));
-	        preface.add(new Paragraph(
-	                " "+email,smallBold));
 	        
+	        if (address1 != null && address1.length() > 0) {
+	        	preface.add(new Paragraph(" "+address1,catFont));
+	        }
+	        if (address2 != null && address2.length() > 0) {
+	        	preface.add(new Paragraph(" "+address2,catFont));
+	        }
+	        if (address3 != null && address3.length() > 0) {
+	        	preface.add(new Paragraph(" "+address3,catFont));
+	        }
+	        if (address4 != null && address4.length() > 0) {
+	        	preface.add(new Paragraph(" "+address4,catFont));
+	        }
+	        if (state != null && state.length() > 0) {
+	        	preface.add(new Paragraph(" "+state,catFont));
+	        }
+	        if (pincode != null && pincode.length() > 0) {
+	        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
+	        }
+	        if (mobile != null && mobile.length() > 0) {
+	        	preface.add(new Paragraph("Mob: "+mobile,catFont));
+	        }
+	        if (phone != null && phone.length() > 0) {
+	        	preface.add(new Paragraph("Phone: "+phone,catFont));
+	        }
+	        if (email != null && email.length() > 0) {
+	        	preface.add(new Paragraph("Email: "+email,catFont));
+	        }
+	        
+       
 	   
 	        document.add(preface);
 	        
@@ -2123,24 +2190,33 @@ import com.itextpdf.text.Section;
 	        
 	        preface.add(new Paragraph(
 	                " P.R.No: "+prCode+"\\"+prNo,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address1,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address2,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address3,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address4,smallBold));
-	        preface.add(new Paragraph(
-	                " "+state,smallBold));
-	        preface.add(new Paragraph(
-	                " "+pincode,smallBold));
-	        preface.add(new Paragraph(
-	                " "+mobile,smallBold));
-	        preface.add(new Paragraph(
-	                " "+phone,smallBold));
-	        preface.add(new Paragraph(
-	                " "+email,smallBold));
+	        if (address1 != null && address1.length() > 0) {
+	        	preface.add(new Paragraph(" "+address1,catFont));
+	        }
+	        if (address2 != null && address2.length() > 0) {
+	        	preface.add(new Paragraph(" "+address2,catFont));
+	        }
+	        if (address3 != null && address3.length() > 0) {
+	        	preface.add(new Paragraph(" "+address3,catFont));
+	        }
+	        if (address4 != null && address4.length() > 0) {
+	        	preface.add(new Paragraph(" "+address4,catFont));
+	        }
+	        if (state != null && state.length() > 0) {
+	        	preface.add(new Paragraph(" "+state,catFont));
+	        }
+	        if (pincode != null && pincode.length() > 0) {
+	        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
+	        }
+	        if (mobile != null && mobile.length() > 0) {
+	        	preface.add(new Paragraph("Mob: "+mobile,catFont));
+	        }
+	        if (phone != null && phone.length() > 0) {
+	        	preface.add(new Paragraph("Phone: "+phone,catFont));
+	        }
+	        if (email != null && email.length() > 0) {
+	        	preface.add(new Paragraph("Email: "+email,catFont));
+	        }
 	        
 	        
 	        
@@ -2435,24 +2511,33 @@ import com.itextpdf.text.Section;
 	        preface.add(new Paragraph(
 	                "NAME: "+name,smallBold));
 	 
-	        preface.add(new Paragraph(
-	                " "+address1,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address2,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address3,smallBold));
-	        preface.add(new Paragraph(
-	                " "+address4,smallBold));
-	        preface.add(new Paragraph(
-	                " "+state,smallBold));
-	        preface.add(new Paragraph(
-	                " "+pincode,smallBold));
-	        preface.add(new Paragraph(
-	                " "+mobile,smallBold));
-	        preface.add(new Paragraph(
-	                " "+phone,smallBold));
-	        preface.add(new Paragraph(
-	                " "+email,smallBold));
+	        if (address1 != null && address1.length() > 0) {
+	        	preface.add(new Paragraph(" "+address1,catFont));
+	        }
+	        if (address2 != null && address2.length() > 0) {
+	        	preface.add(new Paragraph(" "+address2,catFont));
+	        }
+	        if (address3 != null && address3.length() > 0) {
+	        	preface.add(new Paragraph(" "+address3,catFont));
+	        }
+	        if (address4 != null && address4.length() > 0) {
+	        	preface.add(new Paragraph(" "+address4,catFont));
+	        }
+	        if (state != null && state.length() > 0) {
+	        	preface.add(new Paragraph(" "+state,catFont));
+	        }
+	        if (pincode != null && pincode.length() > 0) {
+	        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
+	        }
+	        if (mobile != null && mobile.length() > 0) {
+	        	preface.add(new Paragraph("Mob: "+mobile,catFont));
+	        }
+	        if (phone != null && phone.length() > 0) {
+	        	preface.add(new Paragraph("Phone: "+phone,catFont));
+	        }
+	        if (email != null && email.length() > 0) {
+	        	preface.add(new Paragraph("Email: "+email,catFont));
+	        }
 	        
 	        
 	        
@@ -3003,15 +3088,33 @@ import com.itextpdf.text.Section;
 		        
 		        preface.add(new Paragraph( "NAME: "+name,smallBold));
 		        preface.add( new Paragraph(" P.R.No: "+prCode+"\\"+prNo,smallBold));
-		        preface.add(new Paragraph(" "+address1,smallBold));
-		        preface.add(new Paragraph(" "+address2,smallBold));
-		        preface.add(new Paragraph(" "+address3,smallBold));
-		        preface.add(new Paragraph(" "+address4,smallBold));
-		        preface.add(new Paragraph(" "+state,smallBold));
-		        preface.add(new Paragraph(" "+pincode,smallBold));
-		        preface.add(new Paragraph(" "+mobile,smallBold));
-		        preface.add(new Paragraph(" "+phone,smallBold));
-		        preface.add(new Paragraph(" "+email,smallBold));
+		        if (address1 != null && address1.length() > 0) {
+		        	preface.add(new Paragraph(" "+address1,catFont));
+		        }
+		        if (address2 != null && address2.length() > 0) {
+		        	preface.add(new Paragraph(" "+address2,catFont));
+		        }
+		        if (address3 != null && address3.length() > 0) {
+		        	preface.add(new Paragraph(" "+address3,catFont));
+		        }
+		        if (address4 != null && address4.length() > 0) {
+		        	preface.add(new Paragraph(" "+address4,catFont));
+		        }
+		        if (state != null && state.length() > 0) {
+		        	preface.add(new Paragraph(" "+state,catFont));
+		        }
+		        if (pincode != null && pincode.length() > 0) {
+		        	preface.add(new Paragraph("Pincode: "+pincode,catFont));
+		        }
+		        if (mobile != null && mobile.length() > 0) {
+		        	preface.add(new Paragraph("Mob: "+mobile,catFont));
+		        }
+		        if (phone != null && phone.length() > 0) {
+		        	preface.add(new Paragraph("Phone: "+phone,catFont));
+		        }
+		        if (email != null && email.length() > 0) {
+		        	preface.add(new Paragraph("Email: "+email,catFont));
+		        }
 		        
 		   
 		        document.add(preface);

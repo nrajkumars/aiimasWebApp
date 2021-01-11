@@ -313,6 +313,8 @@ public class AiimasServlet extends HttpServlet {
 				String QAsemMonthName = request.getParameter("QAsemMonthName");
 				String QAsemYearName = request.getParameter("QAsemYearName");
 				String QAexamCenterCode = request.getParameter("QAexamCenterCode");
+				String sessionvalue = request.getParameter("sessionvalue");
+				
 					
 				
 				Map input = new HashMap();
@@ -320,25 +322,68 @@ public class AiimasServlet extends HttpServlet {
 				input.put("QAsemMonthName", QAsemMonthName);
 				input.put("QAsemYearName", QAsemYearName);
 				input.put("QAexamCenterCode", QAexamCenterCode);
+				input.put("sessionvalue", sessionvalue);
 
 				//RAJKUMAR to merge start
 				
 				// click on marksheet to get the test report
 				
 				PrintView printView = new PrintView();
-				Map applicListData = printView.getQuestionPaperList1(input);
+				List list = printView.getQuestionPaperList1(input);
+				//Map finaldataPDF = new HashMap();
 				
+				Map finaldataPDF = new HashMap<String,String>();
+				 int displayResult =  0;
+				 String displayName = new String("");
 
 
 				
 				// GENERATING the PDF
 				
-				System.out.println(" Going to  GENERATE the PDF file  and get data there in pdf gen file " +applicListData);
+				System.out.println(" Going to  WOOOOOOOOOOOOOOOOOOK array list here " +list.toString());
+				String diplName = new String("");
+				
+			      Map<String, Integer> duplicates = new HashMap<String, Integer>(); 
+			      
+			      for (Object str : list) { 
+			         if (duplicates.containsKey(str.toString())) { 
+			            duplicates.put(str.toString(), duplicates.get(str) + 1); 
+			         } else { 
+			            duplicates.put(str.toString(), 1); 
+			         } 
+			      } 
+			 
+			      for (Map.Entry<String, Integer> entry : duplicates.entrySet()) { 
+			         System.out.println(entry.getKey() + " =" + entry.getValue()); 
+			         displayName = entry.getKey();
+//			         
+//			     	if((displayName != null )) {
+//						if(displayName.contains("=")) {
+//							int subcount = displayName.indexOf("=");
+//							displayName= displayName.substring(subcount+1);
+//							/////= center.trim();
+//						}
+//					}
+			         
+			         displayName = displayName.replace("{dp_paprnam=", " "); 	
+			         displayName = displayName.replace("}", " "); 
+			         displayResult = entry.getValue();
+			         finaldataPDF.put(displayName,displayResult);
+			      } 
+
+			      System.out.println("TO PRINT PDF map = "+ finaldataPDF.toString()); 
+			      
+			      
+//								
 				 
 				PDFGenerator pdfGenerator = new PDFGenerator();
-				String gfile = pdfGenerator.PrintLetterPDF(input, applicListData);
 				
-				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
+				
+				Map<String, Object> applicListData1 = new TreeMap<String, Object>();
+				
+				String gfile = pdfGenerator.PrintLetterPDF(input, finaldataPDF);
+				
+			//	System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
 				
 							
 				Map retrunMap = new HashMap();
@@ -357,12 +402,12 @@ public class AiimasServlet extends HttpServlet {
 				String ACdiplomaCode = request.getParameter("ACdiplomaCode");
 				String ACexamCenterCode = request.getParameter("ACexamCenterCode");
 				
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +action);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACsemMonthName);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACsemYearName);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACduration);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACdiplomaCode);	
-				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACexamCenterCode);	
+//				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +action);	
+//				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACsemMonthName);	
+//				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACsemYearName);	
+//				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACduration);	
+//				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACdiplomaCode);	
+//				System.out.println(" AIIMAS SERVLET  --  PRINT REPORTS  all reports here  " +ACexamCenterCode);	
 				
 				Map input = new HashMap();
 				input.put("action", action);
@@ -384,12 +429,12 @@ public class AiimasServlet extends HttpServlet {
 				
 				// GENERATING the PDF
 				
-				System.out.println(" Going to  GENERATE attendanceChatData ====== " +attendanceChatData);
+				//System.out.println(" Going to  GENERATE attendanceChatData ====== " +attendanceChatData);
 				 
 				PDFGenerator pdfGenerator = new PDFGenerator();
 				String gfile = pdfGenerator.PrintLetterPDF(input, attendanceChatData);
 				
-				System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
+				//System.out.println("DONE GENERATE the PDF file and saved in c:/temp/FirstPdf.pdf");
 				
 							
 				Map retrunMap = new HashMap();

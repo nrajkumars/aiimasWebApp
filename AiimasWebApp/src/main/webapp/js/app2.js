@@ -2792,10 +2792,13 @@ function searchInstitue() {
 		var insituteCode = e.options[e.selectedIndex].value;
 		
 		console.log('searchInstitue clicked rajjj '+insituteCode);
-		
+			if ( insituteCode  == "")
+		   {
+			alert("Please enter the values in insitute  ")
+		   }else{
 	
-	postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchInsitute","insituteCode":insituteCode,}, onPostSearchInstitue);
-
+		postAjax('rs',{"app":"AiimasPost","module":"Maintenance","action":"searchInsitute","insituteCode":insituteCode,}, onPostSearchInstitue);
+	}
 }
 function onPostSearchInstitue(data) {
 	console.log(' onPostSearchInstitue  RESPONSE POST in app .JS:' + data);
@@ -2829,9 +2832,15 @@ function getQuestion1() {
 	
 	//postAjax('rs',{"app":"AiimasPost","module":"printView","action":"searchQ","diplomaCode1":qdiplomaCode2}, onPostSearchQuestion1);
 	
+	if ( qdiplomaCode2 == "")
+		   {
+			alert("Please enter the values in Diploma")
+		   }else{
+	
+	
 	postAjax('rs',{"app":"AiimasPost","module":"printViewQuestion","action":"searchQ","diplomaCode1":qdiplomaCode2,}, onPostSearchQuestion1);
 	
-
+	}
 
 }
 function onPostSearchQuestion1(data) {
@@ -2961,10 +2970,14 @@ function printApplicantList() {
 		var ALsemYearName = document.getElementById('ALsemYearName').value;
 		var ALexamCenterCode = document.getElementById('ALexamCenterCode').value;
 		
-	
-		
-	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_ApplicantList","action":"applicantList","ALsemMonthName":ALsemMonthName,"ALsemYearName":ALsemYearName,"ALexamCenterCode":ALexamCenterCode}, onPostprintApplicantList);
-
+if (ALsemMonthName == "" || ALsemYearName == "" || ALexamCenterCode == "") {
+				alert("Please enter the values in Exam Month, Year and Center")
+	  }else if(isNaN(ALsemYearName)){
+			alert("Please enter only numbers for Exam Sem Year ")
+			
+	}else {
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_ApplicantList","action":"applicantList","ALsemMonthName":ALsemMonthName,"ALsemYearName":ALsemYearName,"ALexamCenterCode":ALexamCenterCode}, onPostprintApplicantList);
+	}
 }
 function onPostprintApplicantList(data) {
 
@@ -2985,9 +2998,14 @@ function printStudentAddress() {
 		var StuAdrPRNo1 = document.getElementById('StuAdrPRNo1').value;
 		var StuAdrCopy1 = document.getElementById('StuAdrCopy1').value;
 	
-		
-	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_StudentAddress","action":"printStudentAddress","StuAdrPRCode1":StuAdrPRCode1,"StuAdrPRNo1":StuAdrPRNo1,"StuAdrCopy1":StuAdrCopy1}, onPostprintStudentAddress);
-
+	if (StuAdrPRCode1 == "" || StuAdrPRNo1 == "" || StuAdrCopy1 == "") {
+				alert("Please enter the values in PR Code, Number and Copies")
+	  }else if(isNaN(StuAdrPRNo1)){
+			alert("Please enter only numbers for PR Number ")
+			
+	}else {		
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_StudentAddress","action":"printStudentAddress","StuAdrPRCode1":StuAdrPRCode1,"StuAdrPRNo1":StuAdrPRNo1,"StuAdrCopy1":StuAdrCopy1}, onPostprintStudentAddress);
+	}
 }
 function onPostprintStudentAddress(data) {
 
@@ -3007,10 +3025,16 @@ function printStuAddressbyCentre() {
 		var ALsemMonthName1 = document.getElementById('ALsemMonthName1').value;
 		var ALsemYearName1 = document.getElementById('ALsemYearName1').value;
 		var ALexamCenterCode1 = document.getElementById('ALexamCenterCode1').value;
-	
 		
-	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_StuAddressbyCentre","action":"StuAddressbyCentre","ALsemMonthName1":ALsemMonthName1,"ALsemYearName1":ALsemYearName1,"ALexamCenterCode1":ALexamCenterCode1}, onPostprintStuAddressbyCentre);
-
+	if (ALsemMonthName1 == "" || ALsemYearName1 == "" || ALexamCenterCode1 == "") {
+				alert("Please enter the values in Exam Month, Year and Center")
+	  }else if(isNaN(ALsemYearName1)){
+			alert("Please enter only numbers for Exam Sem Year ")
+			
+	}else {	
+		
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_StuAddressbyCentre","action":"StuAddressbyCentre","ALsemMonthName1":ALsemMonthName1,"ALsemYearName1":ALsemYearName1,"ALexamCenterCode1":ALexamCenterCode1}, onPostprintStuAddressbyCentre);
+	}
 }
 function onPostprintStuAddressbyCentre(data) {
 
@@ -3031,11 +3055,17 @@ function printQuestionPaperList() {
 		var QAsemMonthName = document.getElementById('QAsemMonthName').value;
 		var QAsemYearName = document.getElementById('QAsemYearName').value;
 		var QAexamCenterCode = document.getElementById('QAexamCenterCode').value;
+		var sessionvalue = document.getElementById('sessionvalue').value;
 	
-		
+	if (QAsemMonthName == "" || QAsemYearName == "" || QAsemYearName == "" || sessionvalue =="") {
+				alert("Please enter the values in Exam Month, Year, Session and Center")
+	  }else if(isNaN(QAsemYearName)){
+			alert("Please enter only numbers for Exam Sem Year ")
+			
+	}else {	
 	
-	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_QuestionPaper","action":"QPaperList","QAsemMonthName":QAsemMonthName,"QAsemYearName":QAsemYearName,"QAexamCenterCode":QAexamCenterCode}, onPostQuestionPaperList);
-
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_QuestionPaper","action":"QPaperList","QAsemMonthName":QAsemMonthName,"QAsemYearName":QAsemYearName,"sessionvalue":sessionvalue,"QAexamCenterCode":QAexamCenterCode}, onPostQuestionPaperList);
+	}
 }
 function onPostQuestionPaperList(data) {
 
@@ -3060,9 +3090,14 @@ function getAttendChart() {
 		var ACdiplomaCode = document.getElementById('ACdiplomaCode').value;
 		var ACexamCenterCode = document.getElementById('ACexamCenterCode').value;
 		
-	
-	postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_AttendChart","action":"AttendChart","ACsemMonthName":ACsemMonthName,"ACsemYearName":ACsemYearName,"ACduration":ACduration,"ACdiplomaCode":ACdiplomaCode,"ACexamCenterCode":ACexamCenterCode,}, onPostAttendChart);
-
+	 if (ACsemMonthName == "" || ACsemYearName == "" || ACduration == "" || ACduration == "" ) {
+				alert("Please enter the values in Exam Month, Year, Duration and Centre")
+	  }else if(isNaN(ACsemYearName)){
+			alert("Please enter only numbers for Exam Year ")
+			
+	}else {
+		postAjaxReturnBinary('rs',{"app":"AiimasPost","module":"printReport_AttendChart","action":"AttendChart","ACsemMonthName":ACsemMonthName,"ACsemYearName":ACsemYearName,"ACduration":ACduration,"ACdiplomaCode":ACdiplomaCode,"ACexamCenterCode":ACexamCenterCode,}, onPostAttendChart);
+	}
 }
 function onPostAttendChart(data) {
 

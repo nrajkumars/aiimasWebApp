@@ -2152,15 +2152,26 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 	<BR>
 	
 				
-		<div class="w3-half">
+		<div class="w3-third">
 			<label class="w3-text-brown"><b>Exam Semester Month:</b></label>
 			<input class="w3-input w3-border " type="text" id="QAsemMonthName" >
 		  </div>
 		  
-		  <div class="w3-half">
+		  <div class="w3-third">
 			<label class="w3-text-brown"><b>Exam Semester Year:</b></label>
 			<input class="w3-input w3-border " type="year" id="QAsemYearName"  ><br>
 		  </div>
+		  
+		  <div class="w3-third">
+				<label class="w3-text-brown"><b> Exam Session:</b>&nbsp;</label>
+				<select class="w3-select" name="option" id="sessionvalue">
+		    		<option value="" disabled selected>Choose your option</option>
+	    		<option value="D1AM">D1AM</option>
+		    		<option value="D1PM">D1PM</option>
+		   		 	<option value="D2AM">D2AM</option>
+		   		 	 <option value="D2PM">D2PM</option>
+		  		</select><br><br><br>
+  			</div><br>
 			
   			
   			
@@ -2407,7 +2418,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 		<thead>
 			<tr>
 				
-				<th >The Total PR code matched is : </th>
+				<th >The Total PR code matched is ( only 5 listed below) </th>
 				<th id="countPR"></th>
 			</tr>
 		</thead>

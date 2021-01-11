@@ -1,6 +1,7 @@
 package com.aiimas.dao;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -313,13 +314,15 @@ public class PrintView extends BaseDao {
 	///  TO BE mapped to UI
 	
 //  Question paperlist
-	public Map getQuestionPaperList1(Map input) throws Exception  {
+	public List getQuestionPaperList1(Map input) throws Exception  {
 		Object QAsemMonthName =  input.get("QAsemMonthName");
 		Object QAsemYearName =  input.get("QAsemYearName");
 		Object QAexamCenterCode =  input.get("QAexamCenterCode");
+		Object sessionvalue =  input.get("sessionvalue");
 		
+		 List<String> list = new ArrayList<String>(); 
 		
-		Map<String, Object> finaldata = new TreeMap<String, Object>();
+		//Map<String, Object> finaldata = new TreeMap<String, Object>();
 		
 //		String sesMonth = new String ("FEB");
 //		String sesYear = new String("2006");
@@ -328,6 +331,9 @@ public class PrintView extends BaseDao {
 		String sesMonth = new String ("");
     	 String sesYear = new String("");
     	String center = new String("");
+    	String session = new String("");
+    	
+    	
     	
 		if((QAexamCenterCode != null )) {
 			center= QAexamCenterCode.toString();
@@ -341,52 +347,129 @@ public class PrintView extends BaseDao {
      	 
         if (QAsemMonthName!=null) {
         	sesMonth = QAsemMonthName.toString();
+        	sesMonth = sesMonth.trim();
         }
         
         if(QAsemYearName!=null) {
-        	 sesYear = QAsemYearName.toString();;
+        	 sesYear = QAsemYearName.toString();
+        	 sesYear = sesYear.trim();
          } 
+        if(sessionvalue!=null) {
+        	session = sessionvalue.toString();
+        	session = session.trim();
+        } 
         
-//		String sesMonth = new String ("FEB");
-//		String sesYear = new String("2006");
-//		String center = new String("BHI");
-		
-		
-	//	System.out.println(" INSIDE PRINT VIEW  getQuestionPaperList1 --  going to run the SQL = "+input.toString() );
-		
-		
-		//tod0 check to be change
-		if (sesMonth != null && sesMonth.trim().length() > 0) {
-			if((sesYear != null)) {
 
-				String getQuestionPapList = "SELECT count(EA_DIPCODE),EA_DIPCODE, EA_DURTN FROM PUBLIC.EAPPL WHERE EA_SESMON= ? AND EA_SESYR = ? AND EA_CECODE= ? GROUP BY EA_DIPCODE, EA_DURTN";
-				List data2 = executeFetchSql(getQuestionPapList, new Object[]{sesMonth,Integer.parseInt(sesYear),center });
-
-				if (data2 != null && data2.size() > 0) {
-					for (int ii = 0; ii <= data2.size()-1; ii++) {
+       
+		
+		//System.out.println(" INSIDE PRINT VIEW  getQuestionPaperList1 --  going to run the SQL = "+input.toString() );
+		
+		
+		
+		ObjectMapper oMapper = new ObjectMapper();
+		   String dipCode = new String ("");
+			String dura = new String ("");
 			
-						String paper = new String("QPaper"+ii);
-						finaldata.put(paper, data2.get(ii));
+			String queslist = new String("QList");
+			String sqlQlist = new String("");
+			List finadata1 = null; 
+			
+				// Read from ADDRESS table
+//				String getAddressDataSql = "select EA_PRCODE, EA_PRNO from public.EAPPL where EA_SESMON =? and EA_SESYR  = ? and EA_CECODE = ?";
+//				List data1 = executeFetchSql(getAddressDataSql, new Object[]{semMonth,Integer.parseInt(semYear),center });
+//				
+				String getQuestionPapList = "SELECT EA_DIPCODE, EA_DURTN FROM PUBLIC.EAPPL WHERE EA_SESMON= ? AND EA_SESYR = ? AND EA_CECODE= ? GROUP BY EA_DIPCODE, EA_DURTN";
+				List data1 = executeFetchSql(getQuestionPapList, new Object[]{sesMonth,Integer.parseInt(sesYear),center });
+				
+				//System.out.println(" RAJKUMAR  Address 1 QUERY  size--------------"+data1.toString());
+							
+				if (data1 != null && data1.size() > 0) {
+					for (int ii = 1; ii <= data1.size()-1; ii++) {
+						Object adddata = data1.get(ii);
+						
+						//Object val = data.get(key);
+						Map<String, Object> map1 = oMapper.convertValue(adddata, Map.class);
+						//System.out.println(" RAJKUMAR  Address 1 list possint"+ii);
+						
+						//System.out.println(" RAJKUMAR  Address 1 map value"+map1.toString());
+						//System.out.println(" RAJKUMAR  Address 1 map size"+map1.size());
+						
+				  
+						
+						Object prcodeObj = map1.get("ea_dipcode");
+						
+						//System.out.println(" RAJKUMAR  Address 3"+prcodeObj.toString());
+						
+					    	if(prcodeObj!=null) {
+					    		dipCode = prcodeObj.toString();
+					    	}
+					    	
+					    	Object prNoObj = map1.get("ea_durtn");
+					    	if(prNoObj!=null) {
+					    		dura = prNoObj.toString();
+					    	}	
+					    	
+					    	//System.out.println(" RAJKUMAR  1 SQL"+dipCode);
+							//System.out.println(" RAJKUMAR  1SQL "+dura);
+					    	
+					
+						sqlQlist = "SELECT  DP_PAPRNAM FROM PUBLIC.DIPPAPER WHERE DP_DIPCODE = ? AND DP_DURTN = ? and DP_SESSION = ? ";
+
+						finadata1 = executeFetchSql(sqlQlist, new Object[]{dipCode, dura, session });
+						
+						//System.out.println(" INSIDE adress 2nd query result  = "+finadata1.toString());
+						
+						if (finadata1 != null && finadata1.size() > 0) {
+							
+							  list.add(finadata1.get(0).toString()); 
+													
+						}
+						//prdata.put(appList, finadata1.get(ii));
 					}
 				}
-			
 				
-//				// Read from ADMIN table
-//				String getAdminDataSql = "SELECT ea_dipcode,ea_name, ea_prcode, ea_prno, ea_paprstr FROM PUBLIC.EAPPL WHERE EA_SESMON=? AND EA_SESYR = ? AND EA_CECODE= ? AND EA_DIPCODE = ? AND EA_DURTN= ?";
-//				List data1 = executeFetchSql(getAdminDataSql, new Object[]{sesMonth,Integer.parseInt(sesYear),center,dipCode, duration});
+				//System.out.println(" RAJKUMAR  Address 2 QUERY  size--------------"+list.size());
+		
+				return list;
+				
+	}
+
+		
+//		////?????????????????????????
+//		//tod0 check to be change
+//		if (sesMonth != null && sesMonth.trim().length() > 0) {
+//			if((sesYear != null)) {
+//
+//				String getQuestionPapList = "SELECT count(EA_DIPCODE),EA_DIPCODE, EA_DURTN FROM PUBLIC.EAPPL WHERE EA_SESMON= ? AND EA_SESYR = ? AND EA_CECODE= ? GROUP BY EA_DIPCODE, EA_DURTN";
+//				List data2 = executeFetchSql(getQuestionPapList, new Object[]{sesMonth,Integer.parseInt(sesYear),center });
+//
+//				if (data2 != null && data2.size() > 0) {
+//					for (int ii = 0; ii <= data2.size()-1; ii++) {
 //			
-//				if (data1 != null && data1.size() > 0) {
-//					for (int ii = 0; ii <= data1.size()-1; ii++) {
-//						String appList = new String("appList"+ii);
-//						finaldata.put(appList, data1.get(ii));
+//						String paper = new String("QPaper"+ii);
+//						finaldata.put(paper, data2.get(ii));
 //					}
 //				}
-						
-				return finaldata;
-			}
-		}
-		return null;
-	}
+//			
+//				
+////				// Read from ADMIN table
+////				String getAdminDataSql = "SELECT ea_dipcode,ea_name, ea_prcode, ea_prno, ea_paprstr FROM PUBLIC.EAPPL WHERE EA_SESMON=? AND EA_SESYR = ? AND EA_CECODE= ? AND EA_DIPCODE = ? AND EA_DURTN= ?";
+////				List data1 = executeFetchSql(getAdminDataSql, new Object[]{sesMonth,Integer.parseInt(sesYear),center,dipCode, duration});
+////			
+////				if (data1 != null && data1.size() > 0) {
+////					for (int ii = 0; ii <= data1.size()-1; ii++) {
+////						String appList = new String("appList"+ii);
+////						finaldata.put(appList, data1.get(ii));
+////					}
+////				}l
+//				
+//				
+//						
+//				return finaldata;
+//			}
+//		}
+//		return null;
+//	}
 	
 	
 //  Attendance Chart
@@ -639,11 +722,13 @@ public class PrintView extends BaseDao {
 				if(center.contains("/")) {
 					int subcount = center.indexOf("/");
 					center= center.substring(subcount+1);
-					center= center.trim();
+					center= center.trim();	String adr = new String("Address");
+			String sqlAddress = new String("");
+			List finadata1 = null; 
 				}
 			}
 			
-			String adr = new String("Address");
+		//	String queslist = new String("QList");
 			String sqlAddress = new String("");
 			List finadata1 = null; 
 		
