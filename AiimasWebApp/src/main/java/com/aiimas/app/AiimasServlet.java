@@ -172,8 +172,16 @@ public class AiimasServlet extends HttpServlet {
 		System.out.println("inside aiimas servier do post-"+app + "," + module +"," + action);	
 		
 		//--------------- Action = Logout -------------- //
-		
-		if ("logout".equals(action)) {
+		if("login".equals(action)) {
+			resp.setContentType("text/html;charset=UTF-8");
+			String user = request.getParameter("user");
+	        String password = request.getParameter("password");
+	        if(user.equals("sakthi") && password.equals("sakthi123")) {
+	            resp.getWriter().write("success");
+	        }else {
+	        	resp.getWriter().write("failure");
+	        }
+		}else if ("logout".equals(action)) {
 			if ("mklogoutaiimas".equals(module)) {
 			try {
 				HttpSession session=request.getSession();  
