@@ -178,6 +178,8 @@ public class AiimasServlet extends HttpServlet {
 	        String password = request.getParameter("password");
 	        if(user.equals("sakthi") && password.equals("sakthi123")) {
 	            resp.getWriter().write("success");
+	            HttpSession session = request.getSession();
+	            session.setAttribute("user", user);
 	        }else {
 	        	resp.getWriter().write("failure");
 	        }

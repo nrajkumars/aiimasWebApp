@@ -22,7 +22,7 @@
                data:{"user":user,"password":pwd,"action":"login"},
                success: function (data) {
                   if(data=='success'){
-                    $(location).attr('href','index.jsp');
+                    $(location).attr('href','mainpage.jsp');
                   }else{
                       alert('Invalid username and password, please contact administrator!');
                   }
