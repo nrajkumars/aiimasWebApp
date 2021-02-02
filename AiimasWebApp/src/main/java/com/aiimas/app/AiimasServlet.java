@@ -67,7 +67,7 @@ public class AiimasServlet extends HttpServlet {
 		
 		try { 
 			
-			System.out.println(" RESPONSE insdie ------***********---------init  ");
+			System.out.println(" RESPONSE insdie ------***********--- RAJ------init  ");
 
 			MasterTableValues masterTable = new MasterTableValues();
 				
@@ -139,12 +139,10 @@ public class AiimasServlet extends HttpServlet {
 			response.getOutputStream().write(buf);
 			response.getOutputStream().close();
 			
-		//	System.out.println("inside writeResponse  DONE ------ HERE----------------------"+mdata.toString());
-		//	System.out.println("inside writeResponse  DONE ------ HERE----------------------"+response.toString());
 			
 		} catch (Exception e) {
 			
-			System.out.println("inside AIIMAS Servlet writeResponse ---------Response json : "+e.toString());
+			System.out.println("inside AIIMAS Servlet writeResponse ---ERROE-----Response json : "+e.toString());
 			e.printStackTrace();
 		}
 
@@ -158,7 +156,7 @@ public class AiimasServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 */ 
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		
 		System.out.println("inside aiimas servier");
@@ -169,15 +167,35 @@ public class AiimasServlet extends HttpServlet {
 		//String action = request.getParameter("logoutaiimas");
 	
 		
-		System.out.println("inside aiimas servier do post-"+app + "," + module +"," + action);	
+		System.out.println("inside aiimas  RAJJJ servier do post...-"+app + "," + module +"," + action);	
 		
 		//--------------- Action = Logout -------------- //
+		
+		System.out.println("inside aiimas  RAJJJ servier do -  to check LOGIN");
 		if("login".equals(action)) {
+			
 			resp.setContentType("text/html;charset=UTF-8");
 			String user = request.getParameter("user");
-	        String password = request.getParameter("password");
-	        if(user.equals("sakthi") && password.equals("sakthi123")) {
-	            resp.getWriter().write("success");
+	        String checkp = request.getParameter("password");
+	        // AUTHENDICATE in DB
+	        boolean loginresult = false;
+	        
+
+	        
+	      try {  
+	        Maintenance maintenance = new Maintenance();
+			Map input = new HashMap();
+			input.put("user", user);
+			input.put("checkp", checkp);
+
+	        loginresult = maintenance.loginValidation(input);
+
+		} catch (Exception e) {
+			System.out.println("in Servlet CATCH Failure :: Servlet : LOGIN check -- "+e.toString());
+		}
+	        
+	         if(loginresult) {
+	        	resp.getWriter().write("success");
 	            HttpSession session = request.getSession();
 	            session.setAttribute("user", user);
 	        }else {
