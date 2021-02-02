@@ -3,6 +3,16 @@
 <%@ page import="com.fasterxml.jackson.databind.ObjectMapper, java.util.HashMap,java.util.Map.Entry,com.fasterxml.jackson.core.JsonProcessingException" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
+    
+    
+    <%
+    if(session.getAttribute("user") == null) {
+       response.sendRedirect("login.jsp");
+       return ;
+    }
+%>
+    
+    
  <%! String json="";%>
  <%
  Map<String, String> elements = new HashMap();
