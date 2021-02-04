@@ -67,7 +67,7 @@ public class AiimasServlet extends HttpServlet {
 		
 		try { 
 			
-			System.out.println(" RESPONSE insdie ------***********--- RAJ------init  ");
+		//	System.out.println(" RESPONSE insdie ------***********--- RAJ------init  ");
 
 			MasterTableValues masterTable = new MasterTableValues();
 				
@@ -77,13 +77,13 @@ public class AiimasServlet extends HttpServlet {
 			
 			stateCenterMap = masterTable.getStateCenterMasterTable();
 			
-			System.out.println(" RESPONSE GOT Master table in MAP -- "+diplmaDetails);
+			//System.out.println(" RESPONSE GOT Master table in MAP -- "+diplmaDetails);
 			
 		    if(diplmaDetails!=null){
 		    		getServletContext().setAttribute( "diplomaCodeDetails", diplmaDetails );
 		    }
 		    
-		    System.out.println(" RESPONSE insdie ------***********---------init  loaded diploma code");
+		   // System.out.println(" RESPONSE insdie ------***********---------init  loaded diploma code");
 		    
 		    if(stateCenterMap!=null){
 	    		getServletContext().setAttribute( "stateCenterMap", stateCenterMap );
@@ -123,15 +123,15 @@ public class AiimasServlet extends HttpServlet {
 					fileInputStream.close();
 					responseOutputStream.flush();
 					responseOutputStream.close();
-					System.out.println("PDF data written to output stream:" +pdfFile.length());
+					//System.out.println("PDF data written to output stream:" +pdfFile.length());
 					return;
 				}
 			}
 			
-			System.out.println("inside writeResponse -----------writeResponse-----------------");
+			//System.out.println("inside writeResponse -----------writeResponse-----------------");
 	
 			byte buf[] = om.writeValueAsString(mdata).getBytes();
-			System.out.println("inside AIIMAS Servlet writeResponse ---------Response json : " + new String(buf));
+			//System.out.println("inside AIIMAS Servlet writeResponse ---------Response json : " + new String(buf));
 			
 		
 			response.setContentLength(buf.length);
@@ -159,7 +159,7 @@ public class AiimasServlet extends HttpServlet {
 	 */ 
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("inside aiimas servier");
+		//System.out.println("inside aiimas servier");
 		
 		String app = request.getParameter("app");
 		String module = request.getParameter("module");
@@ -167,11 +167,11 @@ public class AiimasServlet extends HttpServlet {
 		//String action = request.getParameter("logoutaiimas");
 	
 		
-		System.out.println("inside aiimas  RAJJJ servier do post...-"+app + "," + module +"," + action);	
+		//System.out.println("inside aiimas  RAJJJ servier do post...-"+app + "," + module +"," + action);	
 		
 		//--------------- Action = Logout -------------- //
 		
-		System.out.println("inside aiimas  RAJJJ servier do -  to check LOGIN");
+		//System.out.println("inside aiimas  RAJJJ servier do -  to check LOGIN");
 		if("login".equals(action)) {
 			
 			resp.setContentType("text/html;charset=UTF-8");
@@ -234,12 +234,12 @@ public class AiimasServlet extends HttpServlet {
 		//--------------- Action = Application AIIMAS  -------------- //
 		
 		try {
-			System.out.println("request :  " + module +"," + action);
+		//	System.out.println("request :  " + module +"," + action);
 			
 			//--------------- Action = Application VERIFICATION  -------------- //
 			if (module != null && module.equals("verification")) {
 		
-				System.out.println("Inside module Verification : " + action);
+				//System.out.println("Inside module Verification : " + action);
 			
 												
 				String prn = request.getParameter("prNo");
@@ -256,14 +256,14 @@ public class AiimasServlet extends HttpServlet {
 				
 				
 				Map verifyedFullValues = verification.getVerficationFULLDetail1(input);
-				System.out.println(" RESPONSE  FULL verification GOT in MAP -- "+verifyedFullValues);
+				//System.out.println(" RESPONSE  FULL verification GOT in MAP -- "+verifyedFullValues);
 				
 				writeResponse(verifyedFullValues, resp);
 				
 				
 			}else if (module != null && module.equals("findPRverify")) {
 		
-				System.out.println("Inside module findPRverify : " + action);
+				//System.out.println("Inside module findPRverify : " + action);
 			
 												
 				String prcdnoNamesearch = request.getParameter("prcdnoNamesearch");
@@ -304,13 +304,6 @@ public class AiimasServlet extends HttpServlet {
 		              
 		            out.close();  
 
-			
-				
-			//	Map verifyedbyName = verification.getVerficationByName(input);
-				
-			//	System.out.println(" RESPONSE   verification by NAME GOT in MAP -- "+verifyedbyName);
-				
-			//	writeResponse(verifyedbyName, resp);
 				
 			}else if (module != null && module.equals("printViewQuestion")) {
 				
