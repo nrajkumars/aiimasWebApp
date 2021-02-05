@@ -72,6 +72,22 @@ table#tbsty td
 {
     border: none !important;
 }
+
+input[list]
+{
+  margin-left:auto;
+    margin-right:auto;
+	
+    max-width: 200px;
+    border-width: 0rem;
+    border-bottom: 4px #888888;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    /*background: #D2E9FF;*/
+    background: #FFF;
+    padding: 10px 10px 10px 10px;
+    font: 14px Arial, Helvetica, sans-serif;
+    color: #000;
+}
 <!-- end table -->
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
@@ -232,7 +248,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   		-->
   		
   		<!--  <select class="w3-select"  id="diplomaCode" onchange="getSelectedDipcode()">  -->
-  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option">
+  		<input list="diplomaCodeList" name="diplomaCodeName" id="diplomaCode" placeholder="Choose your option" class="selectlist">
   		<datalist id="diplomaCodeList" onchange="getSelectedDipcode()">
   		<option selected value="Choose your option"></option>
 		
